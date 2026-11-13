@@ -75,7 +75,7 @@ Item {
 
         Text {
             width: parent.width
-            text: root.text
+            text: I18n.t(root.text)
             textFormat: Text.StyledText
             wrapMode: Text.WordWrap
             color: root.warn ? mt.colBorder : mt.pInk

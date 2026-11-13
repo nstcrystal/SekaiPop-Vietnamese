@@ -30,17 +30,18 @@ SettingsPage {
     readonly property string statusDetail: {
         switch (UpdateService.status) {
         case "checking": return "Asking the remote…"
-        case "current": return UpdateService.latest !== "" ? "Latest is " + UpdateService.latest : "Nothing newer upstream"
+        case "current": return UpdateService.latest !== ""
+            ? I18n.t("Latest is {version}", { version: UpdateService.latest }) : "Nothing newer upstream"
         case "behind":
             if (UpdateService.updateError !== "")
-                return "The update didn't apply: " + UpdateService.updateError + "."
+                return I18n.t("The update didn't apply: {error}.", { error: UpdateService.updateError })
             if (UpdateService.isGit)
-                return UpdateService.behind + (UpdateService.behind === 1 ? " new commit" : " new commits") + " upstream"
+                return I18n.t(UpdateService.behind === 1 ? "{n} new commit upstream" : "{n} new commits upstream", { n: UpdateService.behind })
             if (UpdateService.managed)
                 return UpdateService.unknown
-                    ? "These files carry no version mark yet, so Update now installs the latest from GitHub (" + UpdateService.latest + ")."
-                    : "A newer commit is on GitHub (" + UpdateService.latest + ")."
-            return "Version " + UpdateService.latest + " is out"
+                    ? I18n.t("These files carry no version mark yet, so Update now installs the latest from GitHub ({version}).", { version: UpdateService.latest })
+                    : I18n.t("A newer commit is on GitHub ({version}).", { version: UpdateService.latest })
+            return I18n.t("Version {version} is out", { version: UpdateService.latest })
         case "nosource": return "Install git to update from GitHub, or put a link to a VERSION file in ~/.config/sekaipop/update-url."
         case "error": return UpdateService.reason
         default: return ""
@@ -122,7 +123,7 @@ SettingsPage {
             }
 
             Text {
-                text: "A Quickshell shell for Hyprland, styled like a phone."
+                text: I18n.t("A Quickshell shell for Hyprland, styled like a phone.")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 17
@@ -147,7 +148,7 @@ SettingsPage {
 
                 SettingChip {
                     label: SettingsService.changedCount === 0 ? "Default settings"
-                        : SettingsService.changedCount + (SettingsService.changedCount === 1 ? " setting changed" : " settings changed")
+                        : I18n.t(SettingsService.changedCount === 1 ? "{n} setting changed" : "{n} settings changed", { n: SettingsService.changedCount })
                     icon: "tune"
                 }
             }
@@ -194,7 +195,7 @@ SettingsPage {
                 Text {
                     width: parent.width
                     elide: Text.ElideRight
-                    text: page.statusTitle
+                    text: I18n.t(page.statusTitle)
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 24
@@ -206,7 +207,7 @@ SettingsPage {
                     width: parent.width
                     visible: text !== ""
                     wrapMode: Text.WordWrap
-                    text: page.statusDetail
+                    text: I18n.t(page.statusDetail)
                     color: mt.pInkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 17
@@ -217,8 +218,8 @@ SettingsPage {
         SettingAction {
             icon: "update"
             label: "Check for updates"
-            detail: UpdateService.status === "checking" ? "Checking…"
-                : (UpdateService.checkedAt > 0 ? "Checked " + Qt.formatTime(new Date(UpdateService.checkedAt), "hh:mm") : "")
+            detail: UpdateService.status === "checking" ? I18n.t("Checking…")
+                : (UpdateService.checkedAt > 0 ? I18n.t("Checked {time}", { time: Qt.formatTime(new Date(UpdateService.checkedAt), "hh:mm") }) : "")
             busy: UpdateService.status === "checking"
             onActivated: UpdateService.check(true)
         }
@@ -227,10 +228,10 @@ SettingsPage {
             visible: UpdateService.status === "behind" && UpdateService.canApply
             icon: "download"
             label: "Update now"
-            detail: UpdateService.updating ? (UpdateService.isGit ? "Pulling…" : "Downloading…")
-                : (UpdateService.updateError !== "" ? "Didn't apply, try again"
+            detail: UpdateService.updating ? I18n.t(UpdateService.isGit ? "Pulling…" : "Downloading…")
+                : (UpdateService.updateError !== "" ? I18n.t("Didn't apply, try again")
                 : UpdateService.updateMessage !== "" ? UpdateService.updateMessage
-                    : (UpdateService.isGit ? "Pull, then reload" : "Download, then reload"))
+                    : I18n.t(UpdateService.isGit ? "Pull, then reload" : "Download, then reload"))
             busy: UpdateService.updating
             onActivated: UpdateService.update()
         }
@@ -238,7 +239,7 @@ SettingsPage {
         Text {
             width: page.fullWidth
             wrapMode: Text.WordWrap
-            text: "The shell's own update. Your plugins have their own card just below, with the same check, commits and Update; the two settings here are theirs too."
+            text: I18n.t("The shell's own update. Your plugins have their own card just below, with the same check, commits and Update; the two settings here are theirs too.")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 15
@@ -341,7 +342,7 @@ SettingsPage {
 
         Text {
             visible: UpdateService.changelog.length === 0
-            text: "No CHANGELOG.md next to shell.qml."
+            text: I18n.t("No CHANGELOG.md next to shell.qml.")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 17
@@ -437,7 +438,7 @@ SettingsPage {
                 Text {
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    text: modelData.what
+                    text: I18n.t(modelData.what)
                     color: mt.pInkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 15

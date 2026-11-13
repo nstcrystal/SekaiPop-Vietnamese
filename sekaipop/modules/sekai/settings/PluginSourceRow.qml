@@ -23,7 +23,7 @@ Item {
     Text {
         width: 220
         anchors.verticalCenter: parent.verticalCenter
-        text: root.label
+        text: I18n.t(root.label)
         color: mt.pInk
         font.family: mt.fontFamily
         font.pixelSize: 15
@@ -36,7 +36,7 @@ Item {
         width: root.width - x - (chip.visible ? chip.width + 18 : 0)
         anchors.verticalCenter: parent.verticalCenter
         wrapMode: Text.WordWrap
-        text: root.text
+        text: I18n.t(root.text)
         color: mt.pInk
         font.family: mt.fontFamily
         font.pixelSize: 15

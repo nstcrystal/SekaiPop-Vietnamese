@@ -187,8 +187,8 @@ SectionCard {
             title: "Updates"
             // A plugin's QML is loaded once, when the shell starts: an update (or a Go back) is on
             // disk at once, and on screen from the next start.
-            note: card.anyMoved ? "Done. Updated plugins run their new code from the next start of the shell."
-                : "Each shows the commits it brings first."
+            note: card.anyMoved ? I18n.t("Done. Updated plugins run their new code from the next start of the shell.")
+                : I18n.t("Each shows the commits it brings first.")
 
             SettingChip {
                 visible: card.anyMoved
@@ -204,7 +204,7 @@ SectionCard {
                 capH: 36
                 fontSize: 14
                 selected: true
-                label: PluginRepoService.updates.length === 2 ? "Update both" : "Update all " + PluginRepoService.updates.length
+                label: PluginRepoService.updates.length === 2 ? I18n.t("Update both") : I18n.t("Update all {n}", { n: PluginRepoService.updates.length })
                 icon: "download"
                 onClicked: PluginRepoService.updateAll()
             }
@@ -373,7 +373,7 @@ SectionCard {
                     visible: grp.isRepo && grp.modelData.plugins.length === 0 && grp.modelData.skipped.length === 0
                     width: card.innerWidth
                     icon: "inventory_2"
-                    text: "<b>" + (grp.isRepo ? grp.modelData.repo : "") + "</b> is installed, but none of its plugins is in the plugins folder any more."
+                    text: "<b>" + (grp.isRepo ? grp.modelData.repo : "") + "</b> " + I18n.t("is installed, but none of its plugins is in the plugins folder any more.")
 
                     SettingChip {
                         capH: 36
@@ -476,7 +476,7 @@ SectionCard {
 
                     Text {
                         visible: srcFlow.line.note !== ""
-                        text: "· " + srcFlow.line.note
+                        text: "· " + I18n.t(srcFlow.line.note)
                         color: mt.pInkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 14
@@ -516,7 +516,7 @@ SectionCard {
                 id: trust
                 width: parent.width - 28
                 wrapMode: Text.WordWrap
-                text: "A plugin runs with the shell's full rights: it can run programs and read your files. Keep the ones you'd trust as a script of your own."
+                text: I18n.t("A plugin runs with the shell's full rights: it can run programs and read your files. Keep the ones you'd trust as a script of your own.")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 14

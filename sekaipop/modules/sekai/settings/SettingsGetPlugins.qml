@@ -87,9 +87,11 @@ SectionCard {
             Text {
                 anchors.verticalCenter: parent.verticalCenter
                 text: PluginRepoService.listStatus === "fetching" && PluginRepoService.entries.length === 0
-                    ? "Fetching the list…"
-                    : (PluginRepoService.entries.length === 1 ? "1 plugin" : PluginRepoService.entries.length + " plugins")
-                        + ", each read by a person before it went on the list"
+                    ? I18n.t("Fetching the list…")
+                    : (PluginRepoService.entries.length === 1
+                        ? I18n.t("{n} plugin", { n: 1 })
+                        : I18n.t("{n} plugins", { n: PluginRepoService.entries.length }))
+                        + I18n.t(", each read by a person before it went on the list")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -108,7 +110,7 @@ SectionCard {
             id: search
             width: parent.width
             icon: "search"
-            placeholder: "Search " + PluginRepoService.entries.length + " reviewed plugins: a name, a word, a tag like “bar”"
+            placeholder: I18n.t("Search {n} reviewed plugins: a name, a word, a tag like “bar”", { n: PluginRepoService.entries.length })
         }
 
         PluginNote {
@@ -131,7 +133,7 @@ SectionCard {
 
         Text {
             visible: PluginRepoService.entries.length > 0 && card.results.length === 0
-            text: "Nothing on the list matches “" + search.text + "”."
+            text: I18n.t("Nothing on the list matches “{q}”.", { q: search.text })
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 15
@@ -189,7 +191,7 @@ SectionCard {
             visible: parent.look.state === "idle" && parent.job === null
             width: parent.width
             wrapMode: Text.WordWrap
-            text: "Look reads the repository first and shows what's in it. Nothing is installed until you say so."
+            text: I18n.t("Look reads the repository first and shows what's in it. Nothing is installed until you say so.")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16

@@ -127,7 +127,7 @@ SettingsPage {
             Text {
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text: "Changes apply now, but Hyprland forgets them on its next reload until hyprland.lua loads the override file. Add this line to it once:"
+                text: I18n.t("Changes apply now, but Hyprland forgets them on its next reload until hyprland.lua loads the override file. Add this line to it once:")
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 17
@@ -507,10 +507,10 @@ SettingsPage {
             width: page.fullWidth
             wrapMode: Text.WordWrap
             text: overviewCard.pluginUp
-                ? "The ScrollOverview plugin is loaded. Your overview key (ipc call overview toggle) opens it now."
+                ? I18n.t("The ScrollOverview plugin is loaded. Your overview key (ipc call overview toggle) opens it now.")
                 : (ScrollOverviewService.loading
-                   ? "Loading the ScrollOverview plugin (hyprpm reload)..."
-                   : "The ScrollOverview plugin is not loaded in Hyprland (the shell already tried hyprpm reload), so your overview key opens the film strip for now. Install and enable it once, then press Check again:")
+                   ? I18n.t("Loading the ScrollOverview plugin (hyprpm reload)...")
+                   : I18n.t("The ScrollOverview plugin is not loaded in Hyprland (the shell already tried hyprpm reload), so your overview key opens the film strip for now. Install and enable it once, then press Check again:"))
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 17
@@ -522,7 +522,7 @@ SettingsPage {
             wrapMode: Text.WrapAnywhere
             maximumLineCount: 4
             elide: Text.ElideRight
-            text: "hyprpm said: " + ScrollOverviewService.loadLog
+            text: I18n.t("hyprpm said: ") + ScrollOverviewService.loadLog
             color: mt.pInk
             opacity: 0.7
             font.family: "monospace"
@@ -620,8 +620,8 @@ SettingsPage {
             width: displayCard.innerWidth
             wrapMode: Text.WordWrap
             text: DisplayService.confirming
-                ? "Keep these display settings? If you don't answer, the screens go back to how they were in " + DisplayService.secondsLeft + " s."
-                : "Change what you need (move, resize, switch screens on or off), then press Apply. You get " + DisplayService.confirmSeconds + " seconds to keep it before it goes back, so a wrong mode can't leave you with a black screen."
+                ? I18n.t("Keep these display settings? If you don't answer, the screens go back to how they were in {s} s.", { s: DisplayService.secondsLeft })
+                : I18n.t("Change what you need (move, resize, switch screens on or off), then press Apply. You get {s} seconds to keep it before it goes back, so a wrong mode can't leave you with a black screen.", { s: DisplayService.confirmSeconds })
             color: DisplayService.confirming ? mt.pInk : mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16
@@ -632,7 +632,7 @@ SettingsPage {
             visible: DisplayService.enabledCount > 1
             width: displayCard.innerWidth
             wrapMode: Text.WordWrap
-            text: "Drag a screen to move it. It snaps to the edges of the others and can't sit on top of one."
+            text: I18n.t("Drag a screen to move it. It snaps to the edges of the others and can't sit on top of one.")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16
@@ -731,7 +731,7 @@ SettingsPage {
                 SettingChoice {
                     visible: scr.d !== null && scr.d.on && scr.modelData !== DisplayService.mainName
                     label: "Placed"
-                    sublabel: "Jump next to " + DisplayService.mainName
+                    sublabel: I18n.t("Jump next to {screen}", { screen: DisplayService.mainName })
                     current: scr.d ? scr.d.place : ""
                     options: [
                         { id: "right", label: "Right", icon: "east" },
@@ -794,7 +794,7 @@ SettingsPage {
         Text {
             width: kbCard.innerWidth
             wrapMode: Text.WordWrap
-            text: "Pick every layout you type in. With two or more, a layout key appears on the bar: click it to switch. The first one you pick is the one you start on."
+            text: I18n.t("Pick every layout you type in. With two or more, a layout key appears on the bar: click it to switch. The first one you pick is the one you start on.")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16

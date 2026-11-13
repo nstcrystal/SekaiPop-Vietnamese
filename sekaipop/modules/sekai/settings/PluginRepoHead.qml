@@ -35,7 +35,7 @@ Item {
         Text {
             id: titleText
             anchors.verticalCenter: parent.verticalCenter
-            text: root.title.toUpperCase()
+            text: I18n.t(root.title).toUpperCase()
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 13
@@ -47,7 +47,7 @@ Item {
             id: noteText
             anchors.verticalCenter: parent.verticalCenter
             width: words.width - titleText.width - words.spacing
-            text: root.note
+            text: I18n.t(root.note)
             wrapMode: Text.WordWrap
             color: mt.pInkSub
             font.family: mt.fontFamily

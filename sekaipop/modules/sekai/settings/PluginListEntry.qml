@@ -161,7 +161,7 @@ Item {
                 visible: !root.fromUrl
                 height: 24
                 verticalAlignment: Text.AlignVCenter
-                text: "Needs"
+                text: I18n.t("Needs")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 13

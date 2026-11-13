@@ -79,7 +79,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 width: parent.width
                 elide: Text.ElideRight
-                text: root.placeholder
+                text: I18n.t(root.placeholder)
                 color: mt.pInkSub
                 font: input.font
             }
