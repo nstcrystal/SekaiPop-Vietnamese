@@ -101,7 +101,7 @@ Item {
         Text {
             id: label
             anchors.verticalCenter: parent.verticalCenter
-            text: root.text
+            text: I18n.t(root.text)
             color: root.kind === "tag" ? mt.pSurface
                 : root.kind === "mute" ? mt.pInkSub
                 : root.kind === "on" || root.kind === "warn" || root.onAccent ? mt.colBorder

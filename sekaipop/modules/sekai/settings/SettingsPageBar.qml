@@ -325,7 +325,7 @@ SettingsPage {
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
                     elide: Text.ElideRight
-                    text: keyCell.modelData.label
+                    text: I18n.t(keyCell.modelData.label)
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 15
