@@ -35,6 +35,7 @@ QtObject {
             SettingsService.set("i18n.lang", l)
     }
 
+
     function has(s) {
         return typeof s === "string" && root.dict[s] !== undefined
     }

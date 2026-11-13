@@ -412,7 +412,7 @@ SettingsPage {
 
         Text {
             width: page.fullWidth
-            text: "After how long without input. Keep Awake, and a video playing, hold all three off."
+            text: I18n.t("After how long without input. Keep Awake, and a video playing, hold all three off.")
             color: Theme.pInkSub
             font.family: Theme.fontFamily
             font.pixelSize: 15
@@ -435,7 +435,7 @@ SettingsPage {
         Text {
             visible: IdleService.linked === "yes" && !IdleService.running
             width: page.fullWidth
-            text: "hypridle isn't running, so none of these happen. It is started with Hyprland (execs.lua); start it with: hypridle &"
+            text: I18n.t("hypridle isn't running, so none of these happen. It is started with Hyprland (execs.lua); start it with: hypridle &")
             color: Theme.pInkSub
             font.family: Theme.fontFamily
             font.pixelSize: 15
@@ -519,7 +519,7 @@ SettingsPage {
 
         Text {
             width: page.fullWidth
-            text: "Run custom scripts when system events occur. Each value is passed as a separate argument. The input placeholders show the argument order."
+            text: I18n.t("Run custom scripts when system events occur. Each value is passed as a separate argument. The input placeholders show the argument order.")
             color: Theme.pInkSub
             font.family: Theme.fontFamily
             font.pixelSize: 15
@@ -535,7 +535,7 @@ SettingsPage {
 
                 Text {
                     width: parent.width
-                    text: modelData.label
+                    text: I18n.t(modelData.label)
                     color: Theme.pInk
                     font.family: Theme.fontFamily
                     font.pixelSize: 18
@@ -546,7 +546,7 @@ SettingsPage {
 
                 Text {
                     width: parent.width
-                    text: modelData.args
+                    text: I18n.t(modelData.args)
                     color: Theme.pInkSub
                     font.family: Theme.fontFamily
                     font.pixelSize: 14
