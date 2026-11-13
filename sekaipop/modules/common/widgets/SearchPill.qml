@@ -100,7 +100,7 @@ Item {
             anchors.rightMargin: 16
             anchors.verticalCenter: parent.verticalCenter
             elide: Text.ElideRight
-            text: root.placeholder
+            text: I18n.t(root.placeholder)
             color: ScrapbookTheme.inkSoft
             font.family: mt.fontFamily
             font.pixelSize: 14

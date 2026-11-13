@@ -117,7 +117,7 @@ Item {
             SettingsMarquee {
                 width: parent.width
                 hovered: textHover.hovered
-                text: root.label
+                text: I18n.t(root.label)
                 color: key.ink
                 font.family: mt.fontFamily
                 font.pixelSize: 18
@@ -130,7 +130,7 @@ Item {
                 width: parent.width
                 hovered: textHover.hovered
                 visible: root.subtitle !== ""
-                text: root.subtitle
+                text: I18n.t(root.subtitle)
                 color: key.litP > 0.5 ? Qt.rgba(mt.colBorder.r, mt.colBorder.g, mt.colBorder.b, 0.78) : mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 15

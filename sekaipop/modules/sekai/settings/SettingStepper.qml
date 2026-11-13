@@ -1,4 +1,5 @@
 import QtQuick
+import qs.modules.common
 import qs.modules.common.widgets
 import qs.modules.sekai.quickPanel
 
@@ -38,7 +39,7 @@ SekaiTile {
     }
 
     readonly property string valueText: (!isNaN(specialValue) && Math.abs(value - specialValue) < 1e-6 && specialText !== "")
-        ? specialText : value.toFixed(decimals) + suffix
+        ? I18n.t(specialText) : value.toFixed(decimals) + suffix
 
     tileWidth: ancestorTileWidth()
     clickable: false

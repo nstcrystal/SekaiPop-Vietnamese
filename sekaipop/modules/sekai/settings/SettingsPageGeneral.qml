@@ -9,6 +9,22 @@ import qs.modules.common
 SettingsPage {
     id: page
 
+    // The shell's own language (I18n.qml). Kept at the top: it is the one
+    // setting that changes the words of every other page.
+    SectionCard {
+        title: "Language"
+
+        SettingChoice {
+            label: "Interface language"
+            current: I18n.lang
+            options: [
+                { id: "vi", label: "Tiếng Việt" },
+                { id: "en", label: "English" }
+            ]
+            onPicked: id => I18n.setLang(id)
+        }
+    }
+
     SectionCard {
         title: "Time & alerts"
 

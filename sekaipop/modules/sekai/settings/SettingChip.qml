@@ -138,7 +138,7 @@ Item {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: root.label
+                text: I18n.t(root.label)
                 color: key.ink
                 font.family: mt.fontFamily
                 font.pixelSize: root.fontSize

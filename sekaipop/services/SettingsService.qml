@@ -283,7 +283,9 @@ Singleton {
         "hooks.wallpaper": "",
         "hooks.lockWallpaper": "",
         "hooks.theme": "",
-        "hooks.lock": ""
+        "hooks.lock": "",
+        // ===== Language (I18n.qml) =====
+        "i18n.lang": "vi"               // vi (bản dịch) | en (bản gốc)
     })
 
     // What has been changed from the defaults.

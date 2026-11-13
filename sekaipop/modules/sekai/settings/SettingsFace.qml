@@ -380,7 +380,7 @@ Item {
 
                     Text {
                         id: titleText
-                        text: face.shownInfo.title
+                        text: I18n.t(face.shownInfo.title)
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         // The lit band inside the plate is 48 px tall (66 - 2 * (4 + 5));
@@ -395,7 +395,7 @@ Item {
 
                     Text {
                         id: subText
-                        text: face.shownInfo.headerSub !== undefined ? face.shownInfo.headerSub : face.shownInfo.sub
+                        text: I18n.t(face.shownInfo.headerSub !== undefined ? face.shownInfo.headerSub : face.shownInfo.sub)
                         color: Qt.rgba(mt.colBorder.r, mt.colBorder.g, mt.colBorder.b, 0.78)
                         font.family: mt.fontFamily
                         font.pixelSize: 13
@@ -517,8 +517,10 @@ Item {
                     card: cardTitle,
                     label: c.label,
                     icon: typeof c.icon === "string" ? c.icon : "",
-                    hay: (c.label + " " + (typeof c.detail === "string" ? c.detail : "") + " "
-                        + cardTitle + " " + pages[pageIdx].label).toLowerCase()
+                    hay: (c.label + " " + I18n.t(c.label) + " "
+                        + (typeof c.detail === "string" ? c.detail + " " + I18n.t(c.detail) : "") + " "
+                        + cardTitle + " " + I18n.t(cardTitle) + " "
+                        + pages[pageIdx].label + " " + I18n.t(pages[pageIdx].label)).toLowerCase()
                 })
             } else if (c.children && c.children.length > 0) {
                 indexItems(c, pageIdx, cardTitle, out)
@@ -629,8 +631,8 @@ Item {
                 slot: index
                 number: index + 1
                 icon: modelData.icon
-                label: modelData.longLabel !== undefined ? modelData.longLabel : modelData.label
-                subtitle: modelData.sub
+                label: I18n.t(modelData.longLabel !== undefined ? modelData.longLabel : modelData.label)
+                subtitle: I18n.t(modelData.sub)
                 badge: modelData.id === "about" && UpdateService.status === "behind" && !UpdateService.unknown
                 onClicked: face.go(index)
             }
@@ -716,7 +718,7 @@ Item {
         Text {
             visible: face.results.length === 0
             anchors.centerIn: parent
-            text: "No settings found"
+            text: I18n.t("No settings found")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 20
@@ -771,7 +773,7 @@ Item {
                             anchors.verticalCenter: parent.verticalCenter
 
                             Text {
-                                text: row.modelData.label
+                                text: I18n.t(row.modelData.label)
                                 color: mt.pInk
                                 font.family: mt.fontFamily
                                 font.pixelSize: 20
@@ -780,7 +782,7 @@ Item {
                             }
 
                             Text {
-                                text: face.pages[row.modelData.page].label + (row.modelData.card !== "" ? "  ·  " + row.modelData.card : "")
+                                text: I18n.t(face.pages[row.modelData.page].label) + (row.modelData.card !== "" ? "  ·  " + I18n.t(row.modelData.card) : "")
                                 color: mt.pInkSub
                                 font.family: mt.fontFamily
                                 font.pixelSize: 14

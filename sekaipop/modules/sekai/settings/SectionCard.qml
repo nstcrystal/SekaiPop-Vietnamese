@@ -65,7 +65,7 @@ Item {
         "one-time setup": "rocket_launch", "gaps & borders": "border_style", "windows": "select_window",
         "animations": "animation", "workspaces & layout": "grid_view", "input & display": "mouse",
         "hyprland": "grid_view", "this shell": "info", "update": "system_update_alt",
-        "what's new": "campaign", "credits": "favorite"
+        "what's new": "campaign", "credits": "favorite", "language": "translate"
     })
     readonly property string shownIcon: icon !== "" ? icon : (iconFor[title.toLowerCase()] || "star")
 
@@ -153,7 +153,7 @@ Item {
             id: tagText
             x: 40 + 28 + 14
             anchors.verticalCenter: parent.verticalCenter
-            text: root.title
+            text: I18n.t(root.title)
             color: mt.colBorder
             font.family: mt.fontFamily
             font.pixelSize: 21

@@ -47,7 +47,7 @@ Item {
     }
 
     readonly property string valueText: (!isNaN(specialValue) && Math.abs(shownValue - specialValue) < 1e-6 && specialText !== "")
-        ? specialText : shownValue.toFixed(decimals) + suffix
+        ? I18n.t(specialText) : shownValue.toFixed(decimals) + suffix
 
     Item {
         id: header
@@ -72,7 +72,7 @@ Item {
             anchors.rightMargin: 8
             anchors.verticalCenter: parent.verticalCenter
             elide: Text.ElideRight
-            text: root.label
+            text: I18n.t(root.label)
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 18

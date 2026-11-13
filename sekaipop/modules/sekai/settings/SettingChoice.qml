@@ -38,7 +38,7 @@ Item {
 
         Text {
             width: parent.width
-            text: root.label
+            text: I18n.t(root.label)
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 18
@@ -50,7 +50,7 @@ Item {
         Text {
             visible: root.sublabel !== ""
             width: parent.width
-            text: root.sublabel
+            text: I18n.t(root.sublabel)
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 14
