@@ -674,7 +674,7 @@ SettingsPage {
             label: "Dock on every monitor"
             detail: SettingsService.flag("dock.perMonitor")
                 ? "One dock per monitor · apps on that monitor"
-                : "One dock, on " + (SettingsService.get("dock.screen") || "the first monitor")
+                : I18n.t("One dock, on {screen}", { screen: SettingsService.get("dock.screen") || I18n.t("the first monitor") })
             checked: SettingsService.flag("dock.perMonitor")
             onToggled: SettingsService.toggle("dock.perMonitor")
         }
@@ -1222,7 +1222,7 @@ SettingsPage {
 
         Text {
             width: page.fullWidth
-            text: "The font of your GTK, Qt and KDE apps (the shell's own comes with its theme). Open apps change at once, and a font picked here is put back at every start if something else changes it."
+            text: I18n.t("The font of your GTK, Qt and KDE apps (the shell's own comes with its theme). Open apps change at once, and a font picked here is put back at every start if something else changes it.")
             color: Theme.pInkSub
             font.family: Theme.fontFamily
             font.pixelSize: 15

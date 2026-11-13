@@ -80,7 +80,7 @@ SectionCard {
         spacing: 12
 
         Text {
-            text: "No plugins yet"
+            text: I18n.t("No plugins yet")
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 24
@@ -88,7 +88,7 @@ SectionCard {
         }
 
         Paragraph {
-            text: "Get one from About › Update › Get plugins, which installs it for you. Or put a plugin's folder here yourself (one with a plugin.json), then press Reload:"
+            text: I18n.t("Get one from About › Update › Get plugins, which installs it for you. Or put a plugin's folder here yourself (one with a plugin.json), then press Reload:")
         }
 
         Rectangle {
@@ -109,7 +109,7 @@ SectionCard {
 
         Paragraph {
             sub: true
-            text: "The folder's name is the plugin's id. A folder you put here yourself is never updated or removed by the shell, and no restart is needed."
+            text: I18n.t("The folder's name is the plugin's id. A folder you put here yourself is never updated or removed by the shell, and no restart is needed.")
         }
     }
 
@@ -149,12 +149,12 @@ SectionCard {
             spacing: 4
 
             Paragraph {
-                text: "Widgets that live in their own folder, written by someone else or by you. Open one to change its settings: the widget redraws as you go."
+                text: I18n.t("Widgets that live in their own folder, written by someone else or by you. Open one to change its settings: the widget redraws as you go.")
             }
 
             Paragraph {
                 sub: true
-                text: "Read from ~/.config/sekaipop/plugins/. Place them in Edit Desktop, like the widgets above. Getting, updating and removing them is in About › Update."
+                text: I18n.t("Read from ~/.config/sekaipop/plugins/. Place them in Edit Desktop, like the widgets above. Getting, updating and removing them is in About › Update.")
             }
 
             Row {
@@ -292,7 +292,7 @@ SectionCard {
             Text {
                 id: trust
                 width: trustRow.width - 28
-                text: "A plugin runs with the shell's full rights: it can run programs and read your files. Keep the ones you'd trust as a script of your own."
+                text: I18n.t("A plugin runs with the shell's full rights: it can run programs and read your files. Keep the ones you'd trust as a script of your own.")
                 wrapMode: Text.WordWrap
                 color: mt.pInkSub
                 font.family: mt.fontFamily
