@@ -98,7 +98,7 @@ Item {
         Text {
             id: tipText
             anchors.centerIn: parent
-            text: root.tip
+            text: I18n.t(root.tip)
             color: mt.chipInk
             font.family: mt.fontFamily
             font.pixelSize: 14

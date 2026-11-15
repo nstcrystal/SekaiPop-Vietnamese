@@ -76,14 +76,14 @@ Item {
                             visible: !root.done && !!root.update && root.update.behind > 0
                             anchors.verticalCenter: parent.verticalCenter
                             kind: "on"
-                            text: root.update ? root.update.behind + (root.update.behind === 1 ? " commit" : " commits") : ""
+                            text: root.update ? I18n.t(root.update.behind === 1 ? "{n} commit" : "{n} commits", { n: root.update.behind }) : ""
                         }
                     }
 
                     Text {
                         width: parent.width
                         elide: Text.ElideRight
-                        text: root.failed ? "Didn't update: " + root.job.message
+                        text: root.failed ? I18n.t("Didn't update: {message}", { message: root.job.message })
                             : root.pluginsText + (root.update && root.update.from ? "  ·  " + root.update.from + "  →  " + root.update.to : "")
                         color: root.failed ? mt.pInk : mt.pInkSub
                         font.family: mt.fontFamily
@@ -119,7 +119,7 @@ Item {
                     Text {
                         visible: root.running
                         anchors.verticalCenter: parent.verticalCenter
-                        text: root.job ? root.job.step + "…" : ""
+                        text: root.job ? I18n.t(root.job.step) + "…" : ""
                         color: mt.pInk
                         font.family: mt.fontFamily
                         font.pixelSize: 13
@@ -144,7 +144,7 @@ Item {
                         visible: root.done && !!root.job && root.job.from !== ""
                         capH: 36
                         fontSize: 14
-                        label: "Go back to " + (root.job ? root.job.from : "")
+                        label: I18n.t("Go back to {name}", { name: root.job ? root.job.from : "" })
                         icon: "undo"
                         onClicked: PluginRepoService.goBack(root.update.key)
                     }

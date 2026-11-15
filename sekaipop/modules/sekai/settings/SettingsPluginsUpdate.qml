@@ -82,9 +82,9 @@ SectionCard {
         const r = card.lock.repos[repo]
         const b = card.behindOf(repo)
         if (r && r.pinned)
-            out.push({ kind: "mute", text: b > 0 ? "Pinned · " + b + " skipped" : "Pinned", icon: "push_pin" })
+            out.push({ kind: "mute", text: b > 0 ? I18n.t("Pinned · {n} skipped", { n: b }) : I18n.t("Pinned"), icon: "push_pin" })
         else if (b > 0)
-            out.push({ kind: "on", text: b + (b === 1 ? " commit behind" : " commits behind") })
+            out.push({ kind: "on", text: I18n.t(b === 1 ? "{n} commit behind" : "{n} commits behind", { n: b }) })
         return out
     }
 
@@ -132,18 +132,25 @@ SectionCard {
                 textFormat: Text.StyledText
                 text: {
                     if (card.updatingNow.length > 0)
-                        return "<b>Updating " + card.updatingNow.length + " of " + (card.updatingNow.length + PluginRepoService.updates.filter(u => card.updatingNow.indexOf(u.key) < 0).length)
-                            + "</b> · the rest keep working"
+                        return I18n.t("<b>Updating {n} of {total}</b> · the rest keep working", {
+                            n: card.updatingNow.length,
+                            total: card.updatingNow.length + PluginRepoService.updates.filter(u => card.updatingNow.indexOf(u.key) < 0).length
+                        })
                     switch (PluginRepoService.checkStatus) {
-                    case "checking": return "<b>Checking for updates…</b>"
-                    case "offline": return "<b>Couldn't check for updates: you're offline.</b> Your plugins work as they are."
-                    case "idle": return card.installedRepos === 0 ? "<b>Nothing installed from a repository yet.</b> Get plugins is just below." : "<b>Not checked yet</b>"
+                    case "checking": return I18n.t("<b>Checking for updates…</b>")
+                    case "offline": return I18n.t("<b>Couldn't check for updates: you're offline.</b> Your plugins work as they are.")
+                    case "idle": return card.installedRepos === 0
+                        ? I18n.t("<b>Nothing installed from a repository yet.</b> Get plugins is just below.")
+                        : I18n.t("<b>Not checked yet</b>")
                     }
                     if (card.installedRepos === 0)
-                        return "<b>Nothing installed from a repository yet.</b> Get plugins is just below."
-                    const t = "<b>" + PR.updatesTitle(PluginRepoService.updates.length) + "</b> · checked " + PR.ageText(PluginRepoService.checkedAt, card.now)
+                        return I18n.t("<b>Nothing installed from a repository yet.</b> Get plugins is just below.")
+                    const title = I18n.t("<b>{title}</b> · checked {age}", {
+                        title: PR.updatesTitle(PluginRepoService.updates.length, I18n.t),
+                        age: PR.ageText(PluginRepoService.checkedAt, card.now, I18n.t)
+                    })
                     const p = PluginRepoService.pinnedSkipped
-                    return t + (p > 0 ? " · " + p + " pinned, skipped" : "")
+                    return title + (p > 0 ? I18n.t(" · {n} pinned, skipped", { n: p }) : "")
                 }
                 color: mt.pInkSub
                 font.family: mt.fontFamily
@@ -220,7 +227,7 @@ SectionCard {
                 pluginsText: {
                     const r = card.lock.repos[modelData.key]
                     const names = r ? r.plugins.map(id => { const st = card.stateOf(id); return st ? st.plugin.name : id }) : []
-                    return PR.namesText(names)
+                    return PR.namesText(names, " " + I18n.t("and") + " ")
                 }
                 open: !!card.openCommits[modelData.key]
                 onOpenChanged: {
@@ -312,8 +319,7 @@ SectionCard {
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: grp.modelData.plugins.length + " plugins · "
-                                + (grp.info && grp.info.reviewed ? "from the reviewed list" : "added from a URL · not reviewed")
+                            text: I18n.t(grp.info && grp.info.reviewed ? "{n} plugins · from the reviewed list" : "{n} plugins · added from a URL · not reviewed", { n: grp.modelData.plugins.length })
                             color: mt.pInkSub
                             font.family: mt.fontFamily
                             font.pixelSize: 14
@@ -355,7 +361,7 @@ SectionCard {
                         indent: grp.several
                         source: grp.several ? null
                             : PR.sourceLine(grp.modelData.kind, grp.modelData.repo || "", !!grp.info && grp.info.reviewed,
-                                (pst && pst.plugin.target) || "", card.home)
+                                (pst && pst.plugin.target) || "", card.home, I18n.t)
                         badges: grp.isRepo && !grp.several ? card.repoBadges(grp.modelData.repo) : []
                         keyLabel: grp.several ? "" : grp.isRepo ? "Source" : "Open the folder"
                         keyIcon: grp.isRepo ? "commit" : "folder_open"
@@ -445,7 +451,7 @@ SectionCard {
 
                 Flow {
                     id: srcFlow
-                    readonly property var line: PR.sourceLine(sk.where.kind, sk.where.repo || "", !!sk.info && sk.info.reviewed, sk.modelData.target || "", card.home)
+                    readonly property var line: PR.sourceLine(sk.where.kind, sk.where.repo || "", !!sk.info && sk.info.reviewed, sk.modelData.target || "", card.home, I18n.t)
                     visible: sk.where.kind !== "copied"
                     x: 22 + 4 + 46 + 4 + 20
                     y: skRow.implicitHeight - 8

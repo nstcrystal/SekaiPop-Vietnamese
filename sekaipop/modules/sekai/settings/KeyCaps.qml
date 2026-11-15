@@ -81,7 +81,7 @@ Row {
                 visible: cap.sep
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: -cap.drop / 2
-                text: "or"
+                text: I18n.t("or")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: root.large ? 17 : 13
@@ -155,7 +155,7 @@ Row {
                 visible: !cap.sep
                 anchors.horizontalCenter: parent.horizontalCenter
                 y: face.y + (cap.h - implicitHeight) / 2
-                text: cap.modelData.k
+                text: I18n.t(cap.modelData.k)
                 color: cap.lit ? mt.colBorder : cap.none ? mt.pInkSub : root.capInk
                 font.family: mt.fontFamily
                 font.pixelSize: cap.modelData.wait ? (root.large ? 18 : 14)

@@ -245,7 +245,7 @@ Singleton {
         const head = out.split("\x1e")[0]
         const kv = PR.parseKv(head)
         if (kv.status !== "ok") {
-            root.setJob(s.key, { state: "failed", badge: "NOT INSTALLED", message: PR.failure(kv.status, s.key), reason: kv.status })
+            root.setJob(s.key, { state: "failed", badge: "NOT INSTALLED", message: PR.failure(kv.status, s.key, I18n.t), reason: kv.status })
             return
         }
         const recs = PM.splitScan(out.slice(head.length), true)
@@ -269,7 +269,9 @@ Singleton {
             root.setJob(s.key, {
                 state: refused > 0 && found.good.length <= refused ? "failed" : sum.state,
                 badge: sum.badge,
-                message: refused > 0 ? PR.failure("exists", s.key) : "",
+                goodCount: found.good.length,
+                total: found.good.length + found.bad.length,
+                message: refused > 0 ? PR.failure("exists", s.key, I18n.t) : "",
                 names: found.good.map(g => g.plugin.name),
                 plugins: found.good.map(g => g.plugin),
                 bad: found.bad
@@ -292,7 +294,7 @@ Singleton {
             const head = out.split("\x1e")[0]
             const kv = PR.parseKv(head)
             if (kv.status !== "ok") {
-                root.look = { state: "bad", key: s.key, input: input, plugins: [], bad: [], message: PR.failure(kv.status, s.key), reason: kv.status }
+                root.look = { state: "bad", key: s.key, input: input, plugins: [], bad: [], message: PR.failure(kv.status, s.key, I18n.t), reason: kv.status }
                 return
             }
             const found = PR.checkFound(PM.splitScan(out.slice(head.length), true), PM.parse)
@@ -308,7 +310,7 @@ Singleton {
         root.run(["update", key], null, out => {
             const kv = PR.parseKv(out)
             if (kv.status !== "ok") {
-                root.setJob(key, { state: "failed", message: kv.reason || "it didn't update" })
+                root.setJob(key, { state: "failed", message: kv.reason || I18n.t("it didn't update") })
                 return
             }
             root.saveLock(PR.withCommit(root.lock, key, kv.commit, Date.now(), kv.previous))
@@ -334,7 +336,7 @@ Singleton {
         root.run(["goback", key, r.previous], null, out => {
             const kv = PR.parseKv(out)
             if (kv.status !== "ok") {
-                root.setJob(key, { state: "failed", message: kv.reason || "it couldn't go back" })
+                root.setJob(key, { state: "failed", message: kv.reason || I18n.t("it couldn't go back") })
                 return
             }
             root.saveLock(PR.withCommit(root.lock, key, kv.commit, Date.now(), kv.previous))

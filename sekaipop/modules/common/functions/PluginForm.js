@@ -1,5 +1,14 @@
 .pragma library
 
+// Fill {name} placeholders when no translator is handed in (the shell always
+// hands I18n.t; the node tests do not).
+function fillT(s, vars) {
+    if (vars)
+        for (var k in vars)
+            s = s.split("{" + k + "}").join(String(vars[k]))
+    return s
+}
+
 // Settings › Desktop › Plugins (SettingsPluginsCard.qml, docs/PLUGIN-SETTINGS.md): what the
 // card shows, worked out from a plugin's manifest (PluginManifest.parse) and its current
 // settings. Pure functions on plain objects, unit-tested in node:
@@ -138,20 +147,22 @@ function changedKeys(plugin, settings) {
     })
 }
 
-function plural(n, one) {
+function plural(n, one, t) {
+    if (typeof t === "function")
+        return t(n === 1 ? "{n} " + one : "{n} " + one + "s", { n: n })
     return n + " " + one + (n === 1 ? "" : "s")
 }
 
 // "5 settings · 3 secrets", "1 setting", "No settings".
-function countText(plugin) {
+function countText(plugin, t) {
     var s = Object.keys(plugin.settings || {}).length
     var k = Object.keys(plugin.secrets || {}).length
     var parts = []
     if (s > 0)
-        parts.push(plural(s, "setting"))
+        parts.push(plural(s, "setting", t))
     if (k > 0)
-        parts.push(plural(k, "secret"))
-    return parts.length > 0 ? parts.join(" · ") : "No settings"
+        parts.push(plural(k, "secret", t))
+    return parts.length > 0 ? parts.join(" · ") : (typeof t === "function" ? t("No settings") : "No settings")
 }
 
 // Whether the card has a form to open (settings or secrets), or only the plugin's details.
@@ -162,29 +173,30 @@ function hasForm(plugin) {
 // A skipped folder (PluginManifest.scan's `skipped`) in plain words: what is wrong, who has
 // to change something, and the one thing the card offers to do about it.
 //   action: "update" (Check for updates), "folder" (Open its folder)
-function skipInfo(s) {
+function skipInfo(s, t) {
+    var tr = typeof t === "function" ? t : fillT
     var code = s && s.code ? s.code : ""
-    var authorFix = "To fix: the plugin's author, or you if you are writing it"
+    var authorFix = tr("To fix: the plugin's author, or you if you are writing it")
     switch (code) {
     case "json":
     case "object":
-        return { reason: "Its plugin.json has a mistake in it, so the shell can't read it.", fix: authorFix, action: "folder" }
+        return { reason: tr("Its plugin.json has a mistake in it, so the shell can't read it."), fix: authorFix, action: "folder" }
     case "api-new":
-        return { reason: "Made for a newer SekaiPop than this one.", fix: "To fix: update SekaiPop", action: "update" }
+        return { reason: tr("Made for a newer SekaiPop than this one."), fix: tr("To fix: update SekaiPop"), action: "update" }
     case "api-old":
-        return { reason: "Made for an older SekaiPop.", fix: "To fix: update the plugin (git pull in its folder)", action: "folder" }
+        return { reason: tr("Made for an older SekaiPop."), fix: tr("To fix: update the plugin (git pull in its folder)"), action: "folder" }
     case "id":
-        return { reason: "Its folder is named differently from its id.", fix: "To fix: rename the folder to the plugin's id", action: "folder" }
+        return { reason: tr("Its folder is named differently from its id."), fix: tr("To fix: rename the folder to the plugin's id"), action: "folder" }
     case "folder":
-        return { reason: "The folder's name can't be a plugin id.", fix: "To fix: rename it with lower case letters, digits and dashes", action: "folder" }
+        return { reason: tr("The folder's name can't be a plugin id."), fix: tr("To fix: rename it with lower case letters, digits and dashes"), action: "folder" }
     case "missing":
-        return { reason: "This folder has no plugin.json, so it isn't a plugin.", fix: "To fix: check the clone, or remove the folder", action: "folder" }
+        return { reason: tr("This folder has no plugin.json, so it isn't a plugin."), fix: tr("To fix: check the clone, or remove the folder"), action: "folder" }
     case "field":
-        return { reason: "Its plugin.json is missing or misspells: " + (s.field || "a field") + ".", fix: authorFix, action: "folder" }
+        return { reason: tr("Its plugin.json is missing or misspells: {field}.", { field: s.field || tr("a field") }), fix: authorFix, action: "folder" }
     case "files":
-        return { reason: "Its files and its plugin.json don't agree: " + (s.error || "a QML file is missing") + ".", fix: authorFix, action: "folder" }
+        return { reason: tr("Its files and its plugin.json don't agree: {error}.", { error: s.error || tr("a QML file is missing") }), fix: authorFix, action: "folder" }
     }
-    return { reason: "It could not be loaded.", fix: authorFix, action: "folder" }
+    return { reason: tr("It could not be loaded."), fix: authorFix, action: "folder" }
 }
 
 // What the card says about one secret, never its value. `source` is PluginState's:
@@ -200,10 +212,14 @@ function secretInfo(name, decl, source) {
 }
 
 // The warning on a plugin's row in the list: the first missing secret, or "".
-function warnText(plugin, sources) {
+function warnText(plugin, sources, t) {
     var names = Object.keys(plugin.secrets || {})
     var missing = names.filter(function (n) { return !(sources && (sources[n] === "env" || sources[n] === "file")) })
     if (missing.length === 0)
         return ""
-    return missing.length === 1 ? missing[0] + " not found" : plural(missing.length, "secret") + " not found"
+    if (typeof t !== "function")
+        return missing.length === 1 ? missing[0] + " not found" : plural(missing.length, "secret") + " not found"
+    return missing.length === 1
+        ? t("{name} not found", { name: missing[0] })
+        : t("{n} secrets not found", { n: missing.length })
 }

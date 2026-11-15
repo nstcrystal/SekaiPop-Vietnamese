@@ -153,7 +153,7 @@ Item {
         Text {
             width: parent.width
             wrapMode: Text.WordWrap
-            text: root.plugin ? PR.whereText(root.plugin, root.pst.barShown, root.monitors) : ""
+            text: root.plugin ? PR.whereText(root.plugin, root.pst.barShown, root.monitors, I18n.t) : ""
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 15

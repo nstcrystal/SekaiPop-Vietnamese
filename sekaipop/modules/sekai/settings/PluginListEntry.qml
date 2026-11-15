@@ -140,10 +140,12 @@ Item {
                 const n = root.looked.length
                 if (n === 0)
                     return ""
-                const parts = root.looked.map(p => "<b>" + p.name + "</b> " + p.version + " (" + PR.kindText(p) + ")")
-                return (n === 1 ? "1 plugin in it: " : n + " plugins in it: ") + PR.namesText(parts)
-                    + ", made for this SekaiPop's plugin api."
-                    + (root.lookedBad.length > 0 ? " " + root.lookedBad.length + " more didn't pass its check and would be under Didn't load." : "")
+                const parts = root.looked.map(p => "<b>" + p.name + "</b> " + p.version + " (" + PR.kindText(p, I18n.t) + ")")
+                const list = PR.namesText(parts, " " + I18n.t("and") + " ")
+                return (n === 1 ? I18n.t("1 plugin in it: {list}", { list: list })
+                    : I18n.t("{n} plugins in it: {list}", { n: n, list: list }))
+                    + I18n.t(", made for this SekaiPop's plugin api.")
+                    + (root.lookedBad.length > 0 ? " " + I18n.t("{n} more didn't pass its check and would be under Didn't load.", { n: root.lookedBad.length }) : "")
             }
             color: mt.pInkSub
             font.family: mt.fontFamily
@@ -204,9 +206,11 @@ Item {
             Text {
                 height: 24
                 verticalAlignment: Text.AlignVCenter
-                text: root.fromUrl ? "A repository off the list says nothing about what it needs; check its README."
+                text: root.fromUrl ? I18n.t("A repository off the list says nothing about what it needs; check its README.")
                     : root.needs.missing.length > 0
-                        ? "· " + PR.namesText(root.needs.missing) + (root.needs.missing.length === 1 ? " isn't" : " aren't") + " installed: it installs, but won't work fully until " + (root.needs.missing.length === 1 ? "it is" : "they are") + "."
+                        ? (root.needs.missing.length === 1
+                            ? I18n.t("· {names} isn't installed: it installs, but won't work fully until it is.", { names: PR.namesText(root.needs.missing) })
+                            : I18n.t("· {names} aren't installed: it installs, but won't work fully until they are.", { names: PR.namesText(root.needs.missing, " " + I18n.t("and") + " ") }))
                         : ""
                 color: mt.pInkSub
                 font.family: mt.fontFamily
@@ -223,13 +227,13 @@ Item {
 
             PluginBadge {
                 kind: "warn"
-                text: "Needs SekaiPop " + root.entry.sekaipop
+                text: I18n.t("Needs SekaiPop {version}", { version: root.entry.sekaipop })
             }
 
             Text {
                 height: 30
                 verticalAlignment: Text.AlignVCenter
-                text: "This is " + root.shellVersion + ". Update SekaiPop in About › Update, then it installs."
+                text: I18n.t("This is {version}. Update SekaiPop in About › Update, then it installs.", { version: root.shellVersion })
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -250,7 +254,7 @@ Item {
             Text {
                 anchors.verticalCenter: parent.verticalCenter
                 textFormat: Text.StyledText
-                text: root.job ? "<b>" + root.job.step + (root.job.step === "Cloning" ? " " + root.job.pct + "%" : "…") + "</b> · then check, link, reload" : ""
+                text: root.job ? "<b>" + I18n.t(root.job.step) + (root.job.step === "Cloning" ? " " + root.job.pct + "%" : "…") + "</b> · " + I18n.t("then check, link, reload") : ""
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 13
@@ -266,16 +270,24 @@ Item {
             text: {
                 if (!root.job || !root.job.names)
                     return ""
-                const names = PR.namesText(root.job.names)
-                if (root.partial)
-                    return "<b>" + names + (root.job.names.length === 1 ? " is" : " are") + " in.</b> "
-                        + PR.namesText(root.job.bad.map(b => b.id)) + " didn't pass " + (root.job.bad.length === 1 ? "its" : "their") + " check, so "
-                        + (root.job.bad.length === 1 ? "it's" : "they're") + " under Didn't load: " + (root.job.bad[0] ? root.job.bad[0].error : "") + ". To fix: the plugin's author."
+                const names = PR.namesText(root.job.names, " " + I18n.t("and") + " ")
+                if (root.partial) {
+                    const bad = PR.namesText(root.job.bad.map(b => b.id), " " + I18n.t("and") + " ")
+                    const error = root.job.bad[0] ? root.job.bad[0].error : ""
+                    return I18n.t(root.job.names.length === 1 ? "<b>{names} is in.</b> " : "<b>{names} are in.</b> ", { names: names })
+                        + I18n.t(root.job.bad.length === 1
+                            ? "{bad} didn't pass its check, so it's under Didn't load: {error}. To fix: the plugin's author."
+                            : "{bad} didn't pass their check, so they're under Didn't load: {error}. To fix: the plugin's author.",
+                            { bad: bad, error: error })
+                }
                 const one = root.job.plugins.length === 1 ? root.job.plugins[0] : null
-                return "<b>" + names + (root.job.names.length === 1 ? " is" : " are") + " installed.</b> "
-                    + (one ? "It has " + PR.kindText(one) + ", " + (one.bar && one.files.widget ? "both" : "") + " off until you put "
-                        + (one.bar && one.files.widget ? "them" : "it") + " somewhere."
-                        : "Their bar entries and widgets are off until you put them somewhere.")
+                const prefix = I18n.t(root.job.names.length === 1 ? "<b>{names} is installed.</b> " : "<b>{names} are installed.</b> ", { names: names })
+                if (!one)
+                    return prefix + I18n.t("Their bar entries and widgets are off until you put them somewhere.")
+                const kind = PR.kindText(one, I18n.t)
+                return prefix + (one.bar && one.files.widget
+                    ? I18n.t("It has {kind}, both off until you put them somewhere.", { kind: kind })
+                    : I18n.t("It has {kind}, off until you put it somewhere.", { kind: kind }))
             }
 
             SettingChip {
@@ -358,7 +370,9 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             kind: root.partial ? "warn" : "on"
             icon: root.partial ? "" : "check"
-            text: root.partial ? (root.job ? root.job.badge : "") : "Installed"
+            text: root.partial
+                ? (root.job ? I18n.t("{good} OF {total} INSTALLED", { good: root.job.goodCount, total: root.job.total }) : "")
+                : I18n.t("Installed")
         }
 
         SettingRoundButton {

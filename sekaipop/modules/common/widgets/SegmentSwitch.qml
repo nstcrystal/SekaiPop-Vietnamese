@@ -69,7 +69,7 @@ Item {
 
             Text {
                 anchors.centerIn: parent
-                text: modelData.label
+                text: I18n.t(modelData.label)
                 color: index === root.index ? mt.colBorder : mt.inkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 12

@@ -235,7 +235,7 @@ Item {
                 width: parent.width
                 title: "Settings"
                 note: "Saved as you change them."
-                action: root.changedCount > 0 ? "Reset all " + root.changedCount + " changed" : ""
+                action: root.changedCount > 0 ? I18n.t("Reset all {n} changed", { n: root.changedCount }) : ""
                 actionIcon: "restart_alt"
                 onActivated: root.pst.resetAll()
             }

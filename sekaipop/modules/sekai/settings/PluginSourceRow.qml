@@ -50,7 +50,7 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         capH: 36
         fontSize: 14
-        label: root.busy ? "…" : root.key
+        label: root.busy ? "…" : I18n.t(root.key)
         icon: root.keyIcon
         onClicked: if (!root.busy) root.keyClicked()
     }

@@ -40,7 +40,7 @@ Item {
     Text {
         anchors.centerIn: parent
         visible: root.screens.length === 0
-        text: "No screen is on"
+        text: I18n.t("No screen is on")
         color: mt.pInkSub
         font.family: mt.fontFamily
         font.pixelSize: 16

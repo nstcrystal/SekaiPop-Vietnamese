@@ -43,7 +43,7 @@ SettingsPage {
                     : I18n.t("A newer commit is on GitHub ({version}).", { version: UpdateService.latest })
             return I18n.t("Version {version} is out", { version: UpdateService.latest })
         case "nosource": return "Install git to update from GitHub, or put a link to a VERSION file in ~/.config/sekaipop/update-url."
-        case "error": return UpdateService.reason
+        case "error": return I18n.t(UpdateService.reason)
         default: return ""
         }
     }

@@ -89,7 +89,7 @@ SettingsPage {
             icon: "clear_all"
             label: "Clear all"
             detail: page.host && page.host.notificationSource
-                ? (page.host.notificationSource.count === 0 ? "Nothing waiting" : page.host.notificationSource.count + " waiting") : ""
+                ? (page.host.notificationSource.count === 0 ? I18n.t("Nothing waiting") : I18n.t("{n} waiting", { n: page.host.notificationSource.count })) : ""
             onActivated: if (page.host && page.host.notificationSource) page.host.notificationSource.clearAll()
         }
     }

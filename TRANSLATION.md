@@ -68,7 +68,7 @@ Phải trả về `quick.flat = ...`, không phải `No running instances`.
 | `sekaipop/modules/common/i18n/vi-common.js` | Thuật ngữ dùng chung (Settings, menu, widget) |
 | `sekaipop/modules/common/i18n/vi-settings.js` | Sáu trang Settings và các thẻ plugin |
 | `sekaipop/services/SettingsService.qml` | Lưu `"i18n.lang"` (`vi` mặc định) |
-| `tools/progress.py` | Đo chuỗi tĩnh còn thiếu |
+| `tools/progress.py` | Đo tiến độ chuỗi tĩnh (`--all` gồm plugin/dialog) |
 
 Nguyên tắc:
 
@@ -89,12 +89,20 @@ Nguyên tắc:
 
 ### Giới hạn hiện tại
 
-- Chỉ dịch **chuỗi tĩnh**. Chuỗi ghép số/ngày/trạng thái động còn tiếng Anh.
-- `tools/progress.py` mới quét 6 file `SettingsPage*.qml`; chưa quét component
-  plugin và các màn hình ngoài Settings.
+- Đã dịch cả **chuỗi động** trong Settings: trạng thái cài/cập nhật, tuổi cache,
+  thông báo lỗi plugin, hộp thoại gỡ/cài, tiến trình clone/pull.
+- Chuỗi ghép số **ngoài Settings** (Quick Panel, Apps, Lockscreen…) còn tiếng Anh.
+- `tools/progress.py` mặc định quét 6 file `SettingsPage*.qml`; `--all` quét
+  thêm `Plugin*.qml`, `Setting*.qml`, `DisplayLayout`, `KeyCaps`.
+- Script đo **khóa tĩnh trong file QML**; chuỗi dựng bằng biểu thức
+  (`I18n.t(cond ? "a" : "b")`) không được đếm, dù đã dịch.
+- `CHANGELOG.md` (thẻ “Có gì mới” trong About) **giữ tiếng Anh** có chủ đích: đó
+  là ghi chú phát hành, không phải giao diện.
 - Tên riêng/sản phẩm giữ nguyên: Wi-Fi, Bluetooth, Hyprland, Quickshell,
   SekaiPop, Sekai Pad, Discord, EasyEffects, Wallhaven, OCR, OSD, GTK, Qt, KDE,
   Matugen, Dock, Widget, Plugin, Quick Panel.
+- Nội dung do plugin viết (tên cài đặt, lựa chọn, mô tả trong `plugin.json`)
+  **không dịch**: đó là dữ liệu của bên thứ ba.
 
 ---
 
@@ -203,10 +211,12 @@ Sau đó xóa `settings.json` để shell dùng defaults.
 
 ```sh
 python3 tools/progress.py
+python3 tools/progress.py --all
 python3 tools/progress.py --missing
 ```
 
-Kết quả hiện tại: **596/596 chuỗi tĩnh trong 6 trang Settings (100%)**.
+Kết quả hiện tại: **596/596 (100%)** trên 6 trang Settings; **651/651 (100%)**
+khi quét thêm component plugin và dialog.
 
 | Hạng mục | Chuỗi | Trạng thái | Commit |
 |---|---:|---|---|
@@ -218,36 +228,51 @@ Kết quả hiện tại: **596/596 chuỗi tĩnh trong 6 trang Settings (100%)*
 | Settings > Hyprland | 117/117 | 100% | `200eeb0` |
 | Settings > About | 11/11 | 100% | `200eeb0` |
 | Component plugin (phần tĩnh) | — | đã dịch | `200eeb0` |
-| Chuỗi động | — | 0% | — |
+| Chuỗi động trong Settings | ~160 khóa | 100% | `2a` |
 | Ngoài Settings | — | 0% | — |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
 `PluginField`, `PluginBadge`, `PluginChip` (qua `SettingChip`).
 
-Lưu ý: 100% ở trên là **trên 596 chuỗi mà script quét được**, không phải toàn bộ
+Cụm 2a đã dịch thêm:
+
+- `PluginRepos.js`: `failure`, `namesText`, `ageText`, `whereText`,
+  `updatesTitle`, `kindText`, `sourceLine` nhận tham số `t`.
+- `PluginForm.js`: `plural`, `countText`, `warnText`, `skipInfo` nhận `t`.
+- Trạng thái tải plugin (offline, đang tìm, tìm thấy, không tải được), tiến
+  trình `Cloning` / `Linking` / `Pulling` / `Removing`, thông báo sau khi cài.
+- `PluginEditor`, `PluginRemoveAsk`, `PluginSecretRow`, `PluginRow`,
+  `SettingsPluginsUpdate`, `SettingsGetPlugins`.
+- `SegmentSwitch` dịch nhãn (dùng chung cho mọi switch trong shell).
+- `DisplayLayout`, `KeyCaps` (`or` → “hoặc”, `No key` → “Không có phím”),
+  `KeyRoundButton` tooltip.
+
+Lưu ý: 100% ở trên là **trên các chuỗi mà script quét được**, không phải toàn bộ
 shell.
 
 ---
 
 ## 6. Việc cần làm
 
-### Giai đoạn 2 — chuỗi động và phần còn thiếu
+### Giai đoạn 2a — chuỗi động trong Settings (đã xong)
 
-- [ ] `1 waiting` ở nút “Xóa tất cả” (General).
-- [ ] `SettingsGetPlugins`: trạng thái offline, số plugin, kết quả tìm kiếm.
-- [ ] `PluginListEntry`: tiến trình cài, `Needs SekaiPop …`, thông báo sau cài.
-- [ ] `PluginUpdateBox`: `Go back to …`.
-- [ ] `PluginSourcePanel`: `Nothing yet…`, trạng thái Pin, `Go back`.
-- [ ] `PluginEditor`, `PluginRemoveAsk`, `PluginSecretRow`, `PluginRow`.
-- [ ] `DisplayLayout` (`No screen is on`), `KeyCaps` (`or`).
-- [ ] About: `updateMessage`, `UpdateService.reason`, subject/age của commit.
+- [x] `1 waiting` ở nút “Xóa tất cả” (General).
+- [x] `SettingsGetPlugins`: trạng thái offline, số plugin, kết quả tìm kiếm.
+- [x] `PluginListEntry`: tiến trình cài, `Needs SekaiPop …`, thông báo sau cài.
+- [x] `PluginUpdateBox`: `Go back to …`.
+- [x] `PluginSourcePanel`: `Nothing yet…`, trạng thái Pin, `Go back`.
+- [x] `PluginEditor`, `PluginRemoveAsk`, `PluginSecretRow`, `PluginRow`.
+- [x] `DisplayLayout` (`No screen is on`), `KeyCaps` (`or`).
+- [x] About: `updateMessage`, `UpdateService.reason`.
+- [x] `tools/progress.py --all` quét component plugin và dialog.
+
+### Giai đoạn 2b — ngoài Settings
+
 - [ ] Quick Panel, Apps/Launcher, Lockscreen, Wallpaper picker, Welcome, OSD,
       notification, cheatsheet, keybinds panel.
-
-### Chất lượng và công cụ
-
-- [ ] Mở rộng `tools/progress.py` quét cả component plugin và chuỗi ngoài Settings.
+- [ ] Các màn hình dùng chung (`SegmentSwitch` đã xong; còn popup của Bar).
+- [ ] Cân nhắc dịch `CHANGELOG.md` nếu người dùng muốn thẻ “Có gì mới” tiếng Việt.
 - [ ] Rà layout tiếng Việt dài: wrap, elide, tràn thẻ, header.
 - [ ] Kiểm thử chuyển ngôn ngữ runtime (Anh ↔ Việt) trên cả 6 trang.
 - [ ] Kiểm thử `./switch.sh vi` / `en` / `log` sau mỗi cụm dịch.
@@ -303,6 +328,7 @@ cần câu tiếng Việt).
 4. Chạy:
    ```sh
    python3 tools/progress.py
+   python3 tools/progress.py --all
    python3 tools/progress.py --missing
    ```
 5. Kiểm tra QML:
@@ -328,4 +354,6 @@ ec790a3  i18n: Settings > General
 1133ea1  i18n: Settings > Quick, Bar
 6271da3  i18n: Settings > Desktop
 200eeb0  i18n: Settings > About, thẻ Plugins và Get plugins
+119f807  docs: TRANSLATION.md; switch.sh dùng symlink để phím tắt hoạt động
+51c7edf  i18n: Settings > chuỗi động và hộp thoại plugin
 ```

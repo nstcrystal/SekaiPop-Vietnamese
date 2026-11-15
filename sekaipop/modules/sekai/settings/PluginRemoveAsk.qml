@@ -54,7 +54,7 @@ Item {
         spacing: 12
 
         Text {
-            text: "Remove " + root.repo + "?"
+            text: I18n.t("Remove {repo}?", { repo: root.repo })
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 19
@@ -63,10 +63,14 @@ Item {
 
         Repeater {
             model: [
-                (root.names.length === 1 ? "Its plugin goes: <b>" + root.names[0] + "</b>"
-                    : "Its " + root.names.length + " plugins go: " + PR.namesText(root.names.map(n => "<b>" + n + "</b>")))
-                    + ", from the desktop and from the bar.",
-                "Its clone is deleted: <tt>" + root.shortClone + "</tt>"
+                (root.names.length === 1
+                    ? I18n.t("Its plugin goes: <b>{name}</b>", { name: root.names[0] })
+                    : I18n.t("Its {n} plugins go: {names}", {
+                        n: root.names.length,
+                        names: PR.namesText(root.names.map(n => "<b>" + n + "</b>"), " " + I18n.t("and") + " ")
+                    }))
+                    + I18n.t(", from the desktop and from the bar."),
+                I18n.t("Its clone is deleted: <tt>{path}</tt>", { path: root.shortClone })
             ]
 
             delegate: Row {
@@ -101,7 +105,7 @@ Item {
             Text {
                 height: 46
                 verticalAlignment: Text.AlignVCenter
-                text: root.names.length === 1 ? "Its saved settings" : "Their saved settings"
+                text: I18n.t(root.names.length === 1 ? "Its saved settings" : "Their saved settings")
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 15
@@ -126,9 +130,11 @@ Item {
             wrapMode: Text.WordWrap
             textFormat: Text.StyledText
             text: root.deleteSettings
-                ? "Deleted, they start over from their defaults if you install it again."
-                : "Kept, they come back if you install it again. " + (root.names.length === 1 ? "It is one small file" : "They are " + root.names.length + " small files")
-                    + " in <tt>~/.local/state/sekaipop/plugins/</tt>."
+                ? I18n.t("Deleted, they start over from their defaults if you install it again.")
+                : I18n.t(root.names.length === 1
+                    ? "Kept, they come back if you install it again. It is one small file in <tt>~/.local/state/sekaipop/plugins/</tt>."
+                    : "Kept, they come back if you install it again. They are {n} small files in <tt>~/.local/state/sekaipop/plugins/</tt>.",
+                    { n: root.names.length })
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 15
@@ -155,7 +161,7 @@ Item {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Esc keeps everything"
+                text: I18n.t("Esc keeps everything")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 14

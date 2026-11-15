@@ -372,16 +372,28 @@ function cloneProgress(line) {
     }
 }
 
+// Fill {name} placeholders, with or without a translator. Used as the default
+// when a caller does not hand in I18n.t (the tests, and English).
+function fillT(s, vars) {
+    if (vars)
+        for (var k in vars)
+            s = s.split("{" + k + "}").join(String(vars[k]))
+    return s
+}
+
 // `plugin-repos.sh look` / `install`: what went wrong, in the user's words (the handoff's
-// "Failed" board).
-function failure(reason, key) {
+// "Failed" board). `t` is I18n.t when the shell has one; a reason the shell did not write
+// (git's own last line, for one) is passed through unchanged.
+function failure(reason, key, t) {
+    if (typeof t !== "function")
+        t = fillT
     switch (reason) {
-    case "offline": return "Couldn't reach " + (REPO_RE.test(key) ? "github.com" : key.split("/")[0]) + ": you're offline. Nothing changed."
-    case "norepo": return "There's no repository at " + (REPO_RE.test(key) ? "github.com/" + key : key) + ", or it's private. Check the spelling."
-    case "noplugin": return key + " isn't a SekaiPop plugin. It has no plugin.json anywhere, so there's nothing in it to install. Nothing was kept."
-    case "exists": return "Something is already installed under one of its plugins' names. Remove it first."
-    case "nogit": return "Installing a plugin needs git, which isn't installed."
-    default: return reason ? reason : "It didn't install. Nothing changed."
+    case "offline": return t("Couldn't reach {host}: you're offline. Nothing changed.", { host: REPO_RE.test(key) ? "github.com" : key.split("/")[0] })
+    case "norepo": return t("There's no repository at {where}, or it's private. Check the spelling.", { where: REPO_RE.test(key) ? "github.com/" + key : key })
+    case "noplugin": return t("{key} isn't a SekaiPop plugin. It has no plugin.json anywhere, so there's nothing in it to install. Nothing was kept.", { key: key })
+    case "exists": return t("Something is already installed under one of its plugins' names. Remove it first.")
+    case "nogit": return t("Installing a plugin needs git, which isn't installed.")
+    default: return reason ? reason : t("It didn't install. Nothing changed.")
     }
 }
 
@@ -412,11 +424,13 @@ function checkFound(records, parse) {
 }
 
 // "Tailscale", "Services and Backups", "Services, Disks and Backups".
-function namesText(names) {
+// Join names the way a sentence does ("A, B and C"). `andText` is the
+// conjunction: " and " by default, or I18n.t's (" và ") in Vietnamese.
+function namesText(names, andText) {
     var n = names.filter(function (x) { return x !== "" })
     if (n.length <= 1)
         return n.join("")
-    return n.slice(0, -1).join(", ") + " and " + n[n.length - 1]
+    return n.slice(0, -1).join(", ") + (andText || " and ") + n[n.length - 1]
 }
 
 // The install's outcome: "installed", "2 OF 3 INSTALLED", or not installed.
@@ -441,9 +455,11 @@ function nextSteps(plugin) {
     return out
 }
 
-function kindText(plugin) {
+function kindText(plugin, t) {
+    if (typeof t !== "function")
+        t = function (s) { return s }
     var b = !!plugin.bar, w = !!(plugin.files && plugin.files.widget)
-    return b && w ? "a bar entry and a desktop widget" : b ? "a bar entry" : "a desktop widget"
+    return b && w ? t("a bar entry and a desktop widget") : b ? t("a bar entry") : t("a desktop widget")
 }
 
 // ===== updates =====
@@ -473,10 +489,12 @@ function batchId(list) {
 }
 
 // "2 repositories have updates", "1 repository has an update".
-function updatesTitle(n) {
+function updatesTitle(n, t) {
+    if (typeof t !== "function")
+        t = fillT
     if (n === 0)
-        return "Everything is up to date"
-    return n === 1 ? "1 repository has an update" : n + " repositories have updates"
+        return t("Everything is up to date")
+    return n === 1 ? t("1 repository has an update") : t("{n} repositories have updates", { n: n })
 }
 
 // The notification's body: "Tailscale (3 commits) and someone/sekaipop-homelab (1)."
@@ -498,25 +516,39 @@ function needsChecked(needs, found) {
 }
 
 // "2 days ago" for the cached list's age.
-function ageText(then, now) {
+function ageText(then, now, t) {
+    if (typeof t !== "function")
+        t = fillT
     var s = Math.max(0, Math.floor((now - then) / 1000))
     if (s < 60)
-        return "just now"
+        return t("just now")
     if (s < 3600)
-        return Math.floor(s / 60) + " min ago"
+        return t("{n} min ago", { n: Math.floor(s / 60) })
     if (s < 86400)
-        return Math.floor(s / 3600) + " h ago"
+        return t("{n} h ago", { n: Math.floor(s / 3600) })
     var d = Math.floor(s / 86400)
-    return d === 1 ? "yesterday" : d + " days ago"
+    return d === 1 ? t("yesterday") : t("{n} days ago", { n: d })
 }
 
 // ===== what a plugin's row says =====
 
 // Where it is: "In the bar, and on the desktop on DP-1.", "On the desktop on DP-1 and DP-2.",
 // "In the bar.", "Not on the desktop or the bar yet." A plugin has a bar entry or a widget or both.
-function whereText(plugin, inBar, monitors) {
+function whereText(plugin, inBar, monitors, t) {
     var hasBar = !!plugin.bar, hasWidget = !!(plugin.files && plugin.files.widget)
-    var desk = monitors && monitors.length > 0 ? "on the desktop on " + namesText(monitors) : ""
+    var names = monitors && monitors.length > 0
+        ? namesText(monitors, t ? " " + t("and") + " " : " and ") : ""
+    if (t) {
+        if (hasBar && inBar && names !== "")
+            return t("In the bar, and on the desktop on {monitors}.", { monitors: names })
+        if (hasWidget && names !== "")
+            return t("On the desktop on {monitors}.", { monitors: names })
+        if (hasBar && inBar)
+            return t("In the bar.")
+        var where = hasBar && hasWidget ? t("the desktop or the bar") : hasBar ? t("the bar") : t("the desktop")
+        return t("Not on {place} yet.", { place: where })
+    }
+    var desk = names !== "" ? "on the desktop on " + names : ""
     var parts = []
     if (hasBar && inBar)
         parts.push("in the bar")
@@ -526,25 +558,26 @@ function whereText(plugin, inBar, monitors) {
         var not = hasBar && hasWidget ? "the desktop or the bar" : hasBar ? "the bar" : "the desktop"
         return "Not on " + not + " yet."
     }
-    var t = parts.join(", and ")
-    return t.charAt(0).toUpperCase() + t.slice(1) + "."
+    var s = parts.join(", and ")
+    return s.charAt(0).toUpperCase() + s.slice(1) + "."
 }
 
 // Where it came from, as its row's source line: { icon, text, code, note }.
 //   repo     From masshirodev/sekaipop-tailscale (reviewed) / Added from a URL: x (not reviewed)
 //   yours    Managed by you: ~/projects/sekaipop-tailscale/tailscale
 //   copied   Copied in by hand
-function sourceLine(kind, repo, reviewed, path, home) {
+function sourceLine(kind, repo, reviewed, path, home, t) {
+    var tr = typeof t === "function" ? t : function (s) { return s }
     if (kind === "repo")
         return reviewed
-            ? { icon: "verified", text: "From", code: repo, note: "" }
-            : { icon: "link", text: "Added from a URL:", code: repo, note: "not reviewed" }
+            ? { icon: "verified", text: tr("From"), code: repo, note: "" }
+            : { icon: "link", text: tr("Added from a URL:"), code: repo, note: tr("not reviewed") }
     if (kind === "yours") {
         var h = String(home || "")
         var p = h !== "" && String(path).indexOf(h + "/") === 0 ? "~" + String(path).slice(h.length) : String(path)
-        return { icon: "folder_special", text: "Managed by you:", code: p, note: "" }
+        return { icon: "folder_special", text: tr("Managed by you:"), code: p, note: "" }
     }
-    return { icon: "content_copy", text: "Copied in by hand", code: "", note: "" }
+    return { icon: "content_copy", text: tr("Copied in by hand"), code: "", note: "" }
 }
 
 // A commit's id as shown: its first 7 characters.

@@ -118,9 +118,13 @@ SectionCard {
             width: parent.width
             icon: "cloud_off"
             text: PluginRepoService.listAt > 0
-                ? "Can't fetch the list: " + (PluginRepoService.listStatus === "offline" ? "you're offline" : PluginRepoService.listReason || "it didn't answer")
-                    + ". This is the copy from " + PR.ageText(PluginRepoService.listAt, card.now) + "; installing waits until you're back."
-                : "Can't fetch the list: " + (PluginRepoService.listStatus === "offline" ? "you're offline" : PluginRepoService.listReason || "it didn't answer") + ", and there is no copy of it yet."
+                ? I18n.t("Can't fetch the list: {why}. This is the copy from {age}; installing waits until you're back.", {
+                    why: PluginRepoService.listStatus === "offline" ? I18n.t("you're offline") : (PluginRepoService.listReason || I18n.t("it didn't answer")),
+                    age: PR.ageText(PluginRepoService.listAt, card.now, I18n.t)
+                })
+                : I18n.t("Can't fetch the list: {why}, and there is no copy of it yet.", {
+                    why: PluginRepoService.listStatus === "offline" ? I18n.t("you're offline") : (PluginRepoService.listReason || I18n.t("it didn't answer"))
+                })
 
             SettingChip {
                 capH: 36
@@ -178,7 +182,7 @@ SectionCard {
             SettingChip {
                 id: lookKey
                 x: parent.width - width
-                label: PluginRepoService.look.state === "looking" ? "Looking…" : "Look"
+                label: PluginRepoService.look.state === "looking" ? I18n.t("Looking…") : I18n.t("Look at it")
                 icon: "travel_explore"
                 onClicked: PluginRepoService.lookAt(urlField.text)
             }
@@ -226,7 +230,7 @@ SectionCard {
             width: parent.width
             icon: parent.look.reason === "noplugin" ? "do_not_disturb_on" : parent.look.reason === "offline" ? "cloud_off" : "error"
             text: parent.look.reason === "noplugin"
-                ? "<b>" + parent.look.key + " isn't a SekaiPop plugin.</b> It has no plugin.json anywhere, so there's nothing in it to install. Nothing was kept."
+                ? I18n.t("<b>{key} isn't a SekaiPop plugin.</b> It has no plugin.json anywhere, so there's nothing in it to install. Nothing was kept.", { key: parent.look.key })
                 : parent.look.message
         }
     }

@@ -64,7 +64,7 @@ Item {
             }
 
             HowText {
-                text: root.info && root.info.source === "env" ? "in the environment, as" : "in the file"
+                text: root.info && root.info.source === "env" ? I18n.t("in the environment, as") : I18n.t("in the file")
             }
 
             CodeChip {
@@ -86,9 +86,9 @@ Item {
             }
 
             HowText {
-                text: "The widget can't sign in until it is. Put it in "
-                    + (root.info && root.info.env !== "" && root.info.file !== "" ? "one of these" : "this")
-                    + ", then press Reload:"
+                text: I18n.t("The widget can't sign in until it is. Put it in {where}, then press Reload:", {
+                    where: I18n.t(root.info && root.info.env !== "" && root.info.file !== "" ? "one of these" : "this")
+                })
             }
         }
 
@@ -97,10 +97,10 @@ Item {
             height: 34
             spacing: 10
 
-            HowText { text: "The environment variable" }
+            HowText { text: I18n.t("The environment variable") }
             CodeChip { text: root.info ? root.info.env : "" }
             CopyButton { what: root.info ? root.info.env : ""; tip: "Copy the variable's name" }
-            HowText { text: "(set before the shell starts)"; sub: true }
+            HowText { text: I18n.t("(set before the shell starts)"); sub: true }
         }
 
         Row {
@@ -108,10 +108,10 @@ Item {
             height: 34
             spacing: 10
 
-            HowText { text: root.info && root.info.env !== "" ? "or the file" : "The file" }
+            HowText { text: I18n.t(root.info && root.info.env !== "" ? "or the file" : "The file") }
             CodeChip { text: root.info ? root.info.file : "" }
             CopyButton { what: root.info ? root.info.file : ""; tip: "Copy the file's path" }
-            HowText { text: "(the whole file is the secret)"; sub: true }
+            HowText { text: I18n.t("(the whole file is the secret)"); sub: true }
         }
     }
 

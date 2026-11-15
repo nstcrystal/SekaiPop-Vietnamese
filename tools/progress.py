@@ -3,9 +3,10 @@
 
 Quét các chuỗi hiển thị tĩnh trong 6 trang Settings rồi so với các khóa trong
 modules/common/i18n/*.js. Chỉ đếm chuỗi tĩnh: chuỗi ghép số/ngày tháng và
-trạng thái cập nhật nằm ngoài phạm vi giai đoạn 1.
+trạng thái cập nhật nằm ngoài phạm vi script.
 
-    python3 tools/progress.py            # tổng quan
+    python3 tools/progress.py            # 6 trang Settings
+    python3 tools/progress.py --all      # thêm component plugin và dialog
     python3 tools/progress.py --missing  # kèm danh sách chuỗi còn thiếu
 """
 from __future__ import annotations
@@ -28,6 +29,12 @@ PAGES = [
     ("About", "SettingsPageAbout.qml"),
 ]
 
+# --all: the plugin cards and dialogs around those pages, then the two
+# components outside them. The default stays the six pages above, so the
+# figure the earlier commits recorded (596) keeps its meaning.
+EXTRA_GLOBS = ["Plugin*.qml", "Setting*.qml", "SettingChip.qml", "KeyRoundButton.qml"]
+EXTRA_NAMES = ["DisplayLayout.qml", "KeyCaps.qml"]
+
 # label: "..."  /  detail: "..."  /  { id: "x", label: "..." }  ...
 PROP = re.compile(
     r"\b(label|sublabel|subtitle|detail|title|placeholder|specialText|text)\s*:\s*\"((?:[^\"\\]|\\.)*)\""
@@ -36,12 +43,18 @@ KEY = re.compile(r"^\s*\"((?:[^\"\\]|\\.)*)\"\s*:", re.MULTILINE)
 
 # Không phải chữ hiển thị: tên icon, khóa, đường dẫn, màu, biểu thức.
 NOT_TEXT = re.compile(r"^(?:[a-z][a-z0-9_]*|[a-z0-9_.\-/]+)$")
+# Mảnh HTML/trang trí ghép quanh một câu đã dịch: không phải câu riêng.
+FRAGMENTS = {"<b>", "</b>", "<tt>", "</tt>", "·", "· ", " ", "…"}
 
 
 def is_text(s: str) -> bool:
     if not s or len(s) < 2:
         return False
+    if s in FRAGMENTS:
+        return False
     if NOT_TEXT.match(s):
+        return False
+    if "/" in s and " " not in s:
         return False
     if s.startswith(("#", "/", "~", "$", "http", "qs.", "SettingsService", "Theme.", "mt.")):
         return False
@@ -73,11 +86,24 @@ def page_strings(path: Path) -> list[str]:
 
 def main() -> int:
     show_missing = "--missing" in sys.argv
+    scan_all = "--all" in sys.argv
     keys = dict_keys()
+
+    targets = list(PAGES)
+    if scan_all:
+        seen = {name for _, name in targets}
+        for pattern in EXTRA_GLOBS:
+            for path in sorted(SETTINGS.glob(pattern)):
+                if path.name not in seen:
+                    targets.append((path.stem, path.name))
+                    seen.add(path.name)
+        for name in EXTRA_NAMES:
+            if name not in seen:
+                targets.append((name[:-4], name))
 
     grand_total = grand_done = 0
     rows = []
-    for name, filename in PAGES:
+    for name, filename in targets:
         path = SETTINGS / filename
         if not path.exists():
             rows.append((name, 0, 0, []))

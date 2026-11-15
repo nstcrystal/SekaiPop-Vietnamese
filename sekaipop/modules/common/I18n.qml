@@ -40,13 +40,15 @@ QtObject {
         return typeof s === "string" && root.dict[s] !== undefined
     }
 
-    // Translate `s`, then fill {name} placeholders from `vars`.
+    // Translate `s`, then fill {name} placeholders from `vars`. The fill also
+    // happens when `s` stays English, so a function that is handed `I18n.t` (and
+    // builds "{name} isn't installed" itself) reads correctly in both languages.
     function t(s, vars) {
-        if (!root.vi || typeof s !== "string" || s === "")
+        if (typeof s !== "string" || s === "")
             return s
         let out = root.dict[s]
-        if (out === undefined)
-            return s
+        if (!root.vi || out === undefined)
+            out = s
         if (vars)
             for (const k in vars)
                 out = out.split("{" + k + "}").join(String(vars[k]))

@@ -171,7 +171,7 @@ SectionCard {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: PR.updatesTitle(PluginRepoService.updates.length)
+                    text: PR.updatesTitle(PluginRepoService.updates.length, I18n.t)
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 15

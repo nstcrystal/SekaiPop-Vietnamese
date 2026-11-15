@@ -32,7 +32,7 @@ Item {
         const d = new Date(ms)
         const today = new Date()
         return d.toDateString() === today.toDateString()
-            ? "today at " + Qt.formatTime(d, "hh:mm")
+            ? I18n.t("today at {time}", { time: Qt.formatTime(d, "hh:mm") })
             : Qt.formatDate(d, "d MMM")
     }
 
@@ -162,7 +162,7 @@ Item {
             PluginSourceRow {
                 width: body.width
                 label: "Repository"
-                text: root.repo + (root.info && root.info.reviewed ? " · reviewed" : " · not reviewed")
+                text: I18n.t(root.info && root.info.reviewed ? "{repo} · reviewed" : "{repo} · not reviewed", { repo: root.repo })
                 key: root.github ? "On GitHub" : ""
                 keyIcon: "open_in_new"
                 onKeyClicked: Qt.openUrlExternally("https://github.com/" + root.repo)
@@ -172,8 +172,8 @@ Item {
                 width: body.width
                 label: "On commit"
                 text: root.info ? PR.shortId(root.info.commit)
-                    + (root.info.updated && root.info.updated !== root.info.installed ? " · updated " + root.when(root.info.updated) : "")
-                    + " · installed " + root.when(root.info.installed) : ""
+                    + (root.info.updated && root.info.updated !== root.info.installed ? I18n.t(" · updated {when}", { when: root.when(root.info.updated) }) : "")
+                    + I18n.t(" · installed {when}", { when: root.when(root.info.installed) }) : ""
             }
 
             PluginSourceRow {
@@ -200,7 +200,7 @@ Item {
             PluginSourceRow {
                 width: body.width
                 label: "Remove"
-                text: "The repository and its " + (root.states.length === 1 ? "1 plugin" : root.states.length + " plugins") + ". It asks first."
+                text: I18n.t(root.states.length === 1 ? "The repository and its 1 plugin. It asks first." : "The repository and its {n} plugins. It asks first.", { n: root.states.length })
                 key: "Remove…"
                 onKeyClicked: root.removeRequested()
             }

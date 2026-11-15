@@ -29,12 +29,12 @@ Item {
 
     readonly property bool skipped: skip !== null
     readonly property var plugin: pst ? pst.plugin : null
-    readonly property var why: skipped ? PF.skipInfo(skip) : null
+    readonly property var why: skipped ? PF.skipInfo(skip, I18n.t) : null
     readonly property var monitors: {
         const _ = [WidgetClones.spots, pst ? pst.shown : false, pst ? pst.screenName : ""]
         return pst ? PluginService.monitorsOf(pst.pluginId) : []
     }
-    readonly property string warn: plugin ? PF.warnText(plugin, pst.secretSources) : ""
+    readonly property string warn: plugin ? PF.warnText(plugin, pst.secretSources, I18n.t) : ""
     readonly property bool hovered: area.containsMouse || key.hovered
 
     // Where it came from (PluginRepos.repoOf): a repository the shell installed, a folder of the
@@ -129,7 +129,7 @@ Item {
             Text {
                 height: 26
                 verticalAlignment: Text.AlignVCenter
-                text: root.skipped ? "not loaded" : root.plugin ? root.plugin.id : ""
+                text: root.skipped ? I18n.t("not loaded") : root.plugin ? root.plugin.id : ""
                 color: mt.pInkSub
                 font.family: root.skipped ? mt.fontFamily : "monospace"
                 font.pixelSize: root.skipped ? 15 : 13
@@ -140,7 +140,7 @@ Item {
                 visible: root.behind > 0
                 y: 1
                 kind: "on"
-                text: root.behind + (root.behind === 1 ? " commit behind" : " commits behind")
+                text: I18n.t(root.behind === 1 ? "{n} commit behind" : "{n} commits behind", { n: root.behind })
             }
         }
 
@@ -209,7 +209,7 @@ Item {
             }
 
             Text {
-                text: root.origin && root.origin.kind === "repo" ? "From" : "Managed by you:"
+                text: I18n.t(root.origin && root.origin.kind === "repo" ? "From" : "Managed by you:")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -226,7 +226,7 @@ Item {
 
             Text {
                 visible: !!root.origin && root.origin.kind === "repo"
-                text: "· updates, going back and removing are in About › Update"
+                text: I18n.t("· updates, going back and removing are in About › Update")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -262,7 +262,7 @@ Item {
             spacing: 6
 
             Text {
-                text: "The shell said:"
+                text: I18n.t("The shell said:")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 13
@@ -289,7 +289,7 @@ Item {
         Text {
             visible: !root.skipped
             anchors.verticalCenter: parent.verticalCenter
-            text: root.plugin ? PF.countText(root.plugin) : ""
+            text: root.plugin ? PF.countText(root.plugin, I18n.t) : ""
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 14
