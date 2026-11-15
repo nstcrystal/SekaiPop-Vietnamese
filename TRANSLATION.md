@@ -355,5 +355,5 @@ ec790a3  i18n: Settings > General
 6271da3  i18n: Settings > Desktop
 200eeb0  i18n: Settings > About, thẻ Plugins và Get plugins
 119f807  docs: TRANSLATION.md; switch.sh dùng symlink để phím tắt hoạt động
-51c7edf  i18n: Settings > chuỗi động và hộp thoại plugin
+65849df  i18n: Settings > chuỗi động và hộp thoại plugin
 ```
