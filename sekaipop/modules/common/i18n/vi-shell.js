@@ -426,7 +426,7 @@ var dict = {
     "SHAPE": "HÌNH DẠNG",
     "AT LEAST": "TỐI THIỂU",
     "COLOUR": "MÀU SẮC",
-    "General": "Chung",
+    "General": "General",
     "Anime": "Anime",
     "People": "Người",
     "Landscape": "Ngang",

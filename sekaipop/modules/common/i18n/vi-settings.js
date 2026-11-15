@@ -803,7 +803,7 @@ var dict = {
     "Needs SekaiPop {version}": "Cần SekaiPop {version}",
     "This is {version}. Update SekaiPop in About › Update, then it installs.": "Đây là {version}. Cập nhật SekaiPop trong Giới thiệu › Cập nhật, rồi nó sẽ cài được.",
     "Close": "Đóng",
-    "Settings": "Cài đặt",
+    "Settings": "Settings",
 
     // ===== Giai đoạn 2a: chuỗi động và hộp thoại plugin =====
     "{n} waiting": "{n} đang chờ",
