@@ -44,10 +44,14 @@ QtObject {
     // Translate `s`, then fill {name} placeholders from `vars`. The fill also
     // happens when `s` stays English, so a function that is handed `I18n.t` (and
     // builds "{name} isn't installed" itself) reads correctly in both languages.
-    function t(s, vars) {
+    //
+    // `ctx` disambiguates a word that means two things in two places ("Cool" is
+    // a night-light tint and a calendar star's name): the entry then lives under
+    // "ctx:s" and there is no fallback to the plain word.
+    function t(s, vars, ctx) {
         if (typeof s !== "string" || s === "")
             return s
-        let out = root.dict[s]
+        let out = ctx ? root.dict[ctx + ":" + s] : root.dict[s]
         if (!root.vi || out === undefined)
             out = s
         if (vars)

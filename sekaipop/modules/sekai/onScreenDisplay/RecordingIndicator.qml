@@ -151,7 +151,7 @@ Variants {
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: hit.containsMouse ? "Stop" : "REC " + root.elapsed()
+                        text: hit.containsMouse ? I18n.t("Stop") : I18n.t("REC") + " " + root.elapsed()
                         color: "white"
                         font.family: win.mt.fontFamily
                         font.pixelSize: 15

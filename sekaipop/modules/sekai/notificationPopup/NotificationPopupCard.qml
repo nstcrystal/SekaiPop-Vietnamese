@@ -434,7 +434,7 @@ Item {
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "now"
+                        text: I18n.t("now", null, "notify")
                         color: mt.pInkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 12

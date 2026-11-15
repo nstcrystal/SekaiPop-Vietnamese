@@ -91,7 +91,6 @@ var dict = {
     "Reboot": "Khởi động lại",
     "Log out": "Đăng xuất",
     "Lock": "Khóa",
-    "Sleep": "Ngủ",
     "Reboot to firmware": "Khởi động lại vào firmware",
     "System monitor": "Theo dõi hệ thống",
     "{label} will cut it off: {note}": "{label} sẽ cắt ngang: {note}",
@@ -116,7 +115,6 @@ var dict = {
 
     "Lock screen": "Khóa màn hình",
     "Lock with the shell's lockscreen": "Khóa bằng màn hình khóa của shell",
-    "Sleep": "Ngủ",
     "Suspend to RAM": "Tạm ngưng vào RAM",
     "Suspend to disk": "Tạm ngưng vào đĩa",
     "Restart": "Khởi động lại",
@@ -270,11 +268,11 @@ var dict = {
     "1 day left in {month}": "còn 1 ngày trong {month}",
     "{n} days left in {month}": "còn {n} ngày trong {month}",
     "TODAY": "HÔM NAY",
-    "Cool": "Ngầu",
-    "Cute": "Dễ thương",
-    "Happy": "Vui",
-    "Mysterious": "Bí ẩn",
-    "Pure": "Thuần khiết",
+    "calendar:Cool": "Ngầu",
+    "calendar:Cute": "Dễ thương",
+    "calendar:Happy": "Vui",
+    "calendar:Mysterious": "Bí ẩn",
+    "calendar:Pure": "Thuần khiết",
 
     // ----- Bar: battery popup -----
     "Fully charged": "Đã đầy pin",
@@ -298,7 +296,6 @@ var dict = {
     "Waiting for a reading of the pace.": "Đang chờ đọc tốc độ sạc.",
     "At {pct}%": "Ở {pct}%",
     "Power mode": "Chế độ nguồn",
-    "Saver": "Tiết kiệm",
     "Balanced": "Cân bằng",
     "Boost": "Tăng tốc",
 
@@ -353,6 +350,17 @@ var dict = {
     "Thunderstorm with hail": "Dông kèm mưa đá",
     "Thunderstorm with heavy hail": "Dông kèm mưa đá lớn",
     "Unknown": "Không rõ",
+
+    // ----- OSD (volume / mic / brightness / gamma) and the recording pill -----
+    "Brightness": "Độ sáng",
+    "Gamma": "Gamma",
+    "Microphone": "Micrô",
+    "Volume": "Âm lượng",
+    "Stop": "Dừng",
+    "REC": "GHI",
+
+    // ----- Notification popup -----
+    "notify:now": "bây giờ",
 
     // ----- Quick Panel: keybind descriptions -----
     "Shell: Toggle search": "Shell: Bật/tắt tìm kiếm"

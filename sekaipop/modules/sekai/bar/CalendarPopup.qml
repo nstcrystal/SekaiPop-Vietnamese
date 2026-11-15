@@ -134,7 +134,7 @@ SekaiPopup {
             if (!root.focusCell.inMonth)
                 hint = "  ·  " + I18n.t("click to turn the page")
             else if (m > 0)
-                hint = "  ·  " + I18n.t("{mark} star", { mark: I18n.t(root.markNames[m - 1]) })
+                hint = "  ·  " + I18n.t("{mark} star", { mark: I18n.t(root.markNames[m - 1], null, "calendar") })
             else
                 hint = "  ·  " + I18n.t("click to stick a star")
             return [CM.longDay(root.fY, root.fM, root.fD, I18n.vi),

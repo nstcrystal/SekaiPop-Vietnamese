@@ -53,10 +53,10 @@ Pill {
     }
 
     readonly property string labelText: {
-        if (kind === "brightness") return "Brightness"
-        if (kind === "gamma") return "Gamma"
-        if (kind === "mic") return "Microphone"
-        return "Volume"
+        if (kind === "brightness") return I18n.t("Brightness")
+        if (kind === "gamma") return I18n.t("Gamma")
+        if (kind === "mic") return I18n.t("Microphone")
+        return I18n.t("Volume")
     }
 
     // Brightness and gamma have no mute state to show — "muted" only
@@ -224,7 +224,7 @@ Pill {
         Text {
             id: stampProbe
             visible: false
-            text: "MUTE"
+            text: I18n.t("MUTE")
             font.family: mt.fontFamily
             font.pixelSize: 15
             font.weight: Font.ExtraBold
@@ -252,7 +252,7 @@ Pill {
 
             Text {
                 anchors.centerIn: parent
-                text: "MUTE"
+                text: I18n.t("MUTE")
                 color: mt.dark ? "#ff8a92" : "#c93a40"
                 font.family: mt.fontFamily
                 font.pixelSize: 15
