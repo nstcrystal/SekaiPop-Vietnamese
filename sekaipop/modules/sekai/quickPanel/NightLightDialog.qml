@@ -103,7 +103,7 @@ Item {
         Text {
             x: 28
             y: 26
-            text: "Night Light"
+            text: I18n.t("Night Light")
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 26
@@ -126,7 +126,7 @@ Item {
             Text {
                 id: powerLabel
                 anchors.centerIn: parent
-                text: root.nightOn ? "ON" : "OFF"
+                text: root.nightOn ? I18n.t("ON") : I18n.t("OFF")
                 color: root.nightOn ? mt.colBorder : mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -148,7 +148,7 @@ Item {
         Text {
             x: 28
             y: 88
-            text: "Intensity"
+            text: I18n.t("Intensity")
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 17
@@ -236,7 +236,7 @@ Item {
         Text {
             x: 28
             y: 166
-            text: "Cool"
+            text: I18n.t("Cool")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 12
@@ -245,7 +245,7 @@ Item {
         Text {
             x: card.width - 28 - width
             y: 166
-            text: "Warm"
+            text: I18n.t("Warm")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 12
@@ -263,7 +263,7 @@ Item {
         Text {
             x: 28
             y: 224
-            text: "Automatic"
+            text: I18n.t("Automatic")
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 17
@@ -274,7 +274,7 @@ Item {
         Text {
             x: 28
             y: 250
-            text: "Turn on by itself between two times"
+            text: I18n.t("Turn on by itself between two times")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 13
@@ -322,8 +322,8 @@ Item {
         // From / Until: an hour stepper each.
         Repeater {
             model: [
-                { label: "From", isFrom: true },
-                { label: "Until", isFrom: false }
+                { label: I18n.t("From"), isFrom: true },
+                { label: I18n.t("Until"), isFrom: false }
             ]
 
             delegate: Item {
@@ -438,7 +438,7 @@ Item {
             y: 422
             width: card.width - 56
             wrapMode: Text.Wrap
-            text: "A click on the tile overrides Automatic until the next start or end time."
+            text: I18n.t("A click on the tile overrides Automatic until the next start or end time.")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 12

@@ -633,7 +633,7 @@ Item {
             FaceKey {
                 id: changeKey
                 icon: "image"
-                text: "Change"
+                text: I18n.t("Change")
                 onClicked: {
                     face.bannerPickRequested()
                     face.panelCloseRequested()
@@ -642,7 +642,7 @@ Item {
             FaceKey {
                 id: frameKey
                 icon: "crop"
-                text: "Frame"
+                text: I18n.t("Frame")
                 onClicked: {
                     face.panelCloseRequested()
                     face.bannerFrameRequested()
@@ -703,7 +703,7 @@ Item {
                     id: bannerRemoveLabel
                     anchors.verticalCenter: parent.verticalCenter
                     visible: bannerRemove.armed
-                    text: "Remove?"
+                    text: I18n.t("Remove?")
                     color: mt.colBorder
                     font.family: mt.fontFamily
                     font.pixelSize: 18 - 3
@@ -1013,7 +1013,7 @@ Item {
                     id: avatarRemoveLabel
                     anchors.verticalCenter: parent.verticalCenter
                     visible: avatarRemove.armed
-                    text: "Remove?"
+                    text: I18n.t("Remove?")
                     color: mt.colBorder
                     font.family: mt.fontFamily
                     font.pixelSize: 16 - 3
@@ -1460,7 +1460,7 @@ Item {
                 // Edit mode takes over the mouse (see editArea below), so
                 // dragging a button doesn't also set the volume.
                 enabled: !face.editing
-                label: face.tileName(tile.modelData)
+                label: I18n.t(face.tileName(tile.modelData))
                 icon: face.tileIcon(tile.modelData)
                 muted: !face.tileOn(tile.modelData)
                 value: tile.modelData === "microphone" ? face.microphoneVolume : face.speakerVolume
@@ -1490,8 +1490,8 @@ Item {
                 // doesn't flip Wi-Fi off.
                 enabled: !face.editing
                 on: face.tileOn(tile.modelData)
-                label: face.tileName(tile.modelData)
-                subtitle: face.tileSubtitle(tile.modelData)
+                label: I18n.t(face.tileName(tile.modelData))
+                subtitle: I18n.t(face.tileSubtitle(tile.modelData))
                 icon: face.tileIcon(tile.modelData)
                 iconFilled: face.tileFilled(tile.modelData)
                 onClicked: face.tileClicked(tile.modelData)
@@ -1925,7 +1925,7 @@ Item {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
-                text: emptyNote.line
+                text: I18n.t(emptyNote.line)
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 16
@@ -2085,12 +2085,12 @@ Item {
                     app: row.app
                     // Open, the card stops repeating the newest one (the
                     // dropdown lists it) and just says what it holds.
-                    title: row.open ? row.groupCount + " notifications" : row.title
-                    body: row.open ? "Swipe to clear them all" : row.body
+                    title: row.open ? I18n.t("{n} notifications", { n: row.groupCount }) : row.title
+                    body: row.open ? I18n.t("Swipe to clear them all") : row.body
                     time: row.time
                     urgency: row.urgency
                     icon: row.icon
-                    agoText: face.ago(row.time)
+                    agoText: I18n.t(face.ago(row.time))
                     groupCount: row.groupCount
                     expanded: row.open
                     blocked: notificationsCard.clearing
@@ -2221,7 +2221,7 @@ Item {
             Text {
                 id: columnsLabel
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Columns"
+                text: I18n.t("Columns")
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 18
@@ -2344,7 +2344,7 @@ Item {
                             maximumLineCount: 2
                             elide: Text.ElideRight
                             lineHeight: 0.9
-                            text: face.tileName(modelData)
+                            text: I18n.t(face.tileName(modelData))
                             color: mt.pInk
                             font.family: mt.fontFamily
                             font.pixelSize: 16
@@ -2374,7 +2374,7 @@ Item {
             y: columnsRow.y + columnsRow.height + 24
             width: 520
             wrapMode: Text.WordWrap
-            text: "Every button is on the panel. Remove one to see it here."
+            text: I18n.t("Every button is on the panel. Remove one to see it here.")
             color: mt.pInk
             opacity: 0.67
             font.family: mt.fontFamily
@@ -2387,7 +2387,7 @@ Item {
             y: editTray.shownH - 60
             width: 520
             wrapMode: Text.WordWrap
-            text: "The panel is full. Remove a button to make room."
+            text: I18n.t("The panel is full. Remove a button to make room.")
             color: mt.pInk
             opacity: 0.67
             font.family: mt.fontFamily
@@ -2419,8 +2419,8 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            text: face.editing ? "Add buttons"
-                : (tagArea.containsMouse && !notificationsCard.empty && !notificationsCard.clearing ? "Clear all" : "Notifications")
+            text: face.editing ? I18n.t("Add buttons")
+                : (tagArea.containsMouse && !notificationsCard.empty && !notificationsCard.clearing ? I18n.t("Clear all") : I18n.t("Notifications"))
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 20
@@ -2481,8 +2481,8 @@ Item {
         id: volumeMixerDialog
         open: face.audioDialogKind !== ""
         kind: face.audioDialogShownKind === "microphone" ? "microphone" : "speaker"
-        title: face.audioDialogShownKind === "microphone" ? "Microphone" : "Speaker"
-        deviceCaption: face.audioDialogShownKind === "microphone" ? "Input" : "Output"
+        title: I18n.t(face.audioDialogShownKind === "microphone" ? "Microphone" : "Speaker")
+        deviceCaption: I18n.t(face.audioDialogShownKind === "microphone" ? "Input" : "Output")
         devices: face.audioDialogShownKind === "microphone" ? face.microphoneDevices : face.speakerDevices
         streams: face.audioDialogShownKind === "microphone" ? face.microphoneStreams : face.speakerStreams
         scanning: face.audioDevicesScanning
@@ -2679,7 +2679,7 @@ Item {
             y: 12
             width: 70
             horizontalAlignment: Text.AlignRight
-            text: "now"
+            text: I18n.t("now")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 15

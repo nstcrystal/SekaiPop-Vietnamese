@@ -204,7 +204,7 @@ Item {
                 anchors.right: parent.right
                 anchors.rightMargin: 18
                 anchors.verticalCenter: parent.verticalCenter
-                text: root.muted ? "MUTE" : Math.round(root.shownValue) + "%"
+                text: root.muted ? I18n.t("MUTE") : Math.round(root.shownValue) + "%"
                 color: root.inkSubNow
                 font.family: mt.fontFamily
                 font.pixelSize: 14

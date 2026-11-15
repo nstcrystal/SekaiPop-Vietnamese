@@ -116,7 +116,7 @@ Item {
             Text {
                 id: scanLabel
                 anchors.centerIn: parent
-                text: root.manualScanning ? "Refreshing…" : "Refresh"
+                text: root.manualScanning ? I18n.t("Refreshing…") : I18n.t("Refresh")
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -149,7 +149,7 @@ Item {
             Text {
                 id: advancedLabel
                 anchors.centerIn: parent
-                text: "Advanced"
+                text: I18n.t("Advanced")
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -183,7 +183,7 @@ Item {
             x: 28
             y: errorLabel.visible ? 90 : 66
             width: card.width - 56
-            text: "Devices paired elsewhere show up here. New pairing isn't done from this panel."
+            text: I18n.t("Devices paired elsewhere show up here. New pairing isn't done from this panel.")
             wrapMode: Text.Wrap
             color: mt.pInkSub
             font.family: mt.fontFamily
@@ -283,9 +283,9 @@ Item {
                 Text {
                     x: 50
                     y: 34
-                    text: row.busy ? (row.modelData.connected ? "Disconnecting…" : "Connecting…")
-                        : row.modelData.connected ? "Connected — tap to disconnect"
-                        : "Paired — tap to connect"
+                    text: row.busy ? I18n.t(row.modelData.connected ? "Disconnecting…" : "Connecting…")
+                        : row.modelData.connected ? I18n.t("Connected — tap to disconnect")
+                        : I18n.t("Paired — tap to connect")
                     color: mt.pInkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 13
@@ -314,7 +314,7 @@ Item {
         Text {
             visible: root.devices.length === 0 && !root.scanning
             anchors.centerIn: list
-            text: "No paired devices"
+            text: I18n.t("No paired devices")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16

@@ -151,7 +151,7 @@ Item {
             Text {
                 id: scanLabel
                 anchors.centerIn: parent
-                text: root.manualScanning ? "Refreshing…" : "Refresh"
+                text: root.manualScanning ? I18n.t("Refreshing…") : I18n.t("Refresh")
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -219,7 +219,7 @@ Item {
                     y: 26
                     width: parent.width - 18 - 40
                     elide: Text.ElideRight
-                    text: root.activeDevice ? root.activeDevice.name : "No device"
+                    text: root.activeDevice ? root.activeDevice.name : I18n.t("No device")
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 17
@@ -289,7 +289,7 @@ Item {
                         anchors.right: parent.right
                         anchors.rightMargin: 18
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "Switching…"
+                        text: I18n.t("Switching…")
                         color: mt.pInkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 13
@@ -316,7 +316,7 @@ Item {
             id: mixerLabel
             x: 28
             y: deviceSection.y + deviceSection.height + 14
-            text: "App volumes"
+            text: I18n.t("App volumes")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 13
@@ -356,7 +356,7 @@ Item {
                     y: 6
                     width: parent.width - 40 - 36
                     elide: Text.ElideRight
-                    text: streamRow.modelData.name + (streamRow.modelData.corked ? "  ·  paused" : "")
+                    text: streamRow.modelData.name + (streamRow.modelData.corked ? "  ·  " + I18n.t("paused") : "")
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 16
@@ -470,7 +470,7 @@ Item {
         Text {
             visible: root.streams.length === 0 && !root.scanning
             anchors.centerIn: mixerList
-            text: root.kind === "microphone" ? "Nothing's recording right now" : "Nothing's playing right now"
+            text: I18n.t(root.kind === "microphone" ? "Nothing's recording right now" : "Nothing's playing right now")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16

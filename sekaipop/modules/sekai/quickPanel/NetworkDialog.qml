@@ -144,7 +144,7 @@ Item {
             Text {
                 id: scanLabel
                 anchors.centerIn: parent
-                text: root.manualScanning ? "Scanning…" : "Scan"
+                text: root.manualScanning ? I18n.t("Scanning…") : I18n.t("Scan")
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -177,7 +177,7 @@ Item {
             Text {
                 id: advancedLabel
                 anchors.centerIn: parent
-                text: "Advanced"
+                text: I18n.t("Advanced")
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 14
@@ -291,8 +291,8 @@ Item {
                 Text {
                     x: 46
                     y: 34
-                    text: row.busy ? "Connecting…"
-                        : row.modelData.connected ? "Connected — tap to disconnect"
+                    text: row.busy ? I18n.t("Connecting…")
+                        : row.modelData.connected ? I18n.t("Connected — tap to disconnect")
                         : row.modelData.secured ? "Secured"
                         : "Open"
                     color: mt.pInkSub
@@ -363,7 +363,7 @@ Item {
                             Text {
                                 visible: passInput.text === "" && !passInput.activeFocus
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: "Password"
+                                text: I18n.t("Password")
                                 color: mt.pInkSub
                                 font.family: mt.fontFamily
                                 font.pixelSize: 15
@@ -389,7 +389,7 @@ Item {
 
                         Text {
                             anchors.centerIn: parent
-                            text: "Connect"
+                            text: I18n.t("Connect")
                             color: connectArea.containsMouse ? mt.colBorder : mt.pInk
                             font.family: mt.fontFamily
                             font.pixelSize: 13
@@ -414,7 +414,7 @@ Item {
         Text {
             visible: root.networks.length === 0 && !root.scanning
             anchors.centerIn: list
-            text: "No networks found"
+            text: I18n.t("No networks found")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 16

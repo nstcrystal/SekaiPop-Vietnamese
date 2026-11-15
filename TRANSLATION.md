@@ -228,8 +228,9 @@ khi quét thêm component plugin và dialog.
 | Settings > Hyprland | 117/117 | 100% | `200eeb0` |
 | Settings > About | 11/11 | 100% | `200eeb0` |
 | Component plugin (phần tĩnh) | — | đã dịch | `200eeb0` |
-| Chuỗi động trong Settings | ~160 khóa | 100% | `2a` |
-| Ngoài Settings | — | 0% | — |
+| Chuỗi động trong Settings | ~160 khóa | 100% | `65849df` |
+| Quick Panel: tile, dialog, power menu | ~110 khóa | đã dịch | `2b-1` |
+| Apps/Launcher, Bar, Lock, OSD | — | chưa | — |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -247,6 +248,31 @@ Cụm 2a đã dịch thêm:
 - `SegmentSwitch` dịch nhãn (dùng chung cho mọi switch trong shell).
 - `DisplayLayout`, `KeyCaps` (`or` → “hoặc”, `No key` → “Không có phím”),
   `KeyRoundButton` tooltip.
+
+Cụm 2b-1 (Quick Panel) dùng từ điển riêng
+`modules/common/i18n/vi-shell.js`, nối vào `I18n.qml` sau `vi-settings.js`:
+
+- `QuickPanelFace`: tên/trạng thái tile (Wi-Fi, Bluetooth, Micrô, Loa, Alerts,
+  Night Light, Game Mode, Dark Mode…), banner (`Change`, `Frame`, `Remove?`),
+  thẻ thông báo (`{n} notifications`, `Swipe to clear them all`, các câu trống),
+  khay sửa (`Columns`, `Add buttons`, thông báo đầy/trống), audio flyout.
+- `QuickToggle`, `SekaiTile`, `SekaiHubTile`: dịch tại nơi gọi (chúng vẽ thẳng
+  `label`/`subtitle`); `VolumeSlider` (`MUTE`).
+- `NetworkDialog`: `Scanning…`, `Scan`, `Advanced`, `Password`, `Connect`,
+  `No networks found`, `Connected — tap to disconnect`, `Secured`, `Open`.
+- `BluetoothDialog`: `Refreshing…`, `Refresh`, `Advanced`, `Paired — tap to
+  connect`, `Connected — tap to disconnect`, `No paired devices`, ghi chú ghép nối.
+- `NightLightDialog`: `Intensity`, `Cool`, `Warm`, `Automatic`, `From`/`Until`,
+  câu giải thích, `ON`/`OFF`.
+- `VolumeMixerDialog`: `Refresh`, `Input`/`Output`, `No device`, `Switching…`,
+  `App volumes`, `paused`, hai câu “không có gì đang phát/ghi”.
+- `PowerMenu`: 8 nhãn pill dịch tại chỗ vẽ; `PowerBusyService.noteText(t)` cho
+  câu cảnh báo “đang chạy (cài đặt/cập nhật/tải xuống)”, tên tiến trình giữ nguyên.
+- `QuickPanel.qml`: mô tả phím tắt `Shell: Toggle search`.
+
+Tên riêng không dịch: `Wi-Fi`, `Bluetooth`, `Ethernet`, `Easy Effects`,
+`Cloudflare WARP`; tên thiết bị/SSID/tên ứng dụng trong thông báo là dữ liệu
+bên ngoài, giữ nguyên.
 
 Lưu ý: 100% ở trên là **trên các chuỗi mà script quét được**, không phải toàn bộ
 shell.
@@ -269,7 +295,9 @@ shell.
 
 ### Giai đoạn 2b — ngoài Settings
 
-- [ ] Quick Panel, Apps/Launcher, Lockscreen, Wallpaper picker, Welcome, OSD,
+- [x] Quick Panel: tile, banner/avatar, thẻ thông báo, khay sửa, 4 dialog
+      (Wi-Fi, Bluetooth, Night Light, Volume), power menu.
+- [ ] Apps/Launcher, Lockscreen, Wallpaper picker, Welcome, OSD,
       notification, cheatsheet, keybinds panel.
 - [ ] Các màn hình dùng chung (`SegmentSwitch` đã xong; còn popup của Bar).
 - [ ] Cân nhắc dịch `CHANGELOG.md` nếu người dùng muốn thẻ “Có gì mới” tiếng Việt.

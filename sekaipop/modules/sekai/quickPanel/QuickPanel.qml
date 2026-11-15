@@ -1221,7 +1221,7 @@ Scope {
     GlobalShortcut {
         appid: "quickshell"
         name: "searchToggleRelease"
-        description: "Shell: Toggle search"
+        description: I18n.t("Shell: Toggle search")
         onReleased: root.toggleAppsOn(root.focusedScreen())
     }
 

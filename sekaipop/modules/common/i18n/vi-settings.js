@@ -38,7 +38,7 @@ var dict = {
     "Record with sound": "Quay kèm âm thanh",
     "Which sound goes in the video": "Âm thanh nào được đưa vào video",
     "What you hear": "Âm thanh bạn nghe",
-    "Microphone": "Micro",
+    "Microphone": "Micrô",
     "Pick a region": "Chọn vùng",
     "Copy, save, text, search, record": "Sao chép, lưu, văn bản, tìm kiếm, quay",
     "Quick Panel": "Quick Panel",

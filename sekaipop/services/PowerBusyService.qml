@@ -45,6 +45,20 @@ Singleton {
         return n.slice(0, 3).join(", ") + " is running (" + kind + ")"
     }
 
+    // Same note for a translated shell: `t` is I18n.t, the process names stay
+    // as they are (they are what `pgrep` matched).
+    function noteText(t) {
+        const n = root.running
+        if (n.length === 0)
+            return ""
+        if (typeof t !== "function")
+            return root.note
+        const kind = n.some(x => root.packageTools.indexOf(x) >= 0)
+            ? (n.some(x => root.packageTools.indexOf(x) < 0) ? t("an install and a download") : t("an install or update"))
+            : t("a download")
+        return t("{names} is running ({kind})", { names: n.slice(0, 3).join(", "), kind: kind })
+    }
+
     onWatchingChanged: {
         if (watching)
             root.look()

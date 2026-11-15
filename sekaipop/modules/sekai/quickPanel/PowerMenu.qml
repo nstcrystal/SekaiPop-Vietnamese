@@ -414,8 +414,8 @@ Item {
             width: Math.min(implicitWidth, 300)
             wrapMode: Text.WordWrap
             text: label.warned
-                  ? root.labels[label.shownIdx] + " will cut it off: " + PowerBusyService.note
-                  : root.labels[label.shownIdx]
+                  ? I18n.t("{label} will cut it off: {note}", { label: I18n.t(root.labels[label.shownIdx]), note: PowerBusyService.noteText(I18n.t) })
+                  : I18n.t(root.labels[label.shownIdx])
             color: label.warned ? mt.colBorder : mt.chipInk
             font.family: mt.fontFamily
             font.pixelSize: 14

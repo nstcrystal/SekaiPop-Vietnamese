@@ -3,6 +3,7 @@ import QtQuick
 import qs.services
 import "i18n/vi-common.js" as ViCommon
 import "i18n/vi-settings.js" as ViSettings
+import "i18n/vi-shell.js" as ViShell
 
 // The shell's translation layer (Vietnamese). Every string shown on screen goes
 // through `I18n.t("the original English")`: the English text itself is the
@@ -28,7 +29,7 @@ QtObject {
     readonly property bool vi: root.lang === "vi"
 
     // Both dictionaries merged once; settings wins on a duplicate key.
-    readonly property var dict: Object.assign({}, ViCommon.dict, ViSettings.dict)
+    readonly property var dict: Object.assign({}, ViCommon.dict, ViSettings.dict, ViShell.dict)
 
     function setLang(l) {
         if (l === "vi" || l === "en")
