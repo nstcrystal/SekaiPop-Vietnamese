@@ -120,7 +120,7 @@ Item {
 
         Text {
             width: parent.width
-            text: row.isAction ? row.app.title : (row.app ? row.app.name : "")
+            text: row.isAction ? I18n.t(row.app.title) : (row.app ? row.app.name : "")
             elide: Text.ElideRight
             color: mt.ink
             font.family: mt.fontFamily
@@ -130,7 +130,7 @@ Item {
 
         Text {
             width: parent.width
-            text: row.isAction ? (row.confirming ? "Press Enter again to confirm" : row.app.sub)
+            text: row.isAction ? (row.confirming ? I18n.t("Press Enter again to confirm") : I18n.t(row.app.sub))
                 : (row.app ? row.app.genericName : "")
             visible: text !== ""
             elide: Text.ElideRight

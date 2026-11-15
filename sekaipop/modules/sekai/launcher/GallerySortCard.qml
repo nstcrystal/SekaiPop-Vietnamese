@@ -59,7 +59,7 @@ Item {
         Text {
             x: 16
             y: 9
-            text: "SORT BY"
+            text: I18n.t("SORT BY")
             color: ScrapbookTheme.inkSoft
             font.family: mt.fontFamily
             font.styleName: mt.fontStyleBold

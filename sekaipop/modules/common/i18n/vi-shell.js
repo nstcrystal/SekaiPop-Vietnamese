@@ -100,6 +100,90 @@ var dict = {
     "an install and a download": "cài đặt và tải xuống",
     "a download": "tải xuống",
 
+    // ----- Apps / Launcher: search, rows, system actions -----
+    "Search apps": "Tìm ứng dụng",
+    "No apps match": "Không có ứng dụng nào khớp",
+    "Press Enter again to confirm": "Nhấn Enter lần nữa để xác nhận",
+    "Search the web for \u201c{q}\u201d": "Tìm trên web \u201c{q}\u201d",
+    "Opens in your browser": "Mở trong trình duyệt",
+    "Run in a terminal": "Chạy trong terminal",
+    "Run a command": "Chạy một lệnh",
+    "Type a command \u2014 > runs in the background, $ opens a terminal":
+        "Nhập một lệnh \u2014 > chạy nền, $ mở terminal",
+    "Runs in a terminal that stays open": "Chạy trong terminal giữ mở",
+    "Runs in the background; output comes back as a notification":
+        "Chạy nền; kết quả trả về dưới dạng thông báo",
+
+    "Lock screen": "Khóa màn hình",
+    "Lock with the shell's lockscreen": "Khóa bằng màn hình khóa của shell",
+    "Sleep": "Ngủ",
+    "Suspend to RAM": "Tạm ngưng vào RAM",
+    "Suspend to disk": "Tạm ngưng vào đĩa",
+    "Restart": "Khởi động lại",
+    "Reboot the computer": "Khởi động lại máy",
+    "Power the computer off": "Tắt nguồn máy",
+    "End the Hyprland session": "Kết thúc phiên Hyprland",
+    "Restart into BIOS / UEFI setup": "Khởi động lại vào BIOS / UEFI",
+    "Open or close the phone panel": "Mở hoặc đóng bảng điện thoại",
+    "Wallpapers": "Hình nền",
+    "Open the wallpaper board": "Mở bảng hình nền",
+    "Select an area; saved and copied": "Chọn một vùng; lưu và sao chép",
+    "Pick a colour": "Chọn màu",
+    "Eyedropper anywhere on screen": "Hút màu ở bất kỳ đâu trên màn hình",
+    "Mute / unmute speakers": "Tắt/bật tiếng loa",
+    "Toggle the default output": "Bật/tắt đầu ra mặc định",
+    "Mute / unmute microphone": "Tắt/bật micrô",
+    "Toggle the default input": "Bật/tắt đầu vào mặc định",
+    "Dark / light mode": "Chế độ tối / sáng",
+    "Flip the system colour scheme": "Đổi bảng màu hệ thống",
+    "Wi-Fi on / off": "Bật/tắt Wi-Fi",
+    "Toggle the Wi-Fi radio": "Bật/tắt sóng Wi-Fi",
+    "Bluetooth on / off": "Bật/tắt Bluetooth",
+    "Toggle the Bluetooth adapter": "Bật/tắt bộ điều hợp Bluetooth",
+    "Clear clipboard history": "Xóa lịch sử clipboard",
+    "Delete everything cliphist saved": "Xóa mọi thứ cliphist đã lưu",
+
+    // ----- Launcher: clipboard card -----
+    "Matching \u201c{q}\u201d": "Khớp \u201c{q}\u201d",
+    "Copy": "Sao chép",
+    "Loading\u2026": "Đang tải\u2026",
+    "Pick something above": "Chọn một mục ở trên",
+    "This picture can\u2019t be shown here (its format is not supported).\nCopy still puts it back on the clipboard.":
+        "Không hiển thị được ảnh này ở đây (định dạng không được hỗ trợ).\nSao chép vẫn đưa nó trở lại clipboard.",
+    "Could not load this picture": "Không tải được ảnh này",
+    "Pinned \u00b7 ": "Đã ghim \u00b7 ",
+    "Preview only \u2014 the whole entry could not be loaded":
+        "Chỉ xem trước \u2014 không tải được toàn bộ mục",
+    "{n} characters \u00b7 {m} line": "{n} ký tự \u00b7 {m} dòng",
+    "{n} characters \u00b7 {m} lines": "{n} ký tự \u00b7 {m} dòng",
+    "Clipboard history needs cliphist and wl-clipboard. Install both and restart the shell \u2014 it fills as you copy.":
+        "Lịch sử clipboard cần cliphist và wl-clipboard. Cài cả hai rồi khởi động lại shell \u2014 nó sẽ đầy dần khi bạn sao chép.",
+    "Nothing in your history matches that.": "Không có mục nào trong lịch sử khớp.",
+    "Nothing copied yet.\nCopy something and it will show up here.":
+        "Chưa sao chép gì.\nSao chép thứ gì đó và nó sẽ hiện ở đây.",
+
+    // ----- Launcher: colour, emoji, gallery, web cards -----
+    "Pick from screen": "Chọn từ màn hình",
+    "Type a colour \u2014 #ff8800, rgb(255, 136, 0), hsl(32 100% 50%) or a name like coral":
+        "Nhập một màu \u2014 #ff8800, rgb(255, 136, 0), hsl(32 100% 50%) hoặc tên như coral",
+    "Pick one": "Chọn một cái",
+    "Recent": "Gần đây",
+    "Smileys & emotion": "Mặt cười & cảm xúc",
+    "People & body": "Người & cơ thể",
+    "Animals & nature": "Động vật & thiên nhiên",
+    "Food & drink": "Đồ ăn & thức uống",
+    "Travel & places": "Du lịch & địa điểm",
+    "Activities": "Hoạt động",
+    "Objects": "Đồ vật",
+    "Symbols": "Ký hiệu",
+    "Flags": "Cờ",
+    "Enter copies \u00b7 Shift types": "Enter sao chép \u00b7 Shift gõ",
+    "SORT BY": "SẮP XẾP THEO",
+    "Go to <b>{q}</b>": "Đi tới <b>{q}</b>",
+    "Search <b>{engine}</b> for <b>{q}</b>": "Tìm <b>{q}</b> trên <b>{engine}</b>",
+    "Type what to search for.\nTab switches search engine \u00b7 a web address opens directly.":
+        "Nhập nội dung cần tìm.\nTab đổi công cụ tìm kiếm \u00b7 địa chỉ web sẽ mở trực tiếp.",
+
     // ----- Quick Panel: keybind descriptions -----
     "Shell: Toggle search": "Shell: Bật/tắt tìm kiếm"
 }

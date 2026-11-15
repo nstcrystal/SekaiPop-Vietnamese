@@ -147,7 +147,8 @@ PhoneCard {
             anchors.rightMargin: 12
             anchors.verticalCenter: parent.verticalCenter
             elide: Text.ElideRight
-            text: root.filter === "" ? "Clipboard" : "Matching \u201c" + X.oneLine(root.filter, 18) + "\u201d"
+            text: root.filter === "" ? I18n.t("Clipboard")
+                : I18n.t("Matching \u201c{q}\u201d", { q: X.oneLine(root.filter, 18) })
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 26
@@ -284,8 +285,9 @@ PhoneCard {
         font.weight: Font.Bold
         lineHeight: 1.25
         text: !root.available
-            ? "Clipboard history needs cliphist and wl-clipboard. Install both and restart the shell \u2014 it fills as you copy."
-            : (root.filter !== "" ? "Nothing in your history matches that." : "Nothing copied yet.\nCopy something and it will show up here.")
+            ? I18n.t("Clipboard history needs cliphist and wl-clipboard. Install both and restart the shell \u2014 it fills as you copy.")
+            : (root.filter !== "" ? I18n.t("Nothing in your history matches that.")
+                : I18n.t("Nothing copied yet.\nCopy something and it will show up here."))
     }
 
     // ===== the sheet: the whole of the picked entry =====
@@ -368,7 +370,7 @@ PhoneCard {
                 font.family: mt.fontFamily
                 font.pixelSize: 19
                 font.weight: Font.Bold
-                text: "This picture can\u2019t be shown here (its format is not supported).\nCopy still puts it back on the clipboard."
+                text: I18n.t("This picture can\u2019t be shown here (its format is not supported).\nCopy still puts it back on the clipboard.")
             }
 
             Text {
@@ -377,9 +379,9 @@ PhoneCard {
                 width: parent.width - 28
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
-                text: root.currentEntry === null ? "Pick something above"
-                    : (root.loading ? "Loading\u2026"
-                        : "Could not load this picture" + (root.error !== "" ? "\n" + X.oneLine(root.error, 120) : ""))
+                text: root.currentEntry === null ? I18n.t("Pick something above")
+                    : (root.loading ? I18n.t("Loading\u2026")
+                        : I18n.t("Could not load this picture") + (root.error !== "" ? "\n" + X.oneLine(root.error, 120) : ""))
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 20
@@ -421,16 +423,18 @@ PhoneCard {
                     const e = root.currentEntry
                     if (!e)
                         return ""
-                    const pin = e.pinned ? "Pinned \u00b7 " : ""
+                    const pin = e.pinned ? I18n.t("Pinned \u00b7 ") : ""
                     if (e.image)
                         return pin + X.imageLabel(e.preview)
                     if (root.loading)
-                        return "Loading\u2026"
+                        return I18n.t("Loading\u2026")
                     if (root.failed && root.fullText === "")
-                        return "Preview only \u2014 the whole entry could not be loaded"
+                        return I18n.t("Preview only \u2014 the whole entry could not be loaded")
                     const t = root.fullText
                     const lines = t.split("\n").length
-                    return pin + t.length + " characters \u00b7 " + lines + (lines === 1 ? " line" : " lines")
+                    return pin + (lines === 1
+                        ? I18n.t("{n} characters \u00b7 {m} line", { n: t.length, m: lines })
+                        : I18n.t("{n} characters \u00b7 {m} lines", { n: t.length, m: lines }))
                 }
             }
 
@@ -472,7 +476,7 @@ PhoneCard {
                 anchors.verticalCenter: parent.verticalCenter
                 width: 150
                 height: 50
-                label: "Copy"
+                label: I18n.t("Copy")
                 fontSize: 22
                 fill: mt.accentMint
                 ink: root.darkInk

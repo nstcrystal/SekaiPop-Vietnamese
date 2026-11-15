@@ -107,8 +107,8 @@ PhoneCard {
             anchors.rightMargin: 12
             anchors.verticalCenter: parent.verticalCenter
             elide: Text.ElideRight
-            text: root.searching ? "Matching \u201c" + root.arg.trim() + "\u201d"
-                : (root.tab === -1 ? "Recent" : Emoji.groups[root.tab].name)
+            text: root.searching ? I18n.t("Matching \u201c{q}\u201d", { q: root.arg.trim() })
+                : (root.tab === -1 ? I18n.t("Recent") : I18n.t(Emoji.groups[root.tab].name))
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 26
@@ -344,7 +344,7 @@ PhoneCard {
             Text {
                 width: parent.width
                 elide: Text.ElideRight
-                text: root.currentItem ? root.currentItem[1] : (root.searching ? "" : "Pick one")
+                text: root.currentItem ? root.currentItem[1] : (root.searching ? "" : I18n.t("Pick one"))
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 21
@@ -354,7 +354,7 @@ PhoneCard {
             Text {
                 width: parent.width
                 elide: Text.ElideRight
-                text: "Enter copies \u00b7 Shift types"
+                text: I18n.t("Enter copies \u00b7 Shift types")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 15
@@ -388,7 +388,7 @@ PhoneCard {
             anchors.verticalCenterOffset: -2
             width: 132
             height: 56
-            label: "Copy"
+            label: I18n.t("Copy")
             fontSize: 22
             fill: mt.accentMint
             ink: root.darkInk

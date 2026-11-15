@@ -431,7 +431,7 @@ Item {
             x: 70
             anchors.verticalCenter: parent.verticalCenter
             visible: input.text.length === 0
-            text: "Search apps"
+            text: I18n.t("Search apps")
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 24
@@ -593,7 +593,7 @@ Item {
 
             anchors.centerIn: parent
             visible: face.searching && drawerGrid.count === 0 && extrasLayer.rows.length === 0
-            text: "No apps match"
+            text: I18n.t("No apps match")
             color: face.lcdOn ? "#ffffff" : mt.pInkSub
             style: face.lcdOn ? Text.Outline : Text.Normal
             styleColor: Qt.rgba(0.10, 0.10, 0.22, 0.85)

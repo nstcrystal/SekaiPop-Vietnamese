@@ -59,10 +59,10 @@ Scope {
             const cmd = root.arg.trim()
             out.push({
                 isAction: true, id: "shell", kind: "shell",
-                title: cmd === "" ? (root.terminalCommand ? "Run in a terminal" : "Run a command") : cmd,
+                title: cmd === "" ? (root.terminalCommand ? I18n.t("Run in a terminal") : I18n.t("Run a command")) : cmd,
                 sub: cmd === ""
-                    ? "Type a command \u2014 > runs in the background, $ opens a terminal"
-                    : (root.terminalCommand ? "Runs in a terminal that stays open" : "Runs in the background; output comes back as a notification"),
+                    ? I18n.t("Type a command \u2014 > runs in the background, $ opens a terminal")
+                    : (root.terminalCommand ? I18n.t("Runs in a terminal that stays open") : I18n.t("Runs in the background; output comes back as a notification")),
                 glyph: root.terminalCommand ? "terminal" : "play_arrow",
                 command: cmd, terminal: root.terminalCommand, confirm: false
             })

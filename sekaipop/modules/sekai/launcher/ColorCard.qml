@@ -84,7 +84,7 @@ ExtraFrame {
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
                 text: root.valid ? root.hex.toUpperCase()
-                    : "Type a colour \u2014 #ff8800, rgb(255, 136, 0), hsl(32 100% 50%) or a name like coral"
+                    : I18n.t("Type a colour \u2014 #ff8800, rgb(255, 136, 0), hsl(32 100% 50%) or a name like coral")
                 color: root.valid ? root.ink : ScrapbookTheme.inkSoft
                 font.family: mt.fontFamily
                 font.pixelSize: root.valid ? 30 : 14
@@ -247,7 +247,7 @@ ExtraFrame {
         Text {
             id: tipText
             anchors.centerIn: parent
-            text: "Pick from screen"
+            text: I18n.t("Pick from screen")
             color: "#ffffff"
             font.family: mt.fontFamily
             font.pixelSize: 12

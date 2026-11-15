@@ -229,8 +229,9 @@ khi quét thêm component plugin và dialog.
 | Settings > About | 11/11 | 100% | `200eeb0` |
 | Component plugin (phần tĩnh) | — | đã dịch | `200eeb0` |
 | Chuỗi động trong Settings | ~160 khóa | 100% | `65849df` |
-| Quick Panel: tile, dialog, power menu | ~110 khóa | đã dịch | `2b-1` |
-| Apps/Launcher, Bar, Lock, OSD | — | chưa | — |
+| Quick Panel: tile, dialog, power menu | ~110 khóa | đã dịch | `622541f` |
+| Apps/Launcher + 5 thẻ phụ | ~60 khóa | đã dịch | `2b-2` |
+| Bar, Lock, OSD, Wallpaper, Welcome | — | chưa | — |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -274,6 +275,27 @@ Tên riêng không dịch: `Wi-Fi`, `Bluetooth`, `Ethernet`, `Easy Effects`,
 `Cloudflare WARP`; tên thiết bị/SSID/tên ứng dụng trong thông báo là dữ liệu
 bên ngoài, giữ nguyên.
 
+Cụm 2b-2 (Apps/Launcher):
+
+- `LauncherFace`: `Search apps`, `No apps match`.
+- `LauncherExtras`: hàng hệ thống (`Search the web for “…”`, `Opens in your
+  browser`), xác nhận hai lần Enter.
+- `ExtrasSource`: hàng lệnh `>` / `$` (`Run a command`, `Runs in the
+  background; …`).
+- `Extras.js` `ACTIONS`: 20 hành động hệ thống (khóa, ngủ, khởi động lại, tắt
+  máy, đăng xuất, quick panel, hình nền, chụp màn hình, hút màu, tắt tiếng
+  loa/mic, chế độ tối/sáng, Wi-Fi, Bluetooth, xóa clipboard) — dịch tại chỗ vẽ,
+  dữ liệu gốc giữ nguyên để tìm kiếm bằng tiếng Anh vẫn chạy.
+- Thẻ Clipboard: tiêu đề, `Matching “…”`, `Copy`, `Loading…`, `Pick something
+  above`, `Pinned ·`, `{n} characters · {m} line(s)`, thông báo thiếu
+  cliphist/wl-clipboard.
+- Thẻ Màu: gợi ý `Type a colour …`, tooltip `Pick from screen`.
+- Thẻ Emoji: 9 nhóm + `Recent`, `Pick one`, `Enter copies · Shift types`.
+- Thẻ Web: `Go to <b>…</b>`, `Search <b>…</b> for <b>…</b>`, câu hướng dẫn.
+- `GallerySortCard`: `SORT BY`.
+- Tên emoji (`grinning face`…) là dữ liệu trong `Emoji.js`, **giữ tiếng Anh**;
+  tương tự tên ứng dụng, tên thiết bị, nội dung clipboard.
+
 Lưu ý: 100% ở trên là **trên các chuỗi mà script quét được**, không phải toàn bộ
 shell.
 
@@ -297,8 +319,10 @@ shell.
 
 - [x] Quick Panel: tile, banner/avatar, thẻ thông báo, khay sửa, 4 dialog
       (Wi-Fi, Bluetooth, Night Light, Volume), power menu.
-- [ ] Apps/Launcher, Lockscreen, Wallpaper picker, Welcome, OSD,
-      notification, cheatsheet, keybinds panel.
+- [x] Apps/Launcher: ô tìm kiếm, hành động hệ thống, 5 thẻ phụ (máy tính,
+      clipboard, màu, emoji, web).
+- [ ] Lockscreen, Wallpaper picker, Welcome, OSD, notification, cheatsheet,
+      keybinds panel.
 - [ ] Các màn hình dùng chung (`SegmentSwitch` đã xong; còn popup của Bar).
 - [ ] Cân nhắc dịch `CHANGELOG.md` nếu người dùng muốn thẻ “Có gì mới” tiếng Việt.
 - [ ] Rà layout tiếng Việt dài: wrap, elide, tràn thẻ, header.

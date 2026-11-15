@@ -131,8 +131,8 @@ Item {
         const q = root.query.trim()
         if (above.length + below.length === 0 && root.appCount === 0 && q.length > 0)
             return {
-                rows: [ { isAction: true, id: "websearch", kind: "web", title: "Search the web for \u201c" + q + "\u201d",
-                          sub: "Opens in your browser", glyph: "travel_explore", confirm: false } ],
+                rows: [ { isAction: true, id: "websearch", kind: "web", title: I18n.t("Search the web for \u201c{q}\u201d", { q: q }),
+                          sub: I18n.t("Opens in your browser"), glyph: "travel_explore", confirm: false } ],
                 strong: 1
             }
         return { rows: above.concat(below), strong: above.length }
@@ -570,7 +570,7 @@ Item {
 
                         Text {
                             width: parent.width
-                            text: rowItem.modelData.title
+                            text: I18n.t(rowItem.modelData.title)
                             elide: Text.ElideRight
                             color: mt.pInk
                             font.family: mt.fontFamily
@@ -580,7 +580,7 @@ Item {
 
                         Text {
                             width: parent.width
-                            text: rowItem.confirming ? "Press Enter again to confirm" : rowItem.modelData.sub
+                            text: rowItem.confirming ? I18n.t("Press Enter again to confirm") : I18n.t(rowItem.modelData.sub)
                             visible: text !== ""
                             elide: Text.ElideRight
                             color: mt.pInkSub

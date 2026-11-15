@@ -196,8 +196,8 @@ PhoneCard {
                         text: {
                             const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;")
                             if (resRow.modelData.main)
-                                return root.isUrl ? "Go to <b>" + esc(root.q) + "</b>"
-                                                  : "Search " + esc(root.eng.name) + " for <b>" + esc(root.q) + "</b>"
+                                return root.isUrl ? I18n.t("Go to <b>{q}</b>", { q: esc(root.q) })
+                                                  : I18n.t("Search <b>{engine}</b> for <b>{q}</b>", { engine: esc(root.eng.name), q: esc(root.q) })
                             return esc(resRow.modelData.text)
                         }
                     }
@@ -260,7 +260,7 @@ PhoneCard {
             font.pixelSize: 20
             font.weight: Font.Bold
             lineHeight: 1.3
-            text: "Type what to search for.\nTab switches search engine \u00b7 a web address opens directly."
+            text: I18n.t("Type what to search for.\nTab switches search engine \u00b7 a web address opens directly.")
         }
     }
 
