@@ -24,7 +24,7 @@ Item {
     property string barPosition: "top"
 
     // What the hover tag says.
-    readonly property string tipText: "Weather: " + root.text
+    readonly property string tipText: I18n.t("Weather: {text}", { text: root.text })
 
     signal clicked()
 

@@ -82,6 +82,25 @@ Singleton {
         return parts.join(" · ")
     }
 
+    // The same line, translated: `t` is I18n.t. "repo" and "AUR" stay as they
+    // are (they are package-manager words, not prose).
+    function breakdownText(t) {
+        if (typeof t !== "function")
+            return root.breakdown
+        if (root.status === "nocmd")
+            return t("checkupdates not found (install pacman-contrib)")
+        if (root.status === "error")
+            return t("couldn't check for updates")
+        if (root.status === "idle" || (root.status === "checking" && root.checkedAt === 0))
+            return t("checking…")
+        if (root.total === 0)
+            return t("up to date")
+        const parts = [t("{n} repo", { n: root.repoCount })]
+        if (root.aurCount > 0)
+            parts.push(t("{n} AUR", { n: root.aurCount }))
+        return parts.join(" · ")
+    }
+
     // ===== the check =====
     property bool nudged: false
 

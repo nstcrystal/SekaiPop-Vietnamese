@@ -33,14 +33,14 @@ Rectangle {
     readonly property string stateText: {
         const parts = []
         if (row.isSelf)
-            parts.push("You")
+            parts.push(I18n.t("You"))
         if (row.deaf)
-            parts.push("Deafened")
+            parts.push(I18n.t("Deafened"))
         else if (row.mute)
-            parts.push("Muted")
+            parts.push(I18n.t("Muted"))
         else if (row.talking)
-            parts.push("Talking")
-        return parts.length > 0 ? parts.join(" · ") : "In call"
+            parts.push(I18n.t("Talking"))
+        return parts.length > 0 ? parts.join(" · ") : I18n.t("In call")
     }
 
     implicitWidth: 304

@@ -51,7 +51,7 @@ SekaiPopup {
     property int monthShift: 0
     readonly property date viewDate: CM.monthStart(root.today, root.monthShift)
     readonly property var cells: CM.monthGrid(root.viewDate, root.today, root.firstDay)
-    readonly property var weekdays: CM.weekdayLabels(root.firstDay)
+    readonly property var weekdays: CM.weekdayLabels(root.firstDay, I18n.vi)
     readonly property int viewYear: root.viewDate.getFullYear()
     readonly property int viewMonth: root.viewDate.getMonth()
     // Which diamond of the lane is "this month" (only while looking at this year).
@@ -114,31 +114,40 @@ SekaiPopup {
     // The two lines under the month.
     readonly property var readout: {
         if (root.hoverYear)
-            return [String(root.viewYear), "Click: next year  ·  right-click: last year"]
+            return [String(root.viewYear), I18n.t("Click: next year  ·  right-click: last year")]
         if (root.hoverMonth >= 0) {
             const n = CM.shiftFor(root.today, root.viewYear, root.hoverMonth)
-            const when = n === 0 ? "This month" : (n === 1 ? "Next month" : (n === -1 ? "Last month"
-                : (n > 0 ? "In " + n + " months" : -n + " months ago")))
-            return [CM.monthName(root.hoverMonth) + " " + root.viewYear, when + "  ·  click to jump"]
+            const when = n === 0 ? I18n.t("This month")
+                : (n === 1 ? I18n.t("Next month")
+                    : (n === -1 ? I18n.t("Last month")
+                        : (n > 0 ? I18n.t("In {n} months", { n: n })
+                            : I18n.t("{n} months ago", { n: -n }))))
+            return [CM.monthName(root.hoverMonth, I18n.vi) + " " + root.viewYear,
+                when + "  ·  " + I18n.t("click to jump")]
         }
         if (root.hoverSticker && root.monthShift !== 0)
-            return ["Back to today", CM.longDay(root.today.getFullYear(), root.today.getMonth(), root.today.getDate())]
+            return [I18n.t("Back to today"),
+                CM.longDay(root.today.getFullYear(), root.today.getMonth(), root.today.getDate(), I18n.vi)]
         if (root.focusCell) {
             const m = root.marks[root.focusCell.key] || 0
             let hint = ""
             if (!root.focusCell.inMonth)
-                hint = "  ·  click to turn the page"
+                hint = "  ·  " + I18n.t("click to turn the page")
             else if (m > 0)
-                hint = "  ·  " + root.markNames[m - 1] + " star"
+                hint = "  ·  " + I18n.t("{mark} star", { mark: I18n.t(root.markNames[m - 1]) })
             else
-                hint = "  ·  click to stick a star"
-            return [CM.longDay(root.fY, root.fM, root.fD), CM.relative(root.fDiff) + hint]
+                hint = "  ·  " + I18n.t("click to stick a star")
+            return [CM.longDay(root.fY, root.fM, root.fD, I18n.vi),
+                CM.relative(root.fDiff, I18n.vi) + hint]
         }
         const t = root.today
         const left = CM.daysInMonth(t.getFullYear(), t.getMonth()) - t.getDate()
-        return [CM.weekdayLong(t.getDay()) + "  ·  Week " + CM.isoWeek(t.getFullYear(), t.getMonth(), t.getDate()),
-                left === 0 ? "Last day of " + CM.monthName(t.getMonth())
-                           : left + (left === 1 ? " day" : " days") + " left in " + CM.monthName(t.getMonth())]
+        const monthNow = CM.monthName(t.getMonth(), I18n.vi)
+        return [CM.weekdayLong(t.getDay(), I18n.vi)
+                + "  ·  " + I18n.t("Week {n}", { n: CM.isoWeek(t.getFullYear(), t.getMonth(), t.getDate()) }),
+                left === 0 ? I18n.t("Last day of {month}", { month: monthNow })
+                    : (left === 1 ? I18n.t("1 day left in {month}", { month: monthNow })
+                        : I18n.t("{n} days left in {month}", { n: left, month: monthNow }))]
     }
 
     // ===== the cascade =====
@@ -239,7 +248,7 @@ SekaiPopup {
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     y: 7
-                    text: CM.weekdayShort(root.fDow).toUpperCase()
+                    text: CM.weekdayShort(root.fDow, I18n.vi).toUpperCase()
                     color: mt.chipInk
                     opacity: 0.8
                     font.family: mt.fontFamily
@@ -302,7 +311,7 @@ SekaiPopup {
                     }
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "TODAY"
+                        text: I18n.t("TODAY")
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         font.pixelSize: 10
@@ -343,7 +352,7 @@ SekaiPopup {
 
                     StickerText {
                         id: monthSticker
-                        text: CM.monthName(root.viewMonth)
+                        text: CM.monthName(root.viewMonth, I18n.vi)
                         pixelSize: 32
                         fillColor: plate.numberFill
                         ringColor: plate.numberRing

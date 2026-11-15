@@ -10,10 +10,11 @@ var DAY_NAMES = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 var DAY_LONG = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 // firstDay: 1 = the week starts on Monday, 0 = on Sunday.
-function weekdayLabels(firstDay) {
+function weekdayLabels(firstDay, vi) {
     var out = [];
+    var names = vi ? VI_DAY_NAMES : DAY_NAMES;
     for (var i = 0; i < 7; i++)
-        out.push(DAY_NAMES[(firstDay + i) % 7]);
+        out.push(names[(firstDay + i) % 7]);
     return out;
 }
 
@@ -72,23 +73,48 @@ function monthGrid(viewDate, today, firstDay) {
 var MONTHS = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
-function monthTitle(viewDate) {
+// Vietnamese names, used when the caller passes `vi` (I18n.vi). The short
+// forms are the ones a Vietnamese calendar prints: "Thg 11", "T2", "CN".
+var VI_DAY_NAMES = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+var VI_DAY_LONG = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư",
+    "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+var VI_MONTHS = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5",
+    "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11",
+    "Tháng 12"];
+var VI_MONTHS_SHORT = ["Thg 1", "Thg 2", "Thg 3", "Thg 4", "Thg 5", "Thg 6",
+    "Thg 7", "Thg 8", "Thg 9", "Thg 10", "Thg 11", "Thg 12"];
+
+function mod12(month) {
+    return ((month % 12) + 12) % 12;
+}
+
+function monthTitle(viewDate, vi) {
+    if (vi)
+        return VI_MONTHS[viewDate.getMonth()] + " " + viewDate.getFullYear();
     return MONTHS[viewDate.getMonth()] + " " + viewDate.getFullYear();
 }
 
-function monthName(month) {
-    return MONTHS[((month % 12) + 12) % 12];
+function monthName(month, vi) {
+    if (vi)
+        return VI_MONTHS[mod12(month)];
+    return MONTHS[mod12(month)];
 }
 
-function monthShort(month) {
+function monthShort(month, vi) {
+    if (vi)
+        return VI_MONTHS_SHORT[mod12(month)];
     return monthName(month).slice(0, 3);
 }
 
-function weekdayShort(dow) {
+function weekdayShort(dow, vi) {
+    if (vi)
+        return VI_DAY_NAMES[dow];
     return DAY_LONG[dow].slice(0, 3);
 }
 
-function weekdayLong(dow) {
+function weekdayLong(dow, vi) {
+    if (vi)
+        return VI_DAY_LONG[dow];
     return DAY_LONG[dow];
 }
 
@@ -106,18 +132,21 @@ function dayDiff(today, y, m, d) {
 }
 
 // "Today", "Tomorrow", "in 16 days", "3 days ago", "in 9 weeks" ...
-function relative(diff) {
-    if (diff === 0) return "Today";
-    if (diff === 1) return "Tomorrow";
-    if (diff === -1) return "Yesterday";
+// Vietnamese has no plural, and puts the count after the noun.
+function relative(diff, vi) {
+    if (diff === 0) return vi ? "Hôm nay" : "Today";
+    if (diff === 1) return vi ? "Ngày mai" : "Tomorrow";
+    if (diff === -1) return vi ? "Hôm qua" : "Yesterday";
     var n = Math.abs(diff);
     var text;
     if (n < 21)
-        text = n + " days";
+        text = n + (vi ? " ngày" : " days");
     else if (n < 120)
-        text = Math.round(n / 7) + " weeks";
+        text = Math.round(n / 7) + (vi ? " tuần" : " weeks");
     else
-        text = Math.round(n / 30.44) + " months";
+        text = Math.round(n / 30.44) + (vi ? " tháng" : " months");
+    if (vi)
+        return diff > 0 ? text + " nữa" : text + " trước";
     return diff > 0 ? "in " + text : text + " ago";
 }
 
@@ -130,10 +159,10 @@ function isoWeek(y, m, d) {
     return Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
 }
 
-// "Friday, 23 Oct"
-function longDay(y, m, d) {
+// "Friday, 23 Oct" / "Thứ Sáu, 23 Thg 10"
+function longDay(y, m, d, vi) {
     var dow = new Date(y, m, d).getDay();
-    return DAY_LONG[dow] + ", " + d + " " + monthShort(m);
+    return weekdayLong(dow, vi) + ", " + d + " " + monthShort(m, vi);
 }
 
 // ===== marks =====

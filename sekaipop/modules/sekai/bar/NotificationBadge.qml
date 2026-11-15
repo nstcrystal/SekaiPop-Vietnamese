@@ -23,7 +23,11 @@ Item {
     property string barPosition: "top"
 
     // What the hover tag says.
-    readonly property string tipText: (root.count === 0 ? "No notifications" : root.count + (root.count === 1 ? " notification" : " notifications")) + (root.doNotDisturb ? " · do not disturb" : "")
+    readonly property string tipText: (root.count === 0
+            ? I18n.t("No notifications")
+            : (root.count === 1 ? I18n.t("{n} notification", { n: root.count })
+                : I18n.t("{n} notifications", { n: root.count })))
+        + (root.doNotDisturb ? I18n.t(" · do not disturb") : "")
 
     signal clicked()
 

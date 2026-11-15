@@ -20,7 +20,7 @@ Item {
     property string barPosition: "top"
 
     // What the hover tag says.
-    readonly property string tipText: "Keyboard layout: " + root.layoutCode.toUpperCase() + " (click to switch)"
+    readonly property string tipText: I18n.t("Keyboard layout: {code} (click to switch)", { code: root.layoutCode.toUpperCase() })
 
     signal clicked()
 

@@ -127,6 +127,8 @@ Item {
     property string clockText: "00:00 AM"
     // "Mon, Sep 28" — fed by Bar.qml; the date pill sits left of the clock.
     property string dateText: ""
+    // The same date as I18n.datePill() parts, for the standing bar's two lines.
+    property var dateParts: null
     property string windowApp: ""     // e.g. "Firefox" — first line
     property string windowTitle: ""   // e.g. the page/document title — second line
     property string windowIcon: ""    // the app's icon as a file url (standing bar's key); "" = none found
@@ -711,7 +713,7 @@ Item {
             // First line: the app; if we couldn't work out the app,
             // the title takes its place.
             readonly property string line1: !hasWindow
-                ? "Workspace " + status_Bar.activeWorkspace
+                ? I18n.t("Workspace {n}", { n: status_Bar.activeWorkspace })
                 : (status_Bar.windowApp !== "" ? status_Bar.windowApp : status_Bar.windowTitle)
 
             // Second line: the title, unless it would just repeat
@@ -1143,6 +1145,7 @@ Item {
             Layout.alignment: status_Bar.crossAlign
             transform: Translate { y: status_Bar.liftY }
             text: status_Bar.dateText
+            dateParts: status_Bar.dateParts
             barPosition: status_Bar.barPosition
             onClicked: status_Bar.dateClicked()
         }

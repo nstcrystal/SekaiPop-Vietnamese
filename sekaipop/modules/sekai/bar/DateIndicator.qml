@@ -15,6 +15,11 @@ Item {
 
     property string text: ""
 
+    // The same date split up by I18n.datePill() (month / day), so a standing
+    // bar shows "Thg 11" over "15" in Vietnamese and "Sep" over "28" in English
+    // instead of guessing from spaces.
+    property var dateParts: null
+
     // True on a standing bar (left / right edge): "Mon, Sep 28" becomes
     // "Sep" over "28" (the weekday is in the calendar popup).
     property bool vertical: false
@@ -23,10 +28,14 @@ Item {
     property string barPosition: "top"
 
     // What the hover tag says.
-    readonly property string tipText: "Calendar: " + root.text
+    readonly property string tipText: I18n.t("Calendar: {date}", { date: root.text })
     readonly property var parts: root.text.replace(",", "").split(" ")
-    readonly property string line1: root.parts.length >= 3 ? root.parts[1] : root.text
-    readonly property string line2: root.parts.length >= 3 ? root.parts[2] : ""
+    readonly property string line1: root.dateParts && root.dateParts.month
+        ? root.dateParts.month
+        : (root.parts.length >= 3 ? root.parts[1] : root.text)
+    readonly property string line2: root.dateParts && root.dateParts.day
+        ? root.dateParts.day
+        : (root.parts.length >= 3 ? root.parts[2] : "")
 
     signal clicked()
 

@@ -57,15 +57,15 @@ SekaiPopup {
 
     readonly property string scrubText: {
         if (Math.abs(root.scrubTarget - root.percentage) <= 1)
-            return "That's right about now"
+            return I18n.t("That's right about now")
         const e = BM.eta(root.percentage, root.scrubTarget, root.charging, root.minutes)
         if (e.kind === "eta")
-            return "About " + BM.fmtMins(e.mins) + (root.charging ? " of charging to get there" : " from now at this pace")
+            return I18n.t("About {time} of charging to get there", { time: BM.fmtMins(e.mins) })
         if (e.kind === "past")
-            return "You're already past that"
+            return I18n.t("You're already past that")
         if (e.kind === "above")
-            return "It needs a charger to climb back up there"
-        return "No estimate yet"
+            return I18n.t("It needs a charger to climb back up there")
+        return I18n.t("No estimate yet")
     }
 
     readonly property int pad: 16
@@ -217,7 +217,7 @@ SekaiPopup {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: root.statusLabel
+                    text: I18n.t(root.statusLabel)
                     color: root.plateInk
                     font.family: mt.fontFamily
                     font.pixelSize: 13
@@ -308,14 +308,14 @@ SekaiPopup {
             height: 24
 
             SectionTab {
-                text: "Life gauge"
+                text: I18n.t("Life gauge")
             }
 
             Text {
                 anchors.right: parent.right
                 anchors.rightMargin: 4
                 anchors.verticalCenter: parent.verticalCenter
-                text: "slide along it to forecast"
+                text: I18n.t("slide along it to forecast")
                 color: mt.inkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 10
@@ -534,7 +534,7 @@ SekaiPopup {
                     spacing: 1
 
                     Text {
-                        text: root.charging ? "until full" : "remaining"
+                        text: root.charging ? I18n.t("until full") : I18n.t("remaining")
                         color: mt.ink
                         font.family: mt.fontFamily
                         font.pixelSize: 13
@@ -542,7 +542,7 @@ SekaiPopup {
                         font.styleName: mt.fontStyleBold
                     }
                     Text {
-                        text: "at the pace it has now"
+                        text: I18n.t("at the pace it has now")
                         color: mt.inkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 10
@@ -587,8 +587,8 @@ SekaiPopup {
                     Text {
                         width: parent.width
                         elide: Text.ElideRight
-                        text: root.full ? "Topped up"
-                            : (root.plugged ? "Plugged in" : "Working it out…")
+                        text: root.full ? I18n.t("Topped up")
+                            : (root.plugged ? I18n.t("Plugged in") : I18n.t("Working it out…"))
                         color: mt.ink
                         font.family: mt.fontFamily
                         font.pixelSize: 13
@@ -598,9 +598,9 @@ SekaiPopup {
                     Text {
                         width: parent.width
                         elide: Text.ElideRight
-                        text: root.full ? "Unplug whenever you like."
-                            : (root.plugged ? "Not charging right now."
-                                            : "Waiting for a reading of the pace.")
+                        text: root.full ? I18n.t("Unplug whenever you like.")
+                            : (root.plugged ? I18n.t("Not charging right now.")
+                                            : I18n.t("Waiting for a reading of the pace."))
                         color: mt.inkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 11
@@ -620,7 +620,7 @@ SekaiPopup {
                 }
 
                 Text {
-                    text: "At " + root.scrubTarget + "%"
+                    text: I18n.t("At {pct}%", { pct: root.scrubTarget })
                     color: mt.ink
                     font.family: mt.fontFamily
                     font.pixelSize: 22
@@ -640,7 +640,7 @@ SekaiPopup {
 
         // ===== power mode: one connected switch =====
         SectionTab {
-            text: "Power mode"
+            text: I18n.t("Power mode")
         }
 
         Rectangle {
@@ -654,9 +654,9 @@ SekaiPopup {
             antialiasing: true
 
             readonly property var defs: [
-                { icon: "eco", label: "Saver", profile: PowerProfile.PowerSaver },
-                { icon: "balance", label: "Balanced", profile: PowerProfile.Balanced },
-                { icon: "rocket_launch", label: "Boost", profile: PowerProfile.Performance }
+                { icon: "eco", label: I18n.t("Saver"), profile: PowerProfile.PowerSaver },
+                { icon: "balance", label: I18n.t("Balanced"), profile: PowerProfile.Balanced },
+                { icon: "rocket_launch", label: I18n.t("Boost"), profile: PowerProfile.Performance }
             ]
             readonly property var shown: PowerProfiles.hasPerformanceProfile ? modes.defs : modes.defs.slice(0, 2)
             readonly property real slot: (modes.width - 6) / modes.shown.length

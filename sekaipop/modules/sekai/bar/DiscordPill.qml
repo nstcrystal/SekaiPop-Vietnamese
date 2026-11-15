@@ -107,8 +107,8 @@ Item {
 
     readonly property string countText: shownParticipants.length === 1 ? "1" : String(shownParticipants.length)
     readonly property string labelText: shownAuth
-        ? (authorizing ? "Waiting for Discord…" : "Link Discord")
-        : (shownChannel !== "" ? shownChannel : "Voice") + " · " + countText
+        ? (authorizing ? I18n.t("Waiting for Discord…") : I18n.t("Link Discord"))
+        : (shownChannel !== "" ? shownChannel : I18n.t("Voice")) + " · " + countText
 
     implicitWidth: pill.implicitWidth
     implicitHeight: pill.implicitHeight
@@ -357,22 +357,26 @@ Item {
 
     readonly property string tipText: {
         if (root.shownAuth)
-            return root.authorizing ? "Accept the request in Discord" : "Link Discord once to see your calls here"
-        const lines = [(root.shownChannel !== "" ? root.shownChannel : "Voice channel")
-            + " — " + root.shownParticipants.length + " in call"]
+            return root.authorizing ? I18n.t("Accept the request in Discord")
+                : I18n.t("Link Discord once to see your calls here")
+        const lines = [I18n.t("{channel} — {n} in call", {
+            channel: root.shownChannel !== "" ? root.shownChannel : I18n.t("Voice channel"),
+            n: root.shownParticipants.length
+        })]
         for (const p of root.shownParticipants.slice(0, 8)) {
             if (!p)
                 continue
-            const state = p.deaf === true ? " (deafened)" : (p.mute === true ? " (muted)" : "")
+            const state = p.deaf === true ? I18n.t(" (deafened)")
+                : (p.mute === true ? I18n.t(" (muted)") : "")
             lines.push((p.speaking === true ? "● " : "   ") + (p.nick || "?") + state)
         }
         if (root.shownParticipants.length > 8)
-            lines.push("   +" + (root.shownParticipants.length - 8) + " more")
-        const muteWord = root.muted ? "unmute" : "mute"
-        const deafWord = root.deafened ? "undeafen" : "deafen"
+            lines.push("   " + I18n.t("+{n} more", { n: root.shownParticipants.length - 8 }))
+        const muteWord = root.muted ? I18n.t("unmute") : I18n.t("mute")
+        const deafWord = root.deafened ? I18n.t("undeafen") : I18n.t("deafen")
         lines.push(root.leftOpensPanel
-            ? "Click: open · Middle: " + muteWord + " · Right: " + deafWord
-            : "Click: " + muteWord + " · Right-click: " + deafWord)
+            ? I18n.t("Click: open · Middle: {mute} · Right: {deafen}", { mute: muteWord, deafen: deafWord })
+            : I18n.t("Click: {mute} · Right-click: {deafen}", { mute: muteWord, deafen: deafWord }))
         return lines.join("\n")
     }
 

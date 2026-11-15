@@ -49,7 +49,7 @@ GridLayout {
 
     UtilKey {
         visible: SettingsService.flag("util.screenshot")
-        label: "Screen snip"
+        label: I18n.t("Screen snip")
         icon: "screenshot_region"
         keyWidth: grid.keyWidth; keyHeight: grid.keyHeight; iconSize: grid.iconSize
         tip: grid.tips; barPosition: grid.barPosition
@@ -61,7 +61,7 @@ GridLayout {
 
     UtilKey {
         visible: SettingsService.flag("util.colorPicker")
-        label: "Color picker"
+        label: I18n.t("Color picker")
         icon: "colorize"
         keyWidth: grid.keyWidth; keyHeight: grid.keyHeight; iconSize: grid.iconSize
         tip: grid.tips; barPosition: grid.barPosition
@@ -73,7 +73,7 @@ GridLayout {
 
     UtilKey {
         visible: SettingsService.flag("util.keyboard")
-        label: "On-screen keyboard"
+        label: I18n.t("On-screen keyboard")
         icon: "keyboard"
         active: KeyboardService.running
         keyWidth: grid.keyWidth; keyHeight: grid.keyHeight; iconSize: grid.iconSize
@@ -83,7 +83,7 @@ GridLayout {
 
     UtilKey {
         visible: SettingsService.flag("util.mic")
-        label: grid.src && grid.src.micMuted ? "Unmute mic" : "Mute mic"
+        label: grid.src && grid.src.micMuted ? I18n.t("Unmute mic") : I18n.t("Mute mic")
         icon: grid.src && grid.src.micMuted ? "mic_off" : "mic"
         active: grid.src ? grid.src.micMuted : false
         keyWidth: grid.keyWidth; keyHeight: grid.keyHeight; iconSize: grid.iconSize
@@ -93,7 +93,7 @@ GridLayout {
 
     UtilKey {
         visible: SettingsService.flag("util.darkMode")
-        label: "Dark / light"
+        label: I18n.t("Dark / light")
         icon: ThemeService.mode === "light" ? "light_mode" : (ThemeService.darker ? "bedtime" : "dark_mode")
         keyWidth: grid.keyWidth; keyHeight: grid.keyHeight; iconSize: grid.iconSize
         tip: grid.tips; barPosition: grid.barPosition
@@ -102,7 +102,7 @@ GridLayout {
 
     UtilKey {
         visible: SettingsService.flag("util.profile")
-        label: "Power profile"
+        label: I18n.t("Power profile")
         icon: grid.src ? grid.src.profileIcon : "balance"
         active: grid.src ? grid.src.performanceOn : false
         keyWidth: grid.keyWidth; keyHeight: grid.keyHeight; iconSize: grid.iconSize
@@ -112,7 +112,7 @@ GridLayout {
 
     UtilKey {
         visible: SettingsService.flag("util.record")
-        label: grid.src && grid.src.recording ? "Stop recording" : "Record screen"
+        label: grid.src && grid.src.recording ? I18n.t("Stop recording") : I18n.t("Record screen")
         icon: grid.src && grid.src.recording ? "stop" : "screen_record"
         active: grid.src ? grid.src.recording : false
         activeFill: "#ff8fb3"
@@ -126,7 +126,7 @@ GridLayout {
 
     UtilKey {
         visible: SettingsService.flag("util.wallpapers")
-        label: "Wallpapers"
+        label: I18n.t("Wallpapers")
         icon: "wallpaper"
         keyWidth: grid.keyWidth; keyHeight: grid.keyHeight; iconSize: grid.iconSize
         tip: grid.tips; barPosition: grid.barPosition

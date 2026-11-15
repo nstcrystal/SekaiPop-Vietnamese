@@ -231,8 +231,9 @@ khi quét thêm component plugin và dialog.
 | Chuỗi động trong Settings | ~160 khóa | 100% | `65849df` |
 | Quick Panel: tile, dialog, power menu | ~110 khóa | đã dịch | `622541f` |
 | Apps/Launcher + 5 thẻ phụ | ~60 khóa | đã dịch | `2e1701a` |
-| Lockscreen (2 bố cục) | ~25 khóa | đã dịch | `2b-3` |
-| Bar, OSD, Wallpaper, Welcome | — | chưa | — |
+| Lockscreen (2 bố cục) | ~25 khóa | đã dịch | `be3a13e` |
+| Bar: chỉ báo, tooltip, 4 popup | ~140 khóa | đã dịch | `2b-4` |
+| OSD, Wallpaper, Welcome | — | chưa | — |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -312,6 +313,37 @@ Cụm 2b-3 (Lockscreen):
   PAM) dịch tại chỗ hiển thị; **thông điệp PAM thô vẫn tiếng Anh** (đầu ra hệ
   thống), tương tự lỗi git/terminal.
 
+Cụm 2b-4 (Bar):
+
+- Chỉ báo: `ActiveWindowKey` (`Workspace {n}`), `MediaPill` (`Nothing Playing`),
+  `TrayCollection` (`Nothing here`), `KeyboardLayoutIndicator`, tooltip
+  `ResourceIndicator` (`CPU {cpu}% · RAM {ram}%`), `BatteryIndicator`,
+  `NotificationBadge` (`{n} notifications`, `· do not disturb`),
+  `WeatherIndicator` (`Weather: {text}`), `DateIndicator` (`Calendar: {date}`).
+- `Bar.qml`: tooltip Discord, `privacyDetail` (`Screen shared with: …`),
+  `updatesTip`; `formatDate` chuyển sang `I18n.dateShort()`.
+- `PackageUpdatesService.breakdownText(t)` cho câu “3 repo · 1 AUR”, các trạng
+  thái `checking…`/`up to date`/lỗi; `repo`/`AUR` giữ nguyên.
+- `CalendarMath.js`: thêm tham số `vi` cho `weekdayLabels`, `monthTitle`,
+  `monthName`, `monthShort`, `weekdayShort/Long`, `relative`, `longDay`
+  (`Tháng 11`, `Thg 11`, `T2`, `Ngày mai`, `5 ngày nữa`, `Thứ Sáu, 20 Thg 11`).
+- `CalendarPopup`: `Tháng này/Tháng sau/Tháng trước`, `Week {n}`,
+  `Last day of …`, `1 day left in …`, tên 5 kiểu sao (`Ngầu`, `Dễ thương`,
+  `Vui`, `Bí ẩn`, `Thuần khiết`), chip `TODAY`.
+- `BatteryPopup`: trạng thái pin (`Đang sạc`, `Đã đầy pin`, `Đang dùng pin`),
+  `Thước pin`, `đến khi đầy`/`còn lại`, các câu ước tính, `Chế độ nguồn`
+  (`Tiết kiệm`/`Cân bằng`/`Tăng tốc`). Hạng `GREAT`, `ALL PERFECT`… giữ tiếng
+  Anh (thuật ngữ game).
+- `WeatherPopup`: `Cảm giác như`, `Áp suất`, `Tầm nhìn`, `ĐỘ ẨM`, `GIÓ`,
+  `CHỈ SỐ UV`, `Dự báo`, `Theo giờ`/`Theo ngày`, `Cập nhật {time}`; 30 mã thời
+  tiết WMO (`Trời quang`, `Ít mây`, `Mưa rào`…) dịch tại chỗ hiển thị.
+- `WeatherSource`: nhãn thứ trong dự báo theo ngôn ngữ (`T2`…), tên lỗi có
+  `updatedTextFor(t)`/`problemTextFor(t)`; `updatedText` gốc vẫn tiếng Anh.
+- `DiscordPill`/`DiscordPopup`/`DiscordMemberRow`: `Link Discord`,
+  `{channel} — {n} in call`, `VOICE CONNECTED`, `{n} IN CALL`, `In the room`,
+  `just you`, `{n} people`; tên kênh/người dùng là dữ liệu, giữ nguyên.
+- `UtilKeys`/`UtilPopup`/`UtilButtons`: tên 8 phím tiện ích, `phím tiện ích`.
+
 Lưu ý: 100% ở trên là **trên các chuỗi mà script quét được**, không phải toàn bộ
 shell.
 
@@ -338,8 +370,9 @@ shell.
 - [x] Apps/Launcher: ô tìm kiếm, hành động hệ thống, 5 thẻ phụ (máy tính,
       clipboard, màu, emoji, web).
 - [x] Lockscreen: cả hai bố cục, lịch, dòng trạng thái nguồn, lỗi mật khẩu.
-- [ ] Wallpaper picker, Welcome, OSD, notification, cheatsheet, keybinds panel.
-- [ ] Các màn hình dùng chung (`SegmentSwitch` đã xong; còn popup của Bar).
+- [x] Bar: chỉ báo, tooltip, lịch, pin, thời tiết, Discord, phím tiện ích.
+- [ ] Wallpaper picker, Welcome, OSD, notification, cheatsheet, keybinds panel,
+      popup còn lại của Bar (media, equalizer, plugin).
 - [ ] Cân nhắc dịch `CHANGELOG.md` nếu người dùng muốn thẻ “Có gì mới” tiếng Việt.
 - [ ] Rà layout tiếng Việt dài: wrap, elide, tràn thẻ, header.
 - [ ] Kiểm thử chuyển ngôn ngữ runtime (Anh ↔ Việt) trên cả 6 trang.

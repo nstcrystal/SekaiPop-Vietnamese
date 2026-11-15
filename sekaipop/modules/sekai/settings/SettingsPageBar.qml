@@ -191,7 +191,7 @@ SettingsPage {
         SettingToggle {
             icon: "exposure_zero"
             label: "Show 0 updates"
-            detail: PackageUpdatesService.breakdown
+            detail: PackageUpdatesService.breakdownText(I18n.t)
             checked: SettingsService.flag("updates.showZero")
             onToggled: SettingsService.toggle("updates.showZero")
         }
@@ -210,7 +210,7 @@ SettingsPage {
         SettingAction {
             icon: "refresh"
             label: "Check for updates"
-            detail: PackageUpdatesService.breakdown
+            detail: PackageUpdatesService.breakdownText(I18n.t)
             busy: PackageUpdatesService.status === "checking"
             onActivated: PackageUpdatesService.refresh()
         }

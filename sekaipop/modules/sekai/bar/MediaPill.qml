@@ -299,7 +299,7 @@ Pill {
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
                     elide: Text.ElideRight
-                    text: root.active ? root.title : "Nothing Playing"
+                    text: root.active ? root.title : I18n.t("Nothing Playing")
                     color: root.ink
                     font.family: mt.fontFamily
                     font.pixelSize: root.capsule ? mt.fontSizeInfo : (root.active ? root.titleSize : root.idleSize)

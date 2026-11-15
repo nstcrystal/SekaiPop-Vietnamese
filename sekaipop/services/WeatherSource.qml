@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 import qs.services
+import qs.modules.common
 import "../modules/common/functions/OpenMeteo.js" as OM
 
 // The system side of the bar's weather pill and its dropdown
@@ -107,6 +108,8 @@ Scope {
     property var forecast: []
     property var hourly: []
     property string updatedText: ""
+    // "14:05" on its own, so the label can be rebuilt in either language.
+    property string updatedClock: ""
 
     // True while a request is in flight; failed is true when the last try
     // didn't produce anything usable (the previous readings stay on show, unless
@@ -114,6 +117,10 @@ Scope {
     readonly property bool loading: geocode.running || ipLookup.running || fetch.running
     property bool failed: false
     property string problemText: ""
+    // The same message as a dictionary key (+ the place it names), so the
+    // popup can rebuild it in the shell's language.
+    property string problemKey: ""
+    property string problemPlace: ""
     property double lastFetchMs: 0
 
     // Where: what is typed in Settings -> General -> Weather (see the top).
@@ -129,6 +136,15 @@ Scope {
     function fail(text) {
         root.failed = true
         root.problemText = text
+        root.problemKey = text
+        root.problemPlace = ""
+    }
+
+    // The failure in the shell's language (`t` is I18n.t).
+    function problemTextFor(t) {
+        if (typeof t !== "function" || root.problemKey === "" || root.problemText === "")
+            return root.problemText
+        return t(root.problemKey, { place: root.problemPlace })
     }
 
     function clearReading() {
@@ -220,11 +236,14 @@ Scope {
         const r = OM.buildReading(data, {
             fahrenheit: root.useFahrenheit,
             use24h: root.use24h,
-            // The weekday names follow the system language, as they always did.
+            // The weekday names follow the shell's language (Qt's own locale
+            // here is C, so it would always say "Thu").
             dayLabel: function (iso, i) {
                 if (i === 0)
-                    return "Today"
-                return new Date(iso + "T12:00:00").toLocaleDateString(Qt.locale(), "ddd")
+                    return I18n.t("Today")
+                const d = new Date(iso + "T12:00:00")
+                return I18n.vi ? I18n.viWeekdaysShort[d.getDay()]
+                    : d.toLocaleDateString(Qt.locale(), "ddd")
             }
         })
         root.temperatureText = r.temperatureText
@@ -245,10 +264,18 @@ Scope {
             root.areaText = root.place.label
 
         const now = new Date()
-        root.updatedText = "Updated " + OM.pad(now.getHours()) + ":" + OM.pad(now.getMinutes())
+        root.updatedClock = OM.pad(now.getHours()) + ":" + OM.pad(now.getMinutes())
+        root.updatedText = "Updated " + root.updatedClock
         root.lastFetchMs = now.getTime()
         root.failed = false
         root.problemText = ""
+    }
+
+    // "Updated 14:05" in the shell's language (`t` is I18n.t).
+    function updatedTextFor(t) {
+        if (typeof t !== "function" || root.updatedClock === "")
+            return root.updatedText
+        return t("Updated {time}", { time: root.updatedClock })
     }
 
     // False stops the 15-minute poll (and starting it again looks straight away).
@@ -297,6 +324,8 @@ Scope {
                 if (!hit) {
                     const shown = q && q.name.length > 18 ? q.name.slice(0, 17) + "\u2026" : (q ? q.name : "")
                     root.fail("Couldn't find \u201c" + shown + "\u201d")
+                    root.problemKey = "Couldn't find \u201c{place}\u201d"
+                    root.problemPlace = shown
                     return
                 }
                 root.setPlace({ lat: Number(hit.latitude), lon: Number(hit.longitude), label: OM.placeLabel(hit) })

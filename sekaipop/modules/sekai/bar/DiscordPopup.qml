@@ -265,7 +265,7 @@ SekaiPopup {
                 Text {
                     width: parent.width
                     elide: Text.ElideRight
-                    text: "VOICE CONNECTED"
+                    text: I18n.t("VOICE CONNECTED")
                     color: Qt.rgba(1, 1, 1, 0.78)
                     font.family: mt.fontFamily
                     font.pixelSize: 10
@@ -276,7 +276,7 @@ SekaiPopup {
                 Text {
                     width: parent.width
                     elide: Text.ElideRight
-                    text: "# " + (root.channelName !== "" ? root.channelName : "Voice channel")
+                    text: "# " + (root.channelName !== "" ? root.channelName : I18n.t("Voice channel"))
                     color: mt.textWhite
                     font.family: mt.fontFamily
                     font.pixelSize: 18
@@ -318,7 +318,7 @@ SekaiPopup {
                 Text {
                     id: tagText
                     anchors.centerIn: parent
-                    text: root.members.length + " IN CALL"
+                    text: I18n.t("{n} IN CALL", { n: root.members.length })
                     color: root.blurple
                     font.family: mt.fontFamily
                     font.pixelSize: 11
@@ -342,14 +342,14 @@ SekaiPopup {
             height: 24
 
             SectionTab {
-                text: "In the room"
+                text: I18n.t("In the room")
             }
 
             Text {
                 anchors.right: parent.right
                 anchors.rightMargin: 4
                 anchors.verticalCenter: parent.verticalCenter
-                text: root.members.length === 1 ? "just you" : root.members.length + " people"
+                text: root.members.length === 1 ? I18n.t("just you") : I18n.t("{n} people", { n: root.members.length })
                 color: mt.inkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 11
@@ -405,7 +405,7 @@ SekaiPopup {
                     visible: root.members.length === 0
                     x: (list.width - width) / 2
                     y: (list.height - height) / 2
-                    text: "Waiting for people…"
+                    text: I18n.t("Waiting for people…")
                     color: mt.inkSub
                     font.family: mt.fontFamily
                     font.pixelSize: mt.fontSizeMenu

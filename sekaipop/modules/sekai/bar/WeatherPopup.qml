@@ -111,9 +111,9 @@ SekaiPopup {
     readonly property real uv: WM.firstNumber(root.hasData ? root.source.uvText : "")
 
     readonly property var strip: root.hasData ? [
-        { icon: "thermostat", label: "Feels like", value: root.source.feelsLikeText },
-        { icon: "speed", label: "Pressure", value: root.source.pressureText },
-        { icon: "visibility", label: "Visibility", value: root.source.visibilityText }
+        { icon: "thermostat", label: I18n.t("Feels like"), value: root.source.feelsLikeText },
+        { icon: "speed", label: I18n.t("Pressure"), value: root.source.pressureText },
+        { icon: "visibility", label: I18n.t("Visibility"), value: root.source.visibilityText }
     ] : []
 
     // The line at the foot.
@@ -123,15 +123,16 @@ SekaiPopup {
             return ""
         if (root.hourlyView && root.hoverHour >= 0 && root.hoverHour < root.source.hourly.length) {
             const h = root.source.hourly[root.hoverHour]
-            return h.label + "  ·  " + h.condition + "  ·  feels " + h.feels
+            return h.label + "  ·  " + I18n.t(h.condition) + "  ·  "
+                + I18n.t("feels {temp}", { temp: h.feels })
         }
         if (!root.hourlyView && root.hoverDay >= 0 && root.hoverDay < root.source.forecast.length) {
             const d = root.source.forecast[root.hoverDay]
-            return d.label + "  ·  " + d.condition
+            return d.label + "  ·  " + I18n.t(d.condition)
         }
         if (root.showingError)
-            return "Couldn't refresh  ·  " + root.source.updatedText
-        return root.source.updatedText
+            return I18n.t("Couldn't refresh") + "  ·  " + root.source.updatedTextFor(I18n.t)
+        return root.source.updatedTextFor(I18n.t)
     }
 
     Gradient {
@@ -215,9 +216,9 @@ SekaiPopup {
                     font.pixelSize: 11
                     font.letterSpacing: 1.4
 
-                    readonly property string condLabel: root.hasData ? root.source.conditionText
-                        : (root.source && root.source.loading ? "Loading…"
-                           : (root.source && root.source.failed ? root.source.problemText : "No weather data"))
+                    readonly property string condLabel: root.hasData ? I18n.t(root.source.conditionText)
+                        : (root.source && root.source.loading ? I18n.t("Loading…")
+                           : (root.source && root.source.failed ? root.source.problemTextFor(I18n.t) : I18n.t("No weather data")))
                     // (the property above is read as `condLabel` by `text`)
                 }
 
@@ -358,7 +359,7 @@ SekaiPopup {
 
             Slant {
                 id: placeTab
-                readonly property string label: root.hasData && root.source.areaText !== "" ? root.source.areaText : "Weather"
+                readonly property string label: root.hasData && root.source.areaText !== "" ? root.source.areaText : I18n.t("Weather")
                 x: 2
                 y: 102
                 width: Math.min(placeProbe.implicitWidth + 50 + height * skew, root.innerW - 52)
@@ -482,7 +483,7 @@ SekaiPopup {
                             level: humTile.value / 100 * WM.outBack(humTile.t, 1.4)
                             corner: 11
                         }
-                        TileLabel { x: 9; y: 10; width: parent.width - 12; text: "HUMIDITY" }
+                        TileLabel { x: 9; y: 10; width: parent.width - 12; text: I18n.t("HUMIDITY") }
                         Text {
                             x: 8
                             y: 26
@@ -527,7 +528,7 @@ SekaiPopup {
                             x: 9
                             y: 10
                             width: parent.width - 16
-                            text: "WIND" + (root.windP.dir !== "" ? "  ·  " + root.windP.dir : "")
+                            text: I18n.t("WIND") + (root.windP.dir !== "" ? "  ·  " + root.windP.dir : "")
                         }
 
                         Row {
@@ -615,7 +616,7 @@ SekaiPopup {
                         fillColor: mt.surfaceHover
                         pressed: uvArea.pressed
 
-                        TileLabel { x: 9; y: 10; width: parent.width - 14; text: "UV INDEX" }
+                        TileLabel { x: 9; y: 10; width: parent.width - 14; text: I18n.t("UV INDEX") }
                         Text {
                             x: 9
                             y: 24
@@ -721,7 +722,7 @@ SekaiPopup {
 
             SectionTab {
                 y: 2
-                text: "Forecast"
+                text: I18n.t("Forecast")
             }
 
             SegmentSwitch {
@@ -730,7 +731,7 @@ SekaiPopup {
                 x: root.innerW - width
                 width: 136
                 height: 28
-                options: [ { id: "hourly", label: "Hourly" }, { id: "days", label: "Days" } ]
+                options: [ { id: "hourly", label: I18n.t("Hourly") }, { id: "days", label: I18n.t("Days") } ]
                 current: root.hourlyView ? "hourly" : "days"
                 onPicked: id => SettingsService.set("weather.view", id)
             }

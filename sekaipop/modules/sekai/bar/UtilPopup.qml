@@ -37,7 +37,7 @@ SekaiPopup {
 
         SectionTab {
             id: tab
-            text: "utility keys"
+            text: I18n.t("utility keys")
         }
 
         // The keypad sits straight on the card (one background, not a pill inside it).
@@ -59,7 +59,7 @@ SekaiPopup {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
-            text: keys.hint !== "" ? keys.hint : "Utility keys"
+            text: keys.hint !== "" ? I18n.t(keys.hint) : I18n.t("Utility keys")
             opacity: keys.hint !== "" ? 1 : 0.55
             color: mt.ink
             font.family: mt.fontFamily

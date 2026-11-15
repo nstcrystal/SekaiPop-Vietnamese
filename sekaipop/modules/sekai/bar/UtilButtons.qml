@@ -238,7 +238,7 @@ Item {
             id: toolKey
             anchors.centerIn: parent
             visible: root.compact
-            label: "Utility keys"
+            label: I18n.t("Utility keys")
             tip: true
             barPosition: root.barPosition
             icon: "construction"

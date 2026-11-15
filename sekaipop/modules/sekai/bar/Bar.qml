@@ -646,8 +646,8 @@ PanelWindow {
             muted: DiscordVoiceService.muted
             deafened: DiscordVoiceService.deafened
             hint: SettingsService.get("discord.leftClick") === "panel"
-            ? "Right-click the pill to deafen · middle-click to mute"
-            : "Left-click the pill to mute · right-click to deafen"
+            ? I18n.t("Right-click the pill to deafen · middle-click to mute")
+            : I18n.t("Left-click the pill to mute · right-click to deafen")
             onMuteRequested: DiscordVoiceService.setMuted(!DiscordVoiceService.muted)
             onDeafenRequested: DiscordVoiceService.setDeafened(!DiscordVoiceService.deafened)
             onOpenClientRequested: {
@@ -882,9 +882,9 @@ PanelWindow {
             return pad(h12) + ":" + pad(d.getMinutes()) + " " + (h < 12 ? "AM" : "PM")
     }
 
-    // "Mon, Sep 28" for the date pill.
+    // "Mon, Sep 28" / "CN, 28 Thg 9" for the date pill.
     function formatDate(d) {
-        return d.toLocaleDateString(Qt.locale(), "ddd, MMM d")
+        return I18n.dateShort(d)
     }
 
     // The bar's look (BarStyleService.qml): 0 Float, 1 Straight,
@@ -1000,6 +1000,7 @@ PanelWindow {
                 modules: BarLayoutService.modulesFor(win.screen ? win.screen.name : "")
                 clockText: win.formatClock(clock.date)
                 dateText: win.formatDate(clock.date)
+                dateParts: I18n.datePill(clock.date)
                 onDateClicked: win.toggleCalendarPopup()
                 scaleValue: win.uiScale
                 layout: win.gameMode ? win.gameLayout : BarLayoutService.layoutFor(win.screen ? win.screen.name : "")
@@ -1071,11 +1072,11 @@ PanelWindow {
                 privacyDetail: {
                     const lines = []
                     if (PrivacyService.screenLive)
-                        lines.push("Screen shared with: " + PrivacyService.screenApps.join(", "))
+                        lines.push(I18n.t("Screen shared with: {apps}", { apps: PrivacyService.screenApps.join(", ") }))
                     if (PrivacyService.micLive)
-                        lines.push("Microphone in use by: " + PrivacyService.micApps.join(", "))
+                        lines.push(I18n.t("Microphone in use by: {apps}", { apps: PrivacyService.micApps.join(", ") }))
                     if (PrivacyService.audioLive)
-                        lines.push("Desktop audio recorded by: " + PrivacyService.audioApps.join(", "))
+                        lines.push(I18n.t("Desktop audio recorded by: {apps}", { apps: PrivacyService.audioApps.join(", ") }))
                     return lines.join("\n")
                 }
 
@@ -1100,8 +1101,10 @@ PanelWindow {
                 updatesShowZero: SettingsService.flag("updates.showZero")
                 updatesBusy: PackageUpdatesService.status === "checking" || PackageUpdatesService.upgrading
                 updatesLoading: PackageUpdatesService.loadingBadge
-                updatesTip: PackageUpdatesService.breakdown
-                + (PackageUpdatesService.total > 0 ? " — click to update, right-click to recheck" : " — right-click to recheck")
+                updatesTip: PackageUpdatesService.breakdownText(I18n.t)
+                + (PackageUpdatesService.total > 0
+                    ? I18n.t(" — click to update, right-click to recheck")
+                    : I18n.t(" — right-click to recheck"))
                 onUpdatesClicked: PackageUpdatesService.runUpdate()
                 onUpdatesRefreshRequested: PackageUpdatesService.refresh(true)
 

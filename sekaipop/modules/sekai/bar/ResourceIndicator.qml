@@ -28,7 +28,7 @@ Item {
     property string barPosition: "top"
 
     // What the hover tag says.
-    readonly property string tipText: "CPU " + Math.round(root.cpuPercent) + "% · RAM " + Math.round(root.memPercent) + "%"
+    readonly property string tipText: I18n.t("CPU {cpu}% · RAM {ram}%", { cpu: Math.round(root.cpuPercent), ram: Math.round(root.memPercent) })
 
     signal clicked()
 

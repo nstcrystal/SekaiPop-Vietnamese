@@ -29,7 +29,8 @@ Item {
     property string barPosition: "top"
 
     // What the hover tag says.
-    readonly property string tipText: "Battery: " + root.percentage + "%" + (root.isCharging ? " · charging" : (root.isLow ? " · low" : ""))
+    readonly property string tipText: I18n.t("Battery: {pct}%", { pct: root.percentage })
+        + (root.isCharging ? I18n.t(" · charging") : (root.isLow ? I18n.t(" · low") : ""))
 
     signal clicked()
 

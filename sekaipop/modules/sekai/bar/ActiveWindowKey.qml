@@ -28,7 +28,7 @@ Item {
 
     // One line, whatever the title holds (a newline would grow the tag).
     readonly property string tipText: !root.hasWindow
-        ? "Workspace " + root.workspace
+        ? I18n.t("Workspace {n}", { n: root.workspace })
         : (root.title !== "" && root.title.toLowerCase() !== root.app.toLowerCase()
             ? root.app + " \u2014 " + root.title.replace(/\s+/g, " ")
             : root.app)

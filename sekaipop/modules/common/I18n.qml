@@ -71,4 +71,23 @@ QtObject {
             return Qt.formatDate(d, "dddd, MMMM d")
         return root.viWeekdays[d.getDay()] + ", " + d.getDate() + " " + root.viMonths[d.getMonth()]
     }
+
+    readonly property var viWeekdaysShort: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
+    readonly property var viMonthsShort: ["Thg 1", "Thg 2", "Thg 3", "Thg 4",
+        "Thg 5", "Thg 6", "Thg 7", "Thg 8", "Thg 9", "Thg 10", "Thg 11", "Thg 12"]
+
+    // "CN, 15 Thg 11" / "Sun, Nov 15" — the bar's date pill.
+    function dateShort(d) {
+        if (!root.vi || !(d instanceof Date))
+            return Qt.formatDate(d, "ddd, MMM d")
+        return root.viWeekdaysShort[d.getDay()] + ", " + d.getDate() + " " + root.viMonthsShort[d.getMonth()]
+    }
+
+    // The standing bar splits the date into two lines: month over day.
+    function datePill(d) {
+        if (!root.vi || !(d instanceof Date))
+            return { weekday: Qt.formatDate(d, "ddd"), month: Qt.formatDate(d, "MMM"), day: String(d.getDate()) }
+        return { weekday: root.viWeekdaysShort[d.getDay()],
+            month: root.viMonthsShort[d.getMonth()], day: String(d.getDate()) }
+    }
 }

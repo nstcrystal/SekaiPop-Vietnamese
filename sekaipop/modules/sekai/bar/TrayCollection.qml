@@ -253,7 +253,7 @@ Pill {
             // (Not in the pinned pill: with nothing pinned that is just the
             // arrow button.)
             visible: root.empty && !root.showToggle && (!root.compact || root.present)
-            text: "Nothing here"
+            text: I18n.t("Nothing here")
             color: mt.chipInk
             font.family: mt.fontFamily
             font.pixelSize: mt.fontSizeInfo

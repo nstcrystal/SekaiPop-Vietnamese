@@ -243,7 +243,7 @@ SekaiPopup {
                     spacing: 1
 
                     Text {
-                        text: "GB in use"
+                        text: I18n.t("GB in use")
                         color: mt.ink
                         font.family: mt.fontFamily
                         font.pixelSize: 13
@@ -251,7 +251,7 @@ SekaiPopup {
                         font.styleName: mt.fontStyleBold
                     }
                     Text {
-                        text: "right now"
+                        text: I18n.t("right now")
                         color: mt.inkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 10
