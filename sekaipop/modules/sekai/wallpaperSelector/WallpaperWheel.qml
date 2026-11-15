@@ -838,7 +838,7 @@ Item {
 
                             Text {
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: root.lockMode ? "Desktop" : "Lockscreen"
+                                text: root.lockMode ? I18n.t("Desktop", null, "wallpaper") : I18n.t("Lockscreen", null, "wallpaper")
                                 color: mt.colBorder
                                 font.family: mt.fontFamily
                                 font.pixelSize: 14
@@ -963,7 +963,7 @@ Item {
 
             Tag {
                 x: countTag.x + countTag.width + 12
-                text: "On your desktop"
+                text: I18n.t("On your desktop")
                 lit: true
                 opacity: root.shownPath !== "" && root.shownPath === root.desktopPath ? 1 : 0
                 visible: opacity > 0.01
@@ -975,7 +975,7 @@ Item {
 
             Tag {
                 x: countTag.x - 12 - width
-                text: "On your lockscreen"
+                text: I18n.t("On your lockscreen")
                 lit: true
                 litA: LockPalette.pink
                 litB: LockPalette.mint
@@ -999,7 +999,7 @@ Item {
                 capW: 320
                 capH: 64
                 icon: "desktop_windows"
-                label: "Set as Desktop"
+                label: I18n.t("Set as Desktop")
                 done: root.justSet === "desktop"
                 onClicked: all => root.setDesktopRequested(root.shownPath, all)
             }
@@ -1008,7 +1008,7 @@ Item {
                 capW: 320
                 capH: 64
                 icon: "lock"
-                label: "Set as Lockscreen"
+                label: I18n.t("Set as Lockscreen")
                 done: root.justSet === "lock"
                 onClicked: all => root.setLockRequested(root.shownPath, all)
             }
@@ -1018,7 +1018,7 @@ Item {
             x: root.cx - keys.width / 2 - 20 - width
             y: keys.y + (keys.height - height) / 2
             icon: "chevron_left"
-            label: "Previous"
+            label: I18n.t("Previous")
             onClicked: root.stepBy(-1)
         }
 
@@ -1026,7 +1026,7 @@ Item {
             x: root.cx + keys.width / 2 + 20
             y: keys.y + (keys.height - height) / 2
             icon: "chevron_right"
-            label: "Next"
+            label: I18n.t("Next")
             onClicked: root.stepBy(1)
         }
     }

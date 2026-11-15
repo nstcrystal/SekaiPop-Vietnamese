@@ -27,7 +27,7 @@ Column {
     signal editSearch()
     signal backToFolder()
 
-    readonly property string sentence: WH.filtersSentence(root.filters)
+    readonly property string sentence: WH.filtersSentence(root.filters, I18n.t)
     readonly property bool filtered: WH.filterCount(root.filters) > 0
 
     spacing: 10
@@ -65,10 +65,12 @@ Column {
         width: Math.min(implicitWidth, root.maxWidth)
         horizontalAlignment: Text.AlignHCenter
         elide: Text.ElideMiddle
-        text: root.kind === "limited" ? "Wallhaven needs a breather"
-            : root.kind === "offline" ? "You’re offline"
-            : root.kind === "failed" ? "Wallhaven isn’t answering"
-            : (root.query.trim() !== "" ? "Nothing on Wallhaven for “" + root.query.trim() + "”" : "Nothing on Wallhaven")
+        text: root.kind === "limited" ? I18n.t("Wallhaven needs a breather")
+            : root.kind === "offline" ? I18n.t("You’re offline")
+            : root.kind === "failed" ? I18n.t("Wallhaven isn’t answering")
+            : (root.query.trim() !== ""
+                ? I18n.t("Nothing on Wallhaven for “{query}”", { query: root.query.trim() })
+                : I18n.t("Nothing on Wallhaven"))
         color: mt.pInk
         font.family: mt.fontFamily
         font.pixelSize: 24
@@ -82,13 +84,14 @@ Column {
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.WordWrap
         text: root.kind === "limited"
-            ? "Too many searches in one minute, so it’s saying no for a moment. Nothing is lost: this search comes back where it was."
+            ? I18n.t("Too many searches in one minute, so it’s saying no for a moment. Nothing is lost: this search comes back where it was.")
             : root.kind === "offline"
-            ? "Wallhaven needs the internet. Your own pictures, and the ones you already got from Wallhaven, still work."
+            ? I18n.t("Wallhaven needs the internet. Your own pictures, and the ones you already got from Wallhaven, still work.")
             : root.kind === "failed"
-            ? "The site may be down for a moment. Try again shortly."
-            : (root.sentence !== "" ? root.sentence + " Fewer filters, or a shorter search, usually turns something up."
-                                    : "A shorter search, or other words, usually turns something up.")
+            ? I18n.t("The site may be down for a moment. Try again shortly.")
+            : (root.sentence !== ""
+                ? root.sentence + " " + I18n.t("Fewer filters, or a shorter search, usually turns something up.")
+                : I18n.t("A shorter search, or other words, usually turns something up."))
         color: mt.pInkSub
         font.family: mt.fontFamily
         font.pixelSize: 15
@@ -104,13 +107,13 @@ Column {
         // empty
         WallhavenChip {
             visible: root.kind === "empty" && root.filtered
-            text: "Clear the filters"
+            text: I18n.t("Clear the filters")
             on: true
             onClicked: root.clearFilters()
         }
         WallhavenChip {
             visible: root.kind === "empty"
-            text: "Edit the search"
+            text: I18n.t("Edit the search")
             onClicked: root.editSearch()
         }
 
@@ -118,7 +121,9 @@ Column {
         WallhavenChip {
             visible: root.kind !== "empty"
             icon: root.kind === "limited" && root.retryIn > 0 ? "timer" : "refresh"
-            text: root.kind === "limited" && root.retryIn > 0 ? "Try again in " + WH.countdown(root.retryIn) : "Try again"
+            text: root.kind === "limited" && root.retryIn > 0
+                ? I18n.t("Try again in {time}", { time: WH.countdown(root.retryIn) })
+                : I18n.t("Try again")
             available: !(root.kind === "limited" && root.retryIn > 0)
             on: available
             onClicked: root.retry()
@@ -126,13 +131,13 @@ Column {
         WallhavenChip {
             visible: root.kind === "limited" || root.kind === "offline"
             icon: "folder"
-            text: "Back to my folder"
+            text: I18n.t("Back to my folder")
             onClicked: root.backToFolder()
         }
         WallhavenChip {
             visible: root.kind === "failed"
             icon: "open_in_new"
-            text: "Open wallhaven.cc"
+            text: I18n.t("Open wallhaven.cc")
             onClicked: Qt.openUrlExternally("https://wallhaven.cc")
         }
     }

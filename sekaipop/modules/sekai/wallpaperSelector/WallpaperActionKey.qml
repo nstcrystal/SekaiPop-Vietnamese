@@ -88,7 +88,7 @@ Item {
                 width: Math.min(implicitWidth, root.capW - 48 - 32 - 14)
                 fontSizeMode: Text.HorizontalFit
                 minimumPixelSize: 14
-                text: root.done ? root.doneLabel : root.label
+                text: root.done ? I18n.t(root.doneLabel) : root.label
                 color: key.ink
                 font.family: mt.fontFamily
                 font.pixelSize: 25

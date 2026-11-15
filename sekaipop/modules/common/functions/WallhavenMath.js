@@ -150,75 +150,85 @@ function filterCount(f) {
 var RANGE_WORDS = { "1d": "today", "3d": "over 3 days", "1w": "this week", "1M": "this month",
     "3M": "over 3 months", "6M": "over 6 months", "1y": "this year" }
 
-// The sort key's text: "Top \u00b7 Month", "Relevance", ...
-function sortLabel(sort, topRange) {
+// The sort key's text: "Top \u00b7 Month", "Relevance", ... `t` (I18n.t) is
+// optional: with it the words come back in the shell's language.
+function sortLabel(sort, topRange, t) {
+    // "wallhaven" as the context: "Top" here is a sort order, not a position.
+    var tr = function (s, v) { return typeof t === "function" ? t(s, v, "wallhaven") : s }
     for (var i = 0; i < SORTS.length; i++) {
         if (SORTS[i].id !== sort)
             continue
         if (sort !== "toplist")
-            return SORTS[i].label
+            return tr(SORTS[i].label)
         for (var j = 0; j < TOP_RANGES.length; j++) {
             if (TOP_RANGES[j].id === topRange)
-                return "Top \u00b7 " + TOP_RANGES[j].label
+                return tr("Top \u00b7 {range}", { range: tr(TOP_RANGES[j].label) })
         }
-        return "Top \u00b7 Month"
+        return tr("Top \u00b7 {range}", { range: tr("Month") })
     }
-    return "Relevance"
+    return tr("Relevance")
 }
 
 // The line under the toolbar: what is being shown. "Top this month on Wallhaven \u00b7
 // 2560\u00d71440 and up \u00b7 landscape".
-function describe(o) {
+function describe(o, t) {
     o = o || {}
+    var tr = function (s, v) { return typeof t === "function" ? t(s, v) : s }
     var q = String(o.query || "").trim()
     var sort = has(SORTS, o.sort) ? o.sort : defaultSort(q)
     var what
     if (q !== "")
-        what = "\u201c" + q + "\u201d on Wallhaven"
+        what = tr("\u201c{q}\u201d on Wallhaven", { q: q })
     else if (sort === "toplist")
-        what = "Top " + (RANGE_WORDS[o.topRange] || RANGE_WORDS["1M"]) + " on Wallhaven"
+        what = tr("Top {range} on Wallhaven", { range: tr(RANGE_WORDS[o.topRange] || RANGE_WORDS["1M"]) })
     else if (sort === "date_added")
-        what = "Latest on Wallhaven"
+        what = tr("Latest on Wallhaven")
     else if (sort === "views")
-        what = "Most viewed on Wallhaven"
+        what = tr("Most viewed on Wallhaven")
     else if (sort === "favorites")
-        what = "Most favourited on Wallhaven"
+        what = tr("Most favourited on Wallhaven")
     else if (sort === "random")
-        what = "Random on Wallhaven"
+        what = tr("Random on Wallhaven")
     else
-        what = "Wallhaven"
+        what = tr("Wallhaven")
     var parts = [what]
     var size = atLeastSize(o)
     if (size !== "")
-        parts.push(size.replace("x", "\u00d7") + " and up")
+        parts.push(tr("{size} and up", { size: size.replace("x", "\u00d7") }))
     var shape = shapeOf(o.shape)
     if (shape.id !== "any")
-        parts.push(shape.id === "landscape" ? "landscape" : shape.label)
+        parts.push(shape.id === "landscape" ? tr("landscape") : tr(shape.label))
     var cats = Array.isArray(o.categories) ? o.categories : CATEGORIES
     if (cats.length > 0 && cats.length < CATEGORIES.length)
-        parts.push(cats.map(function (c) { return CATEGORY_LABELS[c] }).join(" + "))
+        parts.push(cats.map(function (c) { return tr(CATEGORY_LABELS[c]) }).join(" + "))
     return parts.join(" \u00b7 ")
 }
 
 // The filters that are on, as a sentence for "nothing found": "With 2 filters on: People
 // only, and at least 3840\u00d72160." "" when none are.
-function filtersSentence(f) {
+function filtersSentence(f, t) {
     f = f || {}
+    var tr = function (s, v) { return typeof t === "function" ? t(s, v) : s }
     var bits = []
     var cats = Array.isArray(f.categories) ? f.categories : CATEGORIES
-    if (cats.length > 0 && cats.length < CATEGORIES.length)
-        bits.push(cats.map(function (c) { return CATEGORY_LABELS[c] }).join(" and ") + " only")
+    if (cats.length > 0 && cats.length < CATEGORIES.length) {
+        var names = cats.map(function (c) { return tr(CATEGORY_LABELS[c]) }).join(tr(" and "))
+        bits.push(tr("{cats} only", { cats: names }))
+    }
     var shape = shapeOf(f.shape)
     if (shape.id !== DEFAULT_FILTERS.shape)
-        bits.push(shape.id === "any" ? "any shape" : shape.label + " only")
+        bits.push(shape.id === "any" ? tr("any shape") : tr("{shape} only", { shape: tr(shape.label) }))
     if ((f.atLeast || "screen") !== DEFAULT_FILTERS.atLeast)
-        bits.push(f.atLeast === "any" ? "any size" : "at least " + String(f.atLeast).replace("x", "\u00d7"))
+        bits.push(f.atLeast === "any" ? tr("any size")
+            : tr("at least {size}", { size: String(f.atLeast).replace("x", "\u00d7") }))
     if (COLOURS.indexOf(String(f.colour || "").toLowerCase()) >= 0)
-        bits.push("mostly " + String(f.colour).toLowerCase())
+        bits.push(tr("mostly {colour}", { colour: String(f.colour).toLowerCase() }))
     if (bits.length === 0)
         return ""
-    var list = bits.length === 1 ? bits[0] : bits.slice(0, -1).join(", ") + ", and " + bits[bits.length - 1]
-    return "With " + bits.length + (bits.length === 1 ? " filter" : " filters") + " on: " + list + "."
+    var list = bits.length === 1 ? bits[0]
+        : bits.slice(0, -1).join(", ") + tr(", and ") + bits[bits.length - 1]
+    return bits.length === 1 ? tr("With 1 filter on: {list}.", { list: list })
+        : tr("With {n} filters on: {list}.", { n: bits.length, list: list })
 }
 
 // 0..1 of a download (`have` bytes of `total`); 0 when the size isn't known.

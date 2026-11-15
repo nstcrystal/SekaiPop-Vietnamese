@@ -77,6 +77,14 @@ Singleton {
     // The line under the toolbar.
     readonly property string description: WH.describe(Object.assign({ query: root.query }, root.opts))
 
+    // The sort key and that line in the shell's language (`t` is I18n.t).
+    function sortLabelFor(t) {
+        return WH.sortLabel(root.sortInUse, root.topRange, t)
+    }
+    function descriptionFor(t) {
+        return WH.describe(Object.assign({ query: root.query }, root.opts), t)
+    }
+
     function setSort(sort, range) {
         SettingsService.set("wallhaven.sort", sort === "relevance" && root.query.trim() === "" ? "" : sort)
         if (range)

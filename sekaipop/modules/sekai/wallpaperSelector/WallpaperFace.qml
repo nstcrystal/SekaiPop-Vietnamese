@@ -267,11 +267,16 @@ Item {
         return ""
     }
 
-    readonly property string subtitle: (WallpaperService.separateLock ? (face.lockMode ? "Lockscreen only  \u00b7  " : "Desktop only  \u00b7  ") : "")
+    readonly property string subtitle: (WallpaperService.separateLock
+            ? (face.lockMode ? I18n.t("Lockscreen only") + "  \u00b7  " : I18n.t("Desktop only") + "  \u00b7  ")
+            : "")
         + (face.searchText.trim() !== ""
-            ? face.matched.length + " of " + face.items.length + " match"
-            : face.items.length + (face.items.length === 1 ? " wallpaper" : " wallpapers"))
-        + (WallpaperService.perMonitor && face.screenName !== "" ? "  \u00b7  for " + face.screenName : "")
+            ? I18n.t("{shown} of {total} match", { shown: face.matched.length, total: face.items.length })
+            : (face.items.length === 1
+                ? I18n.t("{n} wallpaper", { n: face.items.length })
+                : I18n.t("{n} wallpapers", { n: face.items.length })))
+        + (WallpaperService.perMonitor && face.screenName !== ""
+            ? "  \u00b7  " + I18n.t("for {screen}", { screen: face.screenName }) : "")
         + (WallpaperService.customFolder ? "  \u00b7  " + WallpaperService.directoryShort : "")
 
     FolderListModel {
@@ -745,7 +750,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
 
                 Text {
-                    text: "Wallpapers"
+                    text: I18n.t("Wallpapers")
                     color: mt.colBorder
                     font.family: mt.fontFamily
                     font.pixelSize: 28
@@ -756,7 +761,8 @@ Item {
                 }
 
                 Text {
-                    text: face.viewing ? "Preview" : (face.carousel ? "Spin the wheel" : "Pick a picture")
+                    text: face.viewing ? I18n.t("Preview")
+                        : (face.carousel ? I18n.t("Spin the wheel") : I18n.t("Pick a picture"))
                     color: Qt.rgba(mt.colBorder.r, mt.colBorder.g, mt.colBorder.b, 0.78)
                     font.family: mt.fontFamily
                     font.pixelSize: 14
@@ -869,7 +875,7 @@ Item {
         x: clockChip.x - 24 - width
         y: 38
         icon: "arrow_back"
-        label: "Gallery"
+        label: I18n.t("Gallery")
         opacity: face.viewP
         visible: opacity > 0.01
         enabled: face.viewing
@@ -1199,7 +1205,7 @@ Item {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Page " + (WallhavenService.page + 1) + " of " + WallhavenService.lastPage
+                text: I18n.t("Page {n} of {total}", { n: WallhavenService.page + 1, total: WallhavenService.lastPage })
                 color: mt.pInk
                 font.family: mt.fontFamily
                 font.pixelSize: 13
@@ -1264,7 +1270,8 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             width: Math.min(implicitWidth, Math.max(120, face.pageWidth - 120))
             elide: Text.ElideMiddle
-            text: face.items.length === 0 ? "No wallpapers yet" : "No wallpapers match \u201c" + face.searchText + "\u201d"
+            text: face.items.length === 0 ? I18n.t("No wallpapers yet")
+                : I18n.t("No wallpapers match \u201c{query}\u201d", { query: face.searchText })
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 26
@@ -1277,7 +1284,8 @@ Item {
             visible: face.items.length === 0
             width: Math.min(implicitWidth, Math.max(120, face.pageWidth - 120))
             elide: Text.ElideMiddle
-            text: "Put pictures or videos in " + WallpaperService.directoryShort + ", or choose another folder"
+            text: I18n.t("Put pictures or videos in {folder}, or choose another folder",
+                { folder: WallpaperService.directoryShort })
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 17
@@ -1339,8 +1347,8 @@ Item {
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
             text: !face.onWallhaven ? face.subtitle
-                : (WallhavenService.loading && WallhavenService.page === 0 ? "Searching Wallhaven\u2026"
-                : (WallhavenService.error !== "" ? "Wallhaven" : WallhavenService.description))
+                : (WallhavenService.loading && WallhavenService.page === 0 ? I18n.t("Searching Wallhaven\u2026")
+                : (WallhavenService.error !== "" ? "Wallhaven" : WallhavenService.descriptionFor(I18n.t)))
             color: mt.pInkSub
             font.family: mt.fontFamily
             font.pixelSize: 15
@@ -1358,7 +1366,7 @@ Item {
             SearchPill {
                 id: search
 
-                placeholder: face.onWallhaven ? "Search Wallhaven" : "Search wallpapers"
+                placeholder: face.onWallhaven ? I18n.t("Search Wallhaven") : I18n.t("Search wallpapers")
                 onTextChanged: face.searchText = text
                 onLeave: face.forceActiveFocus()
             }
@@ -1366,7 +1374,7 @@ Item {
             SortChip {
                 id: sortChip
 
-                label: face.onWallhaven ? WallhavenService.sortLabel : face.sortShort
+                label: face.onWallhaven ? WallhavenService.sortLabelFor(I18n.t) : I18n.t(face.sortShort)
                 active: face.sortOpen
                 onClicked: {
                     face.filtersOpen = false
@@ -1391,7 +1399,7 @@ Item {
             MagnetButton {
                 visible: !face.onWallhaven
                 icon: "folder_open"
-                label: "Wallpaper folder"
+                label: I18n.t("Wallpaper folder")
                 active: WallpaperService.customFolder
                 onClicked: {
                     face.sortOpen = false
@@ -1402,21 +1410,21 @@ Item {
             MagnetButton {
                 visible: !face.onWallhaven
                 icon: "my_location"
-                label: "Jump to applied"
+                label: I18n.t("Jump to applied")
                 onClicked: face.jumpToApplied()
             }
 
             MagnetButton {
                 visible: !face.onWallhaven
                 icon: "shuffle"
-                label: "Shuffle"
+                label: I18n.t("Shuffle")
                 onClicked: face.shuffle()
             }
 
             MagnetButton {
                 visible: !face.onWallhaven
                 icon: "refresh"
-                label: "Refresh"
+                label: I18n.t("Refresh")
                 badge: face.hasNew
                 onClicked: {
                     face.sortOpen = false
@@ -1427,7 +1435,7 @@ Item {
             // wheel <-> grid
             MagnetButton {
                 icon: face.carousel ? "grid_view" : "view_carousel"
-                label: face.carousel ? "Grid" : "Wheel"
+                label: face.carousel ? I18n.t("Grid") : I18n.t("Wheel")
                 onClicked: face.toggleLook()
             }
         }
@@ -1588,7 +1596,7 @@ Item {
                         }
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: "Wallhaven"
+                            text: I18n.t("Wallhaven")
                             color: mt.pInk
                             font.family: mt.fontFamily
                             font.pixelSize: 13
@@ -1661,7 +1669,7 @@ Item {
 
             Text {
                 visible: face.viewWh === null
-                text: face.viewIsVideo ? "Video wallpaper" : "Picture"
+                text: face.viewIsVideo ? I18n.t("Video wallpaper") : I18n.t("Picture")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 17
@@ -1728,8 +1736,8 @@ Item {
                 spacing: 14
                 Repeater {
                     model: face.viewWh ? [
-                        { icon: "visibility", text: face.viewWh.views.toLocaleString() + " views" },
-                        { icon: "favorite", text: face.viewWh.favourites.toLocaleString() + " favourites" }
+                        { icon: "visibility", text: I18n.t("{n} views", { n: face.viewWh.views.toLocaleString() }) },
+                        { icon: "favorite", text: I18n.t("{n} favourites", { n: face.viewWh.favourites.toLocaleString() }) }
                     ] : []
                     delegate: Row {
                         required property var modelData
@@ -1767,7 +1775,7 @@ Item {
                     Text {
                         id: onDesk
                         anchors.centerIn: parent
-                        text: "On your desktop"
+                        text: I18n.t("On your desktop")
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         font.pixelSize: 15
@@ -1788,7 +1796,7 @@ Item {
                     Text {
                         id: onLock
                         anchors.centerIn: parent
-                        text: "On your lockscreen"
+                        text: I18n.t("On your lockscreen")
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         font.pixelSize: 15
@@ -1810,8 +1818,10 @@ Item {
             capW: viewerArea.panelW - 8
             icon: viewerArea.whDownloading ? "download" : "desktop_windows"
             label: viewerArea.whDownloading
-                ? "Downloading \u00b7 " + WallhavenService.humanSize(WallhavenService.fetched) + " of " + WallhavenService.humanSize(face.viewWh.size)
-                : "Set as Desktop"
+                ? I18n.t("Downloading \u00b7 {done} of {total}", {
+                    done: WallhavenService.humanSize(WallhavenService.fetched),
+                    total: WallhavenService.humanSize(face.viewWh.size) })
+                : I18n.t("Set as Desktop")
             progress: viewerArea.whDownloading ? WallhavenService.progress : -1
             done: face.justSet === "desktop"
             onClicked: all => face.setDesktop(all)
@@ -1823,7 +1833,7 @@ Item {
             y: face.viewWh ? deskKey.y + deskKey.implicitHeight + 10 : 312
             capW: viewerArea.panelW - 8
             icon: "lock"
-            label: "Set as Lockscreen"
+            label: I18n.t("Set as Lockscreen")
             available: !viewerArea.whDownloading
             done: face.justSet === "lock"
             onClicked: all => face.setLock(all)
@@ -1842,13 +1852,15 @@ Item {
             text: {
                 const lines = []
                 if (viewerArea.whDownloading)
-                    lines.push("Esc stops the download. It goes on when it\u2019s done.")
+                    lines.push(I18n.t("Esc stops the download. It goes on when it\u2019s done."))
                 else if (face.viewWh && face.viewPath !== "")
-                    lines.push("In your folder, sets at once: " + WallhavenService.fileNameOf(face.viewWh))
+                    lines.push(I18n.t("In your folder, sets at once: {name}",
+                        { name: WallhavenService.fileNameOf(face.viewWh) }))
                 if (WallpaperService.perMonitor && face.screenName !== "")
-                    lines.push("Changes this monitor (" + face.screenName + ") only. Shift+click: every monitor.")
+                    lines.push(I18n.t("Changes this monitor ({screen}) only. Shift+click: every monitor.",
+                        { screen: face.screenName }))
                 if (!WallpaperService.separateLock)
-                    lines.push("Set as Lockscreen turns on a separate lockscreen wallpaper.")
+                    lines.push(I18n.t("Set as Lockscreen turns on a separate lockscreen wallpaper."))
                 return lines.join("\n")
             }
         }
@@ -1863,7 +1875,7 @@ Item {
 
             WallhavenChip {
                 icon: face.viewPath !== "" ? "check" : "download"
-                text: face.viewPath !== "" ? "Saved" : "Save to folder"
+                text: face.viewPath !== "" ? I18n.t("Saved") : I18n.t("Save to folder")
                 available: face.viewPath === "" && !viewerArea.whDownloading
                 onClicked: WallhavenService.fetch(face.viewWh, null)
             }
@@ -1883,13 +1895,13 @@ Item {
 
             SekaiNavKey {
                 icon: "chevron_left"
-                label: "Previous"
+                label: I18n.t("Previous")
                 onClicked: face.showIndex(face.viewIndex - 1)
             }
 
             SekaiNavKey {
                 icon: "chevron_right"
-                label: "Next"
+                label: I18n.t("Next")
                 onClicked: face.showIndex(face.viewIndex + 1)
             }
         }

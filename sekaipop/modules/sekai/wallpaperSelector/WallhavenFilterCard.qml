@@ -80,7 +80,7 @@ Item {
             y: 14
             spacing: 7
 
-            Head { text: "CATEGORIES" }
+            Head { text: I18n.t("CATEGORIES") }
             Row {
                 id: cats
                 spacing: 5
@@ -89,7 +89,7 @@ Item {
                     delegate: WallhavenChip {
                         required property string modelData
                         readonly property var list: Array.isArray(root.filters.categories) ? root.filters.categories : WH.CATEGORIES
-                        text: modelData.charAt(0).toUpperCase() + modelData.slice(1)
+                        text: I18n.t(modelData.charAt(0).toUpperCase() + modelData.slice(1))
                         on: list.indexOf(modelData) >= 0
                         onClicked: {
                             const next = on ? list.filter(c => c !== modelData) : list.concat([modelData])
@@ -101,7 +101,7 @@ Item {
                 }
             }
 
-            Head { text: "SHAPE"; topPadding: 4 }
+            Head { text: I18n.t("SHAPE"); topPadding: 4 }
             Row {
                 id: shapes
                 spacing: 5
@@ -109,14 +109,14 @@ Item {
                     model: WH.SHAPES
                     delegate: WallhavenChip {
                         required property var modelData
-                        text: modelData.label
+                        text: I18n.t(modelData.label)
                         on: (root.filters.shape || "landscape") === modelData.id
                         onClicked: root.picked("shape", modelData.id)
                     }
                 }
             }
 
-            Head { text: "AT LEAST"; topPadding: 4 }
+            Head { text: I18n.t("AT LEAST"); topPadding: 4 }
             Row {
                 id: sizes
                 spacing: 5
@@ -126,20 +126,21 @@ Item {
                         required property var modelData
                         icon: modelData.id === "screen" ? "desktop_windows" : ""
                         text: modelData.id === "screen" && root.screenLabel !== ""
-                            ? "This screen · " + root.screenLabel : modelData.label
+                            ? I18n.t("This screen · {size}", { size: root.screenLabel })
+                            : I18n.t(modelData.label)
                         on: (root.filters.atLeast || "screen") === modelData.id
                         onClicked: root.picked("atLeast", modelData.id)
                     }
                 }
             }
 
-            Head { text: "COLOUR"; topPadding: 4 }
+            Head { text: I18n.t("COLOUR"); topPadding: 4 }
             Row {
                 id: colours
                 spacing: 8
 
                 WallhavenChip {
-                    text: "Any"
+                    text: I18n.t("Any")
                     on: (root.filters.colour || "") === ""
                     onClicked: root.picked("colour", "")
                 }
@@ -190,7 +191,7 @@ Item {
                 Text {
                     id: applies
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Applies as you pick"
+                    text: I18n.t("Applies as you pick")
                     color: ScrapbookTheme.inkSoft
                     font.family: mt.fontFamily
                     font.pixelSize: 12
@@ -200,7 +201,7 @@ Item {
                 WallhavenChip {
                     id: resetChip
                     anchors.right: parent.right
-                    text: "Reset filters"
+                    text: I18n.t("Reset filters")
                     available: WH.filterCount(root.filters) > 0
                     onClicked: root.resetRequested()
                 }

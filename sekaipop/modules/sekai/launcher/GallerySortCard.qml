@@ -98,7 +98,7 @@ Item {
                     Text {
                         x: 36
                         anchors.verticalCenter: parent.verticalCenter
-                        text: row.modelData.label
+                        text: I18n.t(row.modelData.label)
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         font.styleName: row.active ? mt.fontStyleBold : ""

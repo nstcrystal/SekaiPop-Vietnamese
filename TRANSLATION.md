@@ -232,8 +232,10 @@ khi quét thêm component plugin và dialog.
 | Quick Panel: tile, dialog, power menu | ~110 khóa | đã dịch | `622541f` |
 | Apps/Launcher + 5 thẻ phụ | ~60 khóa | đã dịch | `2e1701a` |
 | Lockscreen (2 bố cục) | ~25 khóa | đã dịch | `be3a13e` |
-| Bar: chỉ báo, tooltip, 4 popup | ~140 khóa | đã dịch | `2b-4` |
-| OSD, Wallpaper, Welcome | — | chưa | — |
+| Bar: chỉ báo, tooltip, 4 popup | ~140 khóa | đã dịch | `45a0c7a` |
+| OSD + nhãn ghi màn hình | 7 khóa | đã dịch | `fafdc49` |
+| Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `2b-5` |
+| Welcome, cheatsheet, keybinds | — | chưa | — |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -344,6 +346,29 @@ Cụm 2b-4 (Bar):
   `just you`, `{n} people`; tên kênh/người dùng là dữ liệu, giữ nguyên.
 - `UtilKeys`/`UtilPopup`/`UtilButtons`: tên 8 phím tiện ích, `phím tiện ích`.
 
+Cụm 2b-5 (Wallpapers):
+
+- Khung chọn ảnh: `Hình nền`, `Thư mục của tôi`, `Màn hình chính`/`Màn hình khóa`,
+  `Chỉ màn hình chính`/`Chỉ màn hình khóa`, `{shown}/{total} khớp`,
+  `{n} hình nền`, `Tìm hình nền`, `Mới nhất`/`Cũ nhất`, `Lưới`/`Vòng`.
+- Thư viện: `Trang {n}/{total}`, `Chưa có hình nền`,
+  `Không có hình nền nào khớp “…”`, `Bỏ ảnh hoặc video vào …, hoặc chọn thư mục khác`.
+- Trình xem: `Xem trước`, `Đặt làm hình nền`/`Đặt làm hình khóa`,
+  `Đang đặt cho màn hình chính`/`… màn hình khóa`, `Đã lưu`, `Lưu vào thư mục`,
+  `Đang tải · {done}/{total}`, các dòng ghi chú dưới hai phím, `Trước`/`Sau`.
+- Wallhaven: bảng lọc (`DANH MỤC`, `HÌNH DẠNG`, `TỐI THIỂU`, `MÀU SẮC`,
+  `Đặt lại bộ lọc`, `Áp dụng ngay khi chọn`), bảng sắp xếp
+  (`SẮP XẾP WALLHAVEN THEO`, `Hàng đầu · {range}`, `cần từ khóa`), thẻ báo lỗi
+  (`Wallhaven đang cần nghỉ một chút`, `Bạn đang ngoại tuyến`,
+  `Wallhaven không phản hồi`, `Thử lại sau {time}`).
+- `WallhavenMath.js`: `sortLabel`/`describe`/`filtersSentence` nhận thêm `t`
+  tùy chọn; `WallhavenService.sortLabelFor(t)`/`descriptionFor(t)` để câu
+  “Hàng đầu tháng này trên Wallhaven · từ 2560×1440 trở lên · ngang” đổi ngôn
+  ngữ tại chỗ hiển thị.
+- `I18n.t(s, vars, ctx)` có thêm ngữ cảnh cho từ đa nghĩa: `wallhaven:Top`
+  (`Hàng đầu`, không phải `Trên`), `wallpaper:Desktop`, `calendar:Cool`,
+  `notify:now`.
+
 Lưu ý: 100% ở trên là **trên các chuỗi mà script quét được**, không phải toàn bộ
 shell.
 
@@ -371,7 +396,9 @@ shell.
       clipboard, màu, emoji, web).
 - [x] Lockscreen: cả hai bố cục, lịch, dòng trạng thái nguồn, lỗi mật khẩu.
 - [x] Bar: chỉ báo, tooltip, lịch, pin, thời tiết, Discord, phím tiện ích.
-- [ ] Wallpaper picker, Welcome, OSD, notification, cheatsheet, keybinds panel,
+- [x] OSD (âm lượng, micrô, độ sáng, gamma), nhãn ghi màn hình.
+- [x] Wallpaper picker: thư viện, trình xem, Wallhaven (lọc, sắp xếp, báo lỗi).
+- [ ] Welcome, notification popup, cheatsheet, keybinds panel,
       popup còn lại của Bar (media, equalizer, plugin).
 - [ ] Cân nhắc dịch `CHANGELOG.md` nếu người dùng muốn thẻ “Có gì mới” tiếng Việt.
 - [ ] Rà layout tiếng Việt dài: wrap, elide, tràn thẻ, header.

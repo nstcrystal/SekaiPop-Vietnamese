@@ -78,8 +78,8 @@ Item {
 
     Repeater {
         model: [
-            { id: "desktop", label: "Desktop", icon: "desktop_windows" },
-            { id: "lock", label: "Lockscreen", icon: "lock" }
+            { id: "desktop", label: I18n.t("Desktop", null, "wallpaper"), icon: "desktop_windows" },
+            { id: "lock", label: I18n.t("Lockscreen", null, "wallpaper"), icon: "lock" }
         ]
 
         delegate: Item {

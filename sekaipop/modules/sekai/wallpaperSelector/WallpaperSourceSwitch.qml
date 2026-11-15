@@ -22,7 +22,7 @@ Item {
     signal picked(string id)
 
     readonly property var choices: [
-        { id: "folder", label: "My folder", icon: "folder" },
+        { id: "folder", label: I18n.t("My folder"), icon: "folder" },
         { id: "wallhaven", label: "Wallhaven", icon: "travel_explore" }
     ]
     readonly property int currentIndex: root.current === "wallhaven" ? 1 : 0

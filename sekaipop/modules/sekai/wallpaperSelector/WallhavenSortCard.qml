@@ -27,7 +27,7 @@ Item {
 
     readonly property real rowH: 36
     readonly property real headH: 30
-    readonly property var notes: ({ relevance: "needs a search", random: "new each time" })
+    readonly property var notes: ({ relevance: I18n.t("needs a search"), random: I18n.t("new each time") })
 
     width: Math.ceil(Math.max(220, widest.width + 36 + 16 + 12, rangesSize.implicitWidth + 30 + 6 + 12))
     height: headH + WH.SORTS.length * rowH + rangesSize.implicitHeight + 6 + 12
@@ -62,7 +62,7 @@ Item {
         font.pixelSize: 13
         font.weight: Font.ExtraBold
         font.styleName: mt.fontStyleBold
-        text: "Relevance          needs a search"
+        text: I18n.t("Relevance") + "          " + I18n.t("needs a search")
     }
 
     Rectangle {
@@ -87,7 +87,7 @@ Item {
         Text {
             x: 16
             y: 9
-            text: "SORT WALLHAVEN BY"
+            text: I18n.t("SORT WALLHAVEN BY")
             color: ScrapbookTheme.inkSoft
             font.family: mt.fontFamily
             font.styleName: mt.fontStyleBold
@@ -132,7 +132,7 @@ Item {
                         Text {
                             x: 36
                             anchors.verticalCenter: parent.verticalCenter
-                            text: entry.modelData.label
+                            text: I18n.t(entry.modelData.label, null, "wallhaven")
                             color: mt.colBorder
                             font.family: mt.fontFamily
                             font.styleName: entry.active ? mt.fontStyleBold : ""

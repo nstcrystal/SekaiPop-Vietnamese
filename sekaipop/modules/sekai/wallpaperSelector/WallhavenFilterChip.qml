@@ -75,7 +75,7 @@ Item {
             id: label
             x: 13 + 22 + 8
             anchors.verticalCenter: parent.verticalCenter
-            text: "Filters"
+            text: I18n.t("Filters")
             color: mt.colBorder
             font.family: mt.fontFamily
             font.styleName: mt.fontStyleBold
