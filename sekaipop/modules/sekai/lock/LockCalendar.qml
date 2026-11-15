@@ -153,8 +153,12 @@ Item {
     readonly property int dayNow: clock.date.getDate()
     readonly property int weekdayNow: clock.date.getDay()
 
-    readonly property var dayNames: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
-    readonly property var monthNames: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    readonly property var dayNames: I18n.vi
+        ? ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
+        : ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+    readonly property var monthNames: I18n.vi
+        ? ["THG 1", "THG 2", "THG 3", "THG 4", "THG 5", "THG 6", "THG 7", "THG 8", "THG 9", "THG 10", "THG 11", "THG 12"]
+        : ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 
     readonly property var monthDays: {
         const y = root.yearNow, m = root.monthNow
@@ -503,7 +507,7 @@ Item {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: "LOCKED"
+                text: I18n.t("LOCKED")
                 color: root.ink
                 font.family: Theme.fontFamily
                 font.pixelSize: root.px(22)
@@ -544,7 +548,7 @@ Item {
                 Text {
                     id: nameLabel
                     anchors.centerIn: parent
-                    text: "NAME"
+                    text: I18n.t("NAME")
                     color: root.white
                     font.family: Theme.fontFamily
                     font.pixelSize: root.px(14)
@@ -751,7 +755,7 @@ Item {
             Text {
                 id: footerText
                 anchors.centerIn: parent
-                text: "LOCKED SINCE " + Qt.formatDateTime(LockState.lockedAt, "h:mm AP").toUpperCase()
+                text: I18n.t("LOCKED SINCE {time}", { time: Qt.formatDateTime(LockState.lockedAt, "h:mm AP").toUpperCase() })
                       + (battery.available ? "  \u00b7  " + battery.percentage + "%" + (battery.isCharging ? " +" : "") : "")
                 color: root.ink
                 font.family: Theme.fontFamily
@@ -929,9 +933,9 @@ Item {
                         wrapMode: Text.Wrap
                         maximumLineCount: 2
                         elide: Text.ElideRight
-                        text: root.failed ? root.lastFailure.toUpperCase()
+                        text: root.failed ? I18n.t(root.lastFailure).toUpperCase()
                             : (root.context.fprintListening ? root.context.fprintMessage.toUpperCase()
-                            : (root.context.unlockInProgress ? "CHECKING\u2026" : "PASSWORD"))
+                            : (root.context.unlockInProgress ? I18n.t("CHECKING\u2026") : I18n.t("PASSWORD")))
                         color: root.failed || root.context.fprintMessageIsError ? root.accent : LockPalette.calMuted
                         font.family: Theme.fontFamily
                         font.pixelSize: root.px(14)
@@ -1111,7 +1115,7 @@ Item {
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     y: parent.height - height - root.px(8)
-                    text: enterKey.coffee ? "SLEEP" : "ENTER"
+                    text: enterKey.coffee ? I18n.t("SLEEP") : I18n.t("UNLOCK")
                     color: root.ink
                     font.family: Theme.fontFamily
                     font.pixelSize: root.px(16)
@@ -1181,14 +1185,15 @@ Item {
         text: {
             const a = root.context.armed
             if (a !== "") {
-                const what = a === "reboot" ? "RESTART" : "SHUT DOWN"
-                return "PRESS AGAIN TO " + what + (PowerBusyService.busy ? " \u2014 " + PowerBusyService.note.toUpperCase() : "")
+                const what = a === "reboot" ? I18n.t("RESTART") : I18n.t("SHUT DOWN")
+                return I18n.t("PRESS AGAIN TO {what}", { what: what })
+                    + (PowerBusyService.busy ? " \u2014 " + PowerBusyService.noteText(I18n.t).toUpperCase() : "")
             }
             if (restartKey.hovered)
-                return "RESTART"
+                return I18n.t("RESTART")
             if (shutKey.hovered)
-                return "SHUT DOWN"
-            return root.context.ctrlHeld ? "ENTER OR CLICK TO SLEEP" : "HOLD CTRL FOR SLEEP"
+                return I18n.t("SHUT DOWN")
+            return root.context.ctrlHeld ? I18n.t("ENTER OR CLICK TO SLEEP") : I18n.t("HOLD CTRL FOR SLEEP")
         }
         color: root.context.armed !== "" ? root.accent : LockPalette.calMuted
         font.family: Theme.fontFamily

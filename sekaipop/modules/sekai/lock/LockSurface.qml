@@ -447,7 +447,7 @@ Item {
                             }
                             Text {
                                 anchors.right: parent.right
-                                text: "Screen locked"
+                                text: I18n.t("Screen locked")
                                 color: Theme.colSubText
                                 font.family: Theme.fontFamily
                                 font.pixelSize: root.px(19)
@@ -612,7 +612,7 @@ Item {
                     id: dateLabel
                     x: root.px(22)
                     anchors.verticalCenter: parent.verticalCenter
-                    text: Qt.formatDate(clock.date, "dddd, MMMM d")
+                    text: I18n.dateLong(clock.date)
                     color: "white"
                     font.family: Theme.fontFamily
                     font.pixelSize: root.px(38)
@@ -739,7 +739,7 @@ Item {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Locked since " + Qt.formatDateTime(LockState.lockedAt, root.use24h ? "HH:mm" : "h:mm AP")
+                    text: I18n.t("Locked since {time}", { time: Qt.formatDateTime(LockState.lockedAt, root.use24h ? "HH:mm" : "h:mm AP") })
                     color: "white"
                     font.family: Theme.fontFamily
                     font.pixelSize: root.px(24)
@@ -984,7 +984,7 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.horizontalCenterOffset: root.px(30)
                         y: root.px(12)
-                        text: "Unlock"
+                        text: I18n.t("Unlock")
                         color: LockPalette.cBorder
                         font.family: Theme.fontFamily
                         font.pixelSize: root.px(34)
@@ -1062,7 +1062,7 @@ Item {
                     Text {
                         id: hint
                         anchors.centerIn: parent
-                        text: "Enter"
+                        text: I18n.t("Enter")
                         color: "white"
                         font.family: Theme.fontFamily
                         font.pixelSize: root.px(18)

@@ -55,4 +55,20 @@ QtObject {
                 out = out.split("{" + k + "}").join(String(vars[k]))
         return out
     }
+
+    // Dates: Qt.formatDate uses the C locale here, so a long date would stay
+    // English ("Sunday, November 15") in the Vietnamese shell. These helpers
+    // keep both languages side by side.
+    readonly property var viWeekdays: ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư",
+        "Thứ Năm", "Thứ Sáu", "Thứ Bảy"]
+    readonly property var viMonths: ["tháng 1", "tháng 2", "tháng 3", "tháng 4",
+        "tháng 5", "tháng 6", "tháng 7", "tháng 8", "tháng 9", "tháng 10",
+        "tháng 11", "tháng 12"]
+
+    // "Chủ Nhật, 15 tháng 11" / "Sunday, November 15"
+    function dateLong(d) {
+        if (!root.vi || !(d instanceof Date))
+            return Qt.formatDate(d, "dddd, MMMM d")
+        return root.viWeekdays[d.getDay()] + ", " + d.getDate() + " " + root.viMonths[d.getMonth()]
+    }
 }

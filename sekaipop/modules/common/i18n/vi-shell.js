@@ -184,6 +184,28 @@ var dict = {
     "Type what to search for.\nTab switches search engine \u00b7 a web address opens directly.":
         "Nhập nội dung cần tìm.\nTab đổi công cụ tìm kiếm \u00b7 địa chỉ web sẽ mở trực tiếp.",
 
+    // ----- Lockscreen -----
+    "LOCKED": "ĐÃ KHÓA",
+    "NAME": "TÊN",
+    "PASSWORD": "MẬT KHẨU",
+    "CHECKING\u2026": "ĐANG KIỂM TRA\u2026",
+    "LOCKED SINCE {time}": "ĐÃ KHÓA LÚC {time}",
+    "Locked since {time}": "Đã khóa từ {time}",
+    "Screen locked": "Đã khóa màn hình",
+    "SLEEP": "NGỦ",
+    "UNLOCK": "MỞ KHÓA",
+    "Unlock": "Mở khóa",
+    "Enter": "Mở khóa",
+    "RESTART": "KHỞI ĐỘNG LẠI",
+    "SHUT DOWN": "TẮT MÁY",
+    "PRESS AGAIN TO {what}": "NHẤN LẦN NỮA ĐỂ {what}",
+    "ENTER OR CLICK TO SLEEP": "ENTER HOẶC NHẤN ĐỂ NGỦ",
+    "HOLD CTRL FOR SLEEP": "GIỮ CTRL ĐỂ NGỦ",
+    "Fingerprint not recognized": "Không nhận ra vân tay",
+    "Couldn't check the password (PAM error)": "Không kiểm tra được mật khẩu (lỗi PAM)",
+    "Too many tries \u2014 wait a moment": "Sai quá nhiều lần \u2014 chờ chút",
+    "Wrong password": "Sai mật khẩu",
+
     // ----- Quick Panel: keybind descriptions -----
     "Shell: Toggle search": "Shell: Bật/tắt tìm kiếm"
 }
