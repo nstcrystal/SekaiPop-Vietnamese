@@ -506,6 +506,29 @@ var dict = {
     "With 1 filter on: {list}.": "Đang bật 1 bộ lọc: {list}.",
     "With {n} filters on: {list}.": "Đang bật {n} bộ lọc: {list}.",
 
+    // ----- Welcome tour (WelcomeSlides.js, WelcomePage.qml) -----
+    "SEKAIPOP\nWELCOME TOUR": "SEKAIPOP\nTHAM QUAN CHÀO MỪNG",
+    "Welcome to SekaiPop,\nyour Project SEKAI desktop":
+        "Chào mừng đến SekaiPop,\nmáy tính Project SEKAI của bạn",
+    "The Phone": "Chiếc điện thoại",
+    "Quick settings, apps, wallpapers and overview\nare all screens of one phone":
+        "Cài đặt nhanh, ứng dụng, hình nền và tổng quan\nđều là các màn hình của cùng một chiếc điện thoại",
+    "Pick Your Unit": "Chọn nhóm của bạn",
+    "Six unit themes, or let matugen follow your wallpaper":
+        "Sáu bộ giao diện nhóm, hoặc để matugen theo hình nền",
+    "Make It Yours": "Biến nó thành của bạn",
+    "Move the bar, dock and widgets in Edit Desktop":
+        "Di chuyển thanh bar, dock và widget trong Chỉnh màn hình",
+    "You're All Set!": "Xong hết rồi!",
+    "Open the phone: qs -c sekaipop ipc call phone toggle":
+        "Mở điện thoại: qs -c sekaipop ipc call phone toggle",
+    "Settings and themes are on the phone": "Cài đặt và giao diện nằm trong điện thoại",
+    "See this again: qs -c sekaipop ipc call welcome show":
+        "Xem lại: qs -c sekaipop ipc call welcome show",
+    "CLICK OR PRESS ENTER TO FINISH": "NHẤN HOẶC BẤM ENTER ĐỂ KẾT THÚC",
+    "CLICK OR PRESS → TO CONTINUE": "NHẤN HOẶC BẤM → ĐỂ TIẾP TỤC",
+    "ESC TO SKIP": "ESC ĐỂ BỎ QUA",
+
     // ----- Quick Panel: keybind descriptions -----
     "Shell: Toggle search": "Shell: Bật/tắt tìm kiếm"
 }

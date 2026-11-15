@@ -133,9 +133,11 @@ function wobble(i) {
 
 // The small line at the bottom centre that says how to move on. The last slide
 // asks for a finish instead of a "next".
-function hintFor(index, count) {
+function hintFor(index, count, t) {
+    var tr = function (s) { return typeof t === "function" ? t(s) : s }
     var last = index >= count - 1;
-    return (last ? "CLICK OR PRESS ENTER TO FINISH" : "CLICK OR PRESS \u2192 TO CONTINUE") + "   \u00b7   ESC TO SKIP";
+    return tr(last ? "CLICK OR PRESS ENTER TO FINISH" : "CLICK OR PRESS \u2192 TO CONTINUE")
+        + "   \u00b7   " + tr("ESC TO SKIP");
 }
 
 // ---- the pace of the reference video, measured at 30 fps ----

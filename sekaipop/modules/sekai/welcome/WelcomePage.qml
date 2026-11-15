@@ -273,7 +273,7 @@ Item {
         visible: root.showContent
         x: root.margin
         y: root.margin
-        text: "SEKAIPOP\nWELCOME TOUR"
+        text: I18n.t("SEKAIPOP\nWELCOME TOUR")
     }
 
     Label {
@@ -299,7 +299,7 @@ Item {
         // a line above the corner row, so on a narrow screen it can't run into
         // the counter or the brand
         y: root.height - root.margin - height - 22 * root.u
-        text: WM.hintFor(root.index, root.count)
+        text: WM.hintFor(root.index, root.count, I18n.t)
         color: Qt.rgba(root.ink.r, root.ink.g, root.ink.b, 0.55)
         font.pixelSize: 11 * root.u
         opacity: root.hintShown ? root.chromeIn : 0
@@ -462,8 +462,10 @@ Item {
         y: root.slide.top ? root.height * 0.2 - height / 2
            : (isCredits ? root.height * 0.47 - height / 2 : root.height * 0.745)
         unit: root.u
-        title: root.slide.title
-        sub: WS.subOf(root.slide)
+        title: I18n.t(root.slide.title)
+        sub: root.slide.lines && root.slide.lines.length > 0
+            ? root.slide.lines.map(line => I18n.t(line)).join("\n")
+            : I18n.t(WS.subOf(root.slide))
         reveal: root.textIn
         together: root.leaving
         ink: root.ink

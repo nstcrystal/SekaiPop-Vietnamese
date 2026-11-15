@@ -234,8 +234,9 @@ khi quét thêm component plugin và dialog.
 | Lockscreen (2 bố cục) | ~25 khóa | đã dịch | `be3a13e` |
 | Bar: chỉ báo, tooltip, 4 popup | ~140 khóa | đã dịch | `45a0c7a` |
 | OSD + nhãn ghi màn hình | 7 khóa | đã dịch | `fafdc49` |
-| Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `2b-5` |
-| Welcome, cheatsheet, keybinds | — | chưa | — |
+| Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `f2b7a81` |
+| Welcome tour (5 slide) | 15 khóa | đã dịch | `2b-6` |
+| Cheatsheet, keybinds | — | chưa | — |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -369,6 +370,16 @@ Cụm 2b-5 (Wallpapers):
   (`Hàng đầu`, không phải `Trên`), `wallpaper:Desktop`, `calendar:Cool`,
   `notify:now`.
 
+Cụm 2b-6 (Welcome tour):
+
+- `WelcomeSlides.js` giữ dữ liệu tiếng Anh; `WelcomePage` dịch `title`, từng
+  dòng `lines` của slide credits và `sub` tại chỗ hiển thị.
+- Thanh góc: `SEKAIPOP · THAM QUAN CHÀO MỪNG`; gợi ý cuối trang
+  (`NHẤN HOẶC BẤM ENTER ĐỂ KẾT THÚC`, `NHẤN HOẶC BẤM → ĐỂ TIẾP TỤC`,
+  `ESC ĐỂ BỎ QUA`) qua `WelcomeMath.hintFor(index, count, t)`.
+- Tên nhóm (`VS`, `L/N`, `MMJ`, `VBS`, `WxS`, `25:00`) và logo `Sekai`/`Pop`
+  giữ nguyên.
+
 Lưu ý: 100% ở trên là **trên các chuỗi mà script quét được**, không phải toàn bộ
 shell.
 
@@ -398,7 +409,8 @@ shell.
 - [x] Bar: chỉ báo, tooltip, lịch, pin, thời tiết, Discord, phím tiện ích.
 - [x] OSD (âm lượng, micrô, độ sáng, gamma), nhãn ghi màn hình.
 - [x] Wallpaper picker: thư viện, trình xem, Wallhaven (lọc, sắp xếp, báo lỗi).
-- [ ] Welcome, notification popup, cheatsheet, keybinds panel,
+- [x] Welcome tour: 5 slide, thanh góc, gợi ý điều hướng.
+- [ ] Notification popup, cheatsheet, keybinds panel,
       popup còn lại của Bar (media, equalizer, plugin).
 - [ ] Cân nhắc dịch `CHANGELOG.md` nếu người dùng muốn thẻ “Có gì mới” tiếng Việt.
 - [ ] Rà layout tiếng Việt dài: wrap, elide, tràn thẻ, header.
