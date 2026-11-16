@@ -135,7 +135,7 @@ DockCard {
 
             Text {
                 width: parent.width
-                text: root.source && root.source.present ? root.source.title : "Nothing playing"
+                text: root.source && root.source.present ? root.source.title : I18n.t("Nothing playing")
                 wrapMode: Text.Wrap
                 maximumLineCount: 2
                 elide: Text.ElideRight

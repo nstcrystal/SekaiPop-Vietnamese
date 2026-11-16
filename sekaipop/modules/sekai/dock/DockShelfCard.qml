@@ -58,8 +58,8 @@ DockCard {
     }
 
     // What the header button under the pointer does (empty = none).
-    readonly property string hint: pasteHover.hovered ? "Add what is on the clipboard"
-        : (copyAllHover.hovered ? "Copy everything on the shelf" : (clearHover.hovered ? "Clear the shelf" : ""))
+    readonly property string hint: pasteHover.hovered ? I18n.t("Add what is on the clipboard")
+        : (copyAllHover.hovered ? I18n.t("Copy everything on the shelf") : (clearHover.hovered ? I18n.t("Clear the shelf") : ""))
 
     // The item the pointer is on (empty = none), so the line above the books can name it.
     property string hoverId: ""
@@ -149,7 +149,7 @@ DockCard {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Shelf"
+                text: I18n.t("Shelf")
                 color: mt.ink
                 font.family: mt.fontFamily
                 font.pixelSize: 17
@@ -224,7 +224,7 @@ DockCard {
         y: root.pad + header.height + 12
         width: root.listW
         wrapMode: Text.WordWrap
-        text: "Drop files or text on the Shelf key, or press Paste."
+        text: I18n.t("Drop files or text on the Shelf key, or press Paste.")
         color: mt.inkSub
         font.family: mt.fontFamily
         font.pixelSize: 14
@@ -244,7 +244,7 @@ DockCard {
             width: parent.width - (moreTag.visible ? moreTag.width + 10 : 0)
             elide: Text.ElideMiddle
             maximumLineCount: 1
-            text: root.hoverItem ? root.hoverItem.name : (root.hint !== "" ? root.hint : "Pick one to open it")
+            text: root.hoverItem ? root.hoverItem.name : (root.hint !== "" ? root.hint : I18n.t("Pick one to open it"))
             color: (root.hoverItem || root.hint !== "") ? mt.ink : mt.inkSub
             font.family: mt.fontFamily
             font.pixelSize: 14

@@ -898,6 +898,9 @@ var dict = {
     "Add what is on the clipboard": "Thêm từ clipboard",
     "Copy everything on the shelf": "Sao chép mọi thứ trên kệ",
     "Clear the shelf": "Dọn sạch kệ",
+    "Drop files or text on the Shelf key, or press Paste.":
+        "Thả tệp hoặc chữ vào key Kệ, hoặc bấm Dán.",
+    "Pick one to open it": "Chọn một mục để mở",
     "Save layout": "Lưu bố cục",
     "Delete folder (keep apps)": "Xoá thư mục (giữ app)",
     "New window": "Cửa sổ mới",
