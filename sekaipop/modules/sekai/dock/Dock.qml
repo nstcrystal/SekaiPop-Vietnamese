@@ -390,7 +390,7 @@ PanelWindow {
         if (k === "tool") {
             const m = dockWindow.toolMeta[item.id] ?? { label: item.id, icon: "build" }
             return { kind: "tool", key: "tool" + item.id, pinned: true, pinIndex: i,
-                     tool: item.id, class: "", iconName: "", displayName: m.label }
+                     tool: item.id, class: "", iconName: "", displayName: I18n.t(m.label) }
         }
         if (k === "folder") {
             const shown = item.apps.filter(a => a.hidden !== true)
@@ -1017,38 +1017,38 @@ PanelWindow {
     function buildMenu(r) {
         const rows = []
         if (r.kind === "sep") {
-            rows.push({ id: "removesep", label: "Remove separator", icon: "horizontal_rule" })
+            rows.push({ id: "removesep", label: I18n.t("Remove separator"), icon: "horizontal_rule" })
             return rows
         }
         if (r.kind === "tool") {
             rows.push({ header: r.displayName })
             if (r.tool === "files") {
                 if (FilesStackService.stackOn) {
-                    rows.push({ id: "openfiles", label: "Open file manager", icon: "open_in_new" })
+                    rows.push({ id: "openfiles", label: I18n.t("Open file manager"), icon: "open_in_new" })
                     rows.push({ sep: true })
                 }
                 for (const pl of [["DOWNLOAD", "Downloads", "download"], ["DOCUMENTS", "Documents", "description"],
                                   ["PICTURES", "Pictures", "image"], ["VIDEOS", "Videos", "movie"],
                                   ["MUSIC", "Music", "music_note"], ["DESKTOP", "Desktop", "desktop_windows"],
                                   ["TRASH", "Trash", "delete"]])
-                    rows.push({ id: "place:" + pl[0], label: pl[1], icon: pl[2] })
+                    rows.push({ id: "place:" + pl[0], label: I18n.t(pl[1]), icon: pl[2] })
                 rows.push({ sep: true })
             } else if (r.tool === "shelf") {
-                rows.push({ id: "shelfpaste", label: "Add what is on the clipboard", icon: "content_paste_go" })
+                rows.push({ id: "shelfpaste", label: I18n.t("Add what is on the clipboard"), icon: "content_paste_go" })
                 if (ShelfService.count > 0)
-                    rows.push({ id: "shelfcopyall", label: "Copy everything on the shelf", icon: "copy_all" })
-                rows.push({ id: "shelfclear", label: "Clear the shelf", icon: "delete_sweep", danger: true })
+                    rows.push({ id: "shelfcopyall", label: I18n.t("Copy everything on the shelf"), icon: "copy_all" })
+                rows.push({ id: "shelfclear", label: I18n.t("Clear the shelf"), icon: "delete_sweep", danger: true })
                 rows.push({ sep: true })
             } else if (r.tool === "clipboard") {
-                rows.push({ id: "clipwipe", label: "Clear clipboard history", icon: "delete_sweep", danger: true })
+                rows.push({ id: "clipwipe", label: I18n.t("Clear clipboard history"), icon: "delete_sweep", danger: true })
                 rows.push({ sep: true })
             }
-            rows.push({ id: "removetool", label: "Remove from Dock", icon: "keep_off" })
-            rows.push({ id: "addsepafter", label: "Add separator after", icon: "horizontal_rule" })
+            rows.push({ id: "removetool", label: I18n.t("Remove from Dock"), icon: "keep_off" })
+            rows.push({ id: "addsepafter", label: I18n.t("Add separator after"), icon: "horizontal_rule" })
             return rows
         }
         if (r.kind === "pin") {
-            rows.push({ header: "Dock" })
+            rows.push({ header: I18n.t("Dock") })
             const active = PinnedAppsService.activePreset
             for (const name of PinnedAppsService.presetNames) {
                 rows.push({
@@ -1056,52 +1056,54 @@ PanelWindow {
                     icon: name === active ? "radio_button_checked" : "radio_button_unchecked"
                 })
             }
-            rows.push({ id: "savelayout", label: "Save layout", icon: "bookmark_add" })
-            rows.push({ id: "addsepend", label: "Add separator", icon: "horizontal_rule" })
+            rows.push({ id: "savelayout", label: I18n.t("Save layout"), icon: "bookmark_add" })
+            rows.push({ id: "addsepend", label: I18n.t("Add separator"), icon: "horizontal_rule" })
             const missing = PinnedAppsService.toolIds.filter(id => !PinnedAppsService.hasTool(id))
             if (missing.length > 0) {
                 rows.push({ sep: true })
                 for (const id of missing)
-                    rows.push({ id: "addtool:" + id, label: "Add " + dockWindow.toolMeta[id].label, icon: dockWindow.toolMeta[id].icon })
+                    rows.push({ id: "addtool:" + id,
+                                label: I18n.t("Add {tool}", { tool: I18n.t(dockWindow.toolMeta[id].label) }),
+                                icon: dockWindow.toolMeta[id].icon })
             }
             rows.push({ sep: true })
-            rows.push({ header: "Hiding" })
-            rows.push({ id: "hide:off", label: "Always shown", icon: dockWindow.hideMode === "off" ? "radio_button_checked" : "radio_button_unchecked" })
-            rows.push({ id: "hide:auto", label: "Auto-hide", icon: dockWindow.hideMode === "auto" ? "radio_button_checked" : "radio_button_unchecked" })
-            rows.push({ id: "hide:smart", label: "Smart hide", icon: dockWindow.hideMode === "smart" ? "radio_button_checked" : "radio_button_unchecked" })
+            rows.push({ header: I18n.t("Hiding") })
+            rows.push({ id: "hide:off", label: I18n.t("Always shown"), icon: dockWindow.hideMode === "off" ? "radio_button_checked" : "radio_button_unchecked" })
+            rows.push({ id: "hide:auto", label: I18n.t("Auto-hide"), icon: dockWindow.hideMode === "auto" ? "radio_button_checked" : "radio_button_unchecked" })
+            rows.push({ id: "hide:smart", label: I18n.t("Smart hide"), icon: dockWindow.hideMode === "smart" ? "radio_button_checked" : "radio_button_unchecked" })
             return rows
         }
         if (r.kind === "folder") {
             rows.push({ header: r.displayName })
-            rows.push({ id: "openfolder", label: "Open", icon: "folder_open" })
-            rows.push({ id: "renamefolder", label: "Rename", icon: "edit" })
-            rows.push({ id: "addsepafter", label: "Add separator after", icon: "horizontal_rule" })
-            rows.push({ id: "deletefolder", label: "Delete folder (keep apps)", icon: "folder_delete", danger: true })
+            rows.push({ id: "openfolder", label: I18n.t("Open"), icon: "folder_open" })
+            rows.push({ id: "renamefolder", label: I18n.t("Rename"), icon: "edit" })
+            rows.push({ id: "addsepafter", label: I18n.t("Add separator after"), icon: "horizontal_rule" })
+            rows.push({ id: "deletefolder", label: I18n.t("Delete folder (keep apps)"), icon: "folder_delete", danger: true })
             return rows
         }
         // An app.
         const info = dockWindow.infoFor(r.class, r.pinned)
         rows.push({ header: r.displayName })
-        rows.push({ id: "open", label: info ? "New window" : "Open", icon: "open_in_new" })
+        rows.push({ id: "open", label: info ? I18n.t("New window") : I18n.t("Open"), icon: "open_in_new" })
         if (info) {
             if (info.count - info.minCount > 0)
-                rows.push({ id: "minimize", label: "Minimize", icon: "minimize" })
+                rows.push({ id: "minimize", label: I18n.t("Minimize"), icon: "minimize" })
             if (info.minCount > 0)
-                rows.push({ id: "restore", label: "Show windows", icon: "open_in_full" })
-            rows.push({ id: "closeall", label: info.count > 1 ? "Close all windows" : "Close window", icon: "close", danger: true })
+                rows.push({ id: "restore", label: I18n.t("Show windows"), icon: "open_in_full" })
+            rows.push({ id: "closeall", label: info.count > 1 ? I18n.t("Close all windows") : I18n.t("Close window"), icon: "close", danger: true })
         }
         rows.push({ sep: true })
         if (r.pinned)
-            rows.push({ id: "unpin", label: "Remove from Dock", icon: "keep_off" })
+            rows.push({ id: "unpin", label: I18n.t("Remove from Dock"), icon: "keep_off" })
         else
-            rows.push({ id: "pin", label: "Keep in Dock", icon: "keep" })
+            rows.push({ id: "pin", label: I18n.t("Keep in Dock"), icon: "keep" })
         if (r.pinned)
-            rows.push({ id: "addsepafter", label: "Add separator after", icon: "horizontal_rule" })
-        rows.push({ id: "newfolder", label: "New folder with this app", icon: "create_new_folder" })
+            rows.push({ id: "addsepafter", label: I18n.t("Add separator after"), icon: "horizontal_rule" })
+        rows.push({ id: "newfolder", label: I18n.t("New folder with this app"), icon: "create_new_folder" })
         let shown = 0
         PinnedAppsService.pinned.forEach((it, i) => {
             if (PinnedAppsService.folderShown(it) && shown < 4 && !it.apps.some(a => a.class === r.class)) {
-                rows.push({ id: "tofolder:" + i, label: "Add to " + it.name, icon: "folder" })
+                rows.push({ id: "tofolder:" + i, label: I18n.t("Add to {folder}", { folder: it.name }), icon: "folder" })
                 shown++
             }
         })
@@ -1135,7 +1137,7 @@ PanelWindow {
         } else if (id === "newfolder") {
             // The folder takes the app's place when it was pinned, else goes at the end.
             const at = r.pinned ? r.pinIndex : undefined
-            PinnedAppsService.createFolder("Folder " + (PinnedAppsService.pinned.filter(it => PinnedAppsService.kindOf(it) === "folder").length + 1),
+            PinnedAppsService.createFolder(I18n.t("Folder {n}", { n: PinnedAppsService.pinned.filter(it => PinnedAppsService.kindOf(it) === "folder").length + 1 }),
                                            at, [{ class: r.class, iconName: r.iconName }])
         } else if (id === "deletefolder") {
             PinnedAppsService.deleteFolder(r.pinIndex)
@@ -2073,7 +2075,7 @@ PanelWindow {
                             Text {
                                 anchors.verticalCenter: parent.verticalCenter
                                 readonly property int n: dockWindow.cardInfo ? dockWindow.cardInfo.count : 0
-                                text: n > 1 ? n + " windows · scroll the key to flip" : ""
+                                text: n > 1 ? I18n.t("{n} windows · scroll the key to flip", { n: n }) : ""
                                 visible: n > 1
                                 color: mt.inkSub
                                 font.family: mt.fontFamily
@@ -2500,8 +2502,8 @@ PanelWindow {
                     NumberAnimation { duration: 190; easing.type: Easing.OutBack; easing.overshoot: 2 }
                 }
 
-                readonly property string hint: slot.removing ? "release to remove"
-                    : (flag.timing && TimerService.shownPaused ? "Paused · click to open" : "click to open")
+                readonly property string hint: slot.removing ? I18n.t("release to remove")
+                    : (flag.timing && TimerService.shownPaused ? I18n.t("Paused · click to open") : I18n.t("click to open"))
 
                 visible: flag.shown > 0.01
                 z: 60
@@ -2553,7 +2555,7 @@ PanelWindow {
                             id: flagTitle
                             width: Math.min(implicitWidth, 210)
                             text: flag.timing
-                                ? (TimerService.shownMode === "stopwatch" ? "Stopwatch"
+                                ? I18n.t(TimerService.shownMode === "stopwatch" ? "Stopwatch"
                                    : (TimerService.shownMode === "pomodoro" ? TimerService.phaseLabel : "Timer"))
                                   + " · " + TimerService.shownClock
                                 : (slot.modelData.displayName ?? "")

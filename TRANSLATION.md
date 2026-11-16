@@ -239,6 +239,7 @@ khi quét thêm component plugin và dialog.
 | Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
 | Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `9fa9477` |
 | Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | `4ff7bf0` |
+| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm | — |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -472,7 +473,24 @@ shell.
 - [x] Wallpaper picker: thư viện, trình xem, Wallhaven (lọc, sắp xếp, báo lỗi).
 - [x] Welcome tour: 5 slide, thanh góc, gợi ý điều hướng.
 - [x] Keybinds panel: board/list, ghi phím, hộp thoại trùng phím, setup; cheatsheet.
-- [ ] Notification popup, popup còn lại của Bar (media, equalizer, plugin).
+- [x] Notification popup, popup còn lại của Bar (media, equalizer, plugin).
+
+Cụm 2b-9 — Dock (làm từng phần, tick sau khi đã test):
+
+- [ ] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta`.
+- [ ] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro, nút điều khiển, `Lap`, footer Pomodoro.
+- [ ] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher).
+- [ ] 2b-9d `DockShelfCard.qml` + `DockMediaCard.qml`.
+
+Các cụm còn lại (sau Dock):
+
+- [ ] `DockFilesCard` + `FilesStackService` (~30 khóa: Home/Trash, loại file, sắp xếp, lọc, xác nhận dọn Trash).
+- [ ] `editMode` (~104 chuỗi): `EditGuides`, `PicturesRow`, `EditChrome`.
+- [ ] `desktopWidgets` (~99 chuỗi): `StickyNote`, `LyricsWidget` và widget khác.
+- [ ] Mảng còn lại: `palette`, `polkit`, `overview`, `regionSelector`, `framing`, `ScalePopup`.
+
+Rà soát:
+
 - [ ] Cân nhắc dịch `CHANGELOG.md` nếu người dùng muốn thẻ “Có gì mới” tiếng Việt.
 - [ ] Rà layout tiếng Việt dài: wrap, elide, tràn thẻ, header.
 - [ ] Kiểm thử chuyển ngôn ngữ runtime (Anh ↔ Việt) trên cả 6 trang.
@@ -565,4 +583,18 @@ ec790a3  i18n: Settings > General
 200eeb0  i18n: Settings > About, thẻ Plugins và Get plugins
 119f807  docs: TRANSLATION.md; switch.sh dùng symlink để phím tắt hoạt động
 65849df  i18n: Settings > chuỗi động và hộp thoại plugin
+d1a42ae  docs: ghi đúng commit cho cụm 2a
+622541f  i18n: Quick Panel > tile, dialog, power menu
+2e1701a  i18n: Apps/Launcher > tìm kiếm, hành động hệ thống, 5 thẻ phụ
+be3a13e  i18n: Lockscreen > hai bố cục, lịch, lỗi mật khẩu
+45a0c7a  i18n: Bar > chỉ báo, tooltip, lịch, pin, thời tiết, Discord
+fafdc49  i18n: OSD > âm lượng, micrô, độ sáng, nhãn ghi màn hình
+f2b7a81  i18n: Wallpapers > thư viện, trình xem, Wallhaven
+642b65e  i18n: Welcome tour > 5 slide, gợi ý điều hướng
+49551fa  i18n: giữ tiếng Anh cho menu Settings
+9929c13  i18n: giữ tiếng Anh cho "Settings" và "General"
+9fa9477  i18n: Keybinds panel và cheatsheet
+39ce418  docs: ghi commit cho cụm Keybinds + cheatsheet
+4ff7bf0  i18n: Notification popup và các popup còn lại của Bar
+1c6efc7  docs: ghi cụm Notification popup + popup Bar
 ```

@@ -886,5 +886,37 @@ var dict = {
     "The equalizer is merged into the one you pick; a new preset replaces what is live in EasyEffects.":
         "Equalizer được gộp vào mẫu bạn chọn; mẫu mới sẽ thay thế thứ đang chạy trong EasyEffects.",
     "Free at last.fm/api/account/create. If typing does nothing: qs -c sekaipop ipc call eq lastfmKey <key>":
-        "Miễn phí tại last.fm/api/account/create. Nếu gõ mà không có gì xảy ra: qs -c sekaipop ipc call eq lastfmKey <key>"
+        "Miễn phí tại last.fm/api/account/create. Nếu gõ mà không có gì xảy ra: qs -c sekaipop ipc call eq lastfmKey <key>",
+
+    // ----- Dock: right-click menu, name flag, tools -----
+    "Remove separator": "Bỏ dấu phân cách",
+    "Add separator": "Thêm dấu phân cách",
+    "Add separator after": "Thêm dấu phân cách phía sau",
+    "Open file manager": "Mở trình quản lý tệp",
+    "Remove from Dock": "Bỏ khỏi Dock",
+    "Keep in Dock": "Ghim vào Dock",
+    "Add what is on the clipboard": "Thêm thứ đang có trong clipboard",
+    "Copy everything on the shelf": "Sao chép mọi thứ trên kệ",
+    "Clear the shelf": "Dọn sạch kệ",
+    "Save layout": "Lưu bố cục",
+    "Delete folder (keep apps)": "Xoá thư mục (giữ ứng dụng)",
+    "New window": "Cửa sổ mới",
+    "Minimize": "Thu nhỏ",
+    "Show windows": "Hiện cửa sổ",
+    "Close all windows": "Đóng tất cả cửa sổ",
+    "New folder with this app": "Thư mục mới với ứng dụng này",
+    "Add {tool}": "Thêm {tool}",
+    "Add to {folder}": "Thêm vào {folder}",
+    "Folder {n}": "Thư mục {n}",
+    "{n} windows · scroll the key to flip": "{n} cửa sổ · lăn phím để chuyển",
+    "click to open": "bấm để mở",
+    "Paused · click to open": "Tạm dừng · bấm để mở",
+    "release to remove": "thả ra để bỏ",
+    "Stopwatch": "Bấm giây",
+    "Rename": "Đổi tên",
+    "Documents": "Tài liệu",
+    "Pictures": "Ảnh",
+    "Videos": "Video",
+    "Music": "Nhạc",
+    "Trash": "Thùng rác"
 }
