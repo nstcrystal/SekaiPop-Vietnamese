@@ -238,7 +238,7 @@ khi quét thêm component plugin và dialog.
 | Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `f2b7a81` |
 | Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
 | Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `9fa9477` |
-| Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | (chưa commit) |
+| Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | `4ff7bf0` |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
