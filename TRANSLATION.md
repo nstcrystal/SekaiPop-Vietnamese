@@ -239,7 +239,7 @@ khi quét thêm component plugin và dialog.
 | Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
 | Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `9fa9477` |
 | Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | `4ff7bf0` |
-| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm | — |
+| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm (9a xong) | `3d75082` |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -475,9 +475,9 @@ shell.
 - [x] Keybinds panel: board/list, ghi phím, hộp thoại trùng phím, setup; cheatsheet.
 - [x] Notification popup, popup còn lại của Bar (media, equalizer, plugin).
 
-Cụm 2b-9 — Dock (làm từng phần, tick sau khi đã test):
+Cụm 2b-9 — Dock (làm từng phần, tick khi xong phần đó; chờ test trước khi sang phần sau):
 
-- [ ] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta`.
+- [x] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta` — `3d75082`. Menu dịch tại `buildMenu`; flag và tên tool dịch tại chỗ. Ba khóa shelf (`Add what is on the clipboard`, `Copy everything on the shelf`, `Clear the shelf`) đã thêm sẵn cho 2b-9d.
 - [ ] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro, nút điều khiển, `Lap`, footer Pomodoro.
 - [ ] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher).
 - [ ] 2b-9d `DockShelfCard.qml` + `DockMediaCard.qml`.
