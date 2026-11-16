@@ -477,7 +477,7 @@ shell.
 
 Cụm 2b-9 — Dock (làm từng phần, tick khi xong phần đó; chờ test trước khi sang phần sau):
 
-- [x] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta` — `3d75082`. Menu dịch tại `buildMenu`; flag và tên tool dịch tại chỗ. Ba khóa shelf (`Add what is on the clipboard`, `Copy everything on the shelf`, `Clear the shelf`) đã thêm sẵn cho 2b-9d.
+- [x] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta` — `3d75082`, rút gọn nhãn cho vừa khung ở `ff50fe1`. Menu dịch tại `buildMenu`; flag và tên tool dịch tại chỗ. Ba khóa shelf (`Add what is on the clipboard`, `Copy everything on the shelf`, `Clear the shelf`) đã thêm sẵn cho 2b-9d.
 - [ ] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro, nút điều khiển, `Lap`, footer Pomodoro.
 - [ ] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher).
 - [ ] 2b-9d `DockShelfCard.qml` + `DockMediaCard.qml`.
