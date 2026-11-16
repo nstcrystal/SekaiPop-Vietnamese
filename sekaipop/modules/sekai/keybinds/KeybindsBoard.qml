@@ -63,7 +63,7 @@ Item {
 
                     label: modelData.label
                     labelSize: modelData.label.length > 1 ? 15 : 22
-                    sub: entry !== undefined ? entry.short : ""
+                    sub: entry !== undefined ? I18n.t(entry.short, null, "keybinds") : ""
                     fill: isMod ? (modOn ? root.mt.accentCyan : root.free)
                                 : (entry !== undefined ? KL.colorOf(entry.group) : root.free)
                     ink: plain ? root.mt.pInk : root.mt.colBorder
@@ -86,7 +86,7 @@ Item {
     Text {
         x: 6
         y: root.bottomY
-        text: "MEDIA \u00b7 ANY LAYER"
+        text: I18n.t("MEDIA \u00b7 ANY LAYER")
         color: root.mt.pInkSub
         font.family: root.mt.fontFamily
         font.pixelSize: 12
@@ -97,7 +97,7 @@ Item {
     Text {
         x: 28 * root.colW + 6
         y: root.bottomY
-        text: "MOUSE \u00b7 WITH THE LAYER"
+        text: I18n.t("MOUSE \u00b7 WITH THE LAYER")
         color: root.mt.pInkSub
         font.family: root.mt.fontFamily
         font.pixelSize: 12
@@ -138,7 +138,7 @@ Item {
             keyHeight: 54
             label: modelData.label
             labelSize: 16
-            sub: entry !== undefined ? entry.short : ""
+            sub: entry !== undefined ? I18n.t(entry.short, null, "keybinds") : ""
             fill: entry !== undefined ? KL.colorOf(entry.group) : root.free
             ink: entry !== undefined ? root.mt.colBorder : root.mt.pInk
         }

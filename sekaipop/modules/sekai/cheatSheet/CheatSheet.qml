@@ -398,7 +398,8 @@ Scope {
                                             id: chipText
                                             anchors.centerIn: parent
                                             text: chip.isAll
-                                                ? (root.showAll ? "Essentials only" : "+" + root.hiddenCount + " more")
+                                                ? (root.showAll ? I18n.t("Essentials only")
+                                                                : I18n.t("+{n} more", { n: root.hiddenCount }))
                                                 : chip.modelData[0]
                                             color: Theme.colBorder
                                             font.family: Theme.fontFamily
@@ -438,7 +439,7 @@ Scope {
                             Text {
                                 id: countText
                                 anchors.centerIn: parent
-                                text: root.hitRows + " of " + root.totalRows + " binds"
+                                text: I18n.t("{hit} of {total} binds", { hit: root.hitRows, total: root.totalRows })
                                 color: ScrapbookTheme.ink
                                 font.family: Theme.fontFamily
                                 font.pixelSize: 12
@@ -627,13 +628,13 @@ Scope {
                                 id: emptyText
                                 anchors.centerIn: parent
                                 horizontalAlignment: Text.AlignHCenter
-                                text: !root.loaded ? "Reading your keybinds..."
+                                text: !root.loaded ? I18n.t("Reading your keybinds...")
                                     : root.totalRows === 0 ? (root.shellOnly
-                                        ? "No shell keybinds found.\nBind something to `qs -c sekaipop ipc call ...`"
+                                        ? I18n.t("No shell keybinds found.\nBind something to `qs -c sekaipop ipc call ...`")
                                         : root.hiddenCount > 0
-                                            ? "Only minor keybinds found.\nTap \"+" + root.hiddenCount + " more\" above."
-                                            : "No keybinds found.\nAdd some to your Hyprland config.")
-                                    : "Nothing matches that."
+                                            ? I18n.t("Only minor keybinds found.\nTap \"+{n} more\" above.", { n: root.hiddenCount })
+                                            : I18n.t("No keybinds found.\nAdd some to your Hyprland config."))
+                                    : I18n.t("Nothing matches that.")
                                 color: ScrapbookTheme.ink
                                 font.family: Theme.fontFamily
                                 font.pixelSize: 16

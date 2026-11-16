@@ -108,7 +108,7 @@ Scope {
         if (root.capturing && root.tapAction) {
             const tap = KB.tapForMod(bit)
             if (tap === null)
-                root.refuse("Shift can't be tapped on its own here. Use Super, Alt or Ctrl.")
+                root.refuse(I18n.t("Shift can't be tapped on its own here. Use Super, Alt or Ctrl."))
             else
                 root.offer(tap)
             return
@@ -200,11 +200,12 @@ Scope {
         const combo = { mods: root.layer, key: key.id }
         if (root.capturing) {
             if (root.tapAction) {
-                root.refuse("This one opens on a modifier tapped alone. Click Super, Alt or Ctrl.")
+                root.refuse(I18n.t("This one opens on a modifier tapped alone. Click Super, Alt or Ctrl."))
                 return
             }
             if (KB.needsModifier(combo)) {
-                root.refuse(KB.showCombo(combo) + " on its own would stop it typing. Switch a modifier on first.")
+                root.refuse(I18n.t("{keys} on its own would stop it typing. Switch a modifier on first.",
+                                   { keys: KB.showCombo(combo) }))
                 return
             }
             root.offer(combo)
@@ -213,10 +214,14 @@ Scope {
         if (entry !== undefined && entry.kind === "action") {
             root.select(entry.id)
         } else if (entry !== undefined) {
-            root.say(entry.name + " is a Hyprland shortcut. Change it in "
-                     + (KeybindService.mode === "lua" ? "keybinds.lua" : "your Hyprland config") + ".")
+            root.say(I18n.t("{name} is a Hyprland shortcut. Change it in {where}.", {
+                                name: I18n.t(entry.name),
+                                where: KeybindService.mode === "lua"
+                                    ? "keybinds.lua"
+                                    : I18n.t("your Hyprland config")
+                            }))
         } else if (root.selectedId === "") {
-            root.say(KB.showCombo(combo) + " is free. Pick an action, then Press keys.")
+            root.say(I18n.t("{keys} is free. Pick an action, then Press keys.", { keys: KB.showCombo(combo) }))
         }
     }
 
@@ -412,11 +417,12 @@ Scope {
                     }
                     if (root.tapAction) {
                         root.tapDirty = true
-                        root.refuse("This one opens on a modifier tapped alone: Super, Alt or Ctrl, with no other key.")
+                        root.refuse(I18n.t("This one opens on a modifier tapped alone: Super, Alt or Ctrl, with no other key."))
                         return
                     }
                     if (KB.needsModifier(combo)) {
-                        root.refuse(KB.showCombo(combo) + " on its own would stop it typing. Hold a modifier with it.")
+                        root.refuse(I18n.t("{keys} on its own would stop it typing. Hold a modifier with it.",
+                                           { keys: KB.showCombo(combo) }))
                         return
                     }
                     root.heldMods = 0
@@ -437,7 +443,7 @@ Scope {
                         if (tap !== null)
                             root.offer(tap)
                         else
-                            root.refuse("Tap Super, Alt or Ctrl on its own, with no other key.")
+                            root.refuse(I18n.t("Tap Super, Alt or Ctrl on its own, with no other key."))
                     }
                 }
 
@@ -493,7 +499,7 @@ Scope {
                             id: titleText
                             anchors.centerIn: parent
                             anchors.verticalCenterOffset: -root.mt.shadowOffset / 2 + 1
-                            text: "KEYBINDS"
+                            text: I18n.t("KEYBINDS")
                             color: root.mt.colBorder
                             font.family: root.mt.fontFamily
                             font.pixelSize: 28
@@ -506,8 +512,8 @@ Scope {
                         anchors.left: titlePlate.right
                         anchors.leftMargin: 22
                         anchors.verticalCenter: titlePlate.verticalCenter
-                        text: root.capturing ? "Recording: every shortcut is paused until you are done."
-                              : "Hold a layer, tap a key. Plain keys are free."
+                        text: root.capturing ? I18n.t("Recording: every shortcut is paused until you are done.")
+                              : I18n.t("Hold a layer, tap a key. Plain keys are free.")
                         color: root.mt.pInk
                         font.family: root.mt.fontFamily
                         font.pixelSize: 17
@@ -632,7 +638,7 @@ Scope {
                                             anchors.verticalCenter: parent.verticalCenter
                                             width: parent.width
                                             elide: Text.ElideRight
-                                            text: root.infoText !== "" ? root.infoText : "Search actions, or a key like \u201csuper v\u201d"
+                                            text: root.infoText !== "" ? root.infoText : I18n.t("Search actions, or a key like \u201csuper v\u201d")
                                             color: root.infoText !== "" ? root.mt.accentMint : "#b9b8d8"
                                             font: searchField.font
                                         }
@@ -650,7 +656,7 @@ Scope {
                                         anchors.verticalCenter: parent.verticalCenter
                                         width: Math.min(implicitWidth, strip.width - 26 - selRight.width - 40)
                                         elide: Text.ElideRight
-                                        text: root.selRow ? root.selRow.name : ""
+                                        text: root.selRow ? I18n.t(root.selRow.name) : ""
                                         color: "#ffffff"
                                         font.family: root.mt.fontFamily
                                         font.pixelSize: 24
@@ -672,18 +678,18 @@ Scope {
                                         SlabButton {
                                             anchors.verticalCenter: parent.verticalCenter
                                             visible: root.selRow !== null && root.selRow.combos.length > 0
-                                            label: "Clear"
+                                            label: I18n.t("Clear")
                                             onClicked: KeybindService.setKeys(root.selectedId, null, null)
                                         }
                                         SlabButton {
                                             anchors.verticalCenter: parent.verticalCenter
                                             visible: root.selRow !== null && root.selRow.changed
-                                            label: "Reset"
+                                            label: I18n.t("Reset")
                                             onClicked: KeybindService.reset(root.selectedId)
                                         }
                                         SlabButton {
                                             anchors.verticalCenter: parent.verticalCenter
-                                            label: KeybindService.busy ? "Saving\u2026" : "Press keys"
+                                            label: KeybindService.busy ? I18n.t("Saving\u2026") : I18n.t("Press keys")
                                             fill: root.mt.accentCyan
                                             onClicked: root.startCapture()
                                         }
@@ -706,7 +712,7 @@ Scope {
                                         x: 26
                                         anchors.verticalCenter: parent.verticalCenter
                                         anchors.verticalCenterOffset: root.refusal !== "" ? -10 : 0
-                                        text: root.tapAction ? "Tap Super, Alt or Ctrl alone" : "Press the new keys"
+                                        text: root.tapAction ? I18n.t("Tap Super, Alt or Ctrl alone") : I18n.t("Press the new keys")
                                         color: "#ffffff"
                                         font.family: root.mt.fontFamily
                                         font.pixelSize: 24
@@ -741,7 +747,7 @@ Scope {
                                         }
                                         SlabButton {
                                             anchors.verticalCenter: parent.verticalCenter
-                                            label: "Cancel"
+                                            label: I18n.t("Cancel")
                                             onClicked: root.cancelCapture()
                                         }
                                     }
@@ -757,9 +763,13 @@ Scope {
                                         width: parent.width - 52 - 380
                                         anchors.verticalCenter: parent.verticalCenter
                                         elide: Text.ElideRight
-                                        text: (root.wanted ? KB.showCombo(root.wanted) : "") + " is "
-                                              + (root.taken && root.taken.kind === "action" ? "on " : "Hyprland's: ")
-                                              + (root.taken ? root.taken.name : "")
+                                        text: root.taken && root.taken.kind === "action"
+                                              ? I18n.t("{keys} is on {name}", {
+                                                    keys: root.wanted ? KB.showCombo(root.wanted) : "",
+                                                    name: I18n.t(root.taken.name) })
+                                              : I18n.t("{keys} is Hyprland's: {name}", {
+                                                    keys: root.wanted ? KB.showCombo(root.wanted) : "",
+                                                    name: root.taken ? I18n.t(root.taken.name) : "" })
                                         color: "#ffffff"
                                         font.family: root.mt.fontFamily
                                         font.pixelSize: 21
@@ -774,18 +784,18 @@ Scope {
 
                                         SlabButton {
                                             anchors.verticalCenter: parent.verticalCenter
-                                            label: "Take them"
+                                            label: I18n.t("Take them")
                                             fill: root.mt.accentCyan
                                             onClicked: root.takeOver()
                                         }
                                         SlabButton {
                                             anchors.verticalCenter: parent.verticalCenter
-                                            label: "Other keys"
+                                            label: I18n.t("Other keys")
                                             onClicked: root.startCapture()
                                         }
                                         SlabButton {
                                             anchors.verticalCenter: parent.verticalCenter
-                                            label: "Cancel"
+                                            label: I18n.t("Cancel")
                                             onClicked: root.cancelCapture()
                                         }
                                     }
@@ -832,7 +842,8 @@ Scope {
                                     Text {
                                         width: parent.width
                                         wrapMode: Text.WordWrap
-                                        text: KeybindService.niri ? "Keys are niri's here" : "One line in your Hyprland config, and keys are yours to change"
+                                        text: KeybindService.niri ? I18n.t("Keys are niri's here")
+                                                                 : I18n.t("One line in your Hyprland config, and keys are yours to change")
                                         color: root.mt.pInk
                                         font.family: root.mt.fontFamily
                                         font.pixelSize: 28
@@ -843,9 +854,9 @@ Scope {
                                         wrapMode: Text.WordWrap
                                         lineHeight: 1.2
                                         text: KeybindService.niri
-                                            ? "This panel changes Hyprland's binds, and the shell is running on niri. Set your keys in niri's own config, as `spawn \"qs\" \"-c\" \"sekaipop\" \"ipc\" \"call\" ...` binds."
-                                            : "Changes made here are saved in a file of SekaiPop's, and your config doesn't load that file yet. Add this line to "
-                                              + (KeybindService.mode === "lua" ? "hyprland.lua" : "hyprland.conf") + " once, and this panel switches on by itself:"
+                                            ? I18n.t("This panel changes Hyprland's binds, and the shell is running on niri. Set your keys in niri's own config, as `spawn \"qs\" \"-c\" \"sekaipop\" \"ipc\" \"call\" ...` binds.")
+                                            : I18n.t("Changes made here are saved in a file of SekaiPop's, and your config doesn't load that file yet. Add this line to {file} once, and this panel switches on by itself:",
+                                                     { file: KeybindService.mode === "lua" ? "hyprland.lua" : "hyprland.conf" })
                                         color: root.mt.pInk
                                         font.family: root.mt.fontFamily
                                         font.pixelSize: 17
@@ -868,7 +879,7 @@ Scope {
                                     }
                                     SlabButton {
                                         visible: !KeybindService.niri
-                                        label: "Copy the line"
+                                        label: I18n.t("Copy the line")
                                         fill: root.mt.accentCyan
                                         onClicked: Quickshell.execDetached(["sh", "-c", "printf '%s' \"$1\" | wl-copy", "sh", setup.line])
                                     }
@@ -917,8 +928,8 @@ Scope {
                         anchors.right: parent.right
                         y: 768
                         visible: KeybindService.available && KeybindService.changedCount > 0
-                        label: root.confirmReset ? "Reset all " + KeybindService.changedCount + "? Click again"
-                                                 : "Reset all (" + KeybindService.changedCount + " changed)"
+                        label: root.confirmReset ? I18n.t("Reset all {n}? Click again", { n: KeybindService.changedCount })
+                                                 : I18n.t("Reset all ({n} changed)", { n: KeybindService.changedCount })
                         fill: root.confirmReset ? root.mt.accentCyan : root.mt.pSurface
                         onClicked: root.resetAllNow()
                     }

@@ -235,8 +235,8 @@ khi quét thêm component plugin và dialog.
 | Bar: chỉ báo, tooltip, 4 popup | ~140 khóa | đã dịch | `45a0c7a` |
 | OSD + nhãn ghi màn hình | 7 khóa | đã dịch | `fafdc49` |
 | Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `f2b7a81` |
-| Welcome tour (5 slide) | 15 khóa | đã dịch | `2b-6` |
-| Cheatsheet, keybinds | — | chưa | — |
+| Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
+| Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `2811cd9` |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -380,6 +380,29 @@ Cụm 2b-6 (Welcome tour):
 - Tên nhóm (`VS`, `L/N`, `MMJ`, `VBS`, `WxS`, `25:00`) và logo `Sekai`/`Pop`
   giữ nguyên.
 
+Cụm 2b-7 (Keybinds panel + cheatsheet):
+
+- `KeybindsPanel`: `PHÍM TẮT`, thanh chọn `Bàn phím`/`Danh sách`, ô tìm
+  (`Tìm hành động, hoặc một phím như “super v”`), nút `Đặt phím`, `Xóa`,
+  `Đặt lại`, `Hủy`, `Lấy phím này`, `Phím khác`, trạng thái ghi
+  (`Bấm phím mới`, `Nhấn riêng Super, Alt hoặc Ctrl`), câu từ chối và câu hỏi
+  trùng phím, phần setup niri/Hyprland, `Sao chép dòng`, `Đặt lại tất cả (… đã đổi)`.
+- `KeybindsList`: tiêu đề `HÀNH ĐỘNG`/`PHÍM`, nhãn `đã đổi`, tooltip
+  `Quay về {keys}`/`Quay về không phím`, trạng thái trống; tên action dịch tại
+  chỗ hiển thị.
+- `KeybindsBoard`: hai nhãn `MEDIA · MỌI LỚP` / `CHUỘT · THEO LỚP`; tên ngắn
+  dưới phím qua ngữ cảnh `keybinds:*` (vd. `keybinds:Apps` → `Ứng dụng`).
+- Tên 36 action trong `KeyBinds.js` dịch tại chỗ hiển thị; **4 nhóm
+  Shell / Utilities / Media / Session và 8 mục cheatsheet vẫn tiếng Anh** (theo
+  lựa chọn giữ thuật ngữ của người dùng). Tên phím (`Super`, `Ctrl`, `Bksp`…)
+  và chữ `tap` giữ nguyên.
+- Cheatsheet: `Tìm phím tắt`, chip `Chỉ mục cần thiết`/`+{n} nữa`,
+  `{hit}/{total} phím tắt`, các câu trống (`Đang đọc phím tắt…`,
+  `Không có gì khớp.`, `Không tìm thấy phím tắt…`), nhãn `TRÙNG!`.
+- 61 câu mô tả từ `hyprctl -j binds` (`Brightness Up`, `Send to workspace #
+  (1-10)`, `Terminal`…) dịch tại `CheatNote`; câu nào chưa có khóa thì giữ
+  tiếng Anh. Tìm kiếm trong cheatsheet vẫn so với dữ liệu tiếng Anh.
+
 Lưu ý: 100% ở trên là **trên các chuỗi mà script quét được**, không phải toàn bộ
 shell.
 
@@ -410,8 +433,8 @@ shell.
 - [x] OSD (âm lượng, micrô, độ sáng, gamma), nhãn ghi màn hình.
 - [x] Wallpaper picker: thư viện, trình xem, Wallhaven (lọc, sắp xếp, báo lỗi).
 - [x] Welcome tour: 5 slide, thanh góc, gợi ý điều hướng.
-- [ ] Notification popup, cheatsheet, keybinds panel,
-      popup còn lại của Bar (media, equalizer, plugin).
+- [x] Keybinds panel: board/list, ghi phím, hộp thoại trùng phím, setup; cheatsheet.
+- [ ] Notification popup, popup còn lại của Bar (media, equalizer, plugin).
 - [ ] Cân nhắc dịch `CHANGELOG.md` nếu người dùng muốn thẻ “Có gì mới” tiếng Việt.
 - [ ] Rà layout tiếng Việt dài: wrap, elide, tràn thẻ, header.
 - [ ] Kiểm thử chuyển ngôn ngữ runtime (Anh ↔ Việt) trên cả 6 trang.
@@ -452,11 +475,19 @@ shell.
 | Resolution | Độ phân giải |
 | Refresh rate | Tần số quét |
 | Scale | Tỉ lệ |
+| Keybind layer | Lớp phím |
+| Cheatsheet | Bảng phím tắt |
+| Scratchpad | scratchpad (giữ nguyên) |
+| Tap (a modifier) | nhấn riêng |
 
 Giữ nguyên: Wi-Fi, Bluetooth, Hyprland, Quickshell, SekaiPop, Sekai Pad,
 Discord, EasyEffects, Wallhaven, OCR, OSD, GTK, Qt, KDE, Matugen, Dock,
 Widget, Plugin, Quick Panel, Popups, Game Mode (dịch là “Chế độ chơi game” khi
 cần câu tiếng Việt).
+
+Tên nhóm dịch vụ (Shell, Utilities, Media, Session, Windows, Workspaces, Apps,
+Screen, Other) và 6 mục Settings (Quick, General, Bar, Desktop, Hyprland,
+About) **giữ tiếng Anh**; câu mô tả và tên action bên trong vẫn dịch.
 
 ---
 

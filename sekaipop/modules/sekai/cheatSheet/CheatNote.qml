@@ -219,7 +219,7 @@ Item {
                     anchors.right: parent.right
                     anchors.rightMargin: rowItem.modelData.dup ? 64 : 0
                     anchors.verticalCenter: parent.verticalCenter
-                    text: rowItem.modelData.label
+                    text: I18n.t(rowItem.modelData.label)
                     elide: Text.ElideRight
                     font.family: mt.fontFamily
                     font.pixelSize: 13
@@ -238,7 +238,7 @@ Item {
                     rotation: -8
                     Text {
                         anchors.centerIn: parent
-                        text: "DOUBLE!"
+                        text: I18n.t("DOUBLE!")
                         font.family: mt.fontFamily
                         font.pixelSize: 10
                         font.bold: true

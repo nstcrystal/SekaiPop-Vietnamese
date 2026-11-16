@@ -83,7 +83,7 @@ Item {
             Text {
                 x: 32
                 y: 14
-                text: "ACTION"
+                text: I18n.t("ACTION")
                 color: root.mt.pInkSub
                 font.family: root.mt.fontFamily
                 font.pixelSize: 12
@@ -94,7 +94,7 @@ Item {
                 anchors.right: parent.right
                 anchors.rightMargin: 40
                 y: 14
-                text: "KEYS"
+                text: I18n.t("KEYS")
                 color: root.mt.pInkSub
                 font.family: root.mt.fontFamily
                 font.pixelSize: 12
@@ -173,7 +173,7 @@ Item {
                         Text {
                             width: parent.width
                             elide: Text.ElideRight
-                            text: row.modelData.name
+                            text: I18n.t(row.modelData.name)
                             color: root.mt.pInk
                             font.family: root.mt.fontFamily
                             font.pixelSize: 18
@@ -208,7 +208,7 @@ Item {
                             Text {
                                 id: changedText
                                 anchors.centerIn: parent
-                                text: "changed"
+                                text: I18n.t("changed")
                                 color: root.mt.colBorder
                                 font.family: root.mt.fontFamily
                                 font.pixelSize: 12
@@ -226,7 +226,8 @@ Item {
                             anchors.verticalCenter: parent.verticalCenter
                             icon: "restart_alt"
                             tip: row.modelData.before && row.modelData.before.length > 0
-                                 ? "Back to " + KB.showCombo(row.modelData.before[0]) : "Back to no key"
+                                 ? I18n.t("Back to {keys}", { keys: KB.showCombo(row.modelData.before[0]) })
+                                 : I18n.t("Back to no key")
                             onClicked: KeybindService.reset(row.modelData.id)
                         }
                     }
@@ -238,7 +239,7 @@ Item {
             Text {
                 visible: root.listModel.length === 0
                 anchors.centerIn: parent
-                text: "No action or key matches \u201c" + root.panel.query.trim() + "\u201d."
+                text: I18n.t("No action or key matches \u201c{query}\u201d.", { query: root.panel.query.trim() })
                 color: root.mt.pInkSub
                 font.family: root.mt.fontFamily
                 font.pixelSize: 17
