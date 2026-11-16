@@ -236,7 +236,7 @@ khi quét thêm component plugin và dialog.
 | OSD + nhãn ghi màn hình | 7 khóa | đã dịch | `fafdc49` |
 | Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `f2b7a81` |
 | Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
-| Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `2811cd9` |
+| Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `9fa9477` |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
