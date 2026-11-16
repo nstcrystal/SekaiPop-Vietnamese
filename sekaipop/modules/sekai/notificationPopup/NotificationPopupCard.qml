@@ -447,7 +447,7 @@ Item {
                     y: card.hasBody ? 31 : 38
                     width: card.faceW - card.textX - 20
                     elide: Text.ElideRight
-                    text: card.title
+                    text: card.shell ? I18n.t(card.title) : card.title
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 19
@@ -460,7 +460,7 @@ Item {
                     y: 57
                     width: card.faceW - card.textX - 20
                     visible: card.hasBody
-                    text: card.body
+                    text: card.shell ? I18n.t(card.body) : card.body
                     wrapMode: Text.Wrap
                     maximumLineCount: 2
                     elide: Text.ElideRight

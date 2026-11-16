@@ -60,12 +60,21 @@ function decide(pct, plugged, fired, first) {
 
 // The text of a warning. `pct` is the real reading (it may have skipped a level), `time`
 // is BatterySource.timeRemaining ("1h 12m", or "" when UPower has no estimate yet).
+// `t` is optional: I18n.t, so the sentence is translated (without it the words stay
+// English, which is what the test reads).
 // Returns { title, body, urgency } with urgency as notify-send spells it.
-function message(level, pct, time) {
-    var left = pct + "% left" + (time ? ", about " + time : "");
+function message(level, pct, time, t) {
+    var tr = t || function (s, vars) {
+        if (!vars)
+            return s;
+        return s.replace(/\{(\w+)\}/g, function (m, k) {
+            return vars[k] !== undefined ? String(vars[k]) : m;
+        });
+    };
+    var left = tr("{pct}% left", { pct: pct }) + (time ? tr(", about {time}", { time: time }) : "");
     if (level <= 5)
-        return { title: "Battery critical", body: left + ". Plug in now or save your work: the laptop may shut down.", urgency: "critical" };
+        return { title: tr("Battery critical"), body: tr("{left}. Plug in now or save your work: the laptop may shut down.", { left: left }), urgency: "critical" };
     if (isCritical(level))
-        return { title: "Battery very low", body: left + ". Plug in now.", urgency: "critical" };
-    return { title: "Battery low", body: left + ". Plug in soon.", urgency: "normal" };
+        return { title: tr("Battery very low"), body: tr("{left}. Plug in now.", { left: left }), urgency: "critical" };
+    return { title: tr("Battery low"), body: tr("{left}. Plug in soon.", { left: left }), urgency: "normal" };
 }

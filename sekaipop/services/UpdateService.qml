@@ -107,10 +107,13 @@ Singleton {
         if (byUser || !root.watching)
             return
         const what = root.isGit && root.behind > 0
-            ? root.behind + (root.behind === 1 ? " new commit is" : " new commits are") + " waiting upstream."
-            : (!root.isGit && !root.managed && root.latest !== "" ? "Version " + root.latest + " is out." : "A newer version is on GitHub.")
+            ? I18n.t(root.behind === 1 ? "{n} new commit is waiting upstream."
+                                       : "{n} new commits are waiting upstream.", { n: root.behind })
+            : (!root.isGit && !root.managed && root.latest !== "" ? I18n.t("Version {v} is out.", { v: root.latest })
+                                                                  : I18n.t("A newer version is on GitHub."))
         Quickshell.execDetached(["notify-send", "-a", "sekaipop", "-i", "material:system_update",
-            "SekaiPop update available", what + " Open Settings \u2192 About / Update to install it."])
+            "SekaiPop update available",
+            I18n.t("{what} Open Settings \u2192 About / Update to install it.", { what: what })])
     }
 
     function update() {

@@ -67,6 +67,7 @@ Phải trả về `quick.flat = ...`, không phải `No running instances`.
 | `sekaipop/modules/common/I18n.qml` | Singleton `I18n.t()`, `I18n.lang`, `I18n.setLang()` |
 | `sekaipop/modules/common/i18n/vi-common.js` | Thuật ngữ dùng chung (Settings, menu, widget) |
 | `sekaipop/modules/common/i18n/vi-settings.js` | Sáu trang Settings và các thẻ plugin |
+| `sekaipop/modules/common/i18n/vi-shell.js` | Phần còn lại của shell (Bar, panel, popup, keybinds…) |
 | `sekaipop/services/SettingsService.qml` | Lưu `"i18n.lang"` (`vi` mặc định) |
 | `tools/progress.py` | Đo tiến độ chuỗi tĩnh (`--all` gồm plugin/dialog) |
 
@@ -237,6 +238,7 @@ khi quét thêm component plugin và dialog.
 | Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `f2b7a81` |
 | Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
 | Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `9fa9477` |
+| Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | (chưa commit) |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -402,6 +404,42 @@ Cụm 2b-7 (Keybinds panel + cheatsheet):
 - 61 câu mô tả từ `hyprctl -j binds` (`Brightness Up`, `Send to workspace #
   (1-10)`, `Terminal`…) dịch tại `CheatNote`; câu nào chưa có khóa thì giữ
   tiếng Anh. Tìm kiếm trong cheatsheet vẫn so với dữ liệu tiếng Anh.
+
+Cụm 2b-8 (Notification popup + các popup còn lại của Bar):
+
+- Thông báo do shell tự gửi nhận ra qua icon `material:<glyph>` (screenshot,
+  ghi màn hình, timer, pin, cập nhật…). Chúng được dịch **lúc hiển thị** ở cả
+  ba nơi vẽ: `NotificationPopupCard`, `NotificationCard` (list trong Quick
+  Panel) và thẻ alert của `QuickPanelFace`. Nhờ vậy đổi ngôn ngữ runtime áp
+  dụng cho cả thông báo cũ, và câu gửi từ script `.sh` lẫn QML đều dịch được.
+- Thông báo từ ứng dụng ngoài (Firefox, Discord…) và thông báo có dữ liệu động
+  (đường dẫn, log) không khớp khóa thì giữ nguyên tiếng Anh.
+- Chuỗi có placeholder/nối động dịch **tại nơi gửi** để câu đã ghép sẵn đúng
+  ngữ pháp:
+  - `BatteryAlertMath.message(level, pct, time, t)` (fallback tiếng Anh khi
+    test chạy dưới node); `BatteryAlertService` truyền `I18n.t`.
+  - `PackageUpdatesService` (`{n} updates are waiting`), `PluginService`
+    (`A plugin was not loaded` / `{n} plugins were not loaded`),
+    `UpdateService` (số commit, `Version {v} is out.`, `{what} Open Settings →
+    About…`), `TimerService` (`Timer finished`, `{time} is up`, `Focus done`,
+    `Break over`, `Next: {phase}`), `ScrollOverviewService` (2 câu plugin,
+    `hyprpm said: {log}`, gợi ý cài).
+- Popup Bar: `ResourcePopup` (`CPU`, `RAM`, `Processor`, `Memory`, `of`),
+  `TrayMenu` (`Back`, `Pin`/`Unpin`), `PluginPopup`
+  (`{name}'s popup did not load`), `DiscordPopup` (`Mute`/`Muted`,
+  `Deafen`/`Deafened`). `DiscordPill`/`DiscordMemberRow` dùng chung các khóa
+  đã có (`You`, `Talking`, `In call`, `VOICE CONNECTED`…).
+- Popup media (`mediaControls/MediaPopup`): `Nothing playing`,
+  `Start a song or a video`, `PLAYING`/`PAUSED`/`IDLE`, `Pause`/`Play`.
+- Equalizer (console cầm tay): nhãn preset, `AUTO`, `PRESETS`, `SAVE AS`,
+  `NAME THIS CURVE`, `EASYEFFECTS PRESET`, `LAST.FM KEY (for AUTO)`,
+  `10-BAND`, hai câu mô tả preset, placeholder ô nhập; `PRESET` giữ nguyên
+  thuật ngữ, `EasyEffects`/`Last.fm` giữ tên riêng.
+- `vi-shell.js` sau cụm này có 725 khóa, không trùng khóa trong cùng tệp.
+- Lưu ý: câu dịch **tại nơi gửi** (timer, cập nhật, pin…) được lưu vào thông
+  báo bằng tiếng Việt; đổi sang tiếng Anh sau đó không dịch ngược lại được
+  (thông báo cũ vẫn là câu tiếng Việt cho tới khi bị xoá). Các câu chỉ dịch
+  **lúc hiển thị** thì đổi ngôn ngữ runtime được.
 
 Lưu ý: 100% ở trên là **trên các chuỗi mà script quét được**, không phải toàn bộ
 shell.

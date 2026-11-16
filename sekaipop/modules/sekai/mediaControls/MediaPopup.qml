@@ -308,14 +308,14 @@ SekaiPopup {
     readonly property string titleText: root.hasPlayer ? String(root.p.trackTitle ?? "") : ""
     readonly property string line1: {
         if (!root.hasPlayer)
-            return "Nothing playing"
+            return I18n.t("Nothing playing")
         if (root.titleText !== "")
             return root.titleText
         return root.artistText !== "" ? root.artistText : root.appName
     }
     readonly property string line2: {
         if (!root.hasPlayer)
-            return "Start a song or a video"
+            return I18n.t("Start a song or a video")
         if (root.titleText === "")
             return ""
         if (root.artistText !== "")
@@ -530,7 +530,8 @@ SekaiPopup {
                     }
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: root.playing ? "PLAYING" : (root.hasTrack ? "PAUSED" : "IDLE")
+                        text: root.playing ? I18n.t("PLAYING")
+                            : (root.hasTrack ? I18n.t("PAUSED") : I18n.t("IDLE"))
                         color: mt.chipInk
                         font.family: mt.fontFamily
                         font.pixelSize: 10
@@ -771,7 +772,7 @@ SekaiPopup {
                 width: 92
                 primary: true
                 icon: root.playing ? "pause" : "play_arrow"
-                label: root.playing ? "Pause" : "Play"
+                label: root.playing ? I18n.t("Pause") : I18n.t("Play")
                 toneTop: root.tone
                 toneBottom: root.tone2
                 available: root.hasPlayer && root.p.canTogglePlaying

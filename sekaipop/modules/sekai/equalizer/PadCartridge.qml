@@ -138,7 +138,7 @@ Item {
                     anchors.right: parent.right
                     anchors.rightMargin: 8 * cart.u
                     y: 6 * cart.u
-                    text: "10-BAND"
+                    text: I18n.t("10-BAND")
                     color: PadPalette.ink
                     opacity: 0.7
                     font.family: mt.fontFamily

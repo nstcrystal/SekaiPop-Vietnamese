@@ -136,7 +136,7 @@ SekaiPopup {
         Text {
             visible: slot.status === Loader.Error
             anchors.centerIn: parent
-            text: (root.plugin ? root.plugin.name : root.key) + "'s popup did not load"
+            text: I18n.t("{name}'s popup did not load", { name: root.plugin ? root.plugin.name : root.key })
             color: root.mt.inkSub
             font.family: root.mt.fontFamily
             font.pixelSize: 12

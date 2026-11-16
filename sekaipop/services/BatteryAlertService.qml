@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import qs.modules.common
 import "../modules/common/functions/BatteryAlertMath.js" as BA
 
 // Low-battery warnings, sent as ordinary notifications (the shell is the notification
@@ -73,7 +74,7 @@ Scope {
     }
 
     function send(level, pct, time) {
-        const m = BA.message(level, pct, time)
+        const m = BA.message(level, pct, time, I18n.t)
         Quickshell.execDetached(["notify-send", "-a", "Battery", "-u", m.urgency, "-i", "material:battery_alert", m.title, m.body])
     }
 

@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
+import qs.modules.common
 
 // The other Overview: the Hyprland plugin "ScrollOverview"
 // (https://github.com/yayuuu/hyprland-scroll-overview), a niri-style overview
@@ -106,12 +107,14 @@ Singleton {
         if (root.failNotified)
             return
         root.failNotified = true
-        let body = "The ScrollOverview plugin is not loaded"
-            + (openedBoard ? ", so the film strip opened instead." : ".")
+        let body = openedBoard
+            ? I18n.t("The ScrollOverview plugin is not loaded, so the film strip opened instead.")
+            : I18n.t("The ScrollOverview plugin is not loaded.")
         if (root.loadLog !== "")
-            body += "\nhyprpm said: " + root.loadLog.split("\n").slice(0, 3).join(" ").slice(0, 220)
+            body += "\n" + I18n.t("hyprpm said: {log}",
+                                  { log: root.loadLog.split("\n").slice(0, 3).join(" ").slice(0, 220) })
         else
-            body += "\nIs it installed? Settings > Hyprland > Overview shows the install commands."
+            body += "\n" + I18n.t("Is it installed? Settings > Hyprland > Overview shows the install commands.")
         Quickshell.execDetached([ "notify-send", "-a", "Shell", "-u", "normal", "-i", "material:view_carousel",
             "Scroll overview did not start", body ])
     }

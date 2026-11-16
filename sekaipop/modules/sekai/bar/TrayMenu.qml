@@ -163,7 +163,7 @@ Pill {
             texel: root.texel
             width: col.width
             visible: root.showPin
-            text: root.pinned ? "Unpin" : "Pin"
+            text: root.pinned ? I18n.t("Unpin") : I18n.t("Pin")
             onClicked: root.pinRequested()
 
             // "north_west" arrow; turned around for Unpin.
@@ -198,7 +198,7 @@ Pill {
             texel: root.texel
             width: col.width
             visible: root.showBack
-            text: "Back"
+            text: I18n.t("Back")
             onClicked: root.backRequested()
 
             Shape {

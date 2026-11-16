@@ -713,5 +713,178 @@ var dict = {
     "Text editor": "Trình soạn thảo văn bản",
     "Volume mixer": "Bộ trộn âm lượng",
     "Task manager": "Trình quản lý tác vụ",
-    "Edit user keybinds": "Chỉnh phím tắt người dùng"
+    "Edit user keybinds": "Chỉnh phím tắt người dùng",
+
+    // ----- The shell's own notifications: screen region, recording, OCR -----
+    "Screenshot saved": "Đã lưu ảnh chụp màn hình",
+    "Copied to the clipboard": "Đã sao chép vào clipboard",
+    "Region screenshot": "Ảnh chụp vùng màn hình",
+    "wl-clipboard is not installed": "Chưa cài wl-clipboard",
+    "Copy text": "Sao chép chữ",
+    "Text copied": "Đã sao chép chữ",
+    "No text found in the region": "Không tìm thấy chữ trong vùng chọn",
+    "tesseract is not installed": "Chưa cài tesseract",
+    "Image search": "Tìm ảnh",
+    "curl and jq are needed": "Cần có curl và jq",
+    "The upload failed": "Tải ảnh lên thất bại",
+    "Annotate": "Chú thích ảnh",
+    "swappy is not installed": "Chưa cài swappy",
+    "Recording saved": "Đã lưu bản ghi màn hình",
+    "Recording failed": "Ghi màn hình thất bại",
+    "wf-recorder is not installed": "Chưa cài wf-recorder",
+    "wf-recorder stopped before it saved anything. Run it in a terminal to see why.":
+        "wf-recorder đã dừng trước khi lưu được gì. Hãy chạy nó trong terminal để xem lý do.",
+    "Couldn't grab the region (is grim installed?)":
+        "Không lấy được vùng màn hình (đã cài grim chưa?)",
+    "No terminal found": "Không tìm thấy terminal",
+    "Set $TERMINAL or install kitty / foot / alacritty":
+        "Đặt $TERMINAL hoặc cài kitty / foot / alacritty",
+
+    // ----- The shell's own notifications: desktop, presets, game mode -----
+    "Go to an empty workspace to edit the desktop.":
+        "Hãy tới một không gian làm việc trống để chỉnh màn hình nền.",
+    "Wallpaper not found": "Không tìm thấy hình nền",
+    "The preset's wallpaper file is gone, so the wallpaper stays as it is.":
+        "Tệp hình nền của cấu hình sẵn đã mất, nên hình nền được giữ nguyên.",
+    "Hyprland did not accept the change.": "Hyprland không nhận thay đổi.",
+    "Game Mode is off, but Hyprland did not reload its settings.":
+        "Game Mode đã tắt, nhưng Hyprland chưa nạp lại cấu hình.",
+
+    // ----- The shell's own notifications: WARP, on-screen keyboard, music -----
+    "Cloudflare WARP is not installed": "Chưa cài Cloudflare WARP",
+    "DNS fix skipped, so WARP may keep saying Connecting even when it works":
+        "Đã bỏ qua bước sửa DNS, nên WARP có thể vẫn báo Đang kết nối dù đã chạy",
+    "Connection failed. Please inspect manually with the warp-cli command":
+        "Kết nối thất bại. Hãy kiểm tra thủ công bằng lệnh warp-cli",
+    "Registration failed. Please inspect manually with the warp-cli command":
+        "Đăng ký thất bại. Hãy kiểm tra thủ công bằng lệnh warp-cli",
+    "wtype is not installed, so the keyboard cannot type. Install it (pacman -S wtype) and try again.":
+        "Chưa cài wtype, nên bàn phím không gõ được. Hãy cài (pacman -S wtype) rồi thử lại.",
+    "songrec isn't installed": "Chưa cài songrec",
+    "ffmpeg isn't installed": "Chưa cài ffmpeg",
+    "Couldn't recognise that": "Không nhận ra bài này",
+
+    // ----- The shell's own notifications: settings apps, file choosers -----
+    "No network settings app found": "Không tìm thấy ứng dụng cài đặt mạng",
+    "Install plasma-nm and kde-cli-tools (pacman -S plasma-nm kde-cli-tools).":
+        "Hãy cài plasma-nm và kde-cli-tools (pacman -S plasma-nm kde-cli-tools).",
+    "No Bluetooth settings app found": "Không tìm thấy ứng dụng cài đặt Bluetooth",
+    "Install blueman (pacman -S blueman).": "Hãy cài blueman (pacman -S blueman).",
+    "Can't choose a file": "Không chọn được tệp",
+    "Install zenity (or kdialog / yad) to get a file chooser.":
+        "Cài zenity (hoặc kdialog / yad) để có hộp chọn tệp.",
+    "Can't choose a folder": "Không chọn được thư mục",
+    "Install zenity (or kdialog / yad) to get a folder chooser.":
+        "Cài zenity (hoặc kdialog / yad) để có hộp chọn thư mục.",
+    "Discord Voice Companion Error": "Lỗi Discord Voice Companion",
+
+    // ----- The shell's own notifications: battery, updates, plugins, timer -----
+    "{pct}% left": "{pct}% pin",
+    ", about {time}": ", khoảng {time} nữa",
+    "Battery critical": "Pin nguy cấp",
+    "Battery very low": "Pin rất yếu",
+    "Battery low": "Pin yếu",
+    "{left}. Plug in now or save your work: the laptop may shut down.":
+        "{left}. Cắm sạc ngay hoặc lưu việc đang làm: máy có thể tắt.",
+    "{left}. Plug in now.": "{left}. Cắm sạc ngay.",
+    "{left}. Plug in soon.": "{left}. Sắp cần cắm sạc.",
+    "{n} updates are waiting": "Có {n} bản cập nhật đang chờ",
+    "Click the update badge in the bar to run them in a terminal.":
+        "Bấm huy hiệu cập nhật trên bar để chạy trong terminal.",
+    "A plugin was not loaded": "Một plugin chưa được nạp",
+    "{n} plugins were not loaded": "{n} plugin chưa được nạp",
+    "SekaiPop update available": "Có bản cập nhật SekaiPop",
+    "Version {v} is out.": "Đã có phiên bản {v}.",
+    "A newer version is on GitHub.": "Đã có phiên bản mới trên GitHub.",
+    "{n} new commit is waiting upstream.": "Có {n} commit mới ở upstream.",
+    "{n} new commits are waiting upstream.": "Có {n} commit mới ở upstream.",
+    "{what} Open Settings \u2192 About / Update to install it.":
+        "{what} Mở Settings \u2192 About để cài đặt.",
+    "Timer finished": "Hết giờ",
+    "{time} is up": "Đã hết {time}",
+    "Focus done": "Hết phiên tập trung",
+    "Focus": "Tập trung",
+    "Break over": "Hết giờ nghỉ",
+    "Next: {phase}": "Tiếp theo: {phase}",
+    "Scroll overview did not start": "Tổng quan cuộn không khởi động",
+    "The ScrollOverview plugin is not loaded.": "Plugin ScrollOverview chưa được nạp.",
+    "The ScrollOverview plugin is not loaded, so the film strip opened instead.":
+        "Plugin ScrollOverview chưa được nạp, nên dải phim đã mở thay thế.",
+    "hyprpm said: {log}": "hyprpm báo: {log}",
+    "Is it installed? Settings > Hyprland > Overview shows the install commands.":
+        "Đã cài chưa? Settings > Hyprland > Overview có các lệnh cài đặt.",
+
+    // ----- Discord popup and pill -----
+    "You": "Bạn",
+    "Talking": "Đang nói",
+    "In call": "Trong cuộc gọi",
+    "In the room": "Trong phòng",
+    "just you": "chỉ bạn",
+    "{n} people": "{n} người",
+    "Waiting for people…": "Đang chờ mọi người…",
+    "Waiting for Discord…": "Đang chờ Discord…",
+    "Link Discord": "Liên kết Discord",
+    "Link Discord once to see your calls here": "Liên kết Discord một lần để thấy cuộc gọi ở đây",
+    "Accept the request in Discord": "Chấp nhận yêu cầu trong Discord",
+    "Voice": "Thoại",
+    "Voice channel": "Kênh thoại",
+    "{channel} — {n} in call": "{channel} — {n} người trong cuộc gọi",
+    " (deafened)": " (đã tắt nghe)",
+    " (muted)": " (đã tắt tiếng)",
+    "unmute": "bật tiếng",
+    "mute": "tắt tiếng",
+    "undeafen": "bật nghe",
+    "deafen": "tắt nghe",
+    "Click: open · Middle: {mute} · Right: {deafen}":
+        "Bấm: mở · Giữa: {mute} · Phải: {deafen}",
+    "Click: {mute} · Right-click: {deafen}": "Bấm: {mute} · Chuột phải: {deafen}",
+    "VOICE CONNECTED": "ĐÃ KẾT NỐI THOẠI",
+    "{n} IN CALL": "{n} TRONG CUỘC GỌI",
+    "Power profile": "Hồ sơ năng lượng",
+
+    // ----- Bar popups still to cover: resource, tray, plugin, Discord -----
+    "CPU": "CPU",
+    "RAM": "RAM",
+    "Processor": "Bộ xử lý",
+    "Memory": "Bộ nhớ",
+    "of": "trên",
+    "Back": "Quay lại",
+    "Deafen": "Tắt nghe",
+    "Deafened": "Đã tắt nghe",
+    "{name}'s popup did not load": "Popup của {name} chưa tải được",
+
+    // ----- Media popup (mediaControls) -----
+    "Nothing playing": "Không có gì đang phát",
+    "Start a song or a video": "Mở một bài hát hoặc video",
+    "PLAYING": "ĐANG PHÁT",
+    "PAUSED": "TẠM DỪNG",
+    "IDLE": "CHỜ",
+    "Play": "Phát",
+
+    // ----- Equalizer (the handheld console) -----
+    "PRESET": "MẪU",
+    "PRESETS": "CÁC MẪU",
+    "SAVE": "LƯU",
+    "SAVE AS": "LƯU THÀNH",
+    "UNDO": "HOÀN TÁC",
+    "CANCEL": "HUỶ",
+    "SELECT BAND": "CHỌN DẢI",
+    "10-BAND": "10 DẢI",
+    "NAME THIS CURVE": "ĐẶT TÊN ĐƯỜNG CONG",
+    "EASYEFFECTS PRESET": "PRESET EASYEFFECTS",
+    "NEW": "MỚI",
+    "SET": "ĐẶT",
+    "LAST.FM KEY (for AUTO)": "KHOÁ LAST.FM (cho TỰ ĐỘNG)",
+    "My curve": "Đường cong của tôi",
+    "New preset name": "Tên preset mới",
+    "Paste your key": "Dán khoá của bạn",
+    "Click a preset to load it.": "Bấm một mẫu để nạp.",
+    "Right click one of yours (\u2605) to delete it.":
+        "Bấm chuột phải vào mẫu của bạn (\u2605) để xoá.",
+    "Save the \u201C{preset}\u201D preset once in EasyEffects first, or the equalizer would wipe the rest of your chain.":
+        "Hãy lưu mẫu \u201C{preset}\u201D một lần trong EasyEffects trước, nếu không equalizer sẽ xoá phần còn lại trong chuỗi của bạn.",
+    "The equalizer is merged into the one you pick; a new preset replaces what is live in EasyEffects.":
+        "Equalizer được gộp vào mẫu bạn chọn; mẫu mới sẽ thay thế thứ đang chạy trong EasyEffects.",
+    "Free at last.fm/api/account/create. If typing does nothing: qs -c sekaipop ipc call eq lastfmKey <key>":
+        "Miễn phí tại last.fm/api/account/create. Nếu gõ mà không có gì xảy ra: qs -c sekaipop ipc call eq lastfmKey <key>"
 }

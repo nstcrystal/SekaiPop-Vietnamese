@@ -183,7 +183,7 @@ SekaiPopup {
                 kx: root.kx
                 ky: root.ky
                 renderScale: pad.rs
-                label: "\u25C0 PRESET"
+                label: "\u25C0 " + I18n.t("PRESET")
                 onClicked: root.stepPreset(-1)
             }
             PadShoulder {
@@ -193,7 +193,7 @@ SekaiPopup {
                 kx: root.kx
                 ky: root.ky
                 renderScale: pad.rs
-                label: "PRESET \u25B6"
+                label: I18n.t("PRESET") + " \u25B6"
                 onClicked: root.stepPreset(1)
             }
 
@@ -366,7 +366,7 @@ SekaiPopup {
                 y: root.d(184 + 64 + 26)
                 width: root.d(176)
                 horizontalAlignment: Text.AlignHCenter
-                text: "\u25C0 \u25B6   SELECT BAND\n\u25B2 \u25BC   \u00B11 dB"
+                text: "\u25C0 \u25B6   " + I18n.t("SELECT BAND") + "\n\u25B2 \u25BC   \u00B11 dB"
                 lineHeight: 1.1
                 color: PadPalette.label
                 opacity: PadPalette.labelOpacity
@@ -440,7 +440,8 @@ SekaiPopup {
                 y: root.d(246 + 28 + 18)
                 width: root.d(176)
                 horizontalAlignment: Text.AlignHCenter
-                text: "\u2726 AUTO    \u266A SAVE\n\u21BA UNDO    \u2606 SAVE AS"
+                text: "\u2726 " + I18n.t("AUTO") + "    \u266A " + I18n.t("SAVE")
+                          + "\n\u21BA " + I18n.t("UNDO") + "    \u2606 " + I18n.t("SAVE AS")
                 lineHeight: 1.1
                 color: PadPalette.label
                 opacity: PadPalette.labelOpacity

@@ -260,7 +260,7 @@ Item {
             y: 26
             width: card.cardWidth - 100 - (card.group ? 36 : 0)
             elide: Text.ElideRight
-            text: card.title
+            text: card.materialIcon ? I18n.t(card.title) : card.title
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 20
@@ -273,7 +273,7 @@ Item {
             y: 51
             width: card.cardWidth - 100 - (card.group ? 36 : 0)
             visible: card.body !== ""
-            text: card.body
+            text: card.materialIcon ? I18n.t(card.body) : card.body
             wrapMode: Text.Wrap
             maximumLineCount: 2
             elide: Text.ElideRight

@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import qs.services
+import qs.modules.common
 
 // The dock's Timer / Stopwatch / Pomodoro (Dock.qml, DockTimerCard.qml).
 //
@@ -253,7 +254,8 @@ Singleton {
                 if (root.timerLeft <= 0) {
                     root.timerRunning = false
                     root.timerPaused = false
-                    root.alarm("Timer finished", root.clock(root.timerTotal, false) + " is up")
+                    root.alarm(I18n.t("Timer finished"),
+                               I18n.t("{time} is up", { time: root.clock(root.timerTotal, false) }))
                 }
             }
             if (root.swRunning)
@@ -263,8 +265,8 @@ Singleton {
                 if (root.pomLeft <= 0) {
                     const was = root.pomPhase
                     root.nextPhase(true)
-                    root.alarm(was === "focus" ? "Focus done" : "Break over",
-                               "Next: " + root.phaseLabel)
+                    root.alarm(was === "focus" ? I18n.t("Focus done") : I18n.t("Break over"),
+                               I18n.t("Next: {phase}", { phase: I18n.t(root.phaseLabel) }))
                 }
             }
         }

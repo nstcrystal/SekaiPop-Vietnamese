@@ -126,7 +126,7 @@ SekaiPopup {
 
             LoadPlate {
                 width: root.halfW
-                label: "CPU"
+                label: I18n.t("CPU")
                 glyph: root.cpuGlyph
                 pct: root.cpuPercent
                 colorTop: root.plateTop(root.cpuTier)
@@ -136,7 +136,7 @@ SekaiPopup {
 
             LoadPlate {
                 width: root.halfW
-                label: "RAM"
+                label: I18n.t("RAM")
                 glyph: "memory"
                 pct: root.memPercent
                 colorTop: root.plateTop(root.memTier)
@@ -148,7 +148,7 @@ SekaiPopup {
         // ===== the gauges =====
         LoadGauge {
             width: root.innerW
-            title: "Processor"
+            title: I18n.t("Processor")
             pct: root.cpuPercent
             word: root.words[root.cpuTier]
             tint: root.tierFill[root.cpuTier]
@@ -160,7 +160,7 @@ SekaiPopup {
 
         LoadGauge {
             width: root.innerW
-            title: "Memory"
+            title: I18n.t("Memory")
             pct: root.memPercent
             word: root.words[root.memTier]
             tint: root.tierFill[root.memTier]
@@ -207,7 +207,7 @@ SekaiPopup {
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.verticalCenterOffset: -2
-                    text: "of"
+                    text: I18n.t("of")
                     color: mt.inkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 14

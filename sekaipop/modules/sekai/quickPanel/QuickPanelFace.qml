@@ -2691,7 +2691,9 @@ Item {
             y: 31
             width: 434
             elide: Text.ElideRight
-            text: alertCard.e !== null ? alertCard.e.title : ""
+            text: alertCard.e !== null
+                  ? (alertCard.shellIcon ? I18n.t(alertCard.e.title) : alertCard.e.title)
+                  : ""
             color: mt.pInk
             font.family: mt.fontFamily
             font.pixelSize: 23
@@ -2704,7 +2706,9 @@ Item {
             y: 61
             width: 434
             visible: text !== ""
-            text: alertCard.e !== null ? alertCard.e.body : ""
+            text: alertCard.e !== null
+                  ? (alertCard.shellIcon ? I18n.t(alertCard.e.body) : alertCard.e.body)
+                  : ""
             wrapMode: Text.Wrap
             maximumLineCount: 2
             elide: Text.ElideRight

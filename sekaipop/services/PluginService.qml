@@ -224,7 +224,8 @@ Singleton {
             return
         const body = fresh.map(s => s.id + ": " + s.error).join("\n")
         Quickshell.execDetached(["notify-send", "-a", "Shell", "-i", "material:extension_off",
-            fresh.length === 1 ? "A plugin was not loaded" : fresh.length + " plugins were not loaded", body])
+            fresh.length === 1 ? I18n.t("A plugin was not loaded")
+                               : I18n.t("{n} plugins were not loaded", { n: fresh.length }), body])
         for (const s of fresh)
             console.warn("PluginService: skipped plugin \"" + s.id + "\": " + s.error)
     }

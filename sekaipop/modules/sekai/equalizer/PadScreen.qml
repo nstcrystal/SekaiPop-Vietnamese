@@ -459,7 +459,7 @@ Item {
             }
             Text {
                 anchors.centerIn: parent
-                text: "\u2605 AUTO"
+                text: "\u2605 " + I18n.t("AUTO")
                 color: scr.eq.autoEnabled ? PadPalette.ink : "#ffffff"
                 opacity: scr.eq.autoEnabled ? 1 : 0.75
                 font.family: mt.fontFamily
@@ -626,7 +626,7 @@ Item {
             anchors.margins: scr.d(14)
 
             Text {
-                text: "PRESETS"
+                text: I18n.t("PRESETS")
                 color: "#ffffff"
                 opacity: 0.7
                 font.family: mt.fontFamily
@@ -657,7 +657,7 @@ Item {
                 }
                 PadChip {
  u: scr.u
-                    text: "+ SAVE AS"
+                    text: "+ " + I18n.t("SAVE AS")
                     onClicked: scr.openSaveAs()
                 }
             }
@@ -665,7 +665,9 @@ Item {
                 anchors.bottom: parent.bottom
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text: "Click a preset to load it." + (scr.eq.customNames.length > 0 ? " Right click one of yours (\u2605) to delete it." : "")
+                text: I18n.t("Click a preset to load it.")
+                      + (scr.eq.customNames.length > 0
+                         ? " " + I18n.t("Right click one of yours (\u2605) to delete it.") : "")
                 color: "#ffffff"
                 opacity: 0.5
                 font.family: mt.fontFamily
@@ -679,7 +681,7 @@ Item {
             anchors.fill: parent
             anchors.margins: scr.d(14)
             Text {
-                text: "NAME THIS CURVE"
+                text: I18n.t("NAME THIS CURVE")
                 color: "#ffffff"
                 opacity: 0.7
                 font.family: mt.fontFamily
@@ -694,7 +696,7 @@ Item {
  u: scr.u
                     id: saveName
                     width: scr.d(240)
-                    placeholder: "My curve"
+                    placeholder: I18n.t("My curve")
                     onSubmitted: value => {
                         scr.eq.saveCustom(value)
                         scr.page = "chart"
@@ -702,7 +704,7 @@ Item {
                 }
                 PadChip {
  u: scr.u
-                    text: "SAVE"
+                    text: I18n.t("SAVE")
                     lit: true
                     onClicked: {
                         scr.eq.saveCustom(saveName.text)
@@ -711,7 +713,7 @@ Item {
                 }
                 PadChip {
  u: scr.u
-                    text: "CANCEL"
+                    text: I18n.t("CANCEL")
                     onClicked: scr.page = "chart"
                 }
             }
@@ -723,7 +725,7 @@ Item {
             anchors.fill: parent
             anchors.margins: scr.d(14)
             Text {
-                text: "EASYEFFECTS PRESET"
+                text: I18n.t("EASYEFFECTS PRESET")
                 color: "#ffffff"
                 opacity: 0.7
                 font.family: mt.fontFamily
@@ -753,7 +755,7 @@ Item {
  u: scr.u
                     id: newChain
                     width: scr.d(190)
-                    placeholder: "New preset name"
+                    placeholder: I18n.t("New preset name")
                     onSubmitted: value => {
                         scr.eq.createActivePreset(value)
                         newChain.text = ""
@@ -761,7 +763,7 @@ Item {
                 }
                 PadChip {
  u: scr.u
-                    text: "+ NEW"
+                    text: "+ " + I18n.t("NEW")
                     onClicked: {
                         scr.eq.createActivePreset(newChain.text)
                         newChain.text = ""
@@ -773,8 +775,9 @@ Item {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 text: scr.eq.needsManualSave
-                    ? "Save the \u201C" + scr.eq.activePreset + "\u201D preset once in EasyEffects first, or the equalizer would wipe the rest of your chain."
-                    : "The equalizer is merged into the one you pick; a new preset replaces what is live in EasyEffects."
+                    ? I18n.t("Save the \u201C{preset}\u201D preset once in EasyEffects first, or the equalizer would wipe the rest of your chain.",
+                             { preset: scr.eq.activePreset })
+                    : I18n.t("The equalizer is merged into the one you pick; a new preset replaces what is live in EasyEffects.")
                 color: scr.eq.needsManualSave ? PadPalette.warn : "#ffffff"
                 opacity: scr.eq.needsManualSave ? 1 : 0.5
                 font.family: mt.fontFamily
@@ -782,7 +785,7 @@ Item {
             }
             Text {
                 y: scr.d(136)
-                text: "LAST.FM KEY (for AUTO)"
+                text: I18n.t("LAST.FM KEY (for AUTO)")
                 color: "#ffffff"
                 opacity: 0.7
                 font.family: mt.fontFamily
@@ -798,13 +801,13 @@ Item {
                     id: keyField
                     width: scr.d(190)
                     secret: true
-                    placeholder: "Paste your key"
+                    placeholder: I18n.t("Paste your key")
                     text: scr.eq.lastfmKey
                     onSubmitted: value => scr.eq.setLastfmKey(value)
                 }
                 PadChip {
  u: scr.u
-                    text: "SET"
+                    text: I18n.t("SET")
                     onClicked: scr.eq.setLastfmKey(keyField.text)
                 }
             }
@@ -812,7 +815,7 @@ Item {
                 y: scr.d(186)
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text: "Free at last.fm/api/account/create. If typing does nothing: qs -c sekaipop ipc call eq lastfmKey <key>"
+                text: I18n.t("Free at last.fm/api/account/create. If typing does nothing: qs -c sekaipop ipc call eq lastfmKey <key>")
                 color: "#ffffff"
                 opacity: 0.5
                 font.family: mt.fontFamily

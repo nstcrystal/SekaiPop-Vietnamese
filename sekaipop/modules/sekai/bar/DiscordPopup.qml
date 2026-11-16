@@ -423,7 +423,7 @@ SekaiPopup {
             DiscordKey {
                 width: 147
                 icon: root.muted ? "mic_off" : "mic"
-                label: root.muted ? "Muted" : "Mute"
+                label: root.muted ? I18n.t("Muted") : I18n.t("Mute")
                 active: root.muted
                 activeColor: root.danger
                 onClicked: root.muteRequested()
@@ -431,7 +431,7 @@ SekaiPopup {
             DiscordKey {
                 width: 147
                 icon: root.deafened ? "headset_off" : "headphones"
-                label: root.deafened ? "Deafened" : "Deafen"
+                label: root.deafened ? I18n.t("Deafened") : I18n.t("Deafen")
                 active: root.deafened
                 activeColor: root.danger
                 onClicked: root.deafenRequested()
