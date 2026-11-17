@@ -24,16 +24,12 @@ end
 -- release = true is what makes it a tap: Hyprland skips a release bind when another bind
 -- ran while Super was held. Without it, Hyprland 0.57 sends the shortcut's release after
 -- SUPER + N, SUPER + W and every other Super bind, and each of them opened Apps too (issue #99).
-
-
-
--- hl.bind("SUPER + SUPER_L", hl.dsp.global("quickshell:searchToggleRelease"), { release = true, description = "Shell: Apps" })
--- hl.bind("SUPER + SUPER_R", hl.dsp.global("quickshell:searchToggleRelease"), { release = true, description = "Shell (more): Apps" })
-
+hl.bind("SUPER + SUPER_L", hl.dsp.global("quickshell:searchToggleRelease"), { release = true, description = "Shell: Apps" })
+hl.bind("SUPER + SUPER_R", hl.dsp.global("quickshell:searchToggleRelease"), { release = true, description = "Shell (more): Apps" })
 
 shell("SUPER + A", "launcherphone toggle", "Toggle apps")
 shell("SUPER + N", "quickpanel toggle", "Toggle quick panel")
-shell("SUPER + O", "overview toggle", "Toggle overview")
+shell("SUPER + Tab", "overview toggle", "Toggle overview")
 shell("SUPER + I", "settings toggle", "Toggle settings")
 shell("SUPER + Slash", "cheatsheet toggle", "Toggle cheatsheet")
 shell("SUPER + K", "keyboard toggle", "Toggle on-screen keyboard")
@@ -45,7 +41,7 @@ shell("SUPER + SHIFT + ALT + Slash", "welcome show", "Welcome tour", true)
 shell("SUPER + Escape", "phone go power", "Toggle power options")
 
 -- Look
-shell("SUPER + W", "wallpaperpicker toggle", "Change wallpaper")
+shell("CTRL + SUPER + T", "wallpaperpicker toggle", "Change wallpaper")
 shell("CTRL + SUPER + ALT + T", "wallpaper random", "Random wallpaper", true)
 shell("CTRL + SUPER + SHIFT + T", "theme toggle", "Toggle theme picker")
 shell("CTRL + SUPER + SHIFT + D", "theme darkToggle", "Toggle dark mode")
@@ -186,26 +182,10 @@ hl.bind("SUPER + Semicolon", hl.dsp.layout("splitratio -0.1"),
     { repeating = true, description = "Windows: Adjust split ratio" })
 hl.bind("SUPER + Apostrophe", hl.dsp.layout("splitratio +0.1"),
     { repeating = true, description = "Windows: Adjust split ratio" })
-
-
-
 --# Positioning mode
--- hl.bind("SUPER + D", hl.dsp.window.float({ action = "toggle" }), { description = "Windows: Float/Tile" })
-
-
-hl.bind("SUPER + D", function()
-    hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
-    hl.dispatch(hl.dsp.window.resize({ x = 1000, y = 700 }))
-    hl.dispatch(hl.dsp.window.center())
-end, { description = "Windows: Float/Tile" })
-
-
-
--- hl.bind("SUPER + D", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }),
---     { description = "Windows: Maximize" })
-
-
-
+hl.bind("SUPER + ALT + Space", hl.dsp.window.float({ action = "toggle" }), { description = "Windows: Float/Tile" })
+hl.bind("SUPER + D", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }),
+    { description = "Windows: Maximize" })
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }),
     { description = "Windows: Fullscreen" })
 hl.bind("SUPER + ALT + F", hl.dsp.window.fullscreen_state({ internal = 0, client = 3, action = "toggle" }),
@@ -324,10 +304,10 @@ hl.bind("CTRL + SHIFT + ALT + SUPER + Delete", hl.dsp.exec_cmd("systemctl powero
 
 --##! Apps
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal), { description = "Apps: Terminal" })
--- hl.bind("SUPER + T", hl.dsp.exec_cmd(terminal), { description = "Apps (more): Terminal" })
--- hl.bind("CTRL + ALT + T", hl.dsp.exec_cmd(terminal), { description = "Apps (more): Terminal" })
+hl.bind("SUPER + T", hl.dsp.exec_cmd(terminal), { description = "Apps (more): Terminal" })
+hl.bind("CTRL + ALT + T", hl.dsp.exec_cmd(terminal), { description = "Apps (more): Terminal" })
 hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager), { description = "Apps: File manager" })
-hl.bind("SUPER + B", hl.dsp.exec_cmd(browser), { description = "Apps: Browser" })
+hl.bind("SUPER + W", hl.dsp.exec_cmd(browser), { description = "Apps: Browser" })
 hl.bind("SUPER + C", hl.dsp.exec_cmd(codeEditor), { description = "Apps: Code editor" })
 hl.bind("CTRL + SUPER + SHIFT + ALT + W", hl.dsp.exec_cmd(officeSoftware), { description = "Apps: Office software" })
 hl.bind("SUPER + X", hl.dsp.exec_cmd(textEditor), { description = "Apps: Text editor" })
