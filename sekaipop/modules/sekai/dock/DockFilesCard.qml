@@ -622,8 +622,10 @@ DockCard {
                         height: placesRow.height
 
                         HoverHandler {
-                            onHoveredChanged: stack.hover(hovered, "place:" + pl.modelData.key,
-                                                          pl.modelData.key === "TRASH" ? "Trash  ·  right-click for Empty Trash" : pl.modelData.label)
+                            readonly property string hoverLabel: pl.modelData.key === "TRASH"
+                                ? I18n.t("Trash  ·  right-click for Empty Trash")
+                                : I18n.t(pl.modelData.label)
+                            onHoveredChanged: stack.hover(hovered, "place:" + pl.modelData.key, hoverLabel)
                         }
 
                         DockButton {

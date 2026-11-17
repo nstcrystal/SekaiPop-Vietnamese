@@ -923,5 +923,29 @@ var dict = {
     "Pictures": "Ảnh",
     "Videos": "Video",
     "Music": "Nhạc",
-    "Trash": "Thùng rác"
+    "Trash": "Thùng rác",
+
+    // ----- Dock: Files stack (FilesStackService, DockFilesCard) -----
+    // The places row and the header use the place names above; these are the
+    // file types' names, the modified filter, and where a folder starts.
+    "Home": "Thư mục chính",
+    "Past 7 days": "7 ngày qua",
+    "Past 30 days": "30 ngày qua",
+    "Past year": "Một năm qua",
+    "Image": "Hình ảnh",
+    "Vector image": "Ảnh vector",
+    "Audio": "Âm thanh",
+    "Archive": "Tệp nén",
+    "Disk image": "Ảnh đĩa",
+    "Text": "Văn bản",
+    "Document": "Tài liệu",
+    "Spreadsheet": "Bảng tính",
+    "Presentation": "Bài trình chiếu",
+    "Shell script": "Tập lệnh shell",
+    "Code": "Mã nguồn",
+    "Package": "Gói cài đặt",
+    "E-book": "Sách điện tử",
+    "File": "Tệp",
+    "{ext} file": "Tệp {ext}",
+    "Trash  ·  right-click for Empty Trash": "Thùng rác  ·  chuột phải để dọn Thùng rác"
 }

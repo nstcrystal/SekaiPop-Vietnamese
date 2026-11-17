@@ -475,17 +475,18 @@ shell.
 - [x] Keybinds panel: board/list, ghi phím, hộp thoại trùng phím, setup; cheatsheet.
 - [x] Notification popup, popup còn lại của Bar (media, equalizer, plugin).
 
-Cụm 2b-9 — Dock (làm từng phần, tick khi xong phần đó; chờ test trước khi sang phần sau):
+Cụm 2b-9 + 2b-10 — Dock (làm từng phần, tick khi xong phần đó; chờ test trước khi sang phần sau):
 
 - [x] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta` — `3d75082`, rút gọn nhãn cho vừa khung ở `ff50fe1`. Menu dịch tại `buildMenu`; flag và tên tool dịch tại chỗ. Ba khóa shelf (`Add what is on the clipboard`, `Copy everything on the shelf`, `Clear the shelf`) đã thêm sẵn cho 2b-9d.
 - [ ] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro, nút điều khiển, `Lap`, footer Pomodoro.
 - [ ] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher).
 - [x] 2b-9d `DockShelfCard.qml` + `DockMediaCard.qml`: header `Kệ`, 3 hint nút (thêm/sao chép/dọn), câu trống, `Pick one to open it`, `Nothing playing`. Dịch tại `hint` và tại chỗ hiển thị.
 - [x] Media popup (`mediaControls/MediaPopup.qml`): nút play/pause rộng 92px, nhãn `Tạm dừng` tràn ra ngoài → dùng `Dừng` qua khóa ngữ cảnh `media:Pause` (tiếng Anh vẫn là `Pause`).
+- [x] 2b-10a `FilesStackService.qml`: nhãn thời gian sửa (`modifiedLabel`), tiêu đề `Home`/`Trash` (`titleFor`), loại file (`typeLabel`: Folder, các loại ảnh/video/âm thanh/tệp nén…, `{ext} file` → `Tệp {ext}`) và ngày sửa (`dateText`, dùng helper mới `I18n.dateMedium`). Nhãn 6 nút vị trí dịch trong `DockFilesCard` (`hoverLabel`), rê chuột lên Thùng rác có câu riêng. Giữ tiếng Anh: tên thư mục thật, `placeNames`, khóa `kinds` (vì `isVideo()` so sánh `Video`), đơn vị `B/kB/MB/GB/TB`.
+- [ ] 2b-10b `DockFilesCard.qml`: sắp xếp (`Name`/`Type`/`Modified`, `A to Z`, `Folders first`), `Modified:`, menu chuột phải, trạng thái trống (`Nothing here`, `Trash is empty`…), xác nhận dọn Thùng rác, `{n} of {m}`, `{n} item(s)`.
 
 Các cụm còn lại (sau Dock):
 
-- [ ] `DockFilesCard` + `FilesStackService` (~30 khóa: Home/Trash, loại file, sắp xếp, lọc, xác nhận dọn Trash).
 - [ ] `editMode` (~104 chuỗi): `EditGuides`, `PicturesRow`, `EditChrome`.
 - [ ] `desktopWidgets` (~99 chuỗi): `StickyNote`, `LyricsWidget` và widget khác.
 - [ ] Mảng còn lại: `palette`, `polkit`, `overview`, `regionSelector`, `framing`, `ScalePopup`.

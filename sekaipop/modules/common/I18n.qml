@@ -87,6 +87,14 @@ QtObject {
         return root.viWeekdaysShort[d.getDay()] + ", " + d.getDate() + " " + root.viMonthsShort[d.getMonth()]
     }
 
+    // "15 Thg 11" / "15 Nov" — a file's date; the year only for older ones.
+    function dateMedium(d, withYear) {
+        if (!root.vi || !(d instanceof Date))
+            return Qt.formatDate(d, withYear ? "d MMM yyyy" : "d MMM")
+        const day = d.getDate() + " " + root.viMonthsShort[d.getMonth()]
+        return withYear ? day + ", " + d.getFullYear() : day
+    }
+
     // The standing bar splits the date into two lines: month over day.
     function datePill(d) {
         if (!root.vi || !(d instanceof Date))

@@ -60,7 +60,7 @@ Singleton {
 
     function modifiedLabel(id) {
         const o = root.modifiedOptions.find(x => x.id === id)
-        return o ? o.label : ""
+        return o ? I18n.t(o.label) : ""
     }
 
     // The oldest modification time (ms) that still passes the filter; 0 for "any".
@@ -194,9 +194,9 @@ Singleton {
         if (path === "/")
             return "/"
         if (path === root.home)
-            return "Home"
+            return I18n.t("Home")
         if (path === root.trashPath)
-            return "Trash"
+            return I18n.t("Trash")
         const parts = String(path).split("/").filter(p => p !== "")
         return parts.length > 0 ? parts[parts.length - 1] : "/"
     }
@@ -380,11 +380,11 @@ Singleton {
 
     function typeLabel(isDir, suffix) {
         if (isDir)
-            return "Folder"
+            return I18n.t("Folder")
         const k = root.kinds[String(suffix).toLowerCase()]
         if (k)
-            return k[0]
-        return suffix !== "" ? String(suffix).toUpperCase() + " file" : "File"
+            return I18n.t(k[0])
+        return suffix !== "" ? I18n.t("{ext} file", { ext: String(suffix).toUpperCase() }) : I18n.t("File")
     }
 
     function sizeText(bytes) {
@@ -411,9 +411,7 @@ Singleton {
         const now = new Date()
         if (d.toDateString() === now.toDateString())
             return Qt.formatTime(d, "hh:mm")
-        if (d.getFullYear() === now.getFullYear())
-            return Qt.formatDate(d, "d MMM")
-        return Qt.formatDate(d, "d MMM yyyy")
+        return I18n.dateMedium(d, d.getFullYear() !== now.getFullYear())
     }
 
     // A name for one line: a newline inside it would break the row.
