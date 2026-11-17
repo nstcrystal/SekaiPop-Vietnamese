@@ -2,116 +2,120 @@
 
 <h1>SekaiPop</h1>
 
-<img src="assets/highlights.svg" alt="Phone control center, Sekai Pad equalizer, Edit Desktop, shader wallpaper transitions, two lockscreens, installs from a bare Arch" width="82%">
+<img src="assets/highlights.svg" alt="Trung tâm điều khiển dạng điện thoại, bộ chỉnh âm Sekai Pad, chỉnh sửa Desktop, hiệu ứng chuyển hình nền bằng shader, hai màn hình khóa, cài đặt từ Arch cơ bản" width="82%">
 
 <br>
 
-[Showcase](#showcase) &nbsp;|&nbsp; [What makes it different](#different) &nbsp;|&nbsp; [Requirements](#requirements) &nbsp;|&nbsp; [Installation](#installation) &nbsp;|&nbsp; [Keybinds](#keybinds) &nbsp;|&nbsp; [Troubleshooting](#troubleshooting)
+[Giới thiệu](#showcase) &nbsp;|&nbsp; [Điểm khác biệt](#different) &nbsp;|&nbsp; [Yêu cầu](#requirements) &nbsp;|&nbsp; [Cài đặt](#installation) &nbsp;|&nbsp; [Phím tắt](#keybinds) &nbsp;|&nbsp; [Khắc phục sự cố](#troubleshooting)
+
+<br>
+
+**[Read in English / Đọc bằng tiếng Anh](README.en.md)**
 
 <br>
 
 <div align="left">
 
-> ⚠️ **Warning: this is a passion project, and it is heavily vibe-coded.**
+> ⚠️ **Lưu ý: đây là một dự án đam mê, và phần lớn được viết theo kiểu "vibe coding".**
 >
-> I designed and directed SekaiPop myself: the visuals, the UI, how everything should animate and how everything should behave. Claude wrote most of the code to make that possible, so expect rough edges and bugs.
+> Tôi tự thiết kế và định hướng SekaiPop: giao diện, UI, cách mọi thứ chuyển động và hoạt động. Claude viết phần lớn code để hiện thực hóa điều đó, nên hãy chuẩn bị tinh thần gặp các góc thô và lỗi vặt.
 
 </div>
 
 <br>
 
-<img src="assets/shot-desktop-widgets.png" alt="SekaiPop desktop with clock, weather, calendar, to-do, palette, user card, sticky notes and lyrics widgets" width="100%">
+<img src="assets/shot-desktop-widgets.png" alt="Desktop SekaiPop với các widget đồng hồ, thời tiết, lịch, to-do, bảng màu, thẻ người dùng, ghi chú dán và lời bài hát" width="100%">
 
-<sub>Clock, weather, calendar, to-do, palette, user card, sticky notes, lyrics and custom images. Every widget is draggable, resizable and optional.</sub>
+<sub>Đồng hồ, thời tiết, lịch, to-do, bảng màu, thẻ người dùng, ghi chú dán, lời bài hát và hình ảnh tùy chỉnh. Mọi widget đều có thể kéo thả, thay đổi kích thước và tắt bật tùy ý.</sub>
 
 </div>
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-<h2 id="showcase"><img src="assets/tag-showcase.svg" alt="Showcase" height="80"></h2>
+<h2 id="showcase"><img src="assets/tag-showcase.svg" alt="Giới thiệu" height="80"></h2>
 
 <table>
 <tr>
 <td width="50%" valign="top">
-<img src="assets/shot-quick-panel-phone.png" alt="Quick Panel phone with Wi-Fi, Bluetooth, mic, speaker, brightness and notifications" width="100%">
-<br><b>Quick Panel: the control center is a phone</b><br>
-Wi-Fi, Bluetooth, mic, speaker, brightness, night light, easy effects and notifications sit on a 2.5D phone that bounces up from the bottom of the screen. A new notification makes it rise just far enough to show it.
+<img src="assets/shot-quick-panel-phone.png" alt="Quick Panel dạng điện thoại với Wi-Fi, Bluetooth, mic, loa, độ sáng và thông báo" width="100%">
+<br><b>Quick Panel: trung tâm điều khiển là một chiếc điện thoại</b><br>
+Wi-Fi, Bluetooth, micro, loa, độ sáng màn hình, ánh sáng ban đêm, hiệu ứng âm thanh và thông báo nằm trên một chiếc điện thoại 2.5D bật lên từ cạnh dưới màn hình. Khi có thông báo mới, điện thoại trồi lên vừa đủ để hiển thị nó.
 </td>
 <td width="50%" valign="top">
-<img src="assets/shot-settings-phone.png" alt="Settings as a landscape phone in the Monochrome theme" width="100%">
-<br><b>Settings: flip the phone sideways</b><br>
-Settings opens by rotating the Quick Panel phone into landscape. Six pages: Quick, General, Bar, Desktop, Hyprland and About / Update. Shown here in the Monochrome theme.
+<img src="assets/shot-settings-phone.png" alt="Cài đặt dạng điện thoại nằm ngang ở chủ đề Monochrome" width="100%">
+<br><b>Cài đặt: lật điện thoại sang ngang</b><br>
+Cài đặt mở ra bằng cách xoay chiếc điện thoại Quick Panel sang chế độ ngang. Có sáu trang: Quick, General, Bar, Desktop, Hyprland và About / Update. Ảnh chụp ở chủ đề Monochrome.
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-<img src="assets/shot-sekai-pad-eq.png" alt="Sekai Pad: a ten-band equalizer drawn as a handheld game console" width="100%">
-<br><b>Sekai Pad: the equalizer is a handheld console</b><br>
-A 10-band EQ (EasyEffects) with a D-pad for picking a band, face buttons for save, undo and auto, and preset cartridges you slot in at the top.
+<img src="assets/shot-sekai-pad-eq.png" alt="Sekai Pad: bộ chỉnh âm 10 băng tần thiết kế như máy chơi game cầm tay" width="100%">
+<br><b>Sekai Pad: bộ chỉnh âm là một máy chơi game cầm tay</b><br>
+Bộ EQ 10 băng tần (EasyEffects) với D-pad để chọn băng tần, các nút mặt để lưu, hoàn tác và tự động, cùng các hộp băng preset có thể cắm vào phía trên.
 </td>
 <td width="50%" valign="top">
-<img src="assets/shot-edit-desktop.png" alt="Edit Desktop mode with a shelf of widgets, bar, dock, views, theme and presets" width="100%">
-<br><b>Edit Desktop: rearrange it like a scrapbook</b><br>
-Press <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>. Left click adds or edits, right click removes, drag moves. Widgets, bar, dock, views, themes and presets all live here.
+<img src="assets/shot-edit-desktop.png" alt="Chế độ Edit Desktop với giá widget, thanh bar, dock, chế độ xem, chủ đề và preset" width="100%">
+<br><b>Edit Desktop: sắp xếp lại như một cuốn scrapbook</b><br>
+Nhấn <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>. Click chuột trái để thêm hoặc chỉnh sửa, click chuột phải để xóa, kéo để di chuyển. Widget, bar, dock, chế độ xem, chủ đề và preset đều nằm ở đây.
 </td>
 </tr>
 </table>
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-<h2 id="different"><img src="assets/tag-different.svg" alt="What makes it different" height="80"></h2>
+<h2 id="different"><img src="assets/tag-different.svg" alt="Điểm khác biệt" height="80"></h2>
 
-Most shells pick one look and theme it. SekaiPop starts from a single design language, applies it to everything, and adds a few ideas of its own.
+Hầu hết các shell chọn một giao diện rồi áp theme vào. SekaiPop bắt đầu từ một ngôn ngữ thiết kế thống nhất, áp dụng lên mọi thứ, và thêm vào một số ý tưởng riêng.
 
 <table>
 <tr>
-<td width="50%" valign="top"><b>One block, everywhere</b><br>Every pill, key, card and popup is an outline, a thin cream ring, a fill and a hard shadow straight down, like a keycap that sinks when you press it. Nothing looks bolted on.</td>
-<td width="50%" valign="top"><b>The shell is a phone</b><br>The Quick Panel, Settings and the app launcher are phones. Settings is the same phone rotating into landscape. Things pop up when they turn on and get swallowed when they turn off, instead of fading.</td>
+<td width="50%" valign="top"><b>Một khối, ở khắp nơi</b><br>Mỗi viên thuốc, phím, thẻ và popup đều là một đường viền, một vòng kem mỏng, một lớp nền và một bóng đổ thẳng xuống, như một keycap chìm xuống khi nhấn. Không có gì trông như được ghép vào từ chỗ khác.</td>
+<td width="50%" valign="top"><b>Shell là một chiếc điện thoại</b><br>Quick Panel, Cài đặt và trình khởi chạy ứng dụng đều là điện thoại. Cài đặt là chiếc điện thoại đó xoay sang ngang. Mọi thứ bật lên khi được bật và bị nuốt vào khi tắt, thay vì mờ dần.</td>
 </tr>
 <tr>
-<td valign="top"><b>Sekai Pad</b><br>An equalizer designed as hardware: a D-pad, face buttons, a screen with the live curve, and preset cartridges.</td>
-<td valign="top"><b>Edit Desktop</b><br>A full-screen layout editor built from the same blocks, with tabs for Widgets, Bar, Dock, Views, Theme and Presets.</td>
+<td valign="top"><b>Sekai Pad</b><br>Bộ chỉnh âm được thiết kế như phần cứng thực: D-pad, các nút mặt, màn hình hiển thị đường cong trực tiếp và các hộp băng preset.</td>
+<td valign="top"><b>Edit Desktop</b><br>Trình chỉnh sửa bố cục toàn màn hình được xây dựng từ cùng các khối đó, với các tab cho Widget, Bar, Dock, Views, Theme và Presets.</td>
 </tr>
 <tr>
-<td valign="top"><b>Presets that survive updates</b><br>Wearing an old preset doesn't drag in widgets that were added later. Lockscreen style, folder paths and other machine-specific choices are left alone. Wore the wrong one, or deleted one? There's an Undo for both.</td>
-<td valign="top"><b>Themes with personality</b><br>Six character-unit themes (Virtual Singer, Leo/need, MORE MORE JUMP!, Vivid BAD SQUAD, Wonderlands×Showtime, Nightcord at 25:00), Monochrome, Wallpaper (matugen) and a Custom palette, each in Light, Dark and Darker. They reach window borders, GTK, Qt and KDE colours, the terminal and a Vencord (Discord) theme.</td>
+<td valign="top"><b>Preset sống sót qua các bản cập nhật</b><br>Mặc một preset cũ không kéo theo các widget được thêm sau này. Kiểu màn hình khóa, đường dẫn thư mục và các lựa chọn riêng của máy được giữ nguyên. Mặc nhầm, hay lỡ xóa preset? Đều có Undo cho cả hai.</td>
+<td valign="top"><b>Theme có cá tính</b><br>Sáu theme theo nhóm nhân vật (Virtual Singer, Leo/need, MORE MORE JUMP!, Vivid BAD SQUAD, Wonderlands×Showtime, Nightcord at 25:00), Monochrome, Wallpaper (matugen) và bảng màu Custom, mỗi cái có phiên bản Light, Dark và Darker. Chúng lan tới viền cửa sổ, màu sắc GTK, Qt và KDE, terminal và theme Vencord (Discord).</td>
 </tr>
 <tr>
-<td valign="top"><b>Shader wallpaper transitions</b><br>Ring, Iris, Star (it spins), Blocks, Flash, Fade and Random. The bands cover the whole desktop, then reveal the new wallpaper, in your theme's colours. The same transition plays into and out of the lockscreen.</td>
-<td valign="top"><b>Two lockscreens</b><br>Gacha, and Calendar: a poster with three frames cut from your wallpaper, the clock as four keycaps, a month card and two-press Restart / Shut down keys. Hold <kbd>Ctrl</kbd> and Enter becomes Sleep. While locked, the desktop sleeps: widgets are freed, cava and video wallpapers stop, and everything wakes up one by one on unlock. Fingerprint unlock is available when <code>fprintd</code> is installed and prints are enrolled (Settings > General > Launcher & lock > Fingerprint unlock (off by default)).</td>
+<td valign="top"><b>Hiệu ứng chuyển hình nền bằng shader</b><br>Ring, Iris, Star (xoay tròn), Blocks, Flash, Fade và Random. Các dải che phủ toàn bộ màn hình rồi để lộ hình nền mới, theo màu theme của bạn. Cùng hiệu ứng chuyển đó được dùng khi vào và thoát màn hình khóa.</td>
+<td valign="top"><b>Hai màn hình khóa</b><br>Gacha và Calendar: một poster với ba khung cắt từ hình nền, đồng hồ dưới dạng bốn keycap, một thẻ tháng và hai phím Khởi động lại / Tắt máy. Giữ <kbd>Ctrl</kbd> và Enter sẽ trở thành Sleep. Khi khóa, desktop ngủ: các widget được giải phóng, cava và hình nền video dừng lại, và mọi thứ thức dậy từng cái một khi mở khóa. Mở khóa bằng vân tay có sẵn khi <code>fprintd</code> được cài đặt và vân tay đã đăng ký (Cài đặt > General > Launcher & lock > Fingerprint unlock, mặc định tắt).</td>
 </tr>
 <tr>
-<td valign="top"><b>A dock with real tools</b><br>Search, Files (Music, Pictures, Videos, Documents, Trash, with video thumbnails), Clipboard, Timer, a media card with seeking, and the Shelf: a drag-and-drop tray where items become polaroids, vinyls, books, folders and notes held with tape.</td>
-<td valign="top"><b>Music that feels alive</b><br>A media pill with a live wave, a cava visualizer widget, and a lyrics widget that asks several providers (LyricsPlus, NetEase, LRCLIB, QQ Music, Kugou), picks the best one per song, highlights word by word and has a source picker.</td>
+<td valign="top"><b>Dock với các công cụ thực sự hữu ích</b><br>Tìm kiếm, Files (Nhạc, Ảnh, Video, Tài liệu, Thùng rác, với thumbnail video), Clipboard, Hẹn giờ, một thẻ media có thanh tua và Shelf: một khay kéo thả nơi các mục trở thành ảnh polaroid, đĩa vinyl, sách, thư mục và ghi chú dán bằng băng keo.</td>
+<td valign="top"><b>Âm nhạc sống động</b><br>Một viên thuốc media với sóng âm trực tiếp, một widget visualizer cava, và một widget lời bài hát hỏi nhiều nhà cung cấp (LyricsPlus, NetEase, LRCLIB, QQ Music, Kugou), chọn cái tốt nhất cho từng bài, tô sáng từng từ và có bộ chọn nguồn.</td>
 </tr>
 <tr>
-<td valign="top"><b>Discord voice</b><br>A bar pill and popup showing who is in the call, who is speaking, mute and deafen, through a small Vencord companion plugin. Optional; it needs the official Discord client patched with the standalone Vencord installer, plus <code>git</code>, <code>node</code> and <code>pnpm</code>. Run <code>sekaipop/scripts/discordVoice/vencord-companion/install.sh</code> to add the plugin.</td>
-<td valign="top"><b>Configure without config files</b><br>Drag screens around a to-scale Displays layout and set resolution, scale and refresh rate. Set keyboard layouts with a bar switcher. Open a cheatsheet that builds itself from your Hyprland bind descriptions. Tune night light, gamma and brightness, and get a reload popup that shows shell errors.</td>
+<td valign="top"><b>Discord voice</b><br>Một viên thuốc trên bar và popup hiển thị ai đang trong cuộc gọi, ai đang nói, tắt tiếng và bịt tai, thông qua một plugin Vencord nhỏ đi kèm. Tùy chọn; cần client Discord chính thức được vá bằng bộ cài Vencord độc lập, cộng với <code>git</code>, <code>node</code> và <code>pnpm</code>. Chạy <code>sekaipop/scripts/discordVoice/vencord-companion/install.sh</code> để thêm plugin.</td>
+<td valign="top"><b>Cấu hình không cần file config</b><br>Kéo màn hình xung quanh bố cục Displays theo tỷ lệ thực và cài độ phân giải, tỷ lệ và tần số quét. Đặt bố cục bàn phím bằng bộ chuyển đổi trên bar. Mở cheatsheet tự xây dựng từ mô tả bind của Hyprland. Điều chỉnh ánh sáng ban đêm, gamma và độ sáng, và nhận popup reload hiển thị lỗi shell.</td>
 </tr>
 <tr>
-<td valign="top"><b>A full desktop</b><br>On-screen display, polkit prompt, notifications, screen snip (region, OCR to clipboard, Google Lens, screen record, colour picker), Game Mode, Focus Mode, Overview, on-screen keyboard and a welcome tour. Bar and dock work on any edge in four styles: Float, Straight, Transparent and Capsule.</td>
-<td valign="top"><b>An installer for a bare system</b><br><code>./install.sh</code> turns a minimal Hyprland install into the complete desktop: packages, fonts, services, groups, the shell and a ready Hyprland config, with backups and a one-command restore.</td>
+<td valign="top"><b>Desktop đầy đủ tính năng</b><br>Hiển thị trên màn hình, hộp thoại polkit, thông báo, chụp màn hình (vùng chọn, OCR vào clipboard, Google Lens, quay màn hình, chọn màu), Game Mode, Focus Mode, Overview, bàn phím ảo và hướng dẫn chào mừng. Bar và dock hoạt động ở bất kỳ cạnh nào theo bốn kiểu: Float, Straight, Transparent và Capsule.</td>
+<td valign="top"><b>Trình cài đặt cho hệ thống trần</b><br><code>./install.sh</code> biến một bản Hyprland tối giản thành desktop hoàn chỉnh: gói phần mềm, font chữ, dịch vụ, nhóm người dùng, shell và một cấu hình Hyprland sẵn dùng, có sao lưu và khôi phục bằng một lệnh.</td>
 </tr>
 </table>
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-<h2 id="requirements"><img src="assets/tag-requirements.svg" alt="Requirements" height="80"></h2>
+<h2 id="requirements"><img src="assets/tag-requirements.svg" alt="Yêu cầu" height="80"></h2>
 
-| Need | Notes |
+| Yêu cầu | Ghi chú |
 |---|---|
-| **Arch-based distro** (Arch, CachyOS, EndeavourOS) | The installer uses `pacman` and the AUR |
-| **Hyprland 0.55+** | The config is **Lua** (`hyprland.lua`); older versions can't read it |
-| **Quickshell** | `quickshell` or `quickshell-git` |
-| **Qt 6.7+** | Shaders ship built for Qt 6.12. On older Qt the installer rebuilds them once (needs `qt6-shadertools`) |
-| **A normal user with `sudo`** | Don't run the installer as root |
-| **An AUR helper** (`yay` or `paru`) | The installer can build `yay-bin` for you if you have none |
+| **Distro dựa trên Arch** (Arch, CachyOS, EndeavourOS) | Trình cài đặt dùng `pacman` và AUR |
+| **Hyprland 0.55+** | Cấu hình dùng **Lua** (`hyprland.lua`); các phiên bản cũ hơn không đọc được |
+| **Quickshell** | `quickshell` hoặc `quickshell-git` |
+| **Qt 6.7+** | Shader đi kèm được build cho Qt 6.12. Trên Qt cũ hơn, trình cài đặt tự build lại một lần (cần `qt6-shadertools`) |
+| **Người dùng thường có `sudo`** | Không chạy trình cài đặt với quyền root |
+| **AUR helper** (`yay` hoặc `paru`) | Trình cài đặt có thể build `yay-bin` cho bạn nếu chưa có |
 
 > [!IMPORTANT]
-> GPU drivers are **never** touched by the installer. Install your own (especially NVIDIA) before you start.
+> Driver GPU **không bao giờ** bị trình cài đặt động vào. Hãy tự cài driver của bạn (đặc biệt là NVIDIA) trước khi bắt đầu.
 
 <details>
-<summary><b>Core packages</b> (the shell can't start without these)</summary>
+<summary><b>Gói cơ bản</b> (shell không thể khởi động nếu thiếu)</summary>
 <br>
 
 `hyprland` `quickshell` `qt6-base` `qt6-declarative` `qt6-multimedia-ffmpeg` `qt6-svg` `qt6-imageformats` `qt6-wayland` `qt6-shadertools` `dbus` `polkit` `mesa` `pipewire` `wireplumber` `pipewire-pulse` `libpulse` `networkmanager` `bluez` `bluez-utils` `upower` `power-profiles-daemon` `libnotify` `wl-clipboard` `jq` `curl` `git` `xdg-utils` `xdg-user-dirs` `fontconfig` `python` `python-numpy` `ttf-material-symbols-variable`
@@ -119,233 +123,235 @@ Most shells pick one look and theme it. SekaiPop starts from a single design lan
 </details>
 
 <details>
-<summary><b>Feature packages</b></summary>
+<summary><b>Gói tính năng</b></summary>
 <br>
 
-| For | Packages |
+| Dành cho | Gói |
 |---|---|
-| Themes | `matugen` `adw-gtk-theme` `dconf` `glib2` `xorg-xrdb` |
-| Music | `cava` `easyeffects` |
-| Screenshots, OCR, recording | `grim` `slurp` `swappy` `tesseract` `tesseract-data-eng` `imagemagick` `wf-recorder` `ffmpeg` `hyprpicker` |
-| Clipboard, emoji, typing | `cliphist` `wtype` |
-| Night light, brightness | `hyprsunset` `brightnessctl` `ddcutil` |
-| Dialogs, terminal | `zenity` `kitty` |
-| Wi-Fi / Bluetooth "Advanced" buttons | `plasma-nm` `kde-cli-tools` `blueman` |
-| Sounds, updates | `libcanberra` `sound-theme-freedesktop` `pacman-contrib` |
-| Media keys | `playerctl` |
+| Theme | `matugen` `adw-gtk-theme` `dconf` `glib2` `xorg-xrdb` |
+| Âm nhạc | `cava` `easyeffects` |
+| Chụp màn hình, OCR, quay màn hình | `grim` `slurp` `swappy` `tesseract` `tesseract-data-eng` `imagemagick` `wf-recorder` `ffmpeg` `hyprpicker` |
+| Clipboard, emoji, gõ phím | `cliphist` `wtype` |
+| Ánh sáng ban đêm, độ sáng | `hyprsunset` `brightnessctl` `ddcutil` |
+| Hộp thoại, terminal | `zenity` `kitty` |
+| Nút "Advanced" Wi-Fi / Bluetooth | `plasma-nm` `kde-cli-tools` `blueman` |
+| Âm thanh, cập nhật | `libcanberra` `sound-theme-freedesktop` `pacman-contrib` |
+| Phím media | `playerctl` |
 
 </details>
 
 <details>
-<summary><b>Desktop layer</b> (skip with <code>--no-desktop-layer</code> if you already have a desktop)</summary>
+<summary><b>Desktop layer</b> (bỏ qua với <code>--no-desktop-layer</code> nếu bạn đã có desktop)</summary>
 <br>
 
-`xorg-xwayland` `xdg-desktop-portal` `xdg-desktop-portal-hyprland` `xdg-desktop-portal-gtk` `gvfs` `adwaita-icon-theme` `noto-fonts` `noto-fonts-cjk` `noto-fonts-emoji` `ttf-jetbrains-mono-nerd` `gnome-keyring` `libsecret` `pipewire-alsa`, plus a file manager (Dolphin on KDE, Thunar otherwise) and `qt6ct` where nothing else themes Qt.
+`xorg-xwayland` `xdg-desktop-portal` `xdg-desktop-portal-hyprland` `xdg-desktop-portal-gtk` `gvfs` `adwaita-icon-theme` `noto-fonts` `noto-fonts-cjk` `noto-fonts-emoji` `ttf-jetbrains-mono-nerd` `gnome-keyring` `libsecret` `pipewire-alsa`, cộng thêm một trình quản lý file (Dolphin trên KDE, Thunar cho các trường hợp khác) và `qt6ct` khi không có gì khác theme Qt.
 
-The portals are what make screen sharing work in Discord, browsers and OBS.
+Các portal là thứ cho phép chia sẻ màn hình hoạt động trong Discord, trình duyệt và OBS.
 
 </details>
 
 <details>
-<summary><b>Optional</b> (<code>--with-optional</code>)</summary>
+<summary><b>Tùy chọn</b> (<code>--with-optional</code>)</summary>
 <br>
 
-`python-aubio` `songrec` (song recognition), `mpvpaper` (video wallpapers), `nwg-displays`, `hypridle`, `nodejs` `pnpm` (Vencord plugin build), `cloudflare-warp-bin`
+`python-aubio` `songrec` (nhận diện bài hát), `mpvpaper` (hình nền video), `nwg-displays`, `hypridle`, `nodejs` `pnpm` (build plugin Vencord), `cloudflare-warp-bin`
 
 </details>
 
 <details>
-<summary><b>Fonts and services</b></summary>
+<summary><b>Font chữ và dịch vụ</b></summary>
 <br>
 
-**Fonts:** Google Sans Flex (the installer fetches it into `~/.local/share/fonts`) and Material Symbols Rounded for icons.
+**Font chữ:** Google Sans Flex (trình cài đặt tải vào `~/.local/share/fonts`) và Material Symbols Rounded cho icon.
 
-**Services the installer enables:** `NetworkManager`, `bluetooth`, `upower`, `power-profiles-daemon`, and the PipeWire user services (`pipewire`, `pipewire-pulse`, `wireplumber`). You are also added to the `video` group.
+**Dịch vụ được trình cài đặt bật lên:** `NetworkManager`, `bluetooth`, `upower`, `power-profiles-daemon`, và các dịch vụ PipeWire của người dùng (`pipewire`, `pipewire-pulse`, `wireplumber`). Bạn cũng được thêm vào nhóm `video`.
 
 </details>
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-<h2 id="installation"><img src="assets/tag-installation.svg" alt="Installation" height="80"></h2>
+<h2 id="installation"><img src="assets/tag-installation.svg" alt="Cài đặt" height="80"></h2>
 
-### 1. Install
+### 1. Cài đặt
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Blapples/SekaiPop/main/get.sh | bash
 ```
 
-That is the whole install. It downloads SekaiPop, then does three jobs:
+Đây là toàn bộ quá trình cài đặt. Lệnh này tải SekaiPop về rồi thực hiện ba việc:
 
-1. **Dependencies:** packages (repos and AUR), Google Sans Flex, services, groups.
-2. **The shell:** copied to `~/.config/quickshell/sekaipop` (an older copy is kept as `.bak-<time>`).
-3. **Hyprland:** a ready Lua config in `~/.config/hypr` (keybinds, rules, autostart, idle lock) and a `monitors.lua` made for the screens connected right now. Inside a running Hyprland it picks the highest refresh rate your screen offers at its preferred size.
+1. **Phụ thuộc:** gói phần mềm (repo và AUR), Google Sans Flex, dịch vụ, nhóm người dùng.
+2. **Shell:** sao chép vào `~/.config/quickshell/sekaipop` (bản cũ được giữ lại dưới dạng `.bak-<thời_gian>`).
+3. **Hyprland:** một cấu hình Lua sẵn dùng trong `~/.config/hypr` (phím tắt, rules, autostart, khóa màn hình khi idle) và một `monitors.lua` được tạo cho các màn hình đang kết nối. Trong Hyprland đang chạy, nó chọn tần số quét cao nhất màn hình hỗ trợ ở độ phân giải ưu tiên.
 
 > [!WARNING]
-> Run it as your normal user, not root. It calls `sudo` itself where needed.
+> Chạy với tư cách người dùng thường, không phải root. Lệnh sẽ tự gọi `sudo` khi cần.
 
-Want to look first? Add `--dry-run`: it prints everything it would do and changes nothing.
+Muốn xem trước? Thêm `--dry-run`: lệnh sẽ in ra tất cả những gì nó sẽ làm mà không thay đổi gì.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Blapples/SekaiPop/main/get.sh | bash -s -- --dry-run
 ```
 
-Options go after the command (see [Installer options](#installer-options)), for example `--yes` or `--hypr merge`.
+Các tùy chọn đặt sau lệnh (xem [Tùy chọn trình cài đặt](#installer-options)), ví dụ `--yes` hoặc `--hypr merge`.
 
 <details>
-<summary>Prefer to clone it yourself?</summary>
+<summary>Muốn tự clone về?</summary>
 
 ```bash
 git clone https://github.com/Blapples/SekaiPop.git
 cd SekaiPop
-./install.sh --dry-run      # look first
-./install.sh                # install
+./install.sh --dry-run      # xem trước
+./install.sh                # cài đặt
 ```
 
 ```
 install.sh   install-deps.sh   check-deps.sh
-hypr/        Hyprland (Lua) config
-sekaipop/    the shell itself
+hypr/        cấu hình Hyprland (Lua)
+sekaipop/    bản thân shell
 ```
 
 </details>
 
-### 2. Start it
+### 2. Khởi động
 
-Log out and back in, choosing the plain **Hyprland** session (**not** "uwsm"). The shell starts by itself. Inside an already running Hyprland the installer offers to reload and start it for you.
+Đăng xuất và đăng nhập lại, chọn phiên **Hyprland** thuần túy (**không** chọn "uwsm"). Shell sẽ tự khởi động. Trong Hyprland đang chạy, trình cài đặt sẽ hỏi bạn có muốn reload và khởi động nó không.
 
-### 3. Check everything
+### 3. Kiểm tra mọi thứ
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Blapples/SekaiPop/main/get.sh | bash -s -- --check
 ```
 
-It is read-only: it lists what is installed and what is missing, and changes nothing.
+Lệnh này chỉ đọc: liệt kê những gì đã được cài và những gì còn thiếu, không thay đổi gì.
 
-### Installer options
+### Tùy chọn trình cài đặt
 
-| Option | What it does |
+<a id="installer-options"></a>
+
+| Tùy chọn | Chức năng |
 |---|---|
-| `--dry-run` | Show everything, change nothing |
-| `--yes` | No questions |
-| `--hypr full` | Install the preconfigured Hyprland config (default on a new setup) |
-| `--hypr merge` | **Keep your config**, only add a small `sekaipop_session` file |
-| `--hypr skip` | Don't touch Hyprland at all |
-| `--no-deps` | Only copy files, install no packages |
-| `--rice DIR` | Install a different copy of the `sekaipop` folder |
-| `--restore` | Put back the Hyprland config backed up by the last run |
-| `-- <options>` | Pass options on to `install-deps.sh` |
+| `--dry-run` | Hiển thị tất cả, không thay đổi gì |
+| `--yes` | Không hỏi xác nhận |
+| `--hypr full` | Cài cấu hình Hyprland được cấu hình sẵn (mặc định khi cài mới) |
+| `--hypr merge` | **Giữ nguyên cấu hình của bạn**, chỉ thêm file `sekaipop_session` nhỏ |
+| `--hypr skip` | Không động vào Hyprland |
+| `--no-deps` | Chỉ sao chép file, không cài gói |
+| `--rice DIR` | Cài một bản sao khác của thư mục `sekaipop` |
+| `--restore` | Khôi phục cấu hình Hyprland được sao lưu bởi lần chạy trước |
+| `-- <tùy chọn>` | Truyền tùy chọn cho `install-deps.sh` |
 
-`install-deps.sh` extras (pass them after `--`): `--core-only`, `--with-optional`, `--no-desktop-layer`, `--gpu amd|intel|nvidia|skip`, `--ddc`, `--file-manager dolphin|thunar|none`, `--no-update`, `--no-aur`.
+Tùy chọn thêm của `install-deps.sh` (truyền sau `--`): `--core-only`, `--with-optional`, `--no-desktop-layer`, `--gpu amd|intel|nvidia|skip`, `--ddc`, `--file-manager dolphin|thunar|none`, `--no-update`, `--no-aur`.
 
 ```bash
-./install.sh --hypr merge                          # I already have a Hyprland config
-./install.sh -- --with-optional --gpu amd          # everything, AMD GPU
-./install.sh --yes -- --core-only                  # bare minimum, no questions
+./install.sh --hypr merge                          # Tôi đã có cấu hình Hyprland
+./install.sh -- --with-optional --gpu amd          # mọi thứ, GPU AMD
+./install.sh --yes -- --core-only                  # tối thiểu, không hỏi
 ```
 
-### Safety
+### An toàn
 
-- Your old Hyprland config is moved to `~/.config/hypr.sekaipop-backup-<time>`, **never deleted**. `./install.sh --restore` brings it back.
-- Your `monitors.lua`, `workspaces.lua`, `sekaipop_overrides.lua` and `custom/` folder are carried over.
-- `monitors.lua` is **never shipped**. It is generated for your screens, so a config written for someone else's monitors can't give you a black screen.
-- A mistake in any config file is written to `~/.cache/sekaipop/hypr-errors.log`; the other files still load.
+- Cấu hình Hyprland cũ của bạn được chuyển sang `~/.config/hypr.sekaipop-backup-<thời_gian>`, **không bao giờ bị xóa**. `./install.sh --restore` sẽ khôi phục lại.
+- `monitors.lua`, `workspaces.lua`, `sekaipop_overrides.lua` và thư mục `custom/` của bạn được giữ nguyên.
+- `monitors.lua` **không bao giờ được đóng gói sẵn**. File này được tạo ra cho màn hình của bạn, nên cấu hình viết cho màn hình của người khác không thể khiến bạn nhìn thấy màn hình đen.
+- Lỗi trong bất kỳ file cấu hình nào được ghi vào `~/.cache/sekaipop/hypr-errors.log`; các file còn lại vẫn tải bình thường.
 
-### Updating
+### Cập nhật
 
-Run the install command again. Settings and state live in `~/.local/state/sekaipop`, so your choices are kept. If you cloned the repo instead, `git pull` and run `./install.sh` again.
+Chạy lại lệnh cài đặt. Cài đặt và trạng thái nằm trong `~/.local/state/sekaipop`, nên các lựa chọn của bạn được giữ nguyên. Nếu bạn đã clone repo, hãy `git pull` và chạy lại `./install.sh`.
 
-### Your own changes
+### Thay đổi theo ý riêng
 
-Edit the files in `~/.config/hypr/custom/` (`keybinds.lua`, `rules.lua`, `variables.lua`, `env.lua`, `execs.lua`, `general.lua`). They load after the defaults and are never overwritten. Give a keybind a description like `"Apps: My thing"` and the cheatsheet lists it.
+Chỉnh sửa các file trong `~/.config/hypr/custom/` (`keybinds.lua`, `rules.lua`, `variables.lua`, `env.lua`, `execs.lua`, `general.lua`). Chúng được tải sau cấu hình mặc định và không bao giờ bị ghi đè. Đặt cho một phím tắt mô tả như `"Apps: Thứ gì đó của tôi"` và cheatsheet sẽ liệt kê nó.
 
-### Plugins
+### Plugin
 
-A plugin is a desktop widget, an entry in the bar with a card under it, or both, kept in its own folder, usually its own repo: put one in `~/.config/sekaipop/plugins/` (most come with an `install.sh` that does it), run `qs -c sekaipop ipc call plugins reload`, then add its widget from Edit Desktop and switch its bar entry on in Settings > Bar > Modules. A plugin runs with the shell's full rights, so install only what you would run as your own script. Writing one, and the interface it gets: [Plugins](docs/PLUGINS.md); the smallest examples are [hello clock](examples/plugins/hello-clock/) (a widget) and [hello bar](examples/plugins/hello-bar/) (a bar entry).
+Một plugin là một widget desktop, một mục trên bar với thẻ bên dưới, hoặc cả hai, được đặt trong thư mục riêng, thường là repo riêng: đặt vào `~/.config/sekaipop/plugins/` (hầu hết có `install.sh` làm việc đó), chạy `qs -c sekaipop ipc call plugins reload`, rồi thêm widget của nó từ Edit Desktop và bật mục bar của nó trong Settings > Bar > Modules. Plugin chạy với toàn quyền của shell, nên chỉ cài những gì bạn sẵn sàng chạy như script của chính mình. Hướng dẫn viết plugin và giao diện nó nhận được: [Plugins](docs/PLUGINS.md); các ví dụ nhỏ nhất là [hello clock](examples/plugins/hello-clock/) (một widget) và [hello bar](examples/plugins/hello-bar/) (một mục bar).
 
 <!-- plugin-list -->
-| Plugin | What it adds |
+| Plugin | Tính năng thêm vào |
 | ------ | ------------ |
-| [Tailscale](https://github.com/masshirodev/sekaipop-tailscale) | A bar entry with whether this machine is on your tailnet and how many devices are up (`5/6`); a click lists every device with a status dot and copies its IP. The same list as a desktop widget. |
+| [Tailscale](https://github.com/masshirodev/sekaipop-tailscale) | Mục bar hiển thị máy này có trên tailnet không và bao nhiêu thiết bị đang hoạt động (`5/6`); click để liệt kê mọi thiết bị kèm chấm trạng thái và sao chép IP. Danh sách tương tự dưới dạng widget desktop. |
 <!-- /plugin-list -->
 
-Made one? Give its repository the GitHub topic [`sekaipop-plugin`](https://github.com/topics/sekaipop-plugin) and open a pull request adding it to the list above.
+Tự làm được plugin? Gắn topic GitHub [`sekaipop-plugin`](https://github.com/topics/sekaipop-plugin) cho repo và mở pull request thêm nó vào danh sách trên.
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-<h2 id="keybinds"><img src="assets/tag-keybinds.svg" alt="Keybinds" height="80"></h2>
+<h2 id="keybinds"><img src="assets/tag-keybinds.svg" alt="Phím tắt" height="80"></h2>
 
-Press <kbd>Super</kbd> + <kbd>/</kbd> any time for the full list, grouped.
+Nhấn <kbd>Super</kbd> + <kbd>/</kbd> bất cứ lúc nào để xem danh sách đầy đủ theo nhóm.
 
-To change one, open **Settings > Hyprland > Keybinds** (or `qs -c sekaipop ipc call keybinds toggle`): a keyboard slab shows what is on every key. Pick an action, press **Press keys**, then press the new keys (or switch the modifiers on and click a key on the board). It works straight away, and **Reset** puts it back.
+Để thay đổi, mở **Settings > Hyprland > Keybinds** (hoặc `qs -c sekaipop ipc call keybinds toggle`): một sơ đồ bàn phím hiển thị những gì đang gắn với mỗi phím. Chọn một hành động, nhấn **Press keys**, rồi nhấn các phím mới (hoặc bật/tắt modifier và click phím trên sơ đồ). Thay đổi có hiệu lực ngay, và **Reset** sẽ khôi phục lại.
 
-| Keys | Action |
+| Phím | Hành động |
 |---|---|
-| <kbd>Super</kbd> (tap) or <kbd>Super</kbd> + <kbd>A</kbd> | Apps (launcher phone) |
+| <kbd>Super</kbd> (nhấn) hoặc <kbd>Super</kbd> + <kbd>A</kbd> | Ứng dụng (điện thoại launcher) |
 | <kbd>Super</kbd> + <kbd>N</kbd> | Quick Panel |
 | <kbd>Super</kbd> + <kbd>Tab</kbd> | Overview |
-| <kbd>Super</kbd> + <kbd>I</kbd> | Settings |
+| <kbd>Super</kbd> + <kbd>I</kbd> | Cài đặt |
 | <kbd>Super</kbd> + <kbd>/</kbd> | Cheatsheet |
-| <kbd>Super</kbd> + <kbd>K</kbd> | On-screen keyboard |
-| <kbd>Super</kbd> + <kbd>M</kbd> | Equalizer (Sekai Pad) |
+| <kbd>Super</kbd> + <kbd>K</kbd> | Bàn phím ảo |
+| <kbd>Super</kbd> + <kbd>M</kbd> | Bộ chỉnh âm (Sekai Pad) |
 | <kbd>Super</kbd> + <kbd>G</kbd> | Game Mode |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> | Edit Desktop |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> | Focus Mode |
-| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>T</kbd> | Wallpaper picker |
-| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> | Random wallpaper |
-| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | Theme picker |
-| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | Dark mode toggle |
-| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>R</kbd> | Restart the shell |
-| <kbd>Super</kbd> + <kbd>L</kbd> | Lock |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Screen snip |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd> | Character recognition (OCR) to clipboard |
+| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>T</kbd> | Chọn hình nền |
+| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> | Hình nền ngẫu nhiên |
+| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | Chọn theme |
+| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | Chuyển đổi chế độ tối |
+| <kbd>Ctrl</kbd> + <kbd>Super</kbd> + <kbd>R</kbd> | Khởi động lại shell |
+| <kbd>Super</kbd> + <kbd>L</kbd> | Khóa màn hình |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Chụp vùng chọn |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd> | Nhận dạng ký tự (OCR) vào clipboard |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> | Google Lens |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Record region |
-| <kbd>Super</kbd> + <kbd>V</kbd> / <kbd>Super</kbd> + <kbd>.</kbd> | Clipboard history / emoji |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Quay vùng chọn |
+| <kbd>Super</kbd> + <kbd>V</kbd> / <kbd>Super</kbd> + <kbd>.</kbd> | Lịch sử clipboard / emoji |
 
-Volume and brightness keys go through the shell's on-screen display.
+Các phím âm lượng và độ sáng được xử lý qua màn hình hiển thị trên screen của shell.
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-<h2 id="troubleshooting"><img src="assets/tag-troubleshooting.svg" alt="Troubleshooting" height="80"></h2>
+<h2 id="troubleshooting"><img src="assets/tag-troubleshooting.svg" alt="Khắc phục sự cố" height="80"></h2>
 
-| Problem | Try |
+| Vấn đề | Thử làm |
 |---|---|
-| Shell doesn't start | Run `qs -c sekaipop log`, and make sure you logged into the plain **Hyprland** session, not uwsm |
-| "Failed to load configuration" after an update ("... is not a type" for something the file declares) | Restart the shell, don't reload it: **Restart shell** on the error card, or `qs kill -c sekaipop; qs -c sekaipop -d`. A reload stays inside the same process, which can hold on to the old files' state (issue #79) |
-| Black screen after install | `./install.sh --restore`, then read `~/.cache/sekaipop/hypr-errors.log` |
-| Icons are missing | Install `ttf-material-symbols-variable`, then `fc-cache -f` |
-| Shaders or transitions don't draw | Qt older than 6.12 needs the shaders rebuilt: `bash ~/.config/quickshell/sekaipop/shaders/compile-shaders.sh` (needs `qt6-shadertools`) |
-| Hyprland rejected part of the config | `hyprctl configerrors` shows what it refused to load |
-| Something is missing | Run `./check-deps.sh`; it lists every missing package and QML module |
+| Shell không khởi động | Chạy `qs -c sekaipop log`, và đảm bảo bạn đã đăng nhập vào phiên **Hyprland** thuần túy, không phải uwsm |
+| "Failed to load configuration" sau cập nhật ("... is not a type" cho thứ gì đó file khai báo) | Khởi động lại shell, đừng reload: **Restart shell** trên thẻ lỗi, hoặc `qs kill -c sekaipop; qs -c sekaipop -d`. Reload vẫn ở trong cùng tiến trình, có thể giữ lại trạng thái của file cũ (issue #79) |
+| Màn hình đen sau khi cài | `./install.sh --restore`, rồi đọc `~/.cache/sekaipop/hypr-errors.log` |
+| Icon bị thiếu | Cài `ttf-material-symbols-variable`, rồi `fc-cache -f` |
+| Shader hoặc hiệu ứng chuyển không hiển thị | Qt cũ hơn 6.12 cần build lại shader: `bash ~/.config/quickshell/sekaipop/shaders/compile-shaders.sh` (cần `qt6-shadertools`) |
+| Hyprland từ chối một phần cấu hình | `hyprctl configerrors` hiển thị những gì nó từ chối tải |
+| Có gì đó bị thiếu | Chạy `./check-deps.sh`; nó liệt kê mọi gói và module QML còn thiếu |
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-<h2 id="credits"><img src="assets/tag-credits.svg" alt="Credits and license" height="80"></h2>
+<h2 id="credits"><img src="assets/tag-credits.svg" alt="Ghi công và giấy phép" height="80"></h2>
 
 > [!CAUTION]
-> The region selector's **search** action uploads the cropped screenshot to `uguu.se` before opening Google Lens. Don't use it on anything private.
+> Hành động **search** của bộ chọn vùng sẽ tải ảnh chụp đã cắt lên `uguu.se` trước khi mở Google Lens. Đừng dùng nó với nội dung riêng tư.
 
-SekaiPop is built on other people's work, and I'm grateful to all of them.
+SekaiPop được xây dựng trên công sức của nhiều người, và tôi biết ơn tất cả họ.
 
-**The foundation**
+**Nền tảng**
 
-- **[end4](https://github.com/end-4)** and [dots-hyprland](https://github.com/end-4/dots-hyprland) (Illogical Impulse): the foundation of this whole shell. The Hyprland configuration in `hypr/` is adapted from it, the installer follows the idea of `./setup install`, and the Anti-Flashbang shaders are copied unchanged (GPL-3.0). The cheat sheet, the Overview and the way Settings is organised also take after it.
-- **[pCtrade](https://github.com/pctrade)** (end4-pC): the inspiration for how customizable this shell is, and for his support along the way. The `aurora`, `dots`, `mirror` and `ring` audio visualizers are ported from his work.
-- **[p3dro](https://github.com/P3DROVFX)**'s fork of Illogical Impulse: the Discord Voice service the bar pill and popup are ported from.
-- **[ilyamiro](https://github.com/ilyamiro)** and his Serpentium shell: the equalizer engine behind the Sekai Pad. The 10-band EasyEffects backend (`equalizer.sh`) came to SekaiPop through the pC fork, and the welcome screen follows the structure of his `Start.qml`. The handheld-console design of the Sekai Pad is SekaiPop's own.
+- **[end4](https://github.com/end-4)** và [dots-hyprland](https://github.com/end-4/dots-hyprland) (Illogical Impulse): nền tảng của toàn bộ shell này. Cấu hình Hyprland trong `hypr/` được phỏng theo, trình cài đặt theo ý tưởng của `./setup install`, và các shader Anti-Flashbang được sao chép nguyên vẹn (GPL-3.0). Cheatsheet, Overview và cách tổ chức Settings cũng học theo.
+- **[pCtrade](https://github.com/pctrade)** (end4-pC): nguồn cảm hứng cho mức độ tùy biến của shell này, và vì sự hỗ trợ của anh ấy trong suốt quá trình. Các visualizer âm thanh `aurora`, `dots`, `mirror` và `ring` được port từ công việc của anh.
+- Fork Illogical Impulse của **[p3dro](https://github.com/P3DROVFX)**: dịch vụ Discord Voice mà viên thuốc bar và popup được port từ đó.
+- **[ilyamiro](https://github.com/ilyamiro)** và shell Serpentium của anh: engine bộ chỉnh âm đằng sau Sekai Pad. Backend EasyEffects 10 băng tần (`equalizer.sh`) đến với SekaiPop qua fork pC, và màn hình chào mừng theo cấu trúc `Start.qml` của anh. Thiết kế máy chơi game cầm tay của Sekai Pad là sáng tạo riêng của SekaiPop.
 
-**Projects it uses**
+**Các dự án được sử dụng**
 
-- [Quickshell](https://quickshell.org) and [Hyprland](https://hyprland.org), which it runs on.
-- [matugen](https://github.com/InioX/matugen) by InioX, for colours drawn from the wallpaper.
-- Material Discord by CapnKitten and system24 by refact0r, the base of the Discord theme.
-- [emojibase](https://github.com/milesj/emojibase) (MIT), for the launcher's emoji data.
-- Material Symbols (icons) and Google Sans Flex (text).
-- [hyprland-scroll-overview](https://github.com/yayuuu/hyprland-scroll-overview) by yayuuu, an optional plugin the shell can use.
-- [Open-Meteo](https://open-meteo.com) for the weather, and LRCLIB, LyricsPlus, NetEase Cloud Music, QQ Music and Kugou for lyrics.
+- [Quickshell](https://quickshell.org) và [Hyprland](https://hyprland.org), nền tảng chạy shell này.
+- [matugen](https://github.com/InioX/matugen) của InioX, để lấy màu từ hình nền.
+- Material Discord của CapnKitten và system24 của refact0r, nền tảng của theme Discord.
+- [emojibase](https://github.com/milesj/emojibase) (MIT), dữ liệu emoji cho launcher.
+- Material Symbols (icon) và Google Sans Flex (văn bản).
+- [hyprland-scroll-overview](https://github.com/yayuuu/hyprland-scroll-overview) của yayuuu, một plugin tùy chọn shell có thể dùng.
+- [Open-Meteo](https://open-meteo.com) cho thời tiết, và LRCLIB, LyricsPlus, NetEase Cloud Music, QQ Music và Kugou cho lời bài hát.
 
-Because it includes GPL-3.0 code, **this repository is distributed under GPL-3.0**. See [LICENSE](LICENSE).
+Vì có chứa code GPL-3.0, **repository này được phân phối theo GPL-3.0**. Xem [LICENSE](LICENSE).
 
-Character themes and names are fan references to *Project SEKAI COLORFUL STAGE! feat. Hatsune Miku*. This is an unofficial fan project, not affiliated with SEGA, Colorful Palette or Crypton Future Media. Wallpapers shown in the screenshots belong to their original artists.
+Các theme và tên nhân vật là tham chiếu fan đến *Project SEKAI COLORFUL STAGE! feat. Hatsune Miku*. Đây là dự án fan không chính thức, không liên kết với SEGA, Colorful Palette hay Crypton Future Media. Hình nền trong ảnh chụp màn hình thuộc về các họa sĩ gốc.
 
 <img src="assets/divider.svg" alt="" width="100%">
