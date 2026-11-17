@@ -355,31 +355,31 @@ DockCard {
                 const rows = []
                 if (target) {
                     if (FilesStackService.isTrashItem(target.path)) {
-                        rows.push({ id: "restore", label: "Restore", icon: "restore_from_trash" })
+                        rows.push({ id: "restore", label: I18n.t("Restore"), icon: "restore_from_trash" })
                         rows.push({ sep: true })
                     }
                     if (target.isDir) {
-                        rows.push({ id: "enter", label: "Open", icon: "folder_open" })
-                        rows.push({ id: "manager", label: "Open in file manager", icon: "open_in_new" })
+                        rows.push({ id: "enter", label: I18n.t("Open"), icon: "folder_open" })
+                        rows.push({ id: "manager", label: I18n.t("Open in file manager"), icon: "open_in_new" })
                     } else {
-                        rows.push({ id: "open", label: "Open", icon: "open_in_new" })
-                        rows.push({ id: "reveal", label: "Show in file manager", icon: "folder_open" })
+                        rows.push({ id: "open", label: I18n.t("Open"), icon: "open_in_new" })
+                        rows.push({ id: "reveal", label: I18n.t("Show in file manager"), icon: "folder_open" })
                     }
                     rows.push({ sep: true })
-                    rows.push({ id: "copypath", label: "Copy path", icon: "content_copy" })
+                    rows.push({ id: "copypath", label: I18n.t("Copy path"), icon: "content_copy" })
                     if (!target.isDir)
-                        rows.push({ id: "copyfile", label: "Copy file", icon: "file_copy" })
-                    rows.push({ id: "shelf", label: "Add to Shelf", icon: "inventory_2" })
+                        rows.push({ id: "copyfile", label: I18n.t("Copy file"), icon: "file_copy" })
+                    rows.push({ id: "shelf", label: I18n.t("Add to Shelf"), icon: "inventory_2" })
                     if (target.isDir)
-                        rows.push({ id: "usefolder", label: "Use as the stack's folder", icon: "push_pin" })
+                        rows.push({ id: "usefolder", label: I18n.t("Use as the stack's folder"), icon: "push_pin" })
                 } else {
                     if (root.atTrashRoot && stack.count > 0) {
-                        rows.push({ id: "emptytrash", label: "Empty Trash", icon: "delete_sweep" })
+                        rows.push({ id: "emptytrash", label: I18n.t("Empty Trash"), icon: "delete_sweep" })
                         rows.push({ sep: true })
                     }
-                    rows.push({ id: "managerhere", label: "Open this folder in file manager", icon: "open_in_new" })
-                    rows.push({ id: "copyhere", label: "Copy folder path", icon: "content_copy" })
-                    rows.push({ id: "refresh", label: "Refresh", icon: "refresh" })
+                    rows.push({ id: "managerhere", label: I18n.t("Open this folder in file manager"), icon: "open_in_new" })
+                    rows.push({ id: "copyhere", label: I18n.t("Copy folder path"), icon: "content_copy" })
+                    rows.push({ id: "refresh", label: I18n.t("Refresh"), icon: "refresh" })
                 }
                 stack.menuRows = rows
                 stack.menuTarget = target
@@ -408,12 +408,12 @@ DockCard {
             // A key of the row of places: Open, Open in file manager (and Empty Trash on the Trash).
             function openPlaceMenu(key, mx, my) {
                 const rows = [
-                    { id: "goplace", label: "Open", icon: "folder_open" },
-                    { id: "placemanager", label: "Open in file manager", icon: "open_in_new" }
+                    { id: "goplace", label: I18n.t("Open"), icon: "folder_open" },
+                    { id: "placemanager", label: I18n.t("Open in file manager"), icon: "open_in_new" }
                 ]
                 if (key === "TRASH") {
                     rows.push({ sep: true })
-                    rows.push({ id: "emptytrash", label: "Empty Trash", icon: "delete_sweep" })
+                    rows.push({ id: "emptytrash", label: I18n.t("Empty Trash"), icon: "delete_sweep" })
                 }
                 stack.menuRows = rows
                 stack.menuTarget = { place: key }
@@ -532,7 +532,9 @@ DockCard {
                             id: countText
                             anchors.verticalCenter: parent.verticalCenter
                             visible: stack.count > 0
-                            text: stack.filtering ? stack.count + " of " + stack.rawCount : stack.count + (stack.count === 1 ? " item" : " items")
+                            text: stack.filtering ? I18n.t("{n} of {m}", { n: stack.count, m: stack.rawCount })
+                                  : (stack.count === 1 ? I18n.t("{n} item", { n: stack.count })
+                                                       : I18n.t("{n} items", { n: stack.count }))
                             color: mt.inkSub
                             font.family: mt.fontFamily
                             font.pixelSize: 15
@@ -552,7 +554,7 @@ DockCard {
                         height: 34
                         icon: "delete_sweep"
                         iconSize: 20
-                        label: "Empty"
+                        label: I18n.t("Empty")
                         fontSize: 14
                         selected: stack.confirmEmpty
                         onClicked: stack.askEmptyTrash()
@@ -705,10 +707,10 @@ DockCard {
                         width: parent.width
                         horizontalAlignment: Text.AlignHCenter
                         text: stack.shownState === "filtered" ? I18n.t("Nothing modified here")
-                              : stack.trashGone ? "Trash is empty"
-                              : stack.shownState === "missing" ? "Folder not found"
-                              : (stack.shownState === "denied" ? "Can't open this folder"
-                              : (stack.shownState === "notdir" ? "Not a folder" : "Nothing here"))
+                              : stack.trashGone ? I18n.t("Trash is empty")
+                              : stack.shownState === "missing" ? I18n.t("Folder not found")
+                              : (stack.shownState === "denied" ? I18n.t("Can't open this folder")
+                              : (stack.shownState === "notdir" ? I18n.t("Not a folder") : I18n.t("Nothing here")))
                         color: mt.ink
                         font.family: mt.fontFamily
                         font.pixelSize: 18
@@ -722,8 +724,8 @@ DockCard {
                         elide: Text.ElideMiddle
                         textFormat: Text.PlainText
                         text: stack.shownState === "filtered" ? FilesStackService.modifiedLabel(FilesStackService.modified)
-                              : stack.shownState === "denied" ? "You don't have permission to read it"
-                              : (stack.trashGone ? "What you delete waits here" : root.path)
+                              : stack.shownState === "denied" ? I18n.t("You don't have permission to read it")
+                              : (stack.trashGone ? I18n.t("What you delete waits here") : root.path)
                         color: mt.inkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 14
@@ -748,7 +750,7 @@ DockCard {
                         anchors.horizontalCenter: parent.horizontalCenter
                         height: 34
                         icon: "home"
-                        label: "Go to Home"
+                        label: I18n.t("Go to Home")
                         fontSize: 14
                         iconSize: 20
                         onClicked: root.enter(FilesStackService.home)
@@ -860,7 +862,7 @@ DockCard {
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - confirmRow.width - 36
                         elide: Text.ElideRight
-                        text: "Empty the Trash for good?"
+                        text: I18n.t("Empty the Trash for good?")
                         color: mt.ink
                         font.family: mt.fontFamily
                         font.pixelSize: 15
@@ -877,7 +879,7 @@ DockCard {
 
                         DockButton {
                             height: 32
-                            label: "Cancel"
+                            label: I18n.t("Cancel")
                             fontSize: 14
                             onClicked: stack.confirmEmpty = false
                         }
@@ -886,7 +888,7 @@ DockCard {
                             height: 32
                             icon: "delete_forever"
                             iconSize: 19
-                            label: "Empty"
+                            label: I18n.t("Empty")
                             fontSize: 14
                             accent: true
                             onClicked: stack.doEmptyTrash()
