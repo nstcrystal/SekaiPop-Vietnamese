@@ -391,12 +391,12 @@ DockCard {
             // Folders first (on / off) and the modified filter; it stays open while you change them.
             function openViewMenu(mx, my) {
                 const rows = [
-                    { id: "foldersfirst", label: "Folders first",
+                    { id: "foldersfirst", label: I18n.t("Folders first"),
                       icon: FilesStackService.foldersFirst ? "check_box" : "check_box_outline_blank" },
                     { sep: true }
                 ]
                 for (const o of FilesStackService.modifiedOptions)
-                    rows.push({ id: "mod:" + o.id, label: "Modified: " + o.label,
+                    rows.push({ id: "mod:" + o.id, label: I18n.t("Modified: {when}", { when: I18n.t(o.label) }),
                                 icon: FilesStackService.modified === o.id ? "radio_button_checked" : "radio_button_unchecked" })
                 stack.menuRows = rows
                 stack.menuTarget = null
@@ -704,7 +704,7 @@ DockCard {
                     Text {
                         width: parent.width
                         horizontalAlignment: Text.AlignHCenter
-                        text: stack.shownState === "filtered" ? "Nothing modified here"
+                        text: stack.shownState === "filtered" ? I18n.t("Nothing modified here")
                               : stack.trashGone ? "Trash is empty"
                               : stack.shownState === "missing" ? "Folder not found"
                               : (stack.shownState === "denied" ? "Can't open this folder"
@@ -736,7 +736,7 @@ DockCard {
                         anchors.horizontalCenter: parent.horizontalCenter
                         height: 34
                         icon: "all_inclusive"
-                        label: "Show everything"
+                        label: I18n.t("Show everything")
                         fontSize: 14
                         iconSize: 20
                         onClicked: SettingsService.set("dock.files.modified", "any")
@@ -809,7 +809,7 @@ DockCard {
                         height: 32
                         icon: "sort"
                         iconSize: 19
-                        label: FilesStackService.sortBy === "date" ? "Modified" : (FilesStackService.sortBy === "type" ? "Type" : "Name")
+                        label: I18n.t(FilesStackService.sortBy === "date" ? "Modified" : (FilesStackService.sortBy === "type" ? "Type" : "Name"))
                         fontSize: 14
                         onClicked: SettingsService.set("dock.files.sort",
                             FilesStackService.sortBy === "name" ? "date" : (FilesStackService.sortBy === "date" ? "type" : "name"))
@@ -899,8 +899,9 @@ DockCard {
             readonly property string sortText: {
                 const by = FilesStackService.sortBy
                 if (by === "date")
-                    return "Modified, " + (stack.sortDescending ? "newest first" : "oldest first")
-                return (by === "type" ? "Type" : "Name") + (stack.sortDescending ? ", Z to A" : ", A to Z")
+                    return I18n.t("Modified") + ", " + I18n.t(stack.sortDescending ? "newest first" : "oldest first")
+                return I18n.t(by === "type" ? "Type" : "Name")
+                        + ", " + I18n.t(stack.sortDescending ? "Z to A" : "A to Z")
             }
 
             // ===== the menu, above everything =====

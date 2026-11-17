@@ -947,5 +947,11 @@ var dict = {
     "E-book": "Sách điện tử",
     "File": "Tệp",
     "{ext} file": "Tệp {ext}",
+    "Modified: {when}": "Ngày sửa: {when}",
+    "newest first": "mới nhất trước",
+    "oldest first": "cũ nhất trước",
+    "Z to A": "Z đến A",
+    "Nothing modified here": "Không có gì được sửa",
+    "Show everything": "Hiện tất cả",
     "Trash  ·  right-click for Empty Trash": "Thùng rác  ·  chuột phải để dọn Thùng rác"
 }
