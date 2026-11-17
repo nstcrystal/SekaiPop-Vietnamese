@@ -481,6 +481,7 @@ Cụm 2b-9 — Dock (làm từng phần, tick khi xong phần đó; chờ test t
 - [ ] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro, nút điều khiển, `Lap`, footer Pomodoro.
 - [ ] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher).
 - [x] 2b-9d `DockShelfCard.qml` + `DockMediaCard.qml`: header `Kệ`, 3 hint nút (thêm/sao chép/dọn), câu trống, `Pick one to open it`, `Nothing playing`. Dịch tại `hint` và tại chỗ hiển thị.
+- [x] Media popup (`mediaControls/MediaPopup.qml`): nút play/pause rộng 92px, nhãn `Tạm dừng` tràn ra ngoài → dùng `Dừng` qua khóa ngữ cảnh `media:Pause` (tiếng Anh vẫn là `Pause`).
 
 Các cụm còn lại (sau Dock):
 

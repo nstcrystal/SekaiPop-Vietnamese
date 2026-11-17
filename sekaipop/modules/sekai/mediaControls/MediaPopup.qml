@@ -772,7 +772,7 @@ SekaiPopup {
                 width: 92
                 primary: true
                 icon: root.playing ? "pause" : "play_arrow"
-                label: root.playing ? I18n.t("Pause") : I18n.t("Play")
+                label: root.playing ? I18n.t("Pause", null, "media") : I18n.t("Play")
                 toneTop: root.tone
                 toneBottom: root.tone2
                 available: root.hasPlayer && root.p.canTogglePlaying

@@ -860,6 +860,8 @@ var dict = {
     "PAUSED": "TẠM DỪNG",
     "IDLE": "CHỜ",
     "Play": "Phát",
+    // The play key is 92 px wide beside its icon: "Tạm dừng" would spill out of it.
+    "media:Pause": "Dừng",
 
     // ----- Equalizer (the handheld console) -----
     "PRESET": "MẪU",
