@@ -16,6 +16,12 @@
 
 <div align="left">
 
+> ⚠️ **Lưu ý**: Đây là bản dịch tiếng Việt dành cho [SekaiPop](https://github.com/Blapples/SekaiPop) Dotfiles của [Blapples](https://github.com/Blapples). Mình thấy dotfiles này rất tuyệt vời nên mình quyết định tạo bản Việt hóa cho nó (Vì bản gốc hiện vẫn chưa có chức năng thay đổi ngôn ngữ. 17/11/2026).
+
+</div>
+
+<div align="left">
+
 > ⚠️ **Lưu ý: đây là một dự án đam mê, và phần lớn được viết theo kiểu "vibe coding".**
 >
 > Tôi tự thiết kế và định hướng SekaiPop: giao diện, UI, cách mọi thứ chuyển động và hoạt động. Claude viết phần lớn code để hiện thực hóa điều đó, nên hãy chuẩn bị tinh thần gặp các góc thô và lỗi vặt.
