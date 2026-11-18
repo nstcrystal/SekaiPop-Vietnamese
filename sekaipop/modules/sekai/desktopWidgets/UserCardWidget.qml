@@ -267,7 +267,7 @@ PanelWindow {
     }
 
     // ===== who you are =====
-    readonly property string userName: Quickshell.env("USER") || "user"
+    readonly property string userName: Quickshell.env("USER") || I18n.t("user")
     property string hostName: ""
 
     readonly property string shellName: {
@@ -344,10 +344,10 @@ PanelWindow {
     readonly property int mins: win.now.getMinutes()
     readonly property real dayFrac: (win.hours24 * 60 + win.mins) / 1440
 
-    readonly property string greeting: win.hours24 >= 5 && win.hours24 < 12 ? "GOOD MORNING"
-        : win.hours24 >= 12 && win.hours24 < 17 ? "GOOD AFTERNOON"
-        : win.hours24 >= 17 && win.hours24 < 21 ? "GOOD EVENING"
-        : "NIGHT OWL"
+    readonly property string greeting: win.hours24 >= 5 && win.hours24 < 12 ? I18n.t("GOOD MORNING")
+        : win.hours24 >= 12 && win.hours24 < 17 ? I18n.t("GOOD AFTERNOON")
+        : win.hours24 >= 17 && win.hours24 < 21 ? I18n.t("GOOD EVENING")
+        : I18n.t("NIGHT OWL")
 
     // ===== placement =====
     function place(force) {
@@ -1142,7 +1142,7 @@ PanelWindow {
                         StatKey {
                             x: 0
                             y: 0
-                            label: "UPTIME"
+                            label: I18n.t("UPTIME")
                             value: win.uptimeText
                             tilt: -card.tilt
                         }
@@ -1151,14 +1151,14 @@ PanelWindow {
                             x: 98
                             y: card.stagger
                             gradientFill: true
-                            label: "SHELL"
+                            label: I18n.t("SHELL")
                             value: win.shellName
                         }
 
                         StatKey {
                             x: 196
                             y: 0
-                            label: "DESKTOP"
+                            label: I18n.t("DESKTOP")
                             value: win.deskName
                             tilt: card.tilt
                         }
@@ -1202,7 +1202,7 @@ PanelWindow {
                             anchors.leftMargin: 4
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.verticalCenterOffset: -2
-                            text: "TODAY"
+                            text: I18n.t("TODAY")
                             color: mt.pInkSub
                             font.family: mt.fontFamily
                             font.pixelSize: 10

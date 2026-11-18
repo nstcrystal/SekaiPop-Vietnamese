@@ -633,7 +633,7 @@ PanelWindow {
                             spacing: 0
 
                             Text {
-                                text: "To-Do"
+                                text: I18n.t("To-Do")
                                 color: mt.pInk
                                 font.family: mt.fontFamily
                                 font.pixelSize: 18
@@ -642,9 +642,9 @@ PanelWindow {
                             }
 
                             Text {
-                                text: TodoService.total === 0 ? "nothing yet"
-                                    : TodoService.doneCount === TodoService.total ? "all done!"
-                                    : (TodoService.total - TodoService.doneCount) + " left"
+                                text: TodoService.total === 0 ? I18n.t("nothing yet")
+                                    : TodoService.doneCount === TodoService.total ? I18n.t("all done!")
+                                    : I18n.t("{n} left", { n: TodoService.total - TodoService.doneCount })
                                 color: mt.pInkSub
                                 font.family: mt.fontFamily
                                 font.pixelSize: 11
@@ -671,7 +671,7 @@ PanelWindow {
                             Text {
                                 id: clearTextSmall
                                 anchors.centerIn: parent
-                                text: "clear done (" + TodoService.doneCount + ")"
+                                text: I18n.t("clear done ({n})", { n: TodoService.doneCount })
                                 color: clearAreaSmall.containsMouse ? mt.colBorder : mt.pInk
                                 font.family: mt.fontFamily
                                 font.pixelSize: 11
@@ -704,7 +704,7 @@ PanelWindow {
                         height: win.small ? win.smallListH : 44
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
-                        text: "add your first task below"
+                        text: I18n.t("add your first task below")
                         color: mt.pInkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 13
@@ -1304,7 +1304,7 @@ PanelWindow {
                             Text {
                                 visible: addInput.text === ""
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: "add a task…"
+                                text: I18n.t("add a task…")
                                 color: mt.pInkSub
                                 font: addInput.font
                             }
@@ -1379,7 +1379,7 @@ PanelWindow {
                             Text {
                                 id: clearText
                                 anchors.centerIn: parent
-                                text: "clear done (" + TodoService.doneCount + ")"
+                                text: I18n.t("clear done ({n})", { n: TodoService.doneCount })
                                 color: clearArea.containsMouse ? mt.colBorder : mt.pInk
                                 font.family: mt.fontFamily
                                 font.pixelSize: 11

@@ -231,26 +231,33 @@ function dueState(ev, diff) {
 
 // The words on a card's chip: "Today", "Tomorrow", "in 5 days", "2 days late"
 // (an open deadline that has passed) / "3 days ago" (an event that has).
-function countdown(ev, diff) {
+// `t` is I18n.t when the caller shows the words; without it the strings are
+// built exactly as before (the fill keeps the English placeholders working).
+function countdown(ev, diff, t) {
+    t = t || function (s, v) {
+        if (v)
+            for (var k in v) s = s.split("{" + k + "}").join(String(v[k]));
+        return s;
+    };
     if (ev.kind === "deadline" && ev.done)
-        return "Done";
+        return t("Done");
     if (diff === 0)
-        return "Today";
+        return t("Today");
     if (diff === 1)
-        return "Tomorrow";
+        return t("Tomorrow");
     var n = Math.abs(diff);
     var unit;
     if (n < 21)
-        unit = n + (n === 1 ? " day" : " days");
+        unit = t(n === 1 ? "1 day" : "{n} days", { n: n });
     else if (n < 120)
-        unit = Math.round(n / 7) + " weeks";
+        unit = t("{n} weeks", { n: Math.round(n / 7) });
     else
-        unit = Math.round(n / 30.44) + " months";
+        unit = t("{n} months", { n: Math.round(n / 30.44) });
     if (diff > 0)
-        return "in " + unit;
+        return t("in {unit}", { unit: unit });
     if (diff === -1)
-        return ev.kind === "deadline" ? "1 day late" : "Yesterday";
-    return unit + (ev.kind === "deadline" ? " late" : " ago");
+        return ev.kind === "deadline" ? t("1 day late") : t("Yesterday");
+    return t(ev.kind === "deadline" ? "{unit} late" : "{unit} ago", { unit: unit });
 }
 
 // The "Coming up" list: every open deadline that is already late (they stay

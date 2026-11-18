@@ -273,7 +273,7 @@ PanelWindow {
     readonly property int viewYear: win.viewDate.getFullYear()
     readonly property int viewMonth: win.viewDate.getMonth()
     readonly property var cells: CM.monthGrid(win.viewDate, win.today, win.firstDay)
-    readonly property var weekdays: CM.weekdayLabels(win.firstDay)
+    readonly property var weekdays: CM.weekdayLabels(win.firstDay, I18n.vi)
     readonly property string todayKey: EM.keyOf(win.today)
 
     // ===== the events =====
@@ -744,11 +744,11 @@ PanelWindow {
                                     text: {
                                         if (win.hoverCell) {
                                             const n = (win.byDay[win.hoverCell.key] || []).length
-                                            return CM.longDay(win.hoverCell.y, win.hoverCell.m, win.hoverCell.d)
-                                                + "  \u00b7  " + (n === 0 ? "free" : n + (n === 1 ? " entry" : " entries"))
+                                            return CM.longDay(win.hoverCell.y, win.hoverCell.m, win.hoverCell.d, I18n.vi)
+                                                + "  \u00b7  " + (n === 0 ? I18n.t("free") : I18n.t(n === 1 ? "{n} entry" : "{n} entries", { n: n }))
                                         }
                                         return win.viewYear + (win.monthShift === 0
-                                            ? "  \u00b7  Week " + CM.isoWeek(win.today.getFullYear(), win.today.getMonth(), win.today.getDate())
+                                            ? "  \u00b7  " + I18n.t("Week {n}", { n: CM.isoWeek(win.today.getFullYear(), win.today.getMonth(), win.today.getDate()) })
                                             : "")
                                     }
                                 }
@@ -756,7 +756,7 @@ PanelWindow {
                                 StickerText {
                                     x: 6
                                     y: 20
-                                    text: CM.monthName(win.viewMonth)
+                                    text: CM.monthName(win.viewMonth, I18n.vi)
                                     pixelSize: 34
                                     fillColor: plate.numberFill
                                     ringColor: plate.numberRing
@@ -793,7 +793,7 @@ PanelWindow {
 
                                         Text {
                                             anchors.horizontalCenter: parent.horizontalCenter
-                                            text: CM.weekdayShort(win.today.getDay())
+                                            text: CM.weekdayShort(win.today.getDay(), I18n.vi)
                                             color: mt.dark ? mt.accentMint : mt.chipInk
                                             font.family: mt.fontFamily
                                             font.pixelSize: 10
@@ -864,12 +864,12 @@ PanelWindow {
                                 readonly property string label: {
                                     const s = win.summary
                                     if (s.events === 0)
-                                        return "Nothing planned"
-                                    let t = s.events + (s.events === 1 ? " entry" : " entries")
+                                        return I18n.t("Nothing planned")
+                                    let t = I18n.t(s.events === 1 ? "{n} entry" : "{n} entries", { n: s.events })
                                     if (s.late > 0)
-                                        t += "  \u00b7  " + s.late + " late"
+                                        t += "  \u00b7  " + I18n.t("{n} late", { n: s.late })
                                     else if (s.open > 0)
-                                        t += "  \u00b7  " + s.open + " due"
+                                        t += "  \u00b7  " + I18n.t("{n} due", { n: s.open })
                                     return t
                                 }
                                 x: 2
@@ -1122,12 +1122,12 @@ PanelWindow {
                                     elide: Text.ElideRight
                                     text: {
                                         if (win.forming)
-                                            return win.formId === "" ? "New entry" : "Edit entry"
+                                            return win.formId === "" ? I18n.t("New entry") : I18n.t("Edit entry")
                                         if (win.selectedKey !== "") {
                                             const p = EM.parseDate(win.selectedKey)
-                                            return p ? CM.longDay(p.y, p.m, p.d) : ""
+                                            return p ? CM.longDay(p.y, p.m, p.d, I18n.vi) : ""
                                         }
-                                        return "Coming up"
+                                        return I18n.t("Coming up")
                                     }
                                     color: mt.pInk
                                     font.family: mt.fontFamily
@@ -1142,13 +1142,13 @@ PanelWindow {
                                     text: {
                                         if (win.forming) {
                                             const p = EM.parseDate(win.selectedKey)
-                                            return (p ? CM.longDay(p.y, p.m, p.d) + "  \u00b7  " : "") + "click a day to move it"
+                                            return (p ? CM.longDay(p.y, p.m, p.d, I18n.vi) + "  \u00b7  " : "") + I18n.t("click a day to move it")
                                         }
                                         const n = win.shownList.length
                                         if (win.selectedKey !== "")
-                                            return CM.relative(win.selectedDiff) + "  \u00b7  "
-                                                + (n === 0 ? "nothing on" : n + (n === 1 ? " entry" : " entries"))
-                                        return n === 0 ? "nothing yet" : n + (n === 1 ? " entry ahead" : " entries ahead")
+                                            return CM.relative(win.selectedDiff, I18n.vi) + "  \u00b7  "
+                                                + (n === 0 ? I18n.t("nothing on") : I18n.t(n === 1 ? "{n} entry" : "{n} entries", { n: n }))
+                                        return n === 0 ? I18n.t("nothing yet") : I18n.t(n === 1 ? "{n} entry ahead" : "{n} entries ahead", { n: n })
                                     }
                                     color: mt.pInkSub
                                     font.family: mt.fontFamily
@@ -1168,7 +1168,7 @@ PanelWindow {
                                     visible: win.selectedKey !== "" && !win.forming
                                     anchors.verticalCenter: parent.verticalCenter
                                     icon: "close"
-                                    label: "All"
+                                    label: I18n.t("All")
                                     onClicked: {
                                         win.selectedKey = ""
                                         win.expandedId = ""
@@ -1273,7 +1273,7 @@ PanelWindow {
                                 }
                                 Text {
                                     anchors.horizontalCenter: parent.horizontalCenter
-                                    text: win.selectedKey !== "" ? "Nothing on this day" : "No events yet"
+                                    text: win.selectedKey !== "" ? I18n.t("Nothing on this day") : I18n.t("No events yet")
                                     color: mt.pInk
                                     font.family: mt.fontFamily
                                     font.pixelSize: 13
@@ -1282,7 +1282,7 @@ PanelWindow {
                                 }
                                 Text {
                                     anchors.horizontalCenter: parent.horizontalCenter
-                                    text: "Press + or double-click a day to add one"
+                                    text: I18n.t("Press + or double-click a day to add one")
                                     color: mt.pInkSub
                                     font.family: mt.fontFamily
                                     font.pixelSize: 11
@@ -1300,7 +1300,7 @@ PanelWindow {
                                 CalendarField {
                                     id: titleField
                                     width: form.width
-                                    hint: "Title"
+                                    hint: I18n.t("Title")
                                     badInk: win.alertInk
                                     icon: "title"
                                     onAccepted: win.saveForm()
@@ -1310,7 +1310,7 @@ PanelWindow {
                                 CalendarField {
                                     id: noteField
                                     width: form.width
-                                    hint: "Note (optional)"
+                                    hint: I18n.t("Note (optional)")
                                     icon: "notes"
                                     onAccepted: win.saveForm()
                                     onCancelled: win.closeForm()
@@ -1324,7 +1324,7 @@ PanelWindow {
                                         id: timeField
                                         width: 104
                                         height: 32
-                                        hint: "All day"
+                                        hint: I18n.t("All day")
                                         icon: "schedule"
                                         bad: win.formTime === null
                                         badInk: win.alertInk
@@ -1335,8 +1335,8 @@ PanelWindow {
                                     // Event or deadline.
                                     Repeater {
                                         model: [
-                                            { kind: "event", label: "Event", icon: "event" },
-                                            { kind: "deadline", label: "Deadline", icon: "flag" }
+                                            { kind: "event", label: I18n.t("Event"), icon: "event" },
+                                            { kind: "deadline", label: I18n.t("Deadline"), icon: "flag" }
                                         ]
 
                                         Rectangle {
@@ -1435,7 +1435,7 @@ PanelWindow {
                                     // The colour's name (Project SEKAI's five attributes).
                                     Text {
                                         anchors.verticalCenter: parent.verticalCenter
-                                        text: ["Cool", "Cute", "Happy", "Mysterious", "Pure"][win.formColor]
+                                        text: I18n.t(["Cool", "Cute", "Happy", "Mysterious", "Pure"][win.formColor], null, "calendar")
                                         color: mt.pInkSub
                                         font.family: mt.fontFamily
                                         font.pixelSize: 11
@@ -1453,14 +1453,14 @@ PanelWindow {
                                         primary: true
                                         usable: win.formValid
                                         icon: "check"
-                                        label: win.formId === "" ? "Add" : "Save"
+                                        label: win.formId === "" ? I18n.t("Add") : I18n.t("Save")
                                         onClicked: win.saveForm()
                                     }
 
                                     CalendarChip {
                                         height: 32
                                         icon: "close"
-                                        label: "Cancel"
+                                        label: I18n.t("Cancel")
                                         onClicked: win.closeForm()
                                     }
                                 }
@@ -1515,14 +1515,14 @@ PanelWindow {
                                 text: {
                                     if (win.hoverCell) {
                                         const n = (win.byDay[win.hoverCell.key] || []).length
-                                        return CM.longDay(win.hoverCell.y, win.hoverCell.m, win.hoverCell.d)
-                                            + "  \u00b7  " + (n === 0 ? "free" : n + (n === 1 ? " entry" : " entries"))
+                                        return CM.longDay(win.hoverCell.y, win.hoverCell.m, win.hoverCell.d, I18n.vi)
+                                            + "  \u00b7  " + (n === 0 ? I18n.t("free") : I18n.t(n === 1 ? "{n} entry" : "{n} entries", { n: n }))
                                     }
                                     const sm = win.summary
                                     return win.viewYear + (win.monthShift === 0
-                                            ? "  \u00b7  Week " + CM.isoWeek(win.today.getFullYear(), win.today.getMonth(), win.today.getDate())
+                                            ? "  \u00b7  " + I18n.t("Week {n}", { n: CM.isoWeek(win.today.getFullYear(), win.today.getMonth(), win.today.getDate()) })
                                             : "")
-                                        + (sm.events > 0 ? "  \u00b7  " + sm.events + (sm.events === 1 ? " entry" : " entries") : "")
+                                        + (sm.events > 0 ? "  \u00b7  " + I18n.t(sm.events === 1 ? "{n} entry" : "{n} entries", { n: sm.events }) : "")
                                 }
                             }
 
@@ -1530,7 +1530,7 @@ PanelWindow {
                                 id: miniMonth
                                 x: 6
                                 y: 12
-                                text: CM.monthName(win.viewMonth)
+                                text: CM.monthName(win.viewMonth, I18n.vi)
                                 pixelSize: 26
                                 fillColor: miniPlate.numberFill
                                 ringColor: miniPlate.numberRing

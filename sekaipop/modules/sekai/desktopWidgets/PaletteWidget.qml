@@ -269,10 +269,10 @@ PanelWindow {
 
     readonly property string note: {
         if (PaletteService.source === "random")
-            return PaletteService.scheme !== "" ? ("Harmony: " + PaletteService.scheme) : "Press Shuffle or Space"
+            return PaletteService.scheme !== "" ? I18n.t("Harmony: {name}", { name: PaletteService.scheme }) : I18n.t("Press Shuffle or Space")
         if (win.reader && win.reader.problem !== "")
             return win.reader.problem
-        return PaletteService.source === "music" ? "From the cover of the playing track" : "From the wallpaper on screen"
+        return PaletteService.source === "music" ? I18n.t("From the cover of the playing track") : I18n.t("From the wallpaper on screen")
     }
 
     // The little "Copied" on the Copy all key.
@@ -578,7 +578,7 @@ PanelWindow {
 
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: "Palette"
+                                    text: I18n.t("Palette")
                                     color: mt.pInk
                                     font.family: mt.fontFamily
                                     font.pixelSize: card.small ? 18 : 20
@@ -619,7 +619,7 @@ PanelWindow {
 
                                         Text {
                                             anchors.verticalCenter: parent.verticalCenter
-                                            text: PaletteService.applied ? "Applied" : "Preview only"
+                                            text: PaletteService.applied ? I18n.t("Applied") : I18n.t("Preview only")
                                             color: PaletteService.applied ? mt.colBorder : mt.ink
                                             font.family: mt.fontFamily
                                             font.pixelSize: 11
@@ -726,20 +726,20 @@ PanelWindow {
 
                             PaletteButton {
                                 icon: "casino"
-                                label: "Shuffle"
+                                label: I18n.t("Shuffle")
                                 onClicked: PaletteService.shuffle()
                             }
 
                             PaletteButton {
                                 icon: "favorite"
-                                label: card.small ? "" : (PaletteService.isFavorite ? "Saved" : "Save")
+                                label: card.small ? "" : (PaletteService.isFavorite ? I18n.t("Saved") : I18n.t("Save"))
                                 lit: PaletteService.isFavorite
                                 onClicked: PaletteService.toggleFavorite()
                             }
 
                             PaletteButton {
                                 icon: win.copiedAll ? "check" : "content_copy"
-                                label: card.small ? "" : (win.copiedAll ? "Copied" : "Copy all")
+                                label: card.small ? "" : (win.copiedAll ? I18n.t("Copied") : I18n.t("Copy all"))
                                 onClicked: {
                                     PaletteService.copyAll()
                                     win.copiedAll = true
@@ -760,7 +760,7 @@ PanelWindow {
                                 primary: true
                                 enabled: !PaletteService.applied
                                 icon: PaletteService.applied ? "check" : "format_paint"
-                                label: PaletteService.applied ? "Applied" : "Apply to theme"
+                                label: PaletteService.applied ? I18n.t("Applied") : I18n.t("Apply to theme")
                                 onClicked: PaletteService.apply()
                             }
 
@@ -769,7 +769,7 @@ PanelWindow {
                                 anchors.right: parent.right
                                 visible: PaletteService.canUndo
                                 icon: "undo"
-                                label: "Undo"
+                                label: I18n.t("Undo")
                                 onClicked: PaletteService.undo()
                             }
                         }
@@ -781,7 +781,9 @@ PanelWindow {
                             spacing: 6
 
                             Text {
-                                text: "FAVOURITES" + (PaletteService.favorites.length > 0 ? " (" + PaletteService.favorites.length + ")" : "")
+                                text: PaletteService.favorites.length > 0
+                                    ? I18n.t("FAVOURITES ({n})", { n: PaletteService.favorites.length })
+                                    : I18n.t("FAVOURITES")
                                 color: mt.pInkSub
                                 font.family: mt.fontFamily
                                 font.pixelSize: 10
@@ -792,7 +794,7 @@ PanelWindow {
                             Text {
                                 visible: PaletteService.favorites.length === 0
                                 width: parent.width
-                                text: "Press Save to keep a palette here."
+                                text: I18n.t("Press Save to keep a palette here.")
                                 wrapMode: Text.WordWrap
                                 color: mt.pInkSub
                                 font.family: mt.fontFamily

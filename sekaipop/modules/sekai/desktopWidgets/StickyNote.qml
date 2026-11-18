@@ -471,7 +471,7 @@ Item {
                 x: ui.pad
                 y: ui.textTop
                 visible: edit.text === "" && !edit.activeFocus
-                text: "write something…"
+                text: I18n.t("write something…")
                 color: note.ink
                 opacity: 0.45
                 font.family: mt.fontFamily

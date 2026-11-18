@@ -372,7 +372,7 @@ PanelWindow {
             return ""
         if (win.hourlyView && win.hoverHour >= 0 && win.hoverHour < wx.hourly.length) {
             const h = wx.hourly[win.hoverHour]
-            return h.label + "  \u00b7  " + h.condition + "  \u00b7  rain " + h.rain + "%"
+            return h.label + "  \u00b7  " + h.condition + "  \u00b7  " + I18n.t("rain {n}%", { n: h.rain })
         }
         if (!win.hourlyView && win.hoverDay >= 0 && win.hoverDay < wx.forecast.length) {
             const d = wx.forecast[win.hoverDay]
@@ -752,7 +752,7 @@ PanelWindow {
                 SizeKey {
                     shown: chrome.selected
                     icon: win.minimal ? "dashboard" : "crop_square"
-                    label: "STYLE  " + (win.minimal ? "MINIMAL" : "CLASSIC")
+                    label: I18n.t("STYLE  {v}", { v: I18n.t(win.minimal ? "MINIMAL" : "CLASSIC") })
                     onToggled: WeatherCardService.toggleStyle()
                 }
 
@@ -808,8 +808,8 @@ PanelWindow {
                                         font.letterSpacing: win.readout !== "" ? 0.3 : 1.3
 
                                         readonly property string condLabel: win.hasData ? wx.conditionText
-                                            : (wx.loading ? "Loading\u2026"
-                                               : (wx.failed ? wx.problemText : "No weather data"))
+                                            : (wx.loading ? I18n.t("Loading\u2026")
+                                               : (wx.failed ? wx.problemText : I18n.t("No weather data")))
                                     }
 
                                     StickerText {
@@ -950,7 +950,7 @@ PanelWindow {
 
                                 Slant {
                                     id: placeTab
-                                    readonly property string label: win.hasData && wx.areaText !== "" ? wx.areaText : "Weather"
+                                    readonly property string label: win.hasData && wx.areaText !== "" ? wx.areaText : I18n.t("Weather")
                                     x: 2
                                     y: 74
                                     width: Math.min(placeProbe.implicitWidth + 44 + height * skew, 204)
@@ -1107,7 +1107,7 @@ PanelWindow {
                                                 level: humTile.value / 100 * WM.outBack(humTile.t, 1.4)
                                                 corner: 10
                                             }
-                                            TileLabel { x: 8; y: 5; width: parent.width - 10; text: "HUMIDITY" }
+                                            TileLabel { x: 8; y: 5; width: parent.width - 10; text: I18n.t("HUMIDITY") }
                                             Text {
                                                 x: 8
                                                 y: 15
@@ -1151,7 +1151,7 @@ PanelWindow {
                                                 x: 8
                                                 y: 5
                                                 width: parent.width - 14
-                                                text: "WIND" + (win.windP.dir !== "" ? "  \u00b7  " + win.windP.dir : "")
+                                                text: I18n.t("WIND") + (win.windP.dir !== "" ? "  \u00b7  " + win.windP.dir : "")
                                             }
 
                                             Row {
@@ -1238,7 +1238,7 @@ PanelWindow {
                                             ringWidth: 3
                                             fillColor: mt.pSurfaceHover
 
-                                            TileLabel { x: 8; y: 5; width: parent.width - 12; text: "UV INDEX" }
+                                            TileLabel { x: 8; y: 5; width: parent.width - 12; text: I18n.t("UV INDEX") }
                                             Text {
                                                 x: 8
                                                 y: 13
@@ -1641,8 +1641,8 @@ PanelWindow {
                                     font.letterSpacing: 1.3
 
                                     readonly property string condLabel: win.hasData ? wx.conditionText
-                                        : (wx.loading ? "Loading\u2026"
-                                           : (wx.failed ? wx.problemText : "No weather data"))
+                                        : (wx.loading ? I18n.t("Loading\u2026")
+                                           : (wx.failed ? wx.problemText : I18n.t("No weather data")))
                                 }
 
                                 // The temperature, big.
@@ -1783,7 +1783,7 @@ PanelWindow {
 
                             Slant {
                                 id: mplaceTab
-                                readonly property string label: win.hasData && wx.areaText !== "" ? wx.areaText : "Weather"
+                                readonly property string label: win.hasData && wx.areaText !== "" ? wx.areaText : I18n.t("Weather")
                                 x: 2
                                 y: mini.hangY
                                 width: Math.min(mplaceProbe.implicitWidth + 44 + height * skew, 204)
@@ -1890,7 +1890,7 @@ PanelWindow {
                                 Text {
                                     visible: !win.hasData
                                     anchors.centerIn: parent
-                                    text: wx.loading ? "Fetching the forecast\u2026" : "Press refresh to try again"
+                                    text: wx.loading ? I18n.t("Fetching the forecast\u2026") : I18n.t("Press refresh to try again")
                                     color: mt.pInkSub
                                     font.family: mt.fontFamily
                                     font.pixelSize: 11
@@ -1983,7 +1983,7 @@ PanelWindow {
 
                                     Column {
                                         spacing: 2
-                                        TileLabel { text: "HUMIDITY" }
+                                        TileLabel { text: I18n.t("HUMIDITY") }
                                         Text {
                                             text: wx.humidityText
                                             color: mt.pInk
@@ -1995,7 +1995,7 @@ PanelWindow {
                                     }
                                     Column {
                                         spacing: 2
-                                        TileLabel { text: "WIND" }
+                                        TileLabel { text: I18n.t("WIND") }
                                         Text {
                                             text: win.windP.speed
                                             color: mt.pInk

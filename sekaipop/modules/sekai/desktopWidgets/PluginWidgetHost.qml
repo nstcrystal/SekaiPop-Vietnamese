@@ -522,7 +522,7 @@ PanelWindow {
                         width: slot.width - 12
                         horizontalAlignment: Text.AlignHCenter
                         wrapMode: Text.Wrap
-                        text: (win.plugin ? win.plugin.name : win.pluginId) + "\ndid not load"
+                        text: (win.plugin ? win.plugin.name : win.pluginId) + I18n.t("\ndid not load")
                         color: win.mt.pInkSub
                         font.family: win.mt.fontFamily
                         font.pixelSize: 12

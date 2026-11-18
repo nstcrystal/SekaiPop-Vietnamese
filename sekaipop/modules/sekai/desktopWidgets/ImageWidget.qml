@@ -671,7 +671,7 @@ PanelWindow {
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
                             visible: missing.width > 120 && missing.height > 90
-                            text: "PICTURE MISSING"
+                            text: I18n.t("PICTURE MISSING")
                             color: mt.pInkSub
                             font.family: mt.fontFamily
                             font.pixelSize: 10
@@ -768,7 +768,7 @@ PanelWindow {
                             width: parent.width
                             horizontalAlignment: Text.AlignHCenter
                             wrapMode: Text.WordWrap
-                            text: emptyFace.hot ? "RELEASE TO ADD" : "DROP A PICTURE HERE"
+                            text: emptyFace.hot ? I18n.t("RELEASE TO ADD") : I18n.t("DROP A PICTURE HERE")
                             color: emptyFace.hot ? mt.colBorder : mt.pInk
                             font.family: mt.fontFamily
                             font.pixelSize: 12
@@ -833,7 +833,7 @@ PanelWindow {
                     Text {
                         anchors.centerIn: parent
                         visible: parent.width > 110 && parent.height > 50
-                        text: "DROP TO REPLACE"
+                        text: I18n.t("DROP TO REPLACE")
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         font.pixelSize: 12
@@ -865,7 +865,7 @@ PanelWindow {
                         width: parent.width - 12
                         horizontalAlignment: Text.AlignHCenter
                         elide: Text.ElideRight
-                        text: ImageService.rejectCount > 1 ? ImageService.rejectCount + " FILES SKIPPED" : "NOT A PICTURE"
+                        text: ImageService.rejectCount > 1 ? I18n.t("{n} FILES SKIPPED", { n: ImageService.rejectCount }) : I18n.t("NOT A PICTURE")
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         font.pixelSize: 11
@@ -940,7 +940,7 @@ PanelWindow {
                         width: parent.width - 12
                         horizontalAlignment: Text.AlignHCenter
                         elide: Text.ElideRight
-                        text: "PINNED ON TOP"
+                        text: I18n.t("PINNED ON TOP")
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         font.pixelSize: 11

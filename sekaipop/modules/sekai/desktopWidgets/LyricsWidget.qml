@@ -284,9 +284,9 @@ PanelWindow {
     readonly property bool demo: EditMode.active && !win.present
     readonly property var demoLines: [
         { t: 0, text: "" },
-        { t: 3, text: "this is where the words go" },
-        { t: 7, text: "one by one, as they are sung" },
-        { t: 11.5, text: "drop me anywhere you like" },
+        { t: 3, text: I18n.t("this is where the words go") },
+        { t: 7, text: I18n.t("one by one, as they are sung") },
+        { t: 11.5, text: I18n.t("drop me anywhere you like") },
         { t: 15, text: "" }
     ]
     readonly property real demoTotal: 18
@@ -480,10 +480,10 @@ PanelWindow {
         if (win.demo || win.lines.length > 0)
             return ""
         switch (LyricsService.status) {
-        case "loading": return "looking for the words...";
+        case "loading": return I18n.t("looking for the words...");
         // "none" (no synced lyrics) and "instrumental" say nothing on purpose: a song without
         // words just shows its title under the card, no placeholder text in the middle.
-        case "offline": return "can't reach the lyrics service";
+        case "offline": return I18n.t("can't reach the lyrics service");
         default: return "";
         }
     }
@@ -497,8 +497,10 @@ PanelWindow {
         // one that is slow to answer or moves once a second: hundreds), `line` is the one
         // that is on, `rate` is how fast the song is sung.
         if (LyricsService.debug)
-            return "clock spread " + LM.clockSpread(win.clk) + " ms   line " + (win.curIndex + 1) + "/" + win.lines.length
-                + "   " + win.rate.toFixed(1) + " syl/s   nudge " + (LyricsService.syncTotal / 1000).toFixed(1) + " s";
+            return I18n.t("clock spread {a} ms   line {b}/{c}   {d} syl/s   nudge {e} s", {
+                    a: LM.clockSpread(win.clk), b: win.curIndex + 1, c: win.lines.length,
+                    d: win.rate.toFixed(1), e: (LyricsService.syncTotal / 1000).toFixed(1)
+                });
         const t = win.trackTitle
         const a = win.trackArtist
         let s = a !== "" ? (t + " - " + a) : t
@@ -506,7 +508,10 @@ PanelWindow {
             s = s.slice(0, 55) + "..."
         // The lyrics were made for a cut of a different length: they may need a nudge.
         if (Math.abs(LyricsService.versionDiff) >= 1.5 && win.lines.length > 0)
-            s += "  (lyrics for a " + Math.abs(LyricsService.versionDiff).toFixed(1) + " s " + (LyricsService.versionDiff > 0 ? "longer" : "shorter") + " cut)"
+            s += I18n.t("  (lyrics for a {n} s {dir} cut)", {
+                n: Math.abs(LyricsService.versionDiff).toFixed(1),
+                dir: I18n.t(LyricsService.versionDiff > 0 ? "longer" : "shorter")
+            })
         return s
     }
 
@@ -807,7 +812,7 @@ PanelWindow {
                         spacing: 16
 
                         LyricsKey {
-                            label: "<< earlier"
+                            label: I18n.t("<< earlier")
                             visible: win.lines.length > 0
                             onClicked: LyricsService.nudge(100)
                         }
@@ -820,7 +825,7 @@ PanelWindow {
                         }
 
                         LyricsKey {
-                            label: "later >>"
+                            label: I18n.t("later >>")
                             visible: win.lines.length > 0
                             onClicked: LyricsService.nudge(-100)
                         }

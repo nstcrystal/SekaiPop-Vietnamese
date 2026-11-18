@@ -1168,7 +1168,7 @@ PanelWindow {
                     Text {
                         id: nameText
                         anchors.centerIn: parent
-                        text: card.designNames[card.designIndex] + "  " + (card.designIndex + 1) + "/" + card.designNames.length
+                        text: I18n.t(card.designNames[card.designIndex]) + "  " + (card.designIndex + 1) + "/" + card.designNames.length
                         color: mt.chipInk
                         font.family: mt.fontFamily
                         font.pixelSize: 11

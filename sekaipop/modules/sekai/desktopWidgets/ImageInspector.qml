@@ -339,7 +339,7 @@ Item {
 
                 Cap {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "IMAGE"
+                    text: I18n.t("IMAGE")
                     color: mt.pInk
                     font.pixelSize: 12
                 }
@@ -378,18 +378,18 @@ Item {
         Cap {
             width: parent.width
             visible: root.rec !== null && root.rec.mode === "crop"
-            text: "DRAG TO PAN  -  SCROLL TO ZOOM"
+            text: I18n.t("DRAG TO PAN  -  SCROLL TO ZOOM")
             horizontalAlignment: Text.AlignHCenter
         }
 
         Slide {
-            label: "ROUND"
+            label: I18n.t("ROUND")
             value: root.rec ? root.rec.roundness : 0
             onMoved: v => root.set({ roundness: v })
         }
 
         Slide {
-            label: "OPACITY"
+            label: I18n.t("OPACITY")
             from: 0.05
             to: 1
             value: root.rec ? root.rec.opacity : 1
@@ -400,14 +400,14 @@ Item {
 
         // pin
         ToggleRow {
-            label: "PIN ON TOP"
+            label: I18n.t("PIN ON TOP")
             checked: root.rec !== null && root.rec.pinned
             onToggled: ImageService.setPinned(root.imageId, !(root.rec && root.rec.pinned))
         }
 
         Cap {
             width: parent.width
-            text: "IN FRONT OF WINDOWS AND GAMES. CLICKS PASS THROUGH IT. SHOWN NORMALLY WHILE YOU EDIT"
+            text: I18n.t("IN FRONT OF WINDOWS AND GAMES. CLICKS PASS THROUGH IT. SHOWN NORMALLY WHILE YOU EDIT")
             wrapMode: Text.WordWrap
             font.pixelSize: 9
             opacity: 0.8
@@ -417,14 +417,14 @@ Item {
 
         // border
         ToggleRow {
-            label: "BORDER"
+            label: I18n.t("BORDER")
             checked: root.rec !== null && root.rec.borderOn
             onToggled: root.set({ borderOn: !(root.rec && root.rec.borderOn) })
         }
 
         Slide {
             visible: root.rec !== null && root.rec.borderOn
-            label: "WIDTH"
+            label: I18n.t("WIDTH")
             from: 1
             to: 24
             step: 1
@@ -443,7 +443,7 @@ Item {
             Cap {
                 anchors.verticalCenter: parent.verticalCenter
                 width: 62
-                text: "COLOUR"
+                text: I18n.t("COLOUR")
             }
 
             Repeater {
@@ -488,7 +488,7 @@ Item {
 
         // shadow
         ToggleRow {
-            label: "SHADOW"
+            label: I18n.t("SHADOW")
             checked: root.rec !== null && root.rec.shadowOn
             onToggled: root.set({ shadowOn: !(root.rec && root.rec.shadowOn) })
         }
@@ -507,7 +507,7 @@ Item {
 
         Slide {
             visible: root.rec !== null && root.rec.shadowOn
-            label: "REACH"
+            label: I18n.t("REACH")
             value: root.rec ? root.rec.shadowDepth : 0.5
             onMoved: v => root.set({ shadowDepth: v })
         }
@@ -516,7 +516,7 @@ Item {
 
         // aspect ratio
         ToggleRow {
-            label: "LOCK RATIO"
+            label: I18n.t("LOCK RATIO")
             checked: root.rec === null || root.rec.lockAspect
             onToggled: root.set({ lockAspect: !(root.rec === null || root.rec.lockAspect) })
         }
@@ -528,14 +528,14 @@ Item {
             KeyBtn {
                 anchors.left: parent.left
                 icon: "aspect_ratio"
-                label: "ORIGINAL RATIO"
+                label: I18n.t("ORIGINAL RATIO")
                 onClicked: root.originalRatioRequested()
             }
         }
 
         Cap {
             width: parent.width
-            text: "SHIFT WHILE DRAGGING A CORNER FLIPS THE LOCK"
+            text: I18n.t("SHIFT WHILE DRAGGING A CORNER FLIPS THE LOCK")
             wrapMode: Text.WordWrap
             font.pixelSize: 9
             opacity: 0.8

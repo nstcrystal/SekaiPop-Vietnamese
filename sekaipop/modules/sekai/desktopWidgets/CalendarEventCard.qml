@@ -58,9 +58,10 @@ Item {
 
     // The chip's words: a deadline that is still ahead reads "Due ...".
     readonly property string chipText: {
-        const w = EM.countdown(ec.ev, ec.diff)
+        const w = EM.countdown(ec.ev, ec.diff, I18n.t)
         if (ec.deadline && !ec.done && ec.diff >= 0)
-            return "Due " + w.charAt(0).toLowerCase() + w.slice(1)
+            return I18n.vi ? I18n.t("Due {when}", { when: w })
+                           : "Due " + w.charAt(0).toLowerCase() + w.slice(1)
         return w
     }
 
@@ -189,7 +190,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 width: parent.width - 18
                 elide: Text.ElideRight
-                text: EM.timeText(ec.ev.time, ec.use24h) + (ec.ev.note !== "" ? "  \u00b7  " + ec.ev.note : "")
+                text: I18n.t(EM.timeText(ec.ev.time, ec.use24h)) + (ec.ev.note !== "" ? "  \u00b7  " + ec.ev.note : "")
                 color: mt.pInkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 11
@@ -245,9 +246,9 @@ Item {
                 Text {
                     width: parent.width
                     text: ec.pdate
-                        ? CM.weekdayLong(new Date(ec.pdate.y, ec.pdate.m, ec.pdate.d).getDay()) + ", "
-                          + ec.pdate.d + " " + CM.monthShort(ec.pdate.m) + " " + ec.pdate.y
-                          + "  \u00b7  " + EM.timeText(ec.ev.time, ec.use24h)
+                        ? CM.weekdayLong(new Date(ec.pdate.y, ec.pdate.m, ec.pdate.d).getDay(), I18n.vi) + ", "
+                          + ec.pdate.d + " " + CM.monthShort(ec.pdate.m, I18n.vi) + " " + ec.pdate.y
+                          + "  \u00b7  " + I18n.t(EM.timeText(ec.ev.time, ec.use24h))
                         : ""
                     elide: Text.ElideRight
                     color: mt.pInk
@@ -277,20 +278,20 @@ Item {
                         visible: ec.deadline
                         primary: !ec.done
                         icon: ec.done ? "undo" : "check"
-                        label: ec.done ? "Undo" : "Done"
+                        label: ec.done ? I18n.t("Undo") : I18n.t("Done")
                         onClicked: ec.doneToggled()
                     }
 
                     CalendarChip {
                         icon: "edit"
-                        label: "Edit"
+                        label: I18n.t("Edit")
                         onClicked: ec.editRequested()
                     }
 
                     CalendarChip {
                         danger: true
                         icon: "delete"
-                        label: "Delete"
+                        label: I18n.t("Delete")
                         onClicked: ec.deleteRequested()
                     }
                 }

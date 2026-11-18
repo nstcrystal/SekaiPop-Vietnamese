@@ -172,7 +172,7 @@ PanelWindow {
             Text {
                 visible: row.kind === "offline"
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Unreachable"
+                text: I18n.t("Unreachable")
                 color: mt.inkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 12
@@ -181,7 +181,7 @@ PanelWindow {
             Text {
                 visible: row.kind === "offline"
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Try again"
+                text: I18n.t("Try again")
                 color: mt.accentCyan
                 font.family: mt.fontFamily
                 font.pixelSize: 12
@@ -200,7 +200,7 @@ PanelWindow {
             Text {
                 visible: row.kind === "none"
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Not found"
+                text: I18n.t("Not found")
                 color: mt.inkSub
                 opacity: 0.7
                 font.family: mt.fontFamily
@@ -229,7 +229,7 @@ PanelWindow {
                 Text {
                     id: badge
                     anchors.centerIn: parent
-                    text: row.kind === "word" ? "WORD BY WORD" : "SYNCED"
+                    text: row.kind === "word" ? I18n.t("WORD BY WORD") : I18n.t("SYNCED")
                     color: row.kind === "word" ? mt.accentCyan : mt.ink
                     font.family: mt.fontFamily
                     font.pixelSize: 10
@@ -320,7 +320,7 @@ PanelWindow {
                     x: 12
                     height: 30
                     verticalAlignment: Text.AlignVCenter
-                    text: "Lyrics source"
+                    text: I18n.t("Lyrics source")
                     color: mt.inkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 12
@@ -331,10 +331,10 @@ PanelWindow {
 
                 SourceRow {
                     width: col.width
-                    name: "Auto"
+                    name: I18n.t("Auto")
                     note: LyricsService.source !== "" && LyricsService.status === "ready"
-                        ? "using " + LyricsService.providerName(LyricsService.source)
-                        : "the best one for each song"
+                        ? I18n.t("using {name}", { name: LyricsService.providerName(LyricsService.source) })
+                        : I18n.t("the best one for each song")
                     selected: LyricsService.preferred === "auto"
                     onPicked: LyricsService.setPreferred("auto")
                 }
