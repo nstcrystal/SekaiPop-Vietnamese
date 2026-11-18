@@ -221,25 +221,25 @@ khi quét thêm component plugin và dialog.
 
 | Hạng mục | Chuỗi | Trạng thái | Commit |
 |---|---:|---|---|
-| Hạ tầng i18n, nút Language | — | 100% | `b0fffe1` |
-| Settings > General | 97/97 | 100% | `ec790a3` |
-| Settings > Quick | 48/48 | 100% | `1133ea1` |
-| Settings > Bar | 68/68 | 100% | `1133ea1` |
-| Settings > Desktop | 255/255 | 100% | `6271da3` |
-| Settings > Hyprland | 117/117 | 100% | `200eeb0` |
-| Settings > About | 11/11 | 100% | `200eeb0` |
-| Component plugin (phần tĩnh) | — | đã dịch | `200eeb0` |
-| Chuỗi động trong Settings | ~160 khóa | 100% | `65849df` |
-| Quick Panel: tile, dialog, power menu | ~110 khóa | đã dịch | `622541f` |
-| Apps/Launcher + 5 thẻ phụ | ~60 khóa | đã dịch | `2e1701a` |
-| Lockscreen (2 bố cục) | ~25 khóa | đã dịch | `be3a13e` |
-| Bar: chỉ báo, tooltip, 4 popup | ~140 khóa | đã dịch | `45a0c7a` |
-| OSD + nhãn ghi màn hình | 7 khóa | đã dịch | `fafdc49` |
-| Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `f2b7a81` |
-| Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
-| Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `9fa9477` |
-| Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | `4ff7bf0` |
-| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm (9a, 9b, 9c, 9d xong) | `3d75082` |
+| Hạ tầng i18n, nút Language | — | 100% | `baba45e` |
+| Settings > General | 97/97 | 100% | `3811576` |
+| Settings > Quick | 48/48 | 100% | `c6cf4fc` |
+| Settings > Bar | 68/68 | 100% | `c6cf4fc` |
+| Settings > Desktop | 255/255 | 100% | `076c6a2` |
+| Settings > Hyprland | 117/117 | 100% | `6af4d1e` |
+| Settings > About | 11/11 | 100% | `6af4d1e` |
+| Component plugin (phần tĩnh) | — | đã dịch | `6af4d1e` |
+| Chuỗi động trong Settings | ~160 khóa | 100% | `9d14874` |
+| Quick Panel: tile, dialog, power menu | ~110 khóa | đã dịch | `c23de40` |
+| Apps/Launcher + 5 thẻ phụ | ~60 khóa | đã dịch | `b66f0f2` |
+| Lockscreen (2 bố cục) | ~25 khóa | đã dịch | `ecb740a` |
+| Bar: chỉ báo, tooltip, 4 popup | ~140 khóa | đã dịch | `1b60571` |
+| OSD + nhãn ghi màn hình | 7 khóa | đã dịch | `65eda7c` |
+| Wallpapers: thư viện, Wallhaven | ~130 khóa | đã dịch | `c9e61a2` |
+| Welcome tour (5 slide) | 15 khóa | đã dịch | `25d32a0` |
+| Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `d712fb3` |
+| Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | `646e02b` |
+| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm (9a, 9b, 9c, 9d xong) | `ac0df84` |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -477,9 +477,9 @@ shell.
 
 Cụm 2b-9 + 2b-10 — Dock (làm từng phần, tick khi xong phần đó; chờ test trước khi sang phần sau):
 
-- [x] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta` — `3d75082`, rút gọn nhãn cho vừa khung ở `ff50fe1`. Menu dịch tại `buildMenu`; flag và tên tool dịch tại chỗ. Ba khóa shelf (`Add what is on the clipboard`, `Copy everything on the shelf`, `Clear the shelf`) đã thêm sẵn cho 2b-9d.
-- [x] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro (`I18n.t(modelData.label)`), 3 bộ nút Pause/Resume/Start, `Custom`/`Set`/`1 min`, `Lap` và `Lap {n}`, `Skip`, `phaseLabel`, footer `{work} min focus · {short} short · {long} long`. Dịch tại chỗ hiển thị; dùng lại khóa có sẵn `Pause`, `Timer`, `Stopwatch`, `Focus`, `Short break`, `Long break`. Giữ nguyên: `Pomodoro`, chữ `h/m/s` và `m` trên nút phút có sẵn — `4c013bf`.
-- [x] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher): header `Clipboard`, hai câu trống (`Needs cliphist and wl-clipboard installed.`, `Nothing copied yet.`) và nút `More in search`. `Extras.imageLabel(preview, t)` nhận `I18n.t` từ cả 3 chỗ gọi (thẻ Dock + 2 chỗ trong `ClipboardCard` của launcher) → `Image · {d}` thành `Hình ảnh · {d}`; phần kích thước/định dạng/kích thước ảnh sau dấu chấm là dữ liệu cliphist, giữ nguyên. Không truyền `t` thì vẫn ra tiếng Anh như cũ (dùng cho test/node) — `ede05ac`.
+- [x] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta` — `ac0df84`, rút gọn nhãn cho vừa khung ở `b1d5d02`. Menu dịch tại `buildMenu`; flag và tên tool dịch tại chỗ. Ba khóa shelf (`Add what is on the clipboard`, `Copy everything on the shelf`, `Clear the shelf`) đã thêm sẵn cho 2b-9d.
+- [x] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro (`I18n.t(modelData.label)`), 3 bộ nút Pause/Resume/Start, `Custom`/`Set`/`1 min`, `Lap` và `Lap {n}`, `Skip`, `phaseLabel`, footer `{work} min focus · {short} short · {long} long`. Dịch tại chỗ hiển thị; dùng lại khóa có sẵn `Pause`, `Timer`, `Stopwatch`, `Focus`, `Short break`, `Long break`. Giữ nguyên: `Pomodoro`, chữ `h/m/s` và `m` trên nút phút có sẵn — `5d386c3`.
+- [x] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher): header `Clipboard`, hai câu trống (`Needs cliphist and wl-clipboard installed.`, `Nothing copied yet.`) và nút `More in search`. `Extras.imageLabel(preview, t)` nhận `I18n.t` từ cả 3 chỗ gọi (thẻ Dock + 2 chỗ trong `ClipboardCard` của launcher) → `Image · {d}` thành `Hình ảnh · {d}`; phần kích thước/định dạng/kích thước ảnh sau dấu chấm là dữ liệu cliphist, giữ nguyên. Không truyền `t` thì vẫn ra tiếng Anh như cũ (dùng cho test/node) — `1191ed1`.
 - [x] 2b-9d `DockShelfCard.qml` + `DockMediaCard.qml`: header `Kệ`, 3 hint nút (thêm/sao chép/dọn), câu trống, `Pick one to open it`, `Nothing playing`. Dịch tại `hint` và tại chỗ hiển thị.
 - [x] Media popup (`mediaControls/MediaPopup.qml`): nút play/pause rộng 92px, nhãn `Tạm dừng` tràn ra ngoài → dùng `Dừng` qua khóa ngữ cảnh `media:Pause` (tiếng Anh vẫn là `Pause`).
 - [x] 2b-10a `FilesStackService.qml`: nhãn thời gian sửa (`modifiedLabel`), tiêu đề `Home`/`Trash` (`titleFor`), loại file (`typeLabel`: Folder, các loại ảnh/video/âm thanh/tệp nén…, `{ext} file` → `Tệp {ext}`) và ngày sửa (`dateText`, dùng helper mới `I18n.dateMedium`). Nhãn 6 nút vị trí dịch trong `DockFilesCard` (`hoverLabel`), rê chuột lên Thùng rác có câu riêng. Giữ tiếng Anh: tên thư mục thật, `placeNames`, khóa `kinds` (vì `isVideo()` so sánh `Video`), đơn vị `B/kB/MB/GB/TB`.
@@ -578,26 +578,26 @@ About) **giữ tiếng Anh**; câu mô tả và tên action bên trong vẫn d�
 Commit hiện có:
 
 ```text
-bcc6c47  base: SekaiPop 6fbf784, chưa Việt hóa
-b0fffe1  i18n: hạ tầng, nút chuyển ngôn ngữ, lớp dịch component
-ec790a3  i18n: Settings > General
-1133ea1  i18n: Settings > Quick, Bar
-6271da3  i18n: Settings > Desktop
-200eeb0  i18n: Settings > About, thẻ Plugins và Get plugins
-119f807  docs: TRANSLATION.md; switch.sh dùng symlink để phím tắt hoạt động
-65849df  i18n: Settings > chuỗi động và hộp thoại plugin
-d1a42ae  docs: ghi đúng commit cho cụm 2a
-622541f  i18n: Quick Panel > tile, dialog, power menu
-2e1701a  i18n: Apps/Launcher > tìm kiếm, hành động hệ thống, 5 thẻ phụ
-be3a13e  i18n: Lockscreen > hai bố cục, lịch, lỗi mật khẩu
-45a0c7a  i18n: Bar > chỉ báo, tooltip, lịch, pin, thời tiết, Discord
-fafdc49  i18n: OSD > âm lượng, micrô, độ sáng, nhãn ghi màn hình
-f2b7a81  i18n: Wallpapers > thư viện, trình xem, Wallhaven
-642b65e  i18n: Welcome tour > 5 slide, gợi ý điều hướng
-49551fa  i18n: giữ tiếng Anh cho menu Settings
-9929c13  i18n: giữ tiếng Anh cho "Settings" và "General"
-9fa9477  i18n: Keybinds panel và cheatsheet
-39ce418  docs: ghi commit cho cụm Keybinds + cheatsheet
-4ff7bf0  i18n: Notification popup và các popup còn lại của Bar
-1c6efc7  docs: ghi cụm Notification popup + popup Bar
+3ff5785  chore: import SekaiPop 6fbf784 baseline
+baba45e  feat(i18n): add translation layer and language switch
+3811576  feat(i18n): translate Settings General page
+c6cf4fc  feat(i18n): translate Settings Quick and Bar pages
+076c6a2  feat(i18n): translate Settings Desktop page
+6af4d1e  feat(i18n): translate Settings About and plugin cards
+9a11e8a  feat(scripts): symlink config in switch.sh so keybinds work
+9d14874  feat(i18n): translate dynamic Settings strings and plugin dialogs
+9371db3  docs(i18n): record phase 2a commit references
+c23de40  feat(i18n): translate Quick Panel tiles and dialogs
+b66f0f2  feat(i18n): translate launcher search and extra cards
+ecb740a  feat(i18n): translate lockscreen layouts and password errors
+1b60571  feat(i18n): translate bar indicators and popups
+65eda7c  feat(i18n): translate OSD and screen recording labels
+c9e61a2  feat(i18n): translate wallpaper picker and Wallhaven
+25d32a0  feat(i18n): translate welcome tour slides
+03b4218  fix(i18n): keep Settings navigation labels in English
+a16c98e  fix(i18n): preserve English terms in Settings and General
+d712fb3  feat(i18n): translate keybinds panel and cheatsheet
+2f2e0f3  docs(i18n): record keybinds and cheatsheet progress
+646e02b  feat(i18n): translate notification popup and bar popups
+f18bec2  docs(i18n): record notification and bar popup progress
 ```
