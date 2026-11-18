@@ -41,7 +41,7 @@ DockCard {
                 required property var modelData
                 height: 34
                 icon: modelData.icon
-                label: modelData.label
+                label: I18n.t(modelData.label)
                 fontSize: 13
                 iconSize: 18
                 selected: root.tab === modelData.id
@@ -113,13 +113,13 @@ DockCard {
             DockButton {
                 accent: true
                 icon: TimerService.timerRunning ? "pause" : "play_arrow"
-                label: TimerService.timerRunning ? "Pause" : (TimerService.timerPaused ? "Resume" : "Start")
+                label: I18n.t(TimerService.timerRunning ? "Pause" : (TimerService.timerPaused ? "Resume" : "Start"))
                 onClicked: TimerService.toggleTimer()
             }
 
             DockButton {
                 icon: "add"
-                label: "1 min"
+                label: I18n.t("1 min")
                 onClicked: TimerService.addTimerMinute()
             }
 
@@ -138,7 +138,7 @@ DockCard {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Custom"
+                text: I18n.t("Custom")
                 color: mt.inkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 13
@@ -196,7 +196,7 @@ DockCard {
 
             DockButton {
                 height: 30
-                label: "Set"
+                label: I18n.t("Set")
                 fontSize: 13
                 enabled: timerPage.canSetCustom
                 opacity: enabled ? 1 : 0.5
@@ -253,13 +253,13 @@ DockCard {
             DockButton {
                 accent: true
                 icon: TimerService.swRunning ? "pause" : "play_arrow"
-                label: TimerService.swRunning ? "Pause" : (TimerService.swPaused ? "Resume" : "Start")
+                label: I18n.t(TimerService.swRunning ? "Pause" : (TimerService.swPaused ? "Resume" : "Start"))
                 onClicked: TimerService.toggleStopwatch()
             }
 
             DockButton {
                 icon: "flag"
-                label: "Lap"
+                label: I18n.t("Lap")
                 onClicked: TimerService.lapStopwatch()
             }
 
@@ -288,7 +288,8 @@ DockCard {
                 width: lapList.width - 12
                 horizontalAlignment: Text.AlignHCenter
                 elide: Text.ElideRight
-                text: "Lap " + (TimerService.lapCount - index) + "   " + TimerService.stopwatchClock(modelData)
+                text: I18n.t("Lap {n}", { n: TimerService.lapCount - index })
+                    + "   " + TimerService.stopwatchClock(modelData)
                 color: mt.inkSub
                 font.family: mt.fontFamily
                 font.features: { "tnum": 1 }
@@ -320,7 +321,7 @@ DockCard {
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: TimerService.phaseLabel
+                text: I18n.t(TimerService.phaseLabel)
                 color: TimerService.pomPhase === "focus" ? mt.ink : mt.inkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 15
@@ -373,13 +374,13 @@ DockCard {
             DockButton {
                 accent: true
                 icon: TimerService.pomRunning ? "pause" : "play_arrow"
-                label: TimerService.pomRunning ? "Pause" : (TimerService.pomPaused ? "Resume" : "Start")
+                label: I18n.t(TimerService.pomRunning ? "Pause" : (TimerService.pomPaused ? "Resume" : "Start"))
                 onClicked: TimerService.togglePomodoro()
             }
 
             DockButton {
                 icon: "skip_next"
-                label: "Skip"
+                label: I18n.t("Skip")
                 onClicked: TimerService.nextPhase(TimerService.pomRunning)
             }
 
@@ -394,8 +395,11 @@ DockCard {
             width: parent.width
             elide: Text.ElideRight
             horizontalAlignment: Text.AlignHCenter
-            text: Math.round(TimerService.pomWorkMin) + " min focus · " + Math.round(TimerService.pomShortMin)
-                + " short · " + Math.round(TimerService.pomLongMin) + " long"
+            text: I18n.t("{work} min focus · {short} short · {long} long", {
+                work: Math.round(TimerService.pomWorkMin),
+                short: Math.round(TimerService.pomShortMin),
+                long: Math.round(TimerService.pomLongMin)
+            })
             color: mt.inkSub
             font.family: mt.fontFamily
             font.pixelSize: 12

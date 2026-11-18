@@ -977,5 +977,20 @@ var dict = {
     "You don't have permission to read it": "Bạn không có quyền đọc thư mục này",
     "What you delete waits here": "Những gì bạn xóa sẽ nằm ở đây",
     "Go to Home": "Về Thư mục chính",
-    "Trash  ·  right-click for Empty Trash": "Thùng rác  ·  chuột phải để dọn Thùng rác"
+    "Trash  ·  right-click for Empty Trash": "Thùng rác  ·  chuột phải để dọn Thùng rác",
+
+    // ----- Dock: the Timer / Stopwatch / Pomodoro card -----
+    // "Timer", "Stopwatch", "Focus", "Short break" and "Long break" reuse the
+    // keys above; "Pause" comes from vi-settings.js. The unit letters (h/m/s)
+    // and "Pomodoro" stay as they are.
+    "Resume": "Tiếp tục",
+    "Start": "Bắt đầu",
+    "1 min": "1 phút",
+    "Custom": "Tùy chỉnh",
+    "Set": "Đặt",
+    "Lap": "Vòng",
+    "Lap {n}": "Vòng {n}",
+    "Skip": "Bỏ qua",
+    "{work} min focus · {short} short · {long} long":
+        "{work} phút tập trung · {short} nghỉ ngắn · {long} nghỉ dài"
 }
