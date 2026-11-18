@@ -358,7 +358,7 @@ Item {
     function labelFor(options, id) {
         for (const o of options) {
             if (o.id === id)
-                return o.label
+                return I18n.t(o.label)
         }
         return ""
     }
@@ -374,7 +374,7 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "STYLE"
+                title: I18n.t("STYLE")
                 value: root.styleHover !== "" ? root.labelFor(root.styleOptions, root.styleHover)
                     : root.labelFor(root.styleOptions, BarStyleService.style)
             }
@@ -408,7 +408,7 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "POSITION"
+                title: I18n.t("POSITION")
                 value: root.positionHover !== "" ? root.labelFor(root.positionOptions, root.positionHover)
                     : root.labelFor(root.positionOptions, BarPositionService.position)
             }
@@ -481,7 +481,7 @@ Item {
                 Text {
                     x: 16
                     y: 9
-                    text: root.zoneTitles[lane.zone]
+                    text: I18n.t(root.zoneTitles[lane.zone])
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 12
@@ -493,7 +493,7 @@ Item {
                 Text {
                     anchors.centerIn: parent
                     visible: root.idsIn(lane.zone).length === 0 && root.dragId === ""
-                    text: lane.zone === "off" ? "nothing removed" : "drop modules here"
+                    text: lane.zone === "off" ? I18n.t("nothing removed") : I18n.t("drop modules here")
                     color: mt.pInkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 12
@@ -561,7 +561,7 @@ Item {
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "RESET"
+                        text: I18n.t("RESET")
                         color: mt.pInk
                         font.family: mt.fontFamily
                         font.pixelSize: 10
@@ -610,7 +610,7 @@ Item {
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "CLEAR ALL"
+                        text: I18n.t("CLEAR ALL")
                         color: mt.pInk
                         font.family: mt.fontFamily
                         font.pixelSize: 10

@@ -250,6 +250,6 @@ assert.ok(/if \(back\)\n\s*NotesService\.wearLook\(back\.notes, back\.set\)\n\s*
 assert.ok(src.includes("root.lastName = back ? back.last : name"))
 assert.ok(/if \(root\.waiting\)\n\s*root\.proceed\(\)/.test(src), "the wear waits for the queue")
 const board = read("EditPresetBoard.qml")
-for (const t of ["component UndoTile", "title: redo ? \"REDO\" : \"UNDO\"", "DesktopPresetService.undoWear()", "DesktopPresetService.undoRemove()", "readonly property bool unsaved", "\"NOT SAVED\""])
+for (const t of ["component UndoTile", "title: redo ? I18n.t(\"REDO\") : I18n.t(\"UNDO\")", "DesktopPresetService.undoWear()", "DesktopPresetService.undoRemove()", "readonly property bool unsaved", "I18n.t(\"NOT SAVED\")"])
     assert.ok(board.includes(t), "board: " + t)
 console.log("undo_unit: all checks passed")

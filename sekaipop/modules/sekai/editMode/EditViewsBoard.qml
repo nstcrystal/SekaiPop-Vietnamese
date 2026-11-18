@@ -48,7 +48,7 @@ Item {
     function labelFor(options, id) {
         for (const o of options) {
             if (o.id === id)
-                return o.label
+                return I18n.t(o.label)
         }
         return ""
     }
@@ -77,8 +77,8 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "PHONE"
-                value: root.phoneHover === "" && GameModeService.enabled ? "Flat in Game Mode"
+                title: I18n.t("PHONE")
+                value: root.phoneHover === "" && GameModeService.enabled ? I18n.t("Flat in Game Mode")
                     : root.labelFor(root.phoneOptions, root.phoneHover !== "" ? root.phoneHover : root.phoneNow)
             }
 
@@ -109,9 +109,9 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "OVERVIEW"
+                title: I18n.t("OVERVIEW")
                 value: root.styleHover === "" && root.scroll && !ScrollOverviewService.available
-                    ? "Scroll \u00b7 plugin not loaded, opens the board"
+                    ? I18n.t("Scroll \u00b7 plugin not loaded, opens the board")
                     : root.labelFor(root.styleOptions,
                         root.styleHover !== "" ? root.styleHover : SettingsService.get("overview.style"))
             }
@@ -144,7 +144,7 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "BOARD AT"
+                title: I18n.t("BOARD AT")
                 value: root.labelFor(root.positionOptions,
                     root.positionHover !== "" ? root.positionHover : SettingsService.get("overview.position"))
             }
@@ -177,7 +177,7 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "BOARD CARDS"
+                title: I18n.t("BOARD CARDS")
                 value: String(root.count)
             }
 
@@ -200,7 +200,7 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "BAR PILLS"
+                title: I18n.t("BAR PILLS")
                 value: String(root.barCount)
             }
 

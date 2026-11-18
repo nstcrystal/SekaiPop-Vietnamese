@@ -575,7 +575,7 @@ PanelWindow {
                                             Text {
                                                 id: stickerText
                                                 anchors.centerIn: parent
-                                                text: mark.wide ? "= SAME WIDTH" : "= SAME HEIGHT"
+                                                text: mark.wide ? I18n.t("= SAME WIDTH") : I18n.t("= SAME HEIGHT")
                                                 color: mt.colBorder
                                                 font.family: mt.fontFamily
                                                 font.pixelSize: 11

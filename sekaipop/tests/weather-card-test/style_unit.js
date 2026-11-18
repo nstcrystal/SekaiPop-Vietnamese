@@ -95,6 +95,6 @@ ok(approx < contentW - discW - 12 - 4, "the number plus its unit leave room for 
 ok(/onPicked: id => WeatherCardService\.setStyle\(id\)/.test(settings) && /id: "minimal"/.test(settings), "Settings -> Desktop offers the style")
 ok(/function style\(mode: string\): void \{ WeatherCardService\.setStyle\(mode\) \}/.test(shell), "ipc weathercard style")
 ok(/property string icon: ""/.test(key) && /property string label: ""/.test(key) && /root\.label !== ""/.test(key), "SizeKey takes an icon and a label (size users unchanged)")
-ok(/text: root\.label !== "" \? root\.label : "SIZE  "/.test(key), "SizeKey still says SIZE by default")
+ok(/text: root\.label !== "" \? root\.label : I18n\.t\("SIZE  \{v\}"/.test(key), "SizeKey still says SIZE by default (as an I18n key)")
 
 console.log("style_unit: all " + n + " checks passed")

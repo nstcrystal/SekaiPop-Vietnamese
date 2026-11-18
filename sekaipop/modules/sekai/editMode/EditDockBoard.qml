@@ -85,7 +85,7 @@ Item {
     function labelFor(options, id) {
         for (const o of options) {
             if (o.id === id)
-                return o.label
+                return I18n.t(o.label)
         }
         return ""
     }
@@ -104,7 +104,7 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "STYLE"
+                title: I18n.t("STYLE")
                 value: root.labelFor(root.styleOptions,
                     root.styleHover !== "" ? root.styleHover : SettingsService.get("dock.style"))
             }
@@ -138,7 +138,7 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "POSITION"
+                title: I18n.t("POSITION")
                 value: root.labelFor(root.positionOptions,
                     root.positionHover !== "" ? root.positionHover : SettingsService.get("dock.position"))
             }
@@ -170,8 +170,8 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "HIDING"
-                value: PinnedAppsService.dockPinned && root.hideHover === "" ? "Off while pinned"
+                title: I18n.t("HIDING")
+                value: PinnedAppsService.dockPinned && root.hideHover === "" ? I18n.t("Off while pinned")
                     : root.labelFor(root.hideOptions, root.hideHover !== "" ? root.hideHover : root.hideNow)
             }
 
@@ -205,8 +205,8 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "ABOVE WINDOWS"
-                value: PinnedAppsService.dockPinned ? "Pinned" : "Under windows"
+                title: I18n.t("ABOVE WINDOWS")
+                value: PinnedAppsService.dockPinned ? I18n.t("Pinned") : I18n.t("Under windows")
             }
 
             Row {
@@ -224,11 +224,11 @@ Item {
             spacing: 9
 
             EditPickHead {
-                title: "TOOLS"
+                title: I18n.t("TOOLS")
                 value: root.toolHover !== ""
                     ? root.labelFor(root.toolOptions, root.toolHover)
-                        + (PinnedAppsService.hasTool(root.toolHover) ? " · on" : " · off")
-                    : root.toolsOn + " of " + root.toolOptions.length + " on"
+                        + (PinnedAppsService.hasTool(root.toolHover) ? I18n.t(" · on") : I18n.t(" · off"))
+                    : I18n.t("{n} of {m} on", { n: root.toolsOn, m: root.toolOptions.length })
             }
 
             Row {
@@ -259,10 +259,10 @@ Item {
             visible: root.pinnedApps.length > 0
 
             EditPickHead {
-                title: "APPS"
+                title: I18n.t("APPS")
                 value: root.appHover !== ""
-                    ? root.appName(root.appHover) + (PinnedAppsService.isHidden(root.appHover) ? " · off" : " · on")
-                    : root.appsOn + " of " + root.pinnedApps.length + " on"
+                    ? root.appName(root.appHover) + (PinnedAppsService.isHidden(root.appHover) ? I18n.t(" · off") : I18n.t(" · on"))
+                    : I18n.t("{n} of {m} on", { n: root.appsOn, m: root.pinnedApps.length })
             }
 
             // Wraps inside the group when there are more apps than the shelf is wide.

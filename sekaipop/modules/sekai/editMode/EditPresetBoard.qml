@@ -177,7 +177,7 @@ Item {
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "SAVE THIS LOOK"
+                    text: I18n.t("SAVE THIS LOOK")
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 11
@@ -196,7 +196,7 @@ Item {
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "NAME IT"
+                    text: I18n.t("NAME IT")
                     color: mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 11
@@ -248,7 +248,7 @@ Item {
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "Enter: save   Esc: cancel"
+                    text: I18n.t("Enter: save   Esc: cancel")
                     color: mt.pInkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 10
@@ -273,7 +273,7 @@ Item {
             Text {
                 id: unsavedText
                 anchors.centerIn: parent
-                text: "NOT SAVED"
+                text: I18n.t("NOT SAVED")
                 color: mt.colBorder
                 font.family: mt.fontFamily
                 font.pixelSize: 9
@@ -692,7 +692,7 @@ Item {
 
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
-                            text: "DELETE?"
+                            text: I18n.t("DELETE?")
                             color: "#ffffff"
                             font.family: mt.fontFamily
                             font.pixelSize: 12
@@ -703,7 +703,7 @@ Item {
 
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
-                            text: "right click again"
+                            text: I18n.t("right click again")
                             color: "#ffffff"
                             font.family: mt.fontFamily
                             font.pixelSize: 10
@@ -776,7 +776,7 @@ Item {
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: tile.armed === "overwrite" ? "SURE?" : "SAVE OVER"
+                            text: tile.armed === "overwrite" ? I18n.t("SURE?") : I18n.t("SAVE OVER")
                             color: tile.armed === "overwrite" ? "#ffffff" : mt.chipInk
                             font.family: mt.fontFamily
                             font.pixelSize: 9
@@ -970,8 +970,8 @@ Item {
                 readonly property bool redo: !!prev && !!prev._meta && prev._meta.undone === true
                 visible: !!prev && !DesktopPresetService.isCurrent(prev)
                 icon: redo ? "redo" : "undo"
-                title: redo ? "REDO" : "UNDO"
-                sub: last !== "" ? "back to " + last : "back to the look before"
+                title: redo ? I18n.t("REDO") : I18n.t("UNDO")
+                sub: last !== "" ? I18n.t("back to {name}", { name: last }) : I18n.t("back to the look before")
                 onActivated: DesktopPresetService.undoWear()
             }
 
@@ -979,7 +979,7 @@ Item {
                 readonly property var gone: DesktopPresetService.trashed
                 visible: !!gone && !DesktopPresetService.has(gone.name)
                 icon: "restore_from_trash"
-                title: "UNDELETE"
+                title: I18n.t("UNDELETE")
                 sub: gone ? gone.name : ""
                 onActivated: DesktopPresetService.undoRemove()
             }
@@ -1004,7 +1004,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    text: "No presets yet. Set the desktop up the way you like it, then save it here to come back to it later."
+                    text: I18n.t("No presets yet. Set the desktop up the way you like it, then save it here to come back to it later.")
                     color: mt.pInkSub
                     font.family: mt.fontFamily
                     font.pixelSize: 12

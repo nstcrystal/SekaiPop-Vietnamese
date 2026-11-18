@@ -191,7 +191,7 @@ Item {
         // says what a click will do.
         Pill {
             id: tag
-            readonly property string verb: root.editing ? "STOP EDITING" : (root.placed ? "EDIT" : "ADD")
+            readonly property string verb: root.editing ? I18n.t("STOP EDITING") : (root.placed ? I18n.t("EDIT") : I18n.t("ADD"))
 
             width: tagText.implicitWidth + 28
             height: 26

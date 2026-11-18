@@ -343,7 +343,7 @@ Item {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: root.selected ? "EDITING" : "CLICK TO EDIT"
+                    text: root.selected ? I18n.t("EDITING") : I18n.t("CLICK TO EDIT")
                     color: root.selected ? mt.colBorder : mt.chipInk
                     font.family: mt.fontFamily
                     font.pixelSize: 10
@@ -397,7 +397,7 @@ Item {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Settings"
+                    text: I18n.t("Settings")
                     color: mt.colBorder
                     font.family: mt.fontFamily
                     font.pixelSize: 13

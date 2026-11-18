@@ -105,7 +105,7 @@ Item {
         Text {
             id: nameText
             anchors.centerIn: parent
-            text: root.label !== "" ? root.label : "SIZE  " + (root.small ? "2 x 2" : "FULL")
+            text: root.label !== "" ? root.label : I18n.t("SIZE  {v}", { v: root.small ? "2 x 2" : I18n.t("FULL") })
             color: mt.chipInk
             font.family: mt.fontFamily
             font.pixelSize: 11

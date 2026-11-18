@@ -467,7 +467,7 @@ Item {
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: root.busy ? "Working" : "Themes"
+                        text: root.busy ? I18n.t("Working") : I18n.t("Themes")
                         color: mt.colBorder
                         font.family: mt.fontFamily
                         font.pixelSize: 12
@@ -516,7 +516,7 @@ Item {
             // are 27 tall and the block 16 px wider. See docs/MATUGEN-CONTROLS.md.
             Block {
                 width: 16 + 3 * 76 + 2 * 5 + 16
-                title: "Scheme"
+                title: I18n.t("Scheme")
 
                 Grid {
                     x: 16
@@ -532,7 +532,7 @@ Item {
                             required property var modelData
                             width: 76
                             keyHeight: 27
-                            text: modelData.label
+                            text: I18n.t(modelData.label)
                             on: ThemeService.matugenType === modelData.id
                             spinning: on && root.busy
                             onClicked: SettingsService.set("matugen.scheme", modelData.id)
@@ -545,8 +545,8 @@ Item {
             Block {
                 // 16 px each side of Auto and the swatches (the handoff's 26 left 6 px poking out).
                 width: 16 + 54 + root.sources.length * 50 + 16
-                title: "Seed"
-                titleNote: "leading colour"
+                title: I18n.t("Seed")
+                titleNote: I18n.t("leading colour")
 
                 Row {
                     x: 16
@@ -573,7 +573,7 @@ Item {
                             }
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
-                                text: "Auto"
+                                text: I18n.t("Auto")
                                 color: ThemeService.matugenSeed < 0 ? mt.colBorder : mt.pInk
                                 font.family: mt.fontFamily
                                 font.pixelSize: 11
@@ -601,9 +601,9 @@ Item {
                 Cap {
                     x: 16
                     y: 109
-                    text: root.sources.length === 0 ? "Reading the wallpaper…"
-                        : root.sources.length === 1 ? "1 colour in this wallpaper"
-                        : root.sources.length + " colours in this wallpaper"
+                    text: root.sources.length === 0 ? I18n.t("Reading the wallpaper…")
+                        : root.sources.length === 1 ? I18n.t("1 colour in this wallpaper")
+                        : I18n.t("{n} colours in this wallpaper", { n: root.sources.length })
                 }
             }
 
@@ -611,7 +611,7 @@ Item {
             // 16 px each side of the five keys (the handoff's 190 left 8 px poking out).
             Block {
                 width: 16 + 5 * 30 + 4 * 4 + 16
-                title: "Contrast"
+                title: I18n.t("Contrast")
 
                 Row {
                     x: 16
@@ -634,12 +634,12 @@ Item {
                 Cap {
                     x: 18
                     y: 80
-                    text: "Softer"
+                    text: I18n.t("Softer")
                 }
                 Cap {
                     x: 16 + 5 * 30 + 4 * 4 - 2 - width
                     y: 80
-                    text: "Sharper"
+                    text: I18n.t("Sharper")
                 }
             }
 
@@ -647,7 +647,7 @@ Item {
             Block {
                 id: accents
                 width: 32 + 196 + (root.picking !== "" ? pickPanel.width : 0)
-                title: "Accents"
+                title: I18n.t("Accents")
 
                 Column {
                     x: 16
@@ -772,7 +772,7 @@ Item {
                         Text {
                             height: 14
                             verticalAlignment: Text.AlignVCenter
-                            text: "PIN " + root.picking + " TO"
+                            text: I18n.t("PIN {a} TO", { a: root.picking })
                             color: mt.pInkSub
                             font.family: mt.fontFamily
                             font.pixelSize: 11
@@ -803,7 +803,7 @@ Item {
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: "Keep this one"
+                                    text: I18n.t("Keep this one")
                                     color: mt.pInk
                                     font.family: mt.fontFamily
                                     font.pixelSize: 12
@@ -820,7 +820,7 @@ Item {
                                 width: 62
                                 height: 30
                                 verticalAlignment: Text.AlignVCenter
-                                text: "Wallpaper"
+                                text: I18n.t("Wallpaper")
                             }
                             Repeater {
                                 model: root.sources
@@ -842,7 +842,7 @@ Item {
                                 width: 62
                                 height: 30
                                 verticalAlignment: Text.AlignVCenter
-                                text: "Any"
+                                text: I18n.t("Any")
                             }
 
                             // A hex: Enter pins it. A typo just does nothing.

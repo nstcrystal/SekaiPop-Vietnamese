@@ -349,7 +349,7 @@ Item {
                     }
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
-                        text: "Needs matugen"
+                        text: I18n.t("Needs matugen")
                         color: mt.pInk
                         font.family: mt.fontFamily
                         font.pixelSize: 12
@@ -359,7 +359,7 @@ Item {
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         horizontalAlignment: Text.AlignHCenter
-                        text: "Install it to use\nthe wallpaper"
+                        text: I18n.t("Install it to use\nthe wallpaper")
                         color: mt.pInkSub
                         font.family: mt.fontFamily
                         font.pixelSize: 11

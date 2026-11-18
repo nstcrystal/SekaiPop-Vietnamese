@@ -169,7 +169,7 @@ Item {
             Text {
                 id: framingTag
                 anchors.centerIn: parent
-                text: "Framing"
+                text: I18n.t("Framing")
                 color: "#ffffff"
                 font.family: root.mt.fontFamily
                 font.pixelSize: 11
@@ -236,14 +236,14 @@ Item {
             SmallKey {
                 visible: root.asking === foot.kind
                 icon: "delete"
-                text: "Remove?"
+                text: I18n.t("Remove?")
                 ask: true
                 onClicked: root.remove(foot.kind)
             }
             SmallKey {
                 visible: root.asking !== foot.kind
                 icon: "image"
-                text: foot.pic === "set" || foot.kind === "phone" ? "" : "Pick"
+                text: foot.pic === "set" || foot.kind === "phone" ? "" : I18n.t("Pick")
                 onClicked: root.pick(foot.kind)
             }
             SmallKey {
@@ -299,12 +299,12 @@ Item {
                     Empty {
                         visible: bannerTile.pic !== "set"
                         icon: bannerTile.pic === "missing" ? "hide_image" : "image"
-                        text: bannerTile.pic === "missing" ? "Can't find its file" : "No banner yet"
+                        text: bannerTile.pic === "missing" ? I18n.t("Can't find its file") : I18n.t("No banner yet")
                     }
                 }
                 Footer {
                     kind: "banner"
-                    label: "Banner"
+                    label: I18n.t("Banner")
                     pic: bannerTile.pic
                     focused: bannerTile.focused
                 }
@@ -349,7 +349,7 @@ Item {
                 }
                 Footer {
                     kind: "avatar"
-                    label: avatarTile.pic === "empty" ? "No avatar" : "Avatar"
+                    label: avatarTile.pic === "empty" ? I18n.t("No avatar") : I18n.t("Avatar")
                     pic: avatarTile.pic
                     focused: avatarTile.focused
                 }
@@ -431,7 +431,7 @@ Item {
                                 Text {
                                     x: 10
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: modelData[1]
+                                    text: I18n.t(modelData[1])
                                     color: parent.on ? root.mt.colBorder : root.mt.pInk
                                     font.family: root.mt.fontFamily
                                     font.pixelSize: 12
@@ -456,7 +456,7 @@ Item {
                 }
                 Footer {
                     kind: "phone"
-                    label: "Phone wallpaper"
+                    label: I18n.t("Phone wallpaper")
                     pic: phoneTile.picked ? "set" : "empty"
                     canFrame: phoneTile.mode === "picture" && phoneTile.picked
                     canRemove: phoneTile.picked

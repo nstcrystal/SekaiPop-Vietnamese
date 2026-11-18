@@ -177,7 +177,7 @@ PanelWindow {
         }
         // One of the pictures on the desktop (ImageWidget.qml): "image:<id>".
         if (id.indexOf("image:") === 0)
-            return "Image"
+            return I18n.t("Image")
         return id
     }
 
@@ -362,7 +362,7 @@ PanelWindow {
                         anchors.left: headDiamond.right
                         anchors.leftMargin: 12
                         anchors.verticalCenter: headDiamond.verticalCenter
-                        text: "EDIT DESKTOP"
+                        text: I18n.t("EDIT DESKTOP")
                         color: mt.pInk
                         font.family: mt.fontFamily
                         font.pixelSize: 17
@@ -398,22 +398,22 @@ PanelWindow {
                         width: parent.width - x
                         elide: Text.ElideRight
                         text: PanelImages.framing !== ""
-                            ? "Framing: pick the part that shows."
+                            ? I18n.t("Framing: pick the part that shows.")
                             : win.tab === "theme" && themeBoard.tuning
-                            ? (ThemeService.matugenBusy ? "Re-colouring from the wallpaper\u2026" : "Tune the wallpaper colours.")
+                            ? (ThemeService.matugenBusy ? I18n.t("Re-colouring from the wallpaper\u2026") : I18n.t("Tune the wallpaper colours."))
                             : win.tab === "theme"
-                            ? "Pick the colours the shell wears."
+                            ? I18n.t("Pick the colours the shell wears.")
                             : win.tab === "presets"
-                            ? "Save the whole look, wear it again."
+                            ? I18n.t("Save the whole look, wear it again.")
                             : win.tab === "bar"
-                            ? "Its look, its edge, and what sits on it."
+                            ? I18n.t("Its look, its edge, and what sits on it.")
                             : win.tab === "dock"
-                            ? "Its look, where it sits, when it hides."
+                            ? I18n.t("Its look, where it sits, when it hides.")
                             : win.tab === "views"
-                            ? "The phone, the overview, and the bar's workspaces."
+                            ? I18n.t("The phone, the overview, and the bar's workspaces.")
                             : (EditMode.editTarget !== ""
-                            ? "Editing " + win.titleOf(EditMode.editTarget) + " \u2014 click the card to let go"
-                            : "Pick it, place it, tweak it.")
+                            ? I18n.t("Editing {name} \u2014 click the card to let go", { name: win.titleOf(EditMode.editTarget) })
+                            : I18n.t("Pick it, place it, tweak it."))
                         color: (win.tab === "widgets" && EditMode.editTarget !== "") || (win.tab === "theme" && themeBoard.tuning && ThemeService.matugenBusy)
                             ? mt.pInk : mt.pInkSub
                         font.family: mt.fontFamily
@@ -425,23 +425,23 @@ PanelWindow {
                 HintRow {
                     keyText: PanelImages.framing !== "" ? "" : (win.tab === "bar" ? "" : "L")
                     keyIcon: PanelImages.framing !== "" ? "open_with" : (win.tab === "bar" ? "open_with" : "")
-                    label: PanelImages.framing !== "" ? "Drag: move the picture"
-                        : win.tab === "bar" ? "Drag: move, or into OFF"
-                        : (win.tab === "theme" && themeBoard.tuning ? "Click: changes it live"
-                        : win.tab === "theme" ? "Click: wear this theme"
-                        : (win.tab === "presets" ? "Click: wear this look"
-                        : (win.pickTab ? "Click: change it" : "Left click: add / edit")))
+                    label: PanelImages.framing !== "" ? I18n.t("Drag: move the picture")
+                        : win.tab === "bar" ? I18n.t("Drag: move, or into OFF")
+                        : (win.tab === "theme" && themeBoard.tuning ? I18n.t("Click: changes it live")
+                        : win.tab === "theme" ? I18n.t("Click: wear this theme")
+                        : (win.tab === "presets" ? I18n.t("Click: wear this look")
+                        : (win.pickTab ? I18n.t("Click: change it") : I18n.t("Left click: add / edit"))))
                 }
 
                 HintRow {
                     keyText: PanelImages.framing !== "" ? "" : (win.tab === "bar" ? "L" : (win.tab === "theme" && themeBoard.tuning ? "Esc" : (win.tab === "theme" || win.pickTab ? "" : "R")))
                     keyIcon: PanelImages.framing !== "" ? "mouse" : (win.tab === "theme" && themeBoard.tuning ? "" : (win.tab === "theme" || win.pickTab ? "mouse" : ""))
-                    label: PanelImages.framing !== "" ? "Wheel: zoom in and out"
-                        : win.tab === "bar" ? "Click: next zone / back on"
-                        : (win.tab === "theme" && themeBoard.tuning ? "Back to the themes"
-                        : win.tab === "theme" ? "Wheel: more themes"
-                        : (win.tab === "presets" ? "Right click twice: delete"
-                        : (win.pickTab ? "Hover: see its name" : "Right click: remove")))
+                    label: PanelImages.framing !== "" ? I18n.t("Wheel: zoom in and out")
+                        : win.tab === "bar" ? I18n.t("Click: next zone / back on")
+                        : (win.tab === "theme" && themeBoard.tuning ? I18n.t("Back to the themes")
+                        : win.tab === "theme" ? I18n.t("Wheel: more themes")
+                        : (win.tab === "presets" ? I18n.t("Right click twice: delete")
+                        : (win.pickTab ? I18n.t("Hover: see its name") : I18n.t("Right click: remove"))))
                 }
 
                 // THEME: "Matugen: from wallpaper", or, while it is the theme on, how to reach
@@ -452,12 +452,12 @@ PanelWindow {
                     keyIcon: PanelImages.framing !== "" ? "" : win.tab === "bar" ? ""
                         : (win.tab === "theme" ? (themeBoard.tuning ? "push_pin" : (matugenOn ? "" : "wallpaper"))
                         : (win.tab === "presets" ? "sync" : (win.pickTab ? "check" : "open_with")))
-                    label: PanelImages.framing !== "" ? "Esc: cancel, as it was"
-                        : win.tab === "bar" ? "Right click: remove"
-                        : (win.tab === "theme" && themeBoard.tuning ? "Pin: keep an accent"
-                        : win.tab === "theme" && matugenOn ? "Matugen again: tune it"
-                        : win.tab === "theme" ? "Matugen: from wallpaper"
-                        : (win.tab === "presets" ? "Hover: save over it" : (win.pickTab ? "Applies at once" : "Drag: move")))
+                    label: PanelImages.framing !== "" ? I18n.t("Esc: cancel, as it was")
+                        : win.tab === "bar" ? I18n.t("Right click: remove")
+                        : (win.tab === "theme" && themeBoard.tuning ? I18n.t("Pin: keep an accent")
+                        : win.tab === "theme" && matugenOn ? I18n.t("Matugen again: tune it")
+                        : win.tab === "theme" ? I18n.t("Matugen: from wallpaper")
+                        : (win.tab === "presets" ? I18n.t("Hover: save over it") : (win.pickTab ? I18n.t("Applies at once") : I18n.t("Drag: move"))))
                 }
             }
 
@@ -519,7 +519,7 @@ PanelWindow {
                             spacing: 0
 
                             Text {
-                                text: "LOCK ALL"
+                                text: I18n.t("LOCK ALL")
                                 color: EditMode.widgetsLocked ? mt.colBorder : mt.pInk
                                 font.family: mt.fontFamily
                                 font.pixelSize: 13
@@ -529,7 +529,7 @@ PanelWindow {
                             }
 
                             Text {
-                                text: EditMode.widgetsLocked ? "stay put after Done" : "free on the desktop"
+                                text: EditMode.widgetsLocked ? I18n.t("stay put after Done") : I18n.t("free on the desktop")
                                 color: EditMode.widgetsLocked ? mt.colBorder : mt.pInkSub
                                 font.family: mt.fontFamily
                                 font.pixelSize: 10
@@ -579,7 +579,7 @@ PanelWindow {
 
                             Text {
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: "DONE"
+                                text: I18n.t("DONE")
                                 color: mt.colBorder
                                 font.family: mt.fontFamily
                                 font.pixelSize: 17
@@ -625,14 +625,14 @@ PanelWindow {
 
                 TabKey {
                     icon: "widgets"
-                    label: "WIDGETS"
+                    label: I18n.t("WIDGETS")
                     on: win.tab === "widgets"
                     onActivated: win.tab = "widgets"
                 }
 
                 TabKey {
                     icon: "dock_to_bottom"
-                    label: "BAR"
+                    label: I18n.t("BAR")
                     on: win.tab === "bar"
                     onActivated: {
                         EditMode.select("")
@@ -642,7 +642,7 @@ PanelWindow {
 
                 TabKey {
                     icon: "bottom_navigation"
-                    label: "DOCK"
+                    label: I18n.t("DOCK")
                     on: win.tab === "dock"
                     onActivated: {
                         EditMode.select("")
@@ -652,7 +652,7 @@ PanelWindow {
 
                 TabKey {
                     icon: "smartphone"
-                    label: "VIEWS"
+                    label: I18n.t("VIEWS")
                     on: win.tab === "views"
                     onActivated: {
                         EditMode.select("")
@@ -662,7 +662,7 @@ PanelWindow {
 
                 TabKey {
                     icon: "palette"
-                    label: "THEME"
+                    label: I18n.t("THEME")
                     on: win.tab === "theme"
                     onActivated: {
                         EditMode.select("")
@@ -672,7 +672,7 @@ PanelWindow {
 
                 TabKey {
                     icon: "bookmarks"
-                    label: "PRESETS"
+                    label: I18n.t("PRESETS")
                     on: win.tab === "presets"
                     onActivated: {
                         EditMode.select("")
