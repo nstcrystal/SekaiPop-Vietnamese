@@ -488,7 +488,7 @@ Cụm 2b-9 + 2b-10 — Dock (làm từng phần, tick khi xong phần đó; ch�
 
 Các cụm còn lại (sau Dock):
 
-- [ ] `editMode` (~104 chuỗi): `EditGuides`, `PicturesRow`, `EditChrome`.
+- [x] `editMode` (127 khóa dùng tại 13 file) — `1fd2f46`: kệ `EditTray` (tiêu đề `EDIT DESKTOP`, dòng hướng dẫn theo từng tab, 3 hàng hint, `LOCK ALL`/`DONE`, 6 tab `WIDGETS`/`BAR`/`DOCK`/`VIEWS`/`THEME`/`PRESETS`), `EditBarLayout` (STYLE/POSITION, 4 vùng LEFT/CENTER/RIGHT/OFF, RESET/CLEAR ALL), `EditDockBoard`, `EditViewsBoard`, `EditPresetBoard`, `EditMatugenControls`, `PicturesRow`, `SizeKey`, `EditChrome`, `EditGuides`, `EditThemeBoard`, `EditTraySlot`. Thêm 115 khóa vào `vi-shell.js`, dùng lại 12 khóa có sẵn (`Float`, `Files`, `Pinned`, `Wallpaper`…). Giữ nguyên: id/value tùy chọn, tên icon, tên phím `L`/`R`/`Esc`, tên công cụ `Matugen` và 2 bản dịch identity cố ý (`Settings`, `DOCK`). Cập nhật 3 assert test đọc source để chấp nhận `I18n.t(...)` mà vẫn kiểm tra cùng khóa/thứ tự.
 - [ ] `desktopWidgets` (~99 chuỗi): `StickyNote`, `LyricsWidget` và widget khác.
 - [ ] Mảng còn lại: `palette`, `polkit`, `overview`, `regionSelector`, `framing`, `ScalePopup`.
 
