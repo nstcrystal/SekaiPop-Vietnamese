@@ -239,7 +239,7 @@ khi quét thêm component plugin và dialog.
 | Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
 | Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `9fa9477` |
 | Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | `4ff7bf0` |
-| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm (9a, 9b, 9d xong) | `3d75082` |
+| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm (9a, 9b, 9c, 9d xong) | `3d75082` |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -479,7 +479,7 @@ Cụm 2b-9 + 2b-10 — Dock (làm từng phần, tick khi xong phần đó; ch�
 
 - [x] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta` — `3d75082`, rút gọn nhãn cho vừa khung ở `ff50fe1`. Menu dịch tại `buildMenu`; flag và tên tool dịch tại chỗ. Ba khóa shelf (`Add what is on the clipboard`, `Copy everything on the shelf`, `Clear the shelf`) đã thêm sẵn cho 2b-9d.
 - [x] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro (`I18n.t(modelData.label)`), 3 bộ nút Pause/Resume/Start, `Custom`/`Set`/`1 min`, `Lap` và `Lap {n}`, `Skip`, `phaseLabel`, footer `{work} min focus · {short} short · {long} long`. Dịch tại chỗ hiển thị; dùng lại khóa có sẵn `Pause`, `Timer`, `Stopwatch`, `Focus`, `Short break`, `Long break`. Giữ nguyên: `Pomodoro`, chữ `h/m/s` và `m` trên nút phút có sẵn — `4c013bf`.
-- [ ] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher).
+- [x] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher): header `Clipboard`, hai câu trống (`Needs cliphist and wl-clipboard installed.`, `Nothing copied yet.`) và nút `More in search`. `Extras.imageLabel(preview, t)` nhận `I18n.t` từ cả 3 chỗ gọi (thẻ Dock + 2 chỗ trong `ClipboardCard` của launcher) → `Image · {d}` thành `Hình ảnh · {d}`; phần kích thước/định dạng/kích thước ảnh sau dấu chấm là dữ liệu cliphist, giữ nguyên. Không truyền `t` thì vẫn ra tiếng Anh như cũ (dùng cho test/node) — `ede05ac`.
 - [x] 2b-9d `DockShelfCard.qml` + `DockMediaCard.qml`: header `Kệ`, 3 hint nút (thêm/sao chép/dọn), câu trống, `Pick one to open it`, `Nothing playing`. Dịch tại `hint` và tại chỗ hiển thị.
 - [x] Media popup (`mediaControls/MediaPopup.qml`): nút play/pause rộng 92px, nhãn `Tạm dừng` tràn ra ngoài → dùng `Dừng` qua khóa ngữ cảnh `media:Pause` (tiếng Anh vẫn là `Pause`).
 - [x] 2b-10a `FilesStackService.qml`: nhãn thời gian sửa (`modifiedLabel`), tiêu đề `Home`/`Trash` (`titleFor`), loại file (`typeLabel`: Folder, các loại ảnh/video/âm thanh/tệp nén…, `{ext} file` → `Tệp {ext}`) và ngày sửa (`dateText`, dùng helper mới `I18n.dateMedium`). Nhãn 6 nút vị trí dịch trong `DockFilesCard` (`hoverLabel`), rê chuột lên Thùng rác có câu riêng. Giữ tiếng Anh: tên thư mục thật, `placeNames`, khóa `kinds` (vì `isVideo()` so sánh `Video`), đơn vị `B/kB/MB/GB/TB`.
