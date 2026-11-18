@@ -239,7 +239,7 @@ khi quét thêm component plugin và dialog.
 | Welcome tour (5 slide) | 15 khóa | đã dịch | `642b65e` |
 | Keybinds panel + cheatsheet | ~140 khóa | đã dịch | `9fa9477` |
 | Notification popup + popup còn lại của Bar | ~110 khóa | đã dịch | `4ff7bf0` |
-| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm (9a, 9d xong) | `3d75082` |
+| Dock: menu chuột phải, timer, clipboard, shelf | ~50 khóa | đang làm (9a, 9b, 9d xong) | `3d75082` |
 
 Component plugin đã dịch phần hiển thị tĩnh: `PluginRepoHead`, `PluginNote`,
 `PluginSourceRow`, `PluginSourcePanel`, `PluginUpdateBox`, `PluginListEntry`,
@@ -478,7 +478,7 @@ shell.
 Cụm 2b-9 + 2b-10 — Dock (làm từng phần, tick khi xong phần đó; chờ test trước khi sang phần sau):
 
 - [x] 2b-9a `Dock.qml`: menu chuột phải, flag (`click to open`, `Paused · click to open`, `release to remove`), tên tool trong `toolMeta` — `3d75082`, rút gọn nhãn cho vừa khung ở `ff50fe1`. Menu dịch tại `buildMenu`; flag và tên tool dịch tại chỗ. Ba khóa shelf (`Add what is on the clipboard`, `Copy everything on the shelf`, `Clear the shelf`) đã thêm sẵn cho 2b-9d.
-- [ ] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro, nút điều khiển, `Lap`, footer Pomodoro.
+- [x] 2b-9b `DockTimerCard.qml`: tab Timer/Stopwatch/Pomodoro (`I18n.t(modelData.label)`), 3 bộ nút Pause/Resume/Start, `Custom`/`Set`/`1 min`, `Lap` và `Lap {n}`, `Skip`, `phaseLabel`, footer `{work} min focus · {short} short · {long} long`. Dịch tại chỗ hiển thị; dùng lại khóa có sẵn `Pause`, `Timer`, `Stopwatch`, `Focus`, `Short break`, `Long break`. Giữ nguyên: `Pomodoro`, chữ `h/m/s` và `m` trên nút phút có sẵn — `4c013bf`.
 - [ ] 2b-9c `DockClipboardCard.qml` + `Extras.imageLabel` (dùng chung với launcher).
 - [x] 2b-9d `DockShelfCard.qml` + `DockMediaCard.qml`: header `Kệ`, 3 hint nút (thêm/sao chép/dọn), câu trống, `Pick one to open it`, `Nothing playing`. Dịch tại `hint` và tại chỗ hiển thị.
 - [x] Media popup (`mediaControls/MediaPopup.qml`): nút play/pause rộng 92px, nhãn `Tạm dừng` tràn ra ngoài → dùng `Dừng` qua khóa ngữ cảnh `media:Pause` (tiếng Anh vẫn là `Pause`).
