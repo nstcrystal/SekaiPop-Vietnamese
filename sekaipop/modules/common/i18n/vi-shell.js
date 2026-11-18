@@ -992,5 +992,13 @@ var dict = {
     "Lap {n}": "Vòng {n}",
     "Skip": "Bỏ qua",
     "{work} min focus · {short} short · {long} long":
-        "{work} phút tập trung · {short} nghỉ ngắn · {long} nghỉ dài"
+        "{work} phút tập trung · {short} nghỉ ngắn · {long} nghỉ dài",
+
+    // ----- Dock: clipboard card (Extras.imageLabel is shared with the launcher) -----
+    // "Clipboard" comes from vi-settings.js and "Image" from the Files section above;
+    // the size / format / dimensions after the dot are cliphist's own data.
+    "Needs cliphist and wl-clipboard installed.": "Cần cài cliphist và wl-clipboard.",
+    "Nothing copied yet.": "Chưa sao chép gì.",
+    "More in search": "Xem thêm trong tìm kiếm",
+    "Image · {d}": "Hình ảnh · {d}"
 }

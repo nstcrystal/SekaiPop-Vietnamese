@@ -316,7 +316,16 @@ function parseClipList(text) {
 
 // The row / info text of a copied picture: cliphist's own description of it
 // ("[[ binary data 1.2 MiB png 1920x1080 ]]" -> "Image \u00b7 1.2 MiB png 1920x1080").
-function imageLabel(preview) {
+// `t` is I18n.t at the call sites (dock card and launcher card); the fallback
+// keeps the plain English string for callers that have no translation layer.
+function imageLabel(preview, t) {
+    var tr = t || function (s, vars) {
+        if (!vars)
+            return s;
+        return s.replace(/\{(\w+)\}/g, function (m, k) {
+            return vars[k] !== undefined ? String(vars[k]) : m;
+        });
+    };
     var d = String(preview).replace(/^\[\[\s*binary data\s*/, "").replace(/\s*\]\]$/, "").trim();
-    return d === "" ? "Image" : "Image \u00b7 " + d;
+    return d === "" ? tr("Image") : tr("Image \u00b7 {d}", { d: d });
 }

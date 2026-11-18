@@ -239,7 +239,8 @@ PhoneCard {
                     anchors.rightMargin: 24
                     anchors.verticalCenter: parent.verticalCenter
                     elide: Text.ElideRight
-                    text: row.modelData.image ? X.imageLabel(row.modelData.preview) : X.oneLine(row.modelData.preview, 80)
+                    text: row.modelData.image ? X.imageLabel(row.modelData.preview, I18n.t)
+                        : X.oneLine(row.modelData.preview, 80)
                     color: row.sel ? root.darkInk : mt.pInk
                     font.family: mt.fontFamily
                     font.pixelSize: 20
@@ -425,7 +426,7 @@ PhoneCard {
                         return ""
                     const pin = e.pinned ? I18n.t("Pinned \u00b7 ") : ""
                     if (e.image)
-                        return pin + X.imageLabel(e.preview)
+                        return pin + X.imageLabel(e.preview, I18n.t)
                     if (root.loading)
                         return I18n.t("Loading\u2026")
                     if (root.failed && root.fullText === "")

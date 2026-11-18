@@ -93,7 +93,7 @@ DockCard {
 
         Text {
             anchors.verticalCenter: parent.verticalCenter
-            text: "Clipboard"
+            text: I18n.t("Clipboard")
             color: mt.ink
             font.family: mt.fontFamily
             font.pixelSize: 17
@@ -109,8 +109,8 @@ DockCard {
         width: root.listW
         wrapMode: Text.WordWrap
         text: root.missing
-            ? "Needs cliphist and wl-clipboard installed."
-            : "Nothing copied yet."
+            ? I18n.t("Needs cliphist and wl-clipboard installed.")
+            : I18n.t("Nothing copied yet.")
         color: mt.inkSub
         font.family: mt.fontFamily
         font.pixelSize: 14
@@ -159,7 +159,8 @@ DockCard {
                     width: root.listW - 40 - 44
                     elide: Text.ElideRight
                     maximumLineCount: 1
-                    text: row.modelData.image ? X.imageLabel(row.modelData.preview) : row.modelData.preview.replace(/\s+/g, " ").trim()
+                    text: row.modelData.image ? X.imageLabel(row.modelData.preview, I18n.t)
+                        : row.modelData.preview.replace(/\s+/g, " ").trim()
                     color: mt.ink
                     font.family: mt.fontFamily
                     font.pixelSize: 14
@@ -220,7 +221,7 @@ DockCard {
                 anchors.centerIn: parent
                 height: 30
                 icon: "search"
-                label: "More in search"
+                label: I18n.t("More in search")
                 fontSize: 13
                 iconSize: 18
                 onClicked: root.moreRequested()
