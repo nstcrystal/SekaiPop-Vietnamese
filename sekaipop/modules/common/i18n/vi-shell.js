@@ -1276,5 +1276,26 @@ var dict = {
     "Click to annotate": "Nhấn để chú thích",
     "Drag a region or click a window  ·  Right-drag to annotate  ·  Esc cancels":
         "Kéo một vùng hoặc nhấn vào cửa sổ  ·  Chuột phải kéo để chú thích  ·  Esc hủy",
-    "Saved and copied": "Đã lưu và sao chép"
+    "Saved and copied": "Đã lưu và sao chép",
+
+    // ----- Picture framing -----
+    "All quiet here.": "Ở đây yên tĩnh.",
+    "Also on the desktop user card": "Cũng hiện trên thẻ người dùng ngoài desktop",
+    "Apps": "Ứng dụng",
+    "Can't read this picture.": "Không đọc được ảnh này.",
+    "Cards over it keep 78 % of their fill": "Các thẻ phía trên giữ 78 % độ mờ",
+    "Drag to move it, scroll to zoom. Drawn 2.5× here; the real size is beside it.":
+        "Kéo để di chuyển, cuộn để phóng to. Vẽ ở 2,5× tại đây; kích thước thật ở bên cạnh.",
+    "Drag to move it, scroll to zoom. One framing for both screens, Quick and Apps.":
+        "Kéo để di chuyển, cuộn để phóng to. Một khung cho cả hai màn hình, Quick và Ứng dụng.",
+    "Drag to move it, scroll to zoom. Shown at its real size: 602 × 240.":
+        "Kéo để di chuyển, cuộn để phóng to. Hiển thị đúng kích thước: 602 × 240.",
+    "Frame the avatar": "Chỉnh khung ảnh đại diện",
+    "Frame the banner": "Chỉnh khung ảnh bìa",
+    "Frame the phone wallpaper": "Chỉnh khung hình nền điện thoại",
+    "New picture: starts centred": "Ảnh mới: bắt đầu căn giữa",
+    "Opening the picture…": "Đang mở ảnh…",
+    "Real size, 120 px": "Kích thước thật, 120 px",
+    "Text over it: navy": "Chữ phía trên: xanh navy",
+    "Text over it: white": "Chữ phía trên: trắng"
 }

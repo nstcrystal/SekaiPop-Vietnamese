@@ -360,7 +360,7 @@ Item {
             Chip {
                 visible: root.fresh
                 icon: "auto_awesome"
-                text: "New picture: starts centred"
+                text: I18n.t("New picture: starts centred")
             }
             // The phone: which of its screens to show over the picture.
             Rectangle {
@@ -375,7 +375,7 @@ Item {
                     y: 3
                     spacing: 4
                     Repeater {
-                        model: [["quick", "Quick"], ["apps", "Apps"]]
+                        model: [["quick", I18n.t("Quick")], ["apps", I18n.t("Apps")]]
                         delegate: Rectangle {
                             required property var modelData
                             readonly property bool on: root.phoneScreen === modelData[0]
@@ -388,7 +388,7 @@ Item {
                             Text {
                                 id: segText
                                 anchors.centerIn: parent
-                                text: modelData[1]
+                                text: I18n.t(modelData[1])
                                 color: root.mt.pInk
                                 font.family: root.mt.fontFamily
                                 font.pixelSize: 13
@@ -600,7 +600,7 @@ Item {
                                 Text {
                                     anchors.horizontalCenter: parent.horizontalCenter
                                     y: 60
-                                    text: "All quiet here."
+                                    text: I18n.t("All quiet here.")
                                     color: root.mt.pInkSub
                                     font.family: root.mt.fontFamily
                                     font.pixelSize: 11
@@ -617,7 +617,7 @@ Item {
                                 Text {
                                     x: 12
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: "Search apps"
+                                    text: I18n.t("Search apps")
                                     color: root.mt.pInkSub
                                     font.family: root.mt.fontFamily
                                     font.pixelSize: 11
@@ -715,7 +715,7 @@ Item {
                             }
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
-                                text: "Real size, 120 px"
+                                text: I18n.t("Real size, 120 px")
                                 color: root.mt.pInk
                                 font.family: root.mt.fontFamily
                                 font.pixelSize: 13
@@ -755,7 +755,7 @@ Item {
                 Text {
                     visible: !(root.aspect > 0)
                     anchors.centerIn: parent
-                    text: probe.status === Image.Error ? "Can't read this picture." : "Opening the picture…"
+                    text: probe.status === Image.Error ? I18n.t("Can't read this picture.") : I18n.t("Opening the picture…")
                     color: "#ffffff"
                     font.family: root.mt.fontFamily
                     font.pixelSize: 16
@@ -769,9 +769,9 @@ Item {
                 height: 26
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: root.kind === "avatar" ? "Drag to move it, scroll to zoom. Drawn 2.5× here; the real size is beside it."
-                        : (root.kind === "phone" ? "Drag to move it, scroll to zoom. One framing for both screens, Quick and Apps."
-                        : "Drag to move it, scroll to zoom. Shown at its real size: 602 × 240.")
+                    text: root.kind === "avatar" ? I18n.t("Drag to move it, scroll to zoom. Drawn 2.5× here; the real size is beside it.")
+                        : (root.kind === "phone" ? I18n.t("Drag to move it, scroll to zoom. One framing for both screens, Quick and Apps.")
+                        : I18n.t("Drag to move it, scroll to zoom. Shown at its real size: 602 × 240."))
                     color: root.mt.pInkSub
                     font.family: root.mt.fontFamily
                     font.pixelSize: 15
@@ -783,8 +783,8 @@ Item {
                     hasSwatch: true
                     swatch: root.kind === "banner" ? root.bannerInk
                         : (root.kind === "phone" ? Qt.alpha(root.mt.pSurface, 0.78) : root.mt.pSurface)
-                    text: root.kind === "banner" ? (root.inkDark ? "Text over it: white" : "Text over it: navy")
-                        : (root.kind === "phone" ? "Cards over it keep 78 % of their fill" : "Also on the desktop user card")
+                    text: root.kind === "banner" ? (root.inkDark ? I18n.t("Text over it: white") : I18n.t("Text over it: navy"))
+                        : (root.kind === "phone" ? I18n.t("Cards over it keep 78 % of their fill") : I18n.t("Also on the desktop user card"))
                 }
             }
 
@@ -893,7 +893,7 @@ Item {
                 Key {
                     anchors.verticalCenter: parent.verticalCenter
                     icon: "restart_alt"
-                    text: "Reset"
+                    text: I18n.t("Reset")
                     onClicked: root.reset()
                 }
 
@@ -905,7 +905,7 @@ Item {
                 Key {
                     id: cancelKey
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Cancel"
+                    text: I18n.t("Cancel")
                     badge: "Esc"
                     onClicked: root.cancel()
                 }
@@ -916,7 +916,7 @@ Item {
                     lit: true
                     size: 48
                     icon: "check"
-                    text: "Done"
+                    text: I18n.t("Done")
                     onClicked: root.done()
                 }
             }
@@ -955,7 +955,7 @@ Item {
             id: plateText
             x: 22
             anchors.verticalCenter: plateFace.verticalCenter
-            text: root.kind === "avatar" ? "Frame the avatar" : (root.kind === "phone" ? "Frame the phone wallpaper" : "Frame the banner")
+            text: root.kind === "avatar" ? I18n.t("Frame the avatar") : (root.kind === "phone" ? I18n.t("Frame the phone wallpaper") : I18n.t("Frame the banner"))
             color: root.mt.colBorder
             font.family: root.mt.fontFamily
             font.pixelSize: 21
