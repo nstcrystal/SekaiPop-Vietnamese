@@ -116,7 +116,7 @@ Singleton {
         else
             body += "\n" + I18n.t("Is it installed? Settings > Hyprland > Overview shows the install commands.")
         Quickshell.execDetached([ "notify-send", "-a", "Shell", "-u", "normal", "-i", "material:view_carousel",
-            "Scroll overview did not start", body ])
+            I18n.t("Scroll overview did not start"), body ])
     }
 
     function load() {

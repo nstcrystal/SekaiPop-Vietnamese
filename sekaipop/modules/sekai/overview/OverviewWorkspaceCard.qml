@@ -58,7 +58,7 @@ Item {
         y: 5
         height: root.headerHeight - 6
         verticalAlignment: Text.AlignVCenter
-        text: "WORKSPACE " + root.workspaceId
+        text: I18n.t("WORKSPACE {n}", { n: root.workspaceId }, "overview")
         color: ScrapbookTheme.filmPrint
         font.family: mt.fontFamily
         font.pixelSize: 11
@@ -110,7 +110,7 @@ Item {
         Text {
             anchors.centerIn: parent
             visible: root.windowCount === 0
-            text: "Empty"
+            text: I18n.t("Empty", null, "overview")
             color: ScrapbookTheme.filmPrintSoft
             font.family: mt.fontFamily
             font.pixelSize: 12

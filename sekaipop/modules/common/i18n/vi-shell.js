@@ -1266,5 +1266,9 @@ var dict = {
 
     // ----- Polkit prompt -----
     "Authentication Required": "Yêu cầu xác thực",
-    "Sorry, that didn't work. Try again.": "Xin lỗi, lần đó không thành công. Hãy thử lại."
+    "Sorry, that didn't work. Try again.": "Xin lỗi, lần đó không thành công. Hãy thử lại.",
+
+    // ----- Overview film strip -----
+    "overview:WORKSPACE {n}": "KHÔNG GIAN {n}",
+    "overview:Empty": "Trống"
 }
