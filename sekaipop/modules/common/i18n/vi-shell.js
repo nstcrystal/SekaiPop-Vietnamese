@@ -1262,5 +1262,9 @@ var dict = {
     "WHAT THE SHELL WOULD WEAR": "DIỆN MẠO SHELL SẼ MẶC",
     "click to copy": "nhấn để sao chép",
     "copy": "sao chép",
-    "locked": "đã khóa"
+    "locked": "đã khóa",
+
+    // ----- Polkit prompt -----
+    "Authentication Required": "Yêu cầu xác thực",
+    "Sorry, that didn't work. Try again.": "Xin lỗi, lần đó không thành công. Hãy thử lại."
 }

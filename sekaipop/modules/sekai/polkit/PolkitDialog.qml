@@ -169,7 +169,7 @@ Pill {
 
                 Text {
                     width: parent.width
-                    text: "Authentication Required"
+                    text: I18n.t("Authentication Required")
                     elide: Text.ElideRight
                     color: mt.ink
                     font.family: mt.fontFamily
@@ -215,7 +215,7 @@ Pill {
                 width: parent.width - 40
                 elide: Text.ElideRight
                 visible: input.text === ""
-                text: root.prompt
+                text: I18n.t(root.prompt)
                 color: mt.inkSub
                 font.family: mt.fontFamily
                 font.pixelSize: 15
@@ -267,7 +267,7 @@ Pill {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Sorry, that didn't work. Try again."
+                    text: I18n.t("Sorry, that didn't work. Try again.")
                     color: mt.colBorder
                     font.family: mt.fontFamily
                     font.pixelSize: 13
@@ -288,12 +288,12 @@ Pill {
                 spacing: 14
 
                 DialogButton {
-                    text: "Cancel"
+                    text: I18n.t("Cancel")
                     onClicked: root.cancelled()
                 }
 
                 DialogButton {
-                    text: "Unlock"
+                    text: I18n.t("Unlock")
                     primary: true
                     enabled: root.interactionAvailable
                     onClicked: root.trySubmit()
