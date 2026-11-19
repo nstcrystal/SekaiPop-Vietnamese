@@ -1297,5 +1297,8 @@ var dict = {
     "Opening the picture…": "Đang mở ảnh…",
     "Real size, 120 px": "Kích thước thật, 120 px",
     "Text over it: navy": "Chữ phía trên: xanh navy",
-    "Text over it: white": "Chữ phía trên: trắng"
+    "Text over it: white": "Chữ phía trên: trắng",
+
+    // ----- Shell scale popup -----
+    "Shell scale": "Tỷ lệ Shell"
 }

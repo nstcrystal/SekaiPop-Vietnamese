@@ -221,7 +221,7 @@ Scope {
 
                         Text {
                             Layout.alignment: Qt.AlignHCenter
-                            text: "Shell scale"
+                            text: I18n.t("Shell scale")
                             color: Theme.ink
                             font.family: Theme.fontFamily
                             font.pixelSize: 16
@@ -289,7 +289,7 @@ Scope {
                     Chip {
                         Layout.alignment: Qt.AlignHCenter
                         visible: root.overridden
-                        text: "Reset"
+                        text: I18n.t("Reset")
                         onClicked: ShellScale.resetScale(root.screenName)
                     }
                 }
