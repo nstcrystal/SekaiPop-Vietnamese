@@ -241,8 +241,8 @@ Singleton {
             if (j !== null && code === 0) {
                 root.afterCrop(j)
             } else {
-                Quickshell.execDetached(["notify-send", "-a", "sekaipop", "-i", "material:error", "Screen region",
-                    "Couldn't grab the region (is grim installed?)"])
+                Quickshell.execDetached(["notify-send", "-a", "sekaipop", "-i", "material:error",
+                        I18n.t("Screen region"), I18n.t("Couldn't grab the region (is grim installed?)")])
                 root.finishJob(false)
             }
         }
@@ -388,9 +388,11 @@ Singleton {
         onExited: {
             if (root.recordFile !== "") {
                 Quickshell.execDetached(["sh", "-c",
-                    "if [ -s \"$1\" ]; then notify-send -a sekaipop -i material:videocam 'Recording saved' \"$1\"; "
-                    + "else notify-send -a sekaipop -i material:error 'Recording failed' 'wf-recorder stopped before it saved anything. Run it in a terminal to see why.'; fi",
-                    "sh", root.recordFile])
+                    "if [ -s \"$1\" ]; then notify-send -a sekaipop -i material:videocam \"$2\" \"$1\"; "
+                    + "else notify-send -a sekaipop -i material:error \"$3\" \"$4\"; fi",
+                    "sh", root.recordFile, I18n.t("Recording saved"),
+                    I18n.t("Recording failed"),
+                    I18n.t("wf-recorder stopped before it saved anything. Run it in a terminal to see why.")])
                 root.recordFile = ""
             }
         }

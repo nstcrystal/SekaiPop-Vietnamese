@@ -287,7 +287,7 @@ Variants {
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: "Click to annotate"
+                                    text: I18n.t("Click to annotate")
                                     color: Theme.textWhite
                                     font.family: Theme.fontFamily
                                     font.pixelSize: 13
@@ -324,7 +324,7 @@ Variants {
                             anchors.verticalCenter: parent.verticalCenter
                             width: parent.width - sizeLabel.implicitWidth - 8
                             elide: Text.ElideRight
-                            text: RegionService.previewSaved ? "Saved and copied" : "Copied to the clipboard"
+                            text: RegionService.previewSaved ? I18n.t("Saved and copied") : I18n.t("Copied to the clipboard")
                             color: Theme.ink
                             font.family: Theme.fontFamily
                             font.pixelSize: 12
@@ -356,7 +356,7 @@ Variants {
 
                             PreviewButton {
                                 icon: "draw"
-                                label: "Annotate"
+                                label: I18n.t("Annotate")
                                 lit: true
                                 onClicked: RegionService.previewAct("swappy")
                             }

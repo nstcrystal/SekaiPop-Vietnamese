@@ -445,7 +445,7 @@ Scope {
                                         id: label
                                         x: 5
                                         anchors.verticalCenter: parent.verticalCenter
-                                        text: cell.modelData.label
+                                        text: I18n.t(cell.modelData.label)
                                         opacity: cell.expanded ? 1 : 0
                                         Behavior on opacity {
                                             NumberAnimation { duration: 140; easing.type: Easing.OutQuad }
@@ -518,7 +518,7 @@ Scope {
             Text {
                 id: hintText
                 anchors.centerIn: parent
-                text: "Drag a region or click a window  ·  Right-drag to annotate  ·  Esc cancels"
+                text: I18n.t("Drag a region or click a window  ·  Right-drag to annotate  ·  Esc cancels")
                 color: Theme.textWhite
                 font.family: Theme.fontFamily
                 font.pixelSize: 12

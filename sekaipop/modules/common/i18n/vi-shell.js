@@ -1270,5 +1270,11 @@ var dict = {
 
     // ----- Overview film strip -----
     "overview:WORKSPACE {n}": "KHÔNG GIAN {n}",
-    "overview:Empty": "Trống"
+    "overview:Empty": "Trống",
+
+    // ----- Region selector -----
+    "Click to annotate": "Nhấn để chú thích",
+    "Drag a region or click a window  ·  Right-drag to annotate  ·  Esc cancels":
+        "Kéo một vùng hoặc nhấn vào cửa sổ  ·  Chuột phải kéo để chú thích  ·  Esc hủy",
+    "Saved and copied": "Đã lưu và sao chép"
 }
