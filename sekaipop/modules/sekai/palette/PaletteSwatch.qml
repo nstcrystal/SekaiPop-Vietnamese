@@ -138,7 +138,8 @@ Item {
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: root.locked ? "locked" : ((root.compact || root.mini) ? "copy" : "click to copy")
+                    text: root.locked ? I18n.t("locked")
+                          : I18n.t((root.compact || root.mini) ? "copy" : "click to copy")
                     color: root.ink
                     opacity: root.copied ? 0 : (root.hovered || root.locked ? 0.8 : 0)
                     font.family: mt.fontFamily
@@ -157,7 +158,7 @@ Item {
                     Text {
                         // (the 2 x 2 swatch is too narrow for the word: the tick alone says it)
                         visible: !root.mini
-                        text: "Copied"
+                        text: I18n.t("Copied")
                         color: root.ink
                         font.family: mt.fontFamily
                         font.pixelSize: root.mini ? 9 : (root.compact ? 10 : 11)

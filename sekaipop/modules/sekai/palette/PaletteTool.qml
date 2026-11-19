@@ -256,7 +256,7 @@ Scope {
 
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: "Palette"
+                                    text: I18n.t("Palette")
                                     color: Theme.ink
                                     font.family: Theme.fontFamily
                                     font.pixelSize: 24
@@ -297,7 +297,7 @@ Scope {
 
                                         Text {
                                             anchors.verticalCenter: parent.verticalCenter
-                                            text: PaletteService.applied ? "Applied to the theme" : "Preview only, theme unchanged"
+                                            text: PaletteService.applied ? I18n.t("Applied to the theme") : I18n.t("Preview only, theme unchanged")
                                             color: PaletteService.applied ? Theme.colBorder : Theme.ink
                                             font.family: Theme.fontFamily
                                             font.pixelSize: 12
@@ -377,10 +377,14 @@ Scope {
                                 font.weight: Font.Bold
                                 text: {
                                     if (PaletteService.source === "random")
-                                        return PaletteService.scheme !== "" ? ("Harmony: " + PaletteService.scheme + ", Space shuffles") : "Space shuffles"
+                                        return PaletteService.scheme !== ""
+                                        ? I18n.t("Harmony: {name}", { name: PaletteService.scheme }) + ", " + I18n.t("Space shuffles")
+                                        : I18n.t("Space shuffles")
                                     if (extractor.problem !== "")
-                                        return extractor.problem
-                                    return PaletteService.source === "music" ? "From the cover of the playing track" : "From the wallpaper on screen"
+                                        return I18n.t(extractor.problem)
+                                    return PaletteService.source === "music"
+                                        ? I18n.t("From the cover of the playing track")
+                                        : I18n.t("From the wallpaper on screen")
                                 }
                             }
                         }
@@ -420,20 +424,20 @@ Scope {
 
                                 PaletteButton {
                                     icon: "casino"
-                                    label: "Shuffle"
+                                    label: I18n.t("Shuffle")
                                     onClicked: PaletteService.shuffle()
                                 }
 
                                 PaletteButton {
                                     icon: "favorite"
-                                    label: PaletteService.isFavorite ? "Saved" : "Save"
+                                    label: PaletteService.isFavorite ? I18n.t("Saved") : I18n.t("Save")
                                     lit: PaletteService.isFavorite
                                     onClicked: PaletteService.toggleFavorite()
                                 }
 
                                 PaletteButton {
                                     icon: root.copiedAll ? "check" : "content_copy"
-                                    label: root.copiedAll ? "Copied" : "Copy all"
+                                    label: root.copiedAll ? I18n.t("Copied") : I18n.t("Copy all")
                                     onClicked: {
                                         PaletteService.copyAll()
                                         root.copiedAll = true
@@ -449,7 +453,7 @@ Scope {
                                 PaletteButton {
                                     visible: PaletteService.canUndo
                                     icon: "undo"
-                                    label: "Undo"
+                                    label: I18n.t("Undo")
                                     onClicked: PaletteService.undo()
                                 }
 
@@ -458,7 +462,7 @@ Scope {
                                     primary: true
                                     enabled: !PaletteService.applied
                                     icon: PaletteService.applied ? "check" : "format_paint"
-                                    label: PaletteService.applied ? "Applied" : "Apply to theme"
+                                    label: PaletteService.applied ? I18n.t("Applied") : I18n.t("Apply to theme")
                                     onClicked: PaletteService.apply()
                                 }
                             }
@@ -484,7 +488,7 @@ Scope {
                                 spacing: 9
 
                                 Text {
-                                    text: "WHAT THE SHELL WOULD WEAR"
+                                    text: I18n.t("WHAT THE SHELL WOULD WEAR")
                                     color: Theme.inkSub
                                     font.family: Theme.fontFamily
                                     font.pixelSize: 10
@@ -494,11 +498,11 @@ Scope {
 
                                 Repeater {
                                     model: [
-                                        { label: "Outline and text", key: "border" },
-                                        { label: "Accent", key: "A" },
-                                        { label: "Second accent", key: "B" },
-                                        { label: "Dark tone", key: "deep" },
-                                        { label: "Hover wash", key: "hoverTint" }
+                                        { label: I18n.t("Outline and text"), key: "border" },
+                                        { label: I18n.t("Accent"), key: "A" },
+                                        { label: I18n.t("Second accent"), key: "B" },
+                                        { label: I18n.t("Dark tone"), key: "deep" },
+                                        { label: I18n.t("Hover wash"), key: "hoverTint" }
                                     ]
 
                                     delegate: Row {
@@ -546,7 +550,9 @@ Scope {
                             spacing: 8
 
                             Text {
-                                text: "FAVOURITES" + (PaletteService.favorites.length > 0 ? " (" + PaletteService.favorites.length + ")" : "")
+                                text: PaletteService.favorites.length > 0
+                                    ? I18n.t("FAVOURITES ({n})", { n: PaletteService.favorites.length })
+                                    : I18n.t("FAVOURITES")
                                 color: Theme.inkSub
                                 font.family: Theme.fontFamily
                                 font.pixelSize: 10
@@ -557,7 +563,7 @@ Scope {
                             Text {
                                 visible: PaletteService.favorites.length === 0
                                 width: parent.width
-                                text: "Press Save to keep a palette here. Clicking one brings it back onto the strip; your theme stays as it is until you Apply."
+                                text: I18n.t("Press Save to keep a palette here. Clicking one brings it back onto the strip; your theme stays as it is until you Apply.")
                                 wrapMode: Text.WordWrap
                                 color: Theme.inkSub
                                 font.family: Theme.fontFamily

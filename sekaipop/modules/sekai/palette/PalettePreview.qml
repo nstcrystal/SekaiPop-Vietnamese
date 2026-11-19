@@ -189,7 +189,7 @@ Item {
             Text {
                 x: 14
                 y: 10
-                text: "Live preview"
+                text: I18n.t("Live preview")
                 color: root.cInk
                 font.family: mt.fontFamily
                 font.pixelSize: 15
@@ -228,7 +228,7 @@ Item {
 
                     Text {
                         anchors.centerIn: parent
-                        text: "Apply"
+                        text: I18n.t("Apply")
                         color: root.cBorder
                         font.family: mt.fontFamily
                         font.pixelSize: 12
@@ -246,7 +246,7 @@ Item {
 
                     Text {
                         anchors.centerIn: parent
-                        text: "Later"
+                        text: I18n.t("Later")
                         color: root.cChipInk
                         font.family: mt.fontFamily
                         font.pixelSize: 12

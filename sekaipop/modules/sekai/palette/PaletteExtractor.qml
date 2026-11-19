@@ -46,13 +46,13 @@ Item {
     // Why there is nothing to read, for the tool to say out loud ("" = all good)
     readonly property string problem: {
         if (root.kind === "wallpaper")
-            return root.wallpaperUrl === "" ? "No picture for this wallpaper yet" : ""
+            return root.wallpaperUrl === "" ? I18n.t("No picture for this wallpaper yet") : ""
         if (root.kind === "music") {
             if (!root.media || !root.media.present)
-                return "Nothing is playing"
+                return I18n.t("Nothing is playing")
             if (root.media.artUrl === "")
-                return "This player gives no cover art"
-            return root.imageUrl === "" ? "Fetching the cover..." : ""
+                return I18n.t("This player gives no cover art")
+            return root.imageUrl === "" ? I18n.t("Fetching the cover...") : ""
         }
         return ""
     }

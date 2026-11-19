@@ -1240,5 +1240,27 @@ var dict = {
     "{n} entries": "{n} mục",
     "{n} entries ahead": "{n} mục sắp tới",
     "{n} entry": "{n} mục",
-    "{n} entry ahead": "{n} mục sắp tới"
+    "{n} entry ahead": "{n} mục sắp tới",
+
+    // ----- Palette tool -----
+    "Accent": "Màu nhấn",
+    "Applied to the theme": "Đã áp dụng vào chủ đề",
+    "Dark tone": "Tông tối",
+    "Fetching the cover...": "Đang lấy ảnh bìa...",
+    "Hover wash": "Màu khi di chuột",
+    "Later": "Để sau",
+    "Live preview": "Xem trước trực tiếp",
+    "No picture for this wallpaper yet": "Chưa có ảnh cho hình nền này",
+    "Nothing is playing": "Không có bài nào đang phát",
+    "Outline and text": "Viền và chữ",
+    "Press Save to keep a palette here. Clicking one brings it back onto the strip; your theme stays as it is until you Apply.":
+        "Nhấn Lưu để giữ bảng màu tại đây. Nhấn vào một bảng màu sẽ đưa nó trở lại dải màu; chủ đề của bạn vẫn giữ nguyên cho đến khi bạn nhấn Áp dụng.",
+    "Preview only, theme unchanged": "Chỉ xem trước, chủ đề không thay đổi",
+    "Second accent": "Màu nhấn thứ hai",
+    "Space shuffles": "Phím cách xáo trộn",
+    "This player gives no cover art": "Trình phát này không cung cấp ảnh bìa",
+    "WHAT THE SHELL WOULD WEAR": "DIỆN MẠO SHELL SẼ MẶC",
+    "click to copy": "nhấn để sao chép",
+    "copy": "sao chép",
+    "locked": "đã khóa"
 }
